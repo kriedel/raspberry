@@ -137,6 +137,10 @@ $(function() {
 	</script>
 	</head>
 <body>
+<?php
+$code = "12831824";
+$ort = "http://weather.yahooapis.com/forecastrss?w=$code&u=c";
+include('wetter-widget.php'); ?>
 <h3>Wetterstation</h3>
 <hr>
 <p>Aktuelles Bild der Webcam:</p> 
@@ -150,4 +154,3 @@ $(function() {
 <hr>
 </body>
 </html>
-

@@ -1,156 +1,49 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Webcam and Weather</title>
-  <meta name="description" content="Webcam and plot of temperature and humidity data from wunderground and DS18B20 sensor connected to Raspberry Pi">
-	<meta name="author" content="Kai Riedel">
-	<meta name="version" content="1.0">
-	<script type="text/javascript" src="jquery-1.10.1.min.js"></script>
-	<script type="text/javascript" src="highstock.js"></script>
-  <script type="text/javascript" src="gray.js"></script>
-	<script type="text/javascript">
+#!/usr/bin/php
 
-$(function() {
-	$.getJSON('data.json', function(data) {
-
-		// split the data set into ohlc and volume
-		var first = [],
-			second = [],
-      third  = [],
-			dataLength = data.length;
-		//	alert (data[0][1]);
-		for (i = 0; i < dataLength; i++) {
-			first.push([
-				data[i][0], // the date
-				data[i][1], // open
-       ]);
-			
-			second.push([
-				data[i][0], // the date
-				data[i][2] // the volume
-			]);
-      
-      third.push([
-        data[i][0],
-        data[i][3]
-      ])
-		}
-    
-   
-		// create the chart
-		$('#container').highcharts('StockChart', {
-		    rangeSelector: {
-		        selected: 1
-		    },
-        chart: {
-                zoomType: 'xy'
-            },
-        
-		    title: {
-		        text: 'Wetterdaten Auswertung'
-		    },
-         subtitle: {
-                text: 'Quelle: www.wunderground.com, DS18B20'
-            },
-          tooltip: {
-                shared: true
-            },
-            legend: {
-                verticalAlign: 'bottom',
-                floating: false,
-                enabled: true
-            },
-
-		    yAxis: [{
-		        labels: {
-                    formatter: function() {
-                        return this.value +' \u00B0C';
-                    },
-                    style: {
-                        color: '#89A54E'
-                    }
-                },
-                title: {
-                    text: 'Temperatur',
-                    style: {
-                        color: '#89A54E'
-                    }
-                },
-             }, {
-		        // Secondary yAxis
-                gridLineWidth: 0,
-                title: {
-                    text: 'Luftfeuchte',
-                    style: {
-                        color: '#4572A7'
-                    }
-                },
-                labels: {
-                    formatter: function() {
-                        return this.value +' %';
-                    },
-                    style: {
-                        color: '#4572A7'
-                    }
-                },
-                 opposite: true
-                 }
-		    ],
-        
-		    
-		    series: [{
-		        name: 'Temperatur Aussen',
-            type: 'line',
-		        data: first,
-            tooltip: {
-		        	valueDecimals: 1,
-              xDateFormat: '%d.%m.%Y, %H:%M:%S',
-              valueSuffix: ' \u00B0C'
-		        }
-		        }, 
-            {
-		        name: 'Luftfeuchte Aussen',
-            type: 'line',
-		        data: second,
-		        yAxis: 1,
-            tooltip: {
-		        	valueDecimals: 1,
-              xDateFormat: '%d.%m.%Y, %H:%M:%S',
-              valueSuffix: ' %'
-		        }
-            },
-            {
-             name: 'Temperatur Innen',
-            type: 'line',
-		        data: third,
-		        yAxis: 0,
-            tooltip: {
-		        	valueDecimals: 1,
-              xDateFormat: '%d.%m.%Y, %H:%M:%S',
-              valueSuffix: ' \u00B0C'
-            }
-		        }]
-		});
-	});
-});
-	</script>
-	</head>
-<body>
 <?php
-$code = "12831824";
-$ort = "http://weather.yahooapis.com/forecastrss?w=$code&u=c";
-include('wetter-widget.php'); ?>
-<h3>Wetterstation</h3>
-<hr>
-<p>Aktuelles Bild der Webcam:</p> 
-<img src="./media/image.jpg" width="640" height="480"/>
-<p>Letzte Zeitraffer Aufnahme:
-<a href="./media/outfile.mp4">Timelapse video file</a></p>
-<p>Systeminfo:
-<a href="system.php">Systeminfo</a></p>
-<p></p>
-<div id="container" style="min-width:80%; height:500px;  margin: 0 auto"></div>
-<hr>
-</body>
-</html>
+
+//Wetterdaten
+$url = "http://rss.wunderground.com/auto/rss_full/global/stations/10575.xml?units=metric"; 
+$content = implode("", file($url)); 
+
+preg_match_all("/\<item>(.*?)\<\/item\>/si", $content, $results); 
+preg_match("/\<description><!\[CDATA\[(.*?)\<img/si", $results[1][0], $desc); 
+
+$arr = explode(" | ",$desc[1]); 
+
+ 
+ echo '<pre>' . print_r($arr, true) . '</pre>'; 
+  
+/* Array 
+ ( 
+      [0] => Temperature: 86ÝF / 30ÝC 
+      [1] => Humidity: 74% 
+      [2] => Pressure: 29.83in / 1010hPa 
+      [3] => Conditions: Partly Cloudy 
+      [4] => Wind Direction: ESE 
+      [5] => Wind Speed: 5mph / 7km/h 
+      [6] => Updated: 10:00 PM PHT 
+  ) 
+*/  
+  
+preg_match("/Temperature: (.*?)&deg/si", $arr[0], $str); 
+$wetter['temp'] = $str['1']."°C"; 
+
+preg_match("/Humidity: (.*)/si", $arr[1], $str); 
+$wetter['hum'] = $str['1']; 
+
+preg_match("/Wind Direction: (.*)/si", $arr[4], $str); 
+$wetter['windr'] = $str['1']; 
+
+preg_match("/Wind Speed: (.*)/si", $arr[5], $str); 
+$wetter['windg'] = $str['1'];
+
+preg_match("/Pressure: (.*)/si", $arr[2], $str); 
+$wetter['press'] = $str['1']; 
+ 
+
+echo '<pre>' . print_r($wetter, true) . '</pre>'; 
+
+echo $wetter['temp']; 
+
+?>

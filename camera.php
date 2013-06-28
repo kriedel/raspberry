@@ -177,7 +177,7 @@ imagedestroy($im);
 $counter++;
 
 //convert pictures to flv video 
-if ($counter==200)
+if ($counter==1000)
 {
    $filenamevideo="/home/pi/video".$countervideo.".flv";
    exec("avconv -y -f image2 -i /home/pi/images/img%d.jpg -r 10 ".$filenamevideo."");
