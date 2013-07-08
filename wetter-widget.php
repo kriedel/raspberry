@@ -12,7 +12,7 @@ $feed->init();
  
 $weather = $feed->get_item(0);
  
-?>  
+?>	
 
 <b>Wetter f&uuml;r <?php echo $weather->get_city(); ?></b><br>
 <?php echo $weather->get_last_updated('d.m.Y - H:i'); ?> Uhr
