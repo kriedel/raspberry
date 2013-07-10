@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title>
-   	 Datalogger Webcam
+    Datalogger Timelapse Video
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Datalogger Webcam View">
+    <meta name="description" content="Timelapse Video">
     <meta name="author" content="Riedel">
     <!-- Le styles -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -14,7 +14,7 @@
       body { padding-top: 60px; /* 60px to make the container go all the way
       to the bottom of the topbar */ }
     </style>
-   <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js">
@@ -28,6 +28,25 @@
     <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
     <style>
     </style>
+        <script src="jquery-1.10.1.min.js">
+    </script>
+    <script src="assets/js/bootstrap.min.js">
+    </script>
+	<script src="highstock.js">
+    </script>
+    <script src="grid.js">
+    </script>
+    <script type="text/javascript" src="jwplayer/jwplayer.js">
+    </script>
+    
+    <script type="text/javascript">
+     $(function () {
+    jwplayer("container").setup({
+        file: "media/outfile.flv",
+        image: "media/image.jpg",height: 480, width: 640
+    });
+    });
+	</script>
   </head>
   <body>
     
@@ -59,33 +78,27 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header active">NAVIGATION</li>
-              <li class="active"><a href="index.html">Webcam</a></li>
+              <li><a href="index.html">Webcam</a></li>
               <li><a href="graph.html">Graph</a></li>
               <li><a href="forecast.php">Forecast</a></li>
               <li><a href="system.php">System</a></li>
-              <li><a href="video.html">Timelapse Video</a></li>
+              <li class="active"><a href="video.html">Timelapse Video</a></li>
+              <li></li>
               <li></li>
               <li></li>
               <li></li>
               <li></li>
               <li></li>
               <li class="nav-header">SUPPORT</li>
-              <li><a href="mailto:kairiedel@yahoo.de">Contact</a></li>
-            </ul>
+              
+               <li><a href="mailto:kairiedel@yahoo.de">Contact</a></li>
+              </ul>
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
-          
-          <div class="row-fluid">
-            <!--/span-->
-            <!--/span-->
-            <!--/span-->
-          </div><!--/row-->
-          <div class="row-fluid">
-            <!--/span-->
-            <!--/span-->
-          </div><!--/row-->
-        <img alt="No image found" src="./media/image.jpg" width="720" class="img-polaroid"></div><!--/span-->
+              <div id="container">Loading the Videoplayer...
+        </div>
+         </div><!--/span-->
       </div><!--/row-->
     
       <hr>
@@ -119,12 +132,6 @@
       }
       
     </style>
-    <script src="jquery-1.10.1.min.js">
-    </script>
-    <script src="assets/js/bootstrap.min.js">
-    </script>
-    <script>
 
-    </script>
   </body>
 </html>

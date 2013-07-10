@@ -13,6 +13,7 @@ $oldtime2=time();
 $filenameweb = "/home/pi/image.jpg";
 $url = "http://rss.wunderground.com/auto/rss_full/global/stations/10575.xml?units=metric";
 
+
 //translation array for weather feed
 $trans = array(
     'Monday'    => 'Montag',
@@ -81,7 +82,7 @@ $wetter['hum'] = $str['1'];
 
 while(1)
 {
-    if (time()>=$oldtime1+5)
+    if (time()>=$oldtime1+10)
     {
         // save current time stamp
         $oldtime1 = time();
@@ -109,7 +110,8 @@ while(1)
         // DS18B20 temperature
         ImageTTFText($im, 25, 0, 5, 180, $text_color, $Font, "IN:".$get_temperature." °C");
         // temperature and humidity from RSS feed
-        ImageTTFText($im, 25, 0, 5, 220, $text_color, $Font, "OUT:".$wetter['temp']." °C/".$wetter['hum']." %");
+        if ($wetter['temp']!=''and $wetter['hum']!='')
+            ImageTTFText($im, 25, 0, 5, 220, $text_color, $Font, "OUT:".$wetter['temp']." °C/".$wetter['hum']." %");
         
         imagepng($im, $filename);
         rename($filename, "/home/pi/test.png");
@@ -130,6 +132,7 @@ while(1)
         $bg_color = ImageColorAllocate ($im, 0, 0, 0);
         $text_color = imagecolorallocate($im, 255, 255, 0);
         
+       
         $content = implode("", file($url));
         
         preg_match_all("/\<item>(.*?)\<\/item\>/si", $content, $results); 
@@ -137,7 +140,8 @@ while(1)
         
         $arr = explode(" | ",$desc[1]);
         
-        preg_match("/Temperature: (.*?)&deg/si", $arr[0], $str); 
+        preg_match("/Temperature: (.*?)&deg/si", $arr[0], $str);
+        
         $wetter['temp'] = $str['1']; 
         
         preg_match("/Humidity: (.*?)%/si", $arr[1], $str); 
@@ -160,7 +164,10 @@ while(1)
         $date = strtr($date, $trans);
         
         ImageTTFText($im, 20, 0, 50, 920, $text_color, $Font, $date.", ".$time);
-        ImageTTFText($im, 20, 0, 450, 920, $text_color, $Font, $wetter['temp']." °C, ".$wetter['hum']." %, ".$wetter['press'].", ".$wetter['cond']);
+        
+        if ($wetter['temp']!=''and $wetter['hum']!='')
+            ImageTTFText($im, 20, 0, 450, 920, $text_color, $Font, $wetter['temp']." °C, ".$wetter['hum']." %, ".$wetter['press'].", ".$wetter['cond']);
+        
         
         imagejpeg ($im, "/home/pi/images/img".$counter.".jpg");
         imagejpeg ($im, $filenameweb);
@@ -173,14 +180,18 @@ while(1)
         //fwrite($filehandle, $date.",".$time.",".$get_temperature.",".$wetter['temp'].",".$wetter['hum']."\n");
         //fclose($filehandle);
         
-        // save weather values in JSON file for evaluate with highcharts
-        $filehandle = fopen("/var/www/data.json","r+");
-        $unixtime = (time()+7200)*1000;
-        fseek($filehandle, -1, SEEK_END);
-        fwrite($filehandle, ",\n[".$unixtime.",".$wetter['temp'].",".$wetter['hum'].",".$get_temperature."]]");
-        fclose($filehandle);
+        // save weather values in JSON file for evaluate with highcharts only if data correct every 10 minutes
+        if ($wetter['temp']!=''and $wetter['hum']!='' and $counter%20==0)
+        {
+            $filehandle = fopen("/var/www/data.json","r+");
+            $unixtime = (time()+7200)*1000;
+            fseek($filehandle, -1, SEEK_END);
+            fwrite($filehandle, ",\n[".$unixtime.",".$wetter['temp'].",".$wetter['hum'].",".$get_temperature."]]");
+            fclose($filehandle);
+        }
         
         $counter++;
+       
         imagedestroy($im);
     }
     
@@ -195,7 +206,7 @@ while(1)
        $countervideo++;
        exec("sudo cp ".$filenamevideo." /var/www/media/outfile.flv");
     }
-    
+sleep (1);
 
 }
 

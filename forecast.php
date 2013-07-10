@@ -11,7 +11,7 @@
     <!-- Le styles -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <style>
-      body { padding-top: 30px; /* 60px to make the container go all the way
+      body { padding-top: 60px; /* 60px to make the container go all the way
       to the bottom of the topbar */ }
     </style>
     <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
@@ -59,12 +59,11 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">NAVIGATION</li>
-              <li class="active"></li>
-              <li><a href="index.html">Webcam</a></li><li><a href="graph.html">Graph</a></li>
-              <li><a href="forecast.php">Forecast</a></li>
-              <li></li>
-              
-              <li></li>
+              <li><a href="index.html">Webcam</a></li>
+              <li><a href="graph.html">Graph</a></li>
+              <li class="active"><a href="forecast.php">Forecast</a></li>
+              <li><a href="system.php">System</a></li>
+              <li><a href="video.html">Timelapse Video</a></li>
               <li></li>
               <li></li>
               <li></li>
