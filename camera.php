@@ -44,6 +44,7 @@ $trans = array(
 exec ("sudo modprobe -q w1-gpio");
 exec ("sudo modprobe -q w1-therm");
 exec("sudo rm -f /home/pi/images/*.jpg");
+exec("sudo mv -f /home/pi/*.flv /home/pi/video/");
 exec ("sudo lcd4linux");
 
 //get rss feed values
@@ -94,7 +95,7 @@ while(1)
         $get_temperature = round(substr(exec("cat /sys/bus/w1/devices/28-*/w1_slave"),-5) / 1000, 1);  //get one DS18B20 temperature value
         
         // get image with low quality for digital picture frame
-        exec("raspistill -w 320 -h 240 -t 1000 -rot 270 -q 50 -o ".$filename."");
+        exec("raspistill -w 320 -h 240 -t 1000 -rot 270 -q 50 -o ".$filename." &");
         
         $im = imagecreatefromjpeg($filename);
         
@@ -124,7 +125,7 @@ while(1)
         $oldtime2 = time(); 
         $filenameweb = "/home/pi/image.jpg";
         
-        exec("raspistill -w 1280 -h 960 -t 1000 -rot 270 -o ".$filenameweb."");
+        exec("raspistill -w 1280 -h 960 -t 1000 -rot 270 -q 90 --awb sun -o ".$filenameweb." &");
         $im = imagecreatefromjpeg($filenameweb);
         
         // save informations in picture for webbrowser
@@ -196,11 +197,11 @@ while(1)
     }
     
     
-    //convert pictures to flv video 
-    if ($counter==200)
+    //convert pictures to flv video
+    if ($counter==600)
     {
        $filenamevideo="/home/pi/video".$countervideo.".flv";
-       exec("avconv -y -f image2 -i /home/pi/images/img%d.jpg -r 10 ".$filenamevideo."");
+       exec("avconv -y -f image2 -i /home/pi/images/img%d.jpg -r 10 ".$filenamevideo." &");
        exec("sudo rm -f /home/pi/images/*.jpg");
        $counter=1;
        $countervideo++;

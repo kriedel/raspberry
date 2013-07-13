@@ -21,17 +21,9 @@
       </script>
     <![endif]-->
     <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="assets/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
-    <style>
-    </style>
-  </head>
+   </head>
   <body>
-    
-    <div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
           <button type="button" class="btn btn-navbar">
@@ -69,8 +61,8 @@
               <li></li>
               <li></li>
               <li></li>
-              <li class="nav-header">SUPPORT</li>
-              <li><a href="mailto:kairiedel@yahoo.de">Contact</a></li>
+              <li class="nav-header">FTP</li>
+              <li><a href="ftp://ndl.dyns.cx">FTP Server</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
