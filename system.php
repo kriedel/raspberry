@@ -77,7 +77,7 @@
           <div class="row-fluid">
             <!--/span-->
             <!--/span-->
-            <div class="span5">
+            <div class="span6">
               <?php
                 include('systeminfo.php'); ?>
             </div><!--/span-->

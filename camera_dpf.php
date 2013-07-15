@@ -8,7 +8,8 @@ $FontBold = "/home/pi/FreeMonoBold.ttf";
 $Font     = "/home/pi/verdana.ttf";
 $counter=1;
 $countervideo=1;
-$oldtime=time();
+$oldtime1=time();
+$oldtime2=time();
 $filenameweb = "/home/pi/image.jpg";
 $url = "http://rss.wunderground.com/auto/rss_full/global/stations/10575.xml?units=metric";
 
@@ -44,18 +45,89 @@ exec ("sudo modprobe -q w1-gpio");
 exec ("sudo modprobe -q w1-therm");
 exec("sudo rm -f /home/pi/images/*.jpg");
 exec("sudo mv -f /home/pi/*.flv /home/pi/video/");
+exec ("sudo lcd4linux");
+
+//get rss feed values
+$content = implode("", file($url));
+
+preg_match_all("/\<item>(.*?)\<\/item\>/si", $content, $results); 
+preg_match("/\<description><!\[CDATA\[(.*?)\<img/si", $results[1][0], $desc); 
+
+$arr = explode(" | ",$desc[1]);
+
+/* Array content
+
+ * echo '<pre>' . print_r($arr, true) . '</pre>'; 
+ *  
+
+ * Array 
+
+ * ( 
+ *     [0] => Temperature: 86ÝF / 30ÝC 
+ *     [1] => Humidity: 74% 
+ *     [2] => Pressure: 29.83in / 1010hPa 
+
+ *     [3] => Conditions: Partly Cloudy 
+ *     [4] => Wind Direction: ESE 
+ *     [5] => Wind Speed: 5mph / 7km/h 
+
+ *     [6] => Updated: 10:00 PM PHT 
+ * ) 
+ */ 
+ 
+preg_match("/Temperature: (.*?)&deg/si", $arr[0], $str); 
+$wetter['temp'] = $str['1']; 
+
+preg_match("/Humidity: (.*?)%/si", $arr[1], $str); 
+$wetter['hum'] = $str['1']; 
 
 while(1)
 {
-   // get and save higher quality image for timelapse and webbrowser, interval 30 seconds
-    if (time()>=$oldtime+30)
+    if (time()>=$oldtime1+10)
+    {
+        // save current time stamp
+        $oldtime1 = time();
+        $time = date('H:i');
+        $date = date('d.m.y');
+        
+        $cpu_temperature = round(exec("cat /sys/class/thermal/thermal_zone0/temp") / 1000, 1)."°C";  //get cpu temperature value
+        //last line of w1_slave: f7 01 4b 46 7f ff 09 10 fd t=31437
+        $get_temperature = round(substr(exec("cat /sys/bus/w1/devices/28-*/w1_slave"),-5) / 1000, 1);  //get one DS18B20 temperature value
+        
+        // get image with low quality for digital picture frame
+        exec("raspistill -w 320 -h 240 -t 1000 -rot 270 -q 50 -o ".$filename."");
+        
+        $im = imagecreatefromjpeg($filename);
+        
+        $bg_color = ImageColorAllocate ($im, 0, 0, 0);
+        $text_color = imagecolorallocate($im, 255, 255, 0);
+        
+        // time
+        ImageTTFText($im, 75, 0, 5, 80, $text_color, $FontBold, $time);
+        // date
+        ImageTTFText($im, 35, 0, 5, 130, $text_color, $Font, $date);
+        // get cpu temperature -> optional
+        //ImageTTFText($im, 25, 0, 10, 200, $text_color, $Font, "CPU: ".$cpu_temperature);
+        // DS18B20 temperature
+        ImageTTFText($im, 25, 0, 5, 180, $text_color, $Font, "IN:".$get_temperature." °C");
+        // temperature and humidity from RSS feed
+        if ($wetter['temp']!=''and $wetter['hum']!='')
+            ImageTTFText($im, 25, 0, 5, 220, $text_color, $Font, "OUT:".$wetter['temp']." °C/".$wetter['hum']." %");
+        
+        imagepng($im, $filename);
+        rename($filename, "/home/pi/test.png");
+        imagedestroy($im);
+    }
+    // get and save higher quality image for timelapse and webbrowser, interval 30 seconds
+    if (time()>=$oldtime2+30)
     {   
         // save current time stamp
-	$oldtime = time(); 
+	$oldtime2 = time(); 
+	
         $filenameweb = "/home/pi/image.jpg";
-	$get_temperature = round(substr(exec("cat /sys/bus/w1/devices/28-*/w1_slave"),-5) / 1000, 1);  //get one DS18B20 temperature value
+	$get_temperature = round(substr(exec("cat /sys/bus/w1/devices/28-*/w1_slave"),-5) / 1000, 1);
         
-        exec("raspistill -w 1280 -h 960 -t 500 -rot 270 -q 90 --awb sun -o ".$filenameweb."");
+        exec("raspistill -w 1280 -h 960 -t 1000 -rot 270 -q 90 --awb sun -o ".$filenameweb."");
         $im = imagecreatefromjpeg($filenameweb);
         
         // save informations in picture for webbrowser
@@ -63,32 +135,13 @@ while(1)
         $bg_color = ImageColorAllocate ($im, 0, 0, 0);
         $text_color = imagecolorallocate($im, 255, 255, 0);
         
-        //get rss feed values
+       
         $content = implode("", file($url));
         
         preg_match_all("/\<item>(.*?)\<\/item\>/si", $content, $results); 
         preg_match("/\<description><!\[CDATA\[(.*?)\<img/si", $results[1][0], $desc); 
         
         $arr = explode(" | ",$desc[1]);
-	/* Array content
-
-	 * echo '<pre>' . print_r($arr, true) . '</pre>'; 
-	 *  
-
-	 * Array 
-
-	 * ( 
-	 *     [0] => Temperature: 86ÝF / 30ÝC 
-	 *     [1] => Humidity: 74% 
-	 *     [2] => Pressure: 29.83in / 1010hPa 
-
-	 *     [3] => Conditions: Partly Cloudy 
-	 *     [4] => Wind Direction: ESE 
-	 *     [5] => Wind Speed: 5mph / 7km/h 
-
-	 *     [6] => Updated: 10:00 PM PHT 
-	 * ) 
-	 */ 
         
         preg_match("/Temperature: (.*?)&deg/si", $arr[0], $str);
         
@@ -156,7 +209,7 @@ while(1)
        $countervideo++;
        exec("sudo cp ".$filenamevideo." /var/www/media/outfile.flv");
     }
-sleep (1);
+sleep (2);
 
 }
 

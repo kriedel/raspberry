@@ -115,7 +115,7 @@ elseif($weather->get_condition() == "Rain")
       }
 elseif($weather->get_condition() == "Mostly Clear")
       {
-      echo "berwiegend Klar";
+      echo "Überwiegend Klar";
       }
 elseif($weather->get_condition() == "Foggy")
       {
@@ -382,7 +382,7 @@ elseif($weather->get_condition() == "Drifting Snow")
       echo $weather->get_condition();
       }   
   ?> bei
- <?php echo $weather->get_temperature(); ?>&deg;<?php echo $weather->get_units_temp(); ?></b><br> gefühlt wie <?php echo $weather->get_wind_chill(); ?>&deg;<?php echo $weather->get_units_temp(); ?><br>
+ <?php echo $weather->get_temperature(); ?>&deg;<?php echo $weather->get_units_temp(); ?></b><br> gefühlt wie <?php echo $weather->get_wind_chill(); ?>&deg;<?php echo $weather->get_units_temp(); ?><br>
 Wind: <?php echo $weather->get_wind_speed(); ?> <?php echo $weather->get_units_speed(); ?> aus <?php echo $weather->get_wind_direction(); ?><br>
 Feuchtigkeit: <?php echo $weather->get_humidity(); ?>%<br>
 Luftdruck: <?php echo $weather->get_pressure(); ?> <?php echo $weather->get_units_pressure(); ?>
@@ -501,7 +501,7 @@ elseif($forecast->get_label() == "Light Snow")
       }
 elseif($forecast->get_label() == "Light Snow Early")
       {
-      echo "frh leichter Schneefall";
+      echo "früh leichter Schneefall";
       }
 elseif($forecast->get_label() == "Fog")
       {
@@ -573,7 +573,7 @@ elseif($forecast->get_label() == "AM Light Snow")
       }
 elseif($forecast->get_label() == "Mostly Clear")
       {
-      echo "Überwiegend Klar";
+      echo "Überwiegend Klar";
       }
 elseif($forecast->get_label() == "Light Rain Early")
       {
@@ -685,11 +685,11 @@ elseif($forecast->get_label() == "PM Rain")
       }
 elseif($forecast->get_label() == "Rain Early")
       {
-      echo "frh Regen";
+      echo "früh Regen";
       }
 elseif($forecast->get_label() == "Clouds Early/Clearing Late")
       {
-      echo "frh Wolken/später klar";
+      echo "früh Wolken/später klar";
       }
 elseif($forecast->get_label() == "Rain/Snow Late")
       {
@@ -713,11 +713,11 @@ elseif($forecast->get_label() == "Drizzle Late")
       }
 elseif($forecast->get_label() == "Rain/Snow Early")
       {
-      echo "frh Regen/Schnee";
+      echo "früh Regen/Schnee";
       }
 elseif($forecast->get_label() == "Rain to Snow")
       {
-      echo "Regen, in Schnee bergehend";
+      echo "Regen, in Schnee übergehend";
       }
 elseif($forecast->get_label() == "Light Rain Late")
       {
@@ -733,7 +733,7 @@ elseif($forecast->get_label() == "Few Showers")
       }
 elseif($forecast->get_label() == "Showers Early")
       {
-      echo "frh Schauer";
+      echo "früh Schauer";
       }
 elseif($forecast->get_label() == "Rain Late")
       {
@@ -789,7 +789,7 @@ elseif($forecast->get_label() == "PM Thundershowers")
       }
 elseif($forecast->get_label() == "Thundershowers Early")
       {
-      echo "frh Gewitterschauer";
+      echo "früh Gewitterschauer";
       }
 elseif($forecast->get_label() == "Heavy Rain")
       {
@@ -825,7 +825,7 @@ elseif($forecast->get_label() == "Cloudy/Wind")
       }
 elseif($forecast->get_label() == "Fog Early/Clouds Late")
       {
-      echo "frh Nebel, später Wolken";
+      echo "früh Nebel, später Wolken";
       }
 elseif($forecast->get_label() == "PM Snow")
       {
@@ -857,11 +857,11 @@ elseif($forecast->get_label() == "Showers/Wind")
       }
 elseif($forecast->get_label() == "Snow Showers Early")
       {
-      echo "frh Schneeschauer";
+      echo "früh Schneeschauer";
       }
 elseif($forecast->get_label() == "Snow Showers Early")
       {
-      echo "frh Schneeschauer";
+      echo "früh Schneeschauer";
       }
 elseif($forecast->get_label() == "Scattered Thunderstorms")
       {
@@ -885,11 +885,11 @@ elseif($forecast->get_label() == "PM Thunderstorms")
       }
 elseif($forecast->get_label() == "Thunderstorms Early")
       {
-      echo "frh Gewitter";
+      echo "früh Gewitter";
       }
 elseif($forecast->get_label() == "Light Rain/Wind Early")
       {
-      echo "frh leichter Regen/Wind";
+      echo "früh leichter Regen/Wind";
       }
 elseif($forecast->get_label() == "Thunderstorms")
       {
@@ -909,7 +909,7 @@ elseif($forecast->get_label() == "PM Drizzle")
       }
 elseif($forecast->get_label() == "Drizzle Early")
       {
-      echo "früh Nieselregen";
+      echo "früh Nieselregen";
       }
 elseif($forecast->get_label() == "AM Ice")
       {
@@ -917,7 +917,7 @@ elseif($forecast->get_label() == "AM Ice")
       }
 elseif($forecast->get_label() == "Rain/Snow Showers Early")
       {
-      echo "früh Regen-/Schneeschauer";
+      echo "früh Regen-/Schneeschauer";
       }
 elseif($forecast->get_label() == "AM Rain/Wind")
       {
@@ -973,7 +973,7 @@ elseif($forecast->get_label() == "Scattered Showers/Wind")
       }
 elseif($forecast->get_label() == "Thunderstorms Early")
       {
-      echo "früh Gewitter";
+      echo "früh Gewitter";
       }
 elseif($forecast->get_label() == "Thunderstorms Late")
       {
@@ -993,7 +993,7 @@ elseif($forecast->get_label() == "Heavy Snow/Wind")
       }
 elseif($forecast->get_label() == "Rain/Wind Early")
       {
-      echo "früh Regen/Wind";
+      echo "früh Regen/Wind";
       }
     else
       {

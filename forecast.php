@@ -76,7 +76,7 @@
           <div class="row-fluid">
             <!--/span-->
             <!--/span-->
-            <div class="span4">
+            <div class="span9">
               <?php
                 $code = "12831824";
                 $ort = "http://weather.yahooapis.com/forecastrss?w=$code&u=c";
