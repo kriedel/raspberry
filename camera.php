@@ -150,7 +150,7 @@ while(1)
     if ($counter==600)
     {
        $filenamevideo="/home/pi/video".$countervideo.".flv";
-       exec("avconv -y -f image2 -i /home/pi/images/img%d.jpg -r 10 ".$filenamevideo."");
+       exec("avconv -r 10 -y -f image2 -i /home/pi/images/img%d.jpg ".$filenamevideo."");
        exec("sudo rm -f /home/pi/images/*.jpg");
        $counter=1;
        $countervideo++;
