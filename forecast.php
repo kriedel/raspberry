@@ -21,16 +21,20 @@
       </script>
     <![endif]-->
     <!-- Le fav and touch icons -->
-   </head>
+    <script src="jquery-1.10.1.min.js">
+    </script>
+    <script src="assets/js/bootstrap.min.js">
+    </script>
+  </head>
   <body>
   <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
-          <button type="button" class="btn btn-navbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+          </a>
           <a class="brand" href="index.html">Datalogger</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
@@ -57,35 +61,19 @@
               <li><a href="system.php">System</a></li>
               <li><a href="video.html">Timelapse Video</a></li>
               <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
               <li class="nav-header">FTP</li>
               <li><a href="ftp://ndl.dyns.cx">FTP Server</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
-        <div class="span9">
-          
-          <div class="row-fluid">
-            <!--/span-->
-            <!--/span-->
-            <!--/span-->
-          </div><!--/row-->
-          <div class="row-fluid">
-            <!--/span-->
-            <!--/span-->
             <div class="span9">
-              <?php
+          	<?php
                 $code = "12831824";
                 $ort = "http://weather.yahooapis.com/forecastrss?w=$code&u=c";
                 include('wetter-widget.php'); ?>
             </div><!--/span-->
           </div><!--/row-->
-        </div><!--/span-->
-      </div><!--/row-->
-    
+            
       <hr>
     
       <footer>
@@ -117,12 +105,5 @@
       }
       
     </style>
-    <script src="jquery-1.10.1.min.js">
-    </script>
-    <script src="assets/js/bootstrap.min.js">
-    </script>
-    <script>
-
-    </script>
-  </body>
+   </body>
 </html>
