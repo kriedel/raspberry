@@ -1,4 +1,4 @@
-Raspberry Camera and DPF
+Raspberry Webcam, Weather, Timelapse and digital picture frame
 ========================
 
 A digital picture frame (DPF with hacked firmware) is connected to one USB connector and display the picture from the camera module with local time,
