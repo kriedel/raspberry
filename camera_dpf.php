@@ -43,8 +43,8 @@ $trans = array(
 //Initialize hardware and delete old files
 exec ("sudo modprobe -q w1-gpio");
 exec ("sudo modprobe -q w1-therm");
-exec("sudo rm -f /home/pi/images/*.jpg");
-exec("sudo mv -f /home/pi/*.flv /home/pi/video/");
+exec("rm -f /home/pi/images/*.jpg");
+exec("mv -f /home/pi/*.flv /home/pi/video/");
 exec ("sudo lcd4linux");
 
 //get rss feed values
@@ -100,7 +100,7 @@ while(1)
         $im = imagecreatefromjpeg($filename);
         
         $bg_color = ImageColorAllocate ($im, 0, 0, 0);
-        $text_color = imagecolorallocate($im, 255, 255, 0);
+        $text_color = imagecolorallocate($im, 255, 140, 0);
         
         // time
         ImageTTFText($im, 75, 0, 5, 80, $text_color, $FontBold, $time);
@@ -133,7 +133,7 @@ while(1)
         // save informations in picture for webbrowser
         // place, date, time
         $bg_color = ImageColorAllocate ($im, 0, 0, 0);
-        $text_color = imagecolorallocate($im, 255, 255, 0);
+        $text_color = imagecolorallocate($im, 255, 140, 0);
         
        
         $content = implode("", file($url));
@@ -174,7 +174,7 @@ while(1)
         
         imagejpeg ($im, "/home/pi/images/img".$counter.".jpg");
         imagejpeg ($im, $filenameweb);
-        exec("sudo cp ".$filenameweb." /var/www/media/image.jpg");
+        exec("cp ".$filenameweb." /var/www/media/image.jpg");
         
         // optional save values in csv file
         //$date = date('d.m.y');
@@ -203,13 +203,13 @@ while(1)
     if ($counter==600)
     {
        $filenamevideo="/home/pi/video".$countervideo.".flv";
-       exec("avconv -y -f image2 -i /home/pi/images/img%d.jpg -r 10 ".$filenamevideo."");
-       exec("sudo rm -f /home/pi/images/*.jpg");
+       exec("avconv -r 10 -y -f image2 -i /home/pi/images/img%d.jpg ".$filenamevideo."");
+       exec("rm -f /home/pi/images/*.jpg");
        $counter=1;
        $countervideo++;
-       exec("sudo cp ".$filenamevideo." /var/www/media/outfile.flv");
+       exec("cp ".$filenamevideo." /var/www/media/outfile.flv");
     }
-sleep (2);
+sleep (1);
 
 }
 

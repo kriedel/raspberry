@@ -42,8 +42,8 @@ $trans = array(
 //Initialize hardware and delete old files
 exec ("sudo modprobe -q w1-gpio");
 exec ("sudo modprobe -q w1-therm");
-exec("sudo rm -f /home/pi/images/*.jpg");
-exec("sudo mv -f /home/pi/*.flv /home/pi/video/");
+exec("rm -f /home/pi/images/*.jpg");
+exec("mv -f /home/pi/*.flv /home/pi/video/");
 
 while(1)
 {
@@ -56,12 +56,13 @@ while(1)
 	$get_temperature = round(substr(exec("cat /sys/bus/w1/devices/28-*/w1_slave"),-5) / 1000, 1);  //get one DS18B20 temperature value
         
         exec("raspistill -w 1280 -h 960 -t 500 -rot 270 -q 90 --awb sun -o ".$filenameweb."");
+	//exec("raspistill -t 500 -rot 270 -q 90 --awb sun -o ".$filenameweb.""); // higher resolution of camera
         $im = imagecreatefromjpeg($filenameweb);
         
         // save informations in picture for webbrowser
         // place, date, time
         $bg_color = ImageColorAllocate ($im, 0, 0, 0);
-        $text_color = imagecolorallocate($im, 255, 255, 0);
+        $text_color = imagecolorallocate($im, 255, 140, 0);
         
         //get rss feed values
         $content = implode("", file($url));
@@ -114,14 +115,15 @@ while(1)
         $date = strtr($date, $trans);
         
         ImageTTFText($im, 20, 0, 50, 920, $text_color, $Font, $date.", ".$time);
+	//ImageTTFText($im, 40, 0, 50, 1900, $text_color, $Font, $date.", ".$time);		
         
         if ($wetter['temp']!=''and $wetter['hum']!='')
-            ImageTTFText($im, 20, 0, 450, 920, $text_color, $Font, $wetter['temp']." °C, ".$wetter['hum']." %, ".$wetter['press'].", ".$wetter['cond']);
+            ImageTTFText($im, 20, 0, 475, 920, $text_color, $Font, $wetter['temp']." °C, ".$wetter['hum']." %, ".$wetter['press'].", ".$wetter['cond']);
         
         
         imagejpeg ($im, "/home/pi/images/img".$counter.".jpg");
         imagejpeg ($im, $filenameweb);
-        exec("sudo cp ".$filenameweb." /var/www/media/image.jpg");
+        exec("cp ".$filenameweb." /var/www/media/image.jpg");
         
         // optional save values in csv file
         //$date = date('d.m.y');
@@ -151,10 +153,10 @@ while(1)
     {
        $filenamevideo="/home/pi/video".$countervideo.".flv";
        exec("avconv -r 10 -y -f image2 -i /home/pi/images/img%d.jpg ".$filenamevideo."");
-       exec("sudo rm -f /home/pi/images/*.jpg");
+       exec("rm -f /home/pi/images/*.jpg");
        $counter=1;
        $countervideo++;
-       exec("sudo cp ".$filenamevideo." /var/www/media/outfile.flv");
+       exec("cp ".$filenamevideo." /var/www/media/outfile.flv");
     }
 sleep (1);
 
