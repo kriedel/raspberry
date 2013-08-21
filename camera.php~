@@ -121,7 +121,7 @@ while(1)
             ImageTTFText($im, 20, 0, 475, 920, $text_color, $Font, $wetter['temp']." °C, ".$wetter['hum']." %, ".$wetter['press'].", ".$wetter['cond']);
         
         
-        //imagejpeg ($im, "/home/pi/images/img".$counter.".jpg");
+        imagejpeg ($im, "/home/pi/images/img".$counter.".jpg");
         imagejpeg ($im, $filenameweb);
         exec("cp ".$filenameweb." /var/www/media/image.jpg");
         
@@ -151,12 +151,12 @@ while(1)
     //convert pictures to flv video
     if ($counter==600)
     {
-       //$filenamevideo="/home/pi/video".$countervideo.".flv";
-       //exec("avconv -r 10 -y -f image2 -i /home/pi/images/img%d.jpg ".$filenamevideo."");
-       //exec("rm -f /home/pi/images/*.jpg");
+       $filenamevideo="/home/pi/video".$countervideo.".flv";
+       exec("avconv -r 10 -y -f image2 -i /home/pi/images/img%d.jpg ".$filenamevideo."");
+       exec("rm -f /home/pi/images/*.jpg");
        $counter=1;
-       //$countervideo++;
-       //exec("cp ".$filenamevideo." /var/www/media/outfile.flv");
+       $countervideo++;
+       exec("cp ".$filenamevideo." /var/www/media/outfile.flv");
     }
 sleep (1);
 
