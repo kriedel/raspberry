@@ -7,7 +7,7 @@ $filename = "/home/pi/test.jpg";
 $FontBold = "/home/pi/FreeMonoBold.ttf";
 $Font     = "/home/pi/verdana.ttf";
 $counter=1;
-$countervideo=1;
+//$countervideo=1;
 $oldtime=time();
 $filenameweb = "/home/pi/image.jpg";
 $url = "http://rss.wunderground.com/auto/rss_full/global/stations/10575.xml?units=metric";
@@ -42,8 +42,8 @@ $trans = array(
 //Initialize hardware and delete old files
 exec ("sudo modprobe -q w1-gpio");
 exec ("sudo modprobe -q w1-therm");
-exec("rm -f /home/pi/images/*.jpg");
-exec("mv -f /home/pi/*.flv /home/pi/video/");
+//exec ("rm -f /home/pi/images/*.jpg");
+//exec("mv -f /home/pi/*.flv /home/pi/video/");
 
 while(1)
 {
@@ -51,11 +51,11 @@ while(1)
     if (time()>=$oldtime+30)
     {   
         // save current time stamp
-	$oldtime = time(); 
+	    $oldtime = time(); 
         $filenameweb = "/home/pi/image.jpg";
-	$get_temperature = round(substr(exec("cat /sys/bus/w1/devices/28-*/w1_slave"),-5) / 1000, 1);  //get one DS18B20 temperature value
+	    $get_temperature = round(substr(exec("cat /sys/bus/w1/devices/28-*/w1_slave"),-5) / 1000, 1);  //get one DS18B20 temperature value
         
-        exec("raspistill -w 1280 -h 960 -t 500 -rot 270 -q 90 --awb sun -o ".$filenameweb."");
+        $output=shell_exec("raspistill -w 1280 -h 960 -t 1000 -rot 270 -q 90 --awb sun -o ".$filenameweb."");
 	//exec("raspistill -t 500 -rot 270 -q 90 --awb sun -o ".$filenameweb.""); // higher resolution of camera
         $im = imagecreatefromjpeg($filenameweb);
         
@@ -122,8 +122,9 @@ while(1)
         
         
         //imagejpeg ($im, "/home/pi/images/img".$counter.".jpg");
-        imagejpeg ($im, $filenameweb);
-        exec("cp ".$filenameweb." /var/www/media/image.jpg");
+        imagejpeg ($im, "/var/www/media/image.jpg");
+
+        //copy ($filenameweb, "/var/www/media/image.jpg");
         
         // optional save values in csv file
         //$date = date('d.m.y');
@@ -156,7 +157,7 @@ while(1)
        //exec("rm -f /home/pi/images/*.jpg");
        $counter=1;
        //$countervideo++;
-       //exec("cp ".$filenamevideo." /var/www/media/outfile.flv");
+       //copy($filenamevideo, "/var/www/media/outfile.flv");
     }
 sleep (1);
 
