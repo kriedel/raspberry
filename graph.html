@@ -86,7 +86,7 @@ $(function() {
 		        text: 'Weather Data Analysis'
 		    },
          subtitle: {
-                text: 'Source: www.wunderground.com, DS18B20'
+                text: 'Source: www.wunderground.com, RFM12 Sensors, DS18B20'
             },
           tooltip: {
                 shared: false
@@ -135,7 +135,7 @@ $(function() {
         
 		    
 		    series: [{
-		        name: 'Temperature Outside',
+		        name: 'Temperature Outside Balkon',
             type: 'line',
 		        data: first,
             tooltip: {
@@ -156,7 +156,7 @@ $(function() {
 		        }
             },
             {
-             name: 'Temperature Inside',
+             name: 'Temperature Outside Bad',
             type: 'line',
 		        data: third,
 		        yAxis: 0,

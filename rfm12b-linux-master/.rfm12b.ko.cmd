@@ -1,0 +1,1 @@
+cmd_/home/pi/rfm12b-linux-master/rfm12b.ko := ld -EL -r  -T /usr/src/linux-source-3.6.11+/scripts/module-common.lds --build-id  -o /home/pi/rfm12b-linux-master/rfm12b.ko /home/pi/rfm12b-linux-master/rfm12b.o /home/pi/rfm12b-linux-master/rfm12b.mod.o
