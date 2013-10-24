@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$rfm12b_8c.html#aa2ff8d87efa08ad36138a2e8d0e58f28" title="Low level function for communication with the rfm12b via SPI of the RPi." alt="" coords="149,5,221,35"/>
+<area shape="rect" id="node5" href="$rfm12b_8c.html#a21353cabb6aca3a48da1fdf307850572" title="Wait for nIRQ getting LOW or timeout." alt="" coords="143,59,228,88"/>
+<area shape="rect" id="node7" href="$rfm12b_8c.html#ab5f38c12fd90c982a41b8921f01a5f82" title="Wait microseconds using the usleep&#45;function." alt="" coords="279,59,337,88"/>
+</map>

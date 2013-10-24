@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$rfm12b_8c.html#afe02d7c9aafc6b89ac16f0fdec223740" title="Convert from int to char." alt="" coords="156,5,241,35"/>
+<area shape="rect" id="node5" href="$rfm12b_8c.html#a0f097ef811be71a156aa7476c059023a" title="Calculate custom crc." alt="" coords="164,59,233,88"/>
+<area shape="rect" id="node7" href="$rfm12b_8c.html#a8e10e99eb436d2f85acde3788edf1ecc" title="Transmitting 16 data bytes with preamble and synchronisation word." alt="" coords="156,112,241,141"/>
+<area shape="rect" id="node9" href="$rfm12b_8c.html#aa2ff8d87efa08ad36138a2e8d0e58f28" title="Low level function for communication with the rfm12b via SPI of the RPi." alt="" coords="299,85,371,115"/>
+<area shape="rect" id="node11" href="$rfm12b_8c.html#a21353cabb6aca3a48da1fdf307850572" title="Wait for nIRQ getting LOW or timeout." alt="" coords="292,139,377,168"/>
+<area shape="rect" id="node13" href="$rfm12b_8c.html#ab5f38c12fd90c982a41b8921f01a5f82" title="Wait microseconds using the usleep&#45;function." alt="" coords="428,139,487,168"/>
+</map>

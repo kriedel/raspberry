@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$rfm12b_8h.html#a42ce791cabd80590e47c56068d2a464e" title="Wait for nIRQ getting LOW or timeout." alt="" coords="116,5,201,35"/>
+<area shape="rect" id="node5" href="$rfm12b_8h.html#a9aaf062a04dac33c1a0d2c0a4f5468f6" title="Transmitting 16 data bytes with preamble and synchronisation word." alt="" coords="252,5,337,35"/>
+<area shape="rect" id="node7" href="$rfm12b_8h.html#ae51bebb04b649e690696643c309a3325" title="Function managing data transmission." alt="" coords="387,5,488,35"/>
+</map>

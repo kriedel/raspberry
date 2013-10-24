@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$rfm12b_8c.html#abcd05c986b6928fc7d3b57d6132d403f" title="Control FIFO (receiver) of rfm12b." alt="" coords="151,5,271,35"/>
+<area shape="rect" id="node5" href="$rfm12b_8c.html#aa2ff8d87efa08ad36138a2e8d0e58f28" title="Low level function for communication with the rfm12b via SPI of the RPi." alt="" coords="329,57,401,87"/>
+<area shape="rect" id="node8" href="$rfm12b_8c.html#a14fa458d785fb9085af16b3fbee2acae" title="Control FIFO (receiver) of rfm12b." alt="" coords="141,109,280,139"/>
+</map>
