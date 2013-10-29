@@ -1,0 +1,1453 @@
+/*  
+Theme Name: 	picochic
+Theme URI: 		http://picomol.de/picochic/
+Description: 	Picochic is a modern, responsive WordPress theme. It looks light, clean and professional. You can set your own header image and favicon. You can configure the menu bar and the link color.
+Version: 		1.0.8
+Author: 		Valentin
+Author URI: 	http://picomol.de/about/
+Tags: 			light, two-columns, right-sidebar, flexible-width, custom-colors, custom-header, custom-background, custom-menu, theme-options, sticky-post, translation-ready
+
+License: 		GNU/GPL Version 2 or later
+License URI: 	http://www.gnu.org/licenses/gpl.html
+--------------------------------------------- */
+
+/* Quick2Wire tweaks
+--------------------------------------------- */
+#mobnav {
+  height: 40px !important;
+}
+
+#footer {
+  background-color: inherit !important;
+  border: 0 !important;
+  color: #777777 !important;
+  font-size: 11px !important;
+}
+
+#header {
+  position: relative; /* for newsletter-form alignment */
+}
+
+#newsletter-form {
+  position: absolute;
+  right: 0;
+  padding-top: 42px;
+}
+
+#newsletter-form form {
+  padding: 14px 14px 12px 14px;
+}
+
+#newsletter-form input#email {
+  background-color: white;
+}
+
+/* Hide newsletter form and mobile search on small screens. */
+@media screen and (max-width: 850px) {
+  #newsletter-form, #mobilesearch {
+    display: none !important; 
+  }
+}
+
+
+/* Fix conflict with Bootstrap and Picochic */
+p {
+  font-size: 14px;
+}
+
+/* Google Fonts Import
+--------------------------------------------- */
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700);
+
+/* CSS Reset 
+--------------------------------------------- */
+
+input, a, p, span, h1, h2, h3 {
+	margin: 0;
+	padding: 0;
+}
+
+input[type="submit"]:focus {
+	border-color: transparent!important;
+}
+
+input::-moz-focus-inner {
+	border:0;
+}
+
+input {
+	border: none;
+	border-color: transparent;
+}
+
+input:focus, a:focus, textarea:focus {
+	outline: none;
+}
+
+img {
+	border: none;
+}
+
+
+/* For old browsers with bad html5 support
+--------------------------------------------- */
+
+nav, #footer, #comment_post_ID, #comment_parent {
+	display: none;
+}
+
+article, aside, #header, section, #wrapper nav, #wrapper #footer  {
+    display: block;
+}
+
+
+
+/* HTML Elements
+--------------------------------------------- */
+
+body {
+	font-family: 'Helvetica Neue', helvetica, arial, sans-serif;
+	margin: 0 auto;
+	font-size: 14px;
+	overflow-y: scroll;
+}
+
+acronym, abbr, span.caps {
+	cursor: help;
+}
+	
+acronym, abbr {
+	border-bottom: 1px dashed #ccc;
+}
+
+a:link, a:active, a:visited { 
+	text-decoration: none; 
+	border: none;
+}
+
+a:focus, a:active {
+	text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.comment-content a, .entry a {
+	text-decoration: underline;
+}
+
+input, textarea, button, .navigation a {
+	background: #F0F0F0;
+	color: #7F7F7F;
+	text-shadow: 1px 1px 0 #fff;
+	border: 1px solid #ccc;
+	font-family: 'Droid Sans', Arial, sans-serif; 
+	font-size: 14px;
+	padding: 5px 7px;
+}
+
+#commentform input[type="submit"], #respond input[type="submit"] {
+	padding: 5px 7px 3px;
+}
+
+textarea {
+	line-height: 20px;
+}
+
+input:focus, textarea:focus {
+	background: #FAFAFA;
+}
+
+input:focus, textarea:focus, button:hover, button:focus {
+	color: #292929;
+	text-shadow: none;
+}
+
+/* -- temporarily taken out to get our blue signup button back
+input[type="submit"]:hover, button:hover {
+	color: #4C4C4C;
+}
+
+input[type="submit"], button, .navigation a {
+	background: linear-gradient(top, #FAFAFA, #F0F0F0);
+	background: -webkit-linear-gradient(top, #FAFAFA, #F0F0F0);
+	background: -o-linear-gradient(top, #FAFAFA, #F0F0F0);
+	background: -ms-linear-gradient(top, #FAFAFA, #F0F0F0);
+	background: -moz-linear-gradient(top, #FAFAFA, #F0F0F0);	
+}
+
+input[type="submit"]:hover, button:hover, .navigation a:hover {
+	background: linear-gradient(top, #FFF, #F0F0F0);
+	background: -webkit-linear-gradient(top, #FFF, #F0F0F0);
+	background: -o-linear-gradient(top, #FFF, #F0F0F0);
+	background: -ms-linear-gradient(top, #FFF, #F0F0F0);
+	background: -moz-linear-gradient(top, #FFF, #F0F0F0);	
+}
+
+input[type="submit"]:active, button:active, .navigation a:active {
+	background: linear-gradient(top, #F0F0F0, #FFF);
+	background: -webkit-linear-gradient(top, #F0F0F0, #FFF);
+	background: -o-linear-gradient(top, #F0F0F0, #FFF);
+	background: -ms-linear-gradient(top, #F0F0F0, #FFF);
+	background: -moz-linear-gradient(top, #F0F0F0, #FFF);
+}
+*/
+
+textarea { 
+	width: 97%;
+}
+
+.alignright {
+	float: right;
+}
+	
+.alignleft {
+	float: left
+}
+	
+.center {
+	text-align: center;
+}
+	
+.hidden {
+	display: none;
+}
+	
+.aligncenter, div.aligncenter {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+
+/* Main Structure Elements
+--------------------------------------------- */
+
+#wrapper {
+	margin: 0 auto;
+	clear: both;
+}
+			
+#main {
+	clear: both;
+	overflow: hidden;
+}
+
+#headerimage {
+	width: 100%;
+}
+
+#header-image-div {
+	margin-bottom: -3px;
+	}
+
+#head {
+	clear: both;
+	padding: 30px 15px;
+}
+
+#head h1 {
+	font-weight: normal;
+	font-size: 40px;
+	float: left;
+	padding-right: 10px;
+}
+
+#head .description {
+	font-size: 17px;
+	clear: left;
+	padding-left: 20px;
+}
+	
+aside {
+	line-height: 18px;
+}
+
+#footer {
+  margin-top: 40px;
+  font-size: 0.9em;
+}
+
+
+
+/* Colors
+--------------------------------------------- */
+
+body {
+	color: #292929;
+}
+
+#header .description, .widget h4, .post .meta, .pages .meta, .pagelinks, .post table th, .pages table th, .comment table th, .entry a.post-edit-link, .comment-meta a, .reply a, .wp-caption-text, nav a, nav, #footer, aside, .comment-meta-date a, .reply a, #comment-form, #reply, li.pingback p, .comment-awaiting-moderation {
+	color: #303030;
+}
+
+a:hover { 
+	color: #000;
+}
+
+
+/* Widgets
+--------------------------------------------- */
+
+.widget { 
+	overflow: hidden;
+	clear: both;
+	margin-bottom: 15px;
+	padding-left: 15px;
+	font-size: 13px;
+}
+
+.widget .textwidget, .widget .tagcloud {
+	padding: 0 10px 0 0;
+	margin-bottom: 10px;
+}
+
+.widget table {
+	padding: 0 0 10px 10px;
+	margin-right: 10px;
+}
+
+.widget ul {
+	#padding-left: 5px;
+	padding-left: 0;
+	}
+	
+.widget h4 { 
+	font-size: 14px;
+	margin: 0 0 10px -5px; 
+	padding: 8px 5px 5px 0;
+	text-transform: uppercase;
+}
+		
+.widget ul li {
+	padding: 0 7px 7px 0;
+	list-style-type: none;
+}
+	
+.widget_categories ul li { 
+	width: 40%; 
+	float: left; 
+	margin: 0;
+}
+	
+.widget select {
+	margin: 10px;
+}
+
+.widget_search {
+	max-width: 300px;
+}
+
+.widget_calendar table {
+	width: 100%;
+	text-align: center;
+	padding-left: 0;
+}
+
+.widget_search {
+	padding-left: 10px;
+}
+
+.widget_search {
+	margin-top: 15px;
+}
+
+.widget_search input[type="text"] {
+	width: 60%;
+}
+
+.search-title {
+	padding: 0 15px;
+}
+
+
+
+/* #header Search Form
+--------------------------------------------- */
+
+#headersearch {
+	margin-top: 20px;
+	margin-right: 2px;
+	float: right;
+}
+
+#headersearch input[type="text"], #mobilesearch input[type="text"] {
+	width: 160px;
+	border-right: none;
+}
+
+
+
+
+/* Posts and Pages 
+--------------------------------------------- */
+
+.post, .pages {
+	margin-bottom: 15px;
+}
+	
+.post .title, .pages .title { 
+	float:left; 
+	width: 100%;
+}
+
+.title h1, .title  h2 { 
+	font-size: 22px;
+	margin: 7px 0;
+	padding: 0;
+}
+
+.meta { 
+	font-size: 13px;
+	padding: 5px 15px 5px;
+	margin-top: 5px;
+	border-top: 1px solid #ccc;
+	clear: both;
+}
+	
+.post .thumbnail {
+	float: left;
+	margin: 10px 15px 10px 10px;
+}
+	
+.entry {
+	line-height: 24px;
+	display: block;
+	color: #151515;
+	text-align: justify;
+	padding: 10px 15px 16px 15px;
+      font-family: 'Droid Sans', Arial, 'sans serif';
+}
+
+.post p, .pages p {
+	margin:0;
+	padding: 0 0 12px;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	-ms-hyphens: auto;
+	hyphens: auto;
+}
+	
+blockquote {
+	background: transparent url(images/quote.png) no-repeat scroll 0 0;
+	font-style: italic;
+	margin: 5px 0 5px 0;
+	padding: 10px 15px 10px 60px;
+}
+
+.post ul.split3cols,.post ul.split2cols,.pages ul.split3cols,.pages ul.split2cols  {
+	font-size: 13px;
+	overflow: auto;
+	width: 520px;
+}
+	
+.post ol, .pages ol, .post ul, .post ol, .comment-content ol, .comment-content ul {
+	margin: 10px 0;
+	padding: 0 0 4px 30px;
+}
+
+.post li ul, .post li ol, .pages li ul, .pages li ol, .comment-content li ul, .comment-content li ol {
+	padding-bottom: 0;
+	}
+
+.post li, .pages li, .comment-content li {
+	line-height: 24px;
+	margin: 4px 0;
+	padding: 0 0 0 5px!important;
+}
+
+.post ul li, .pages ul li, .comment-content ul li {
+	list-style: disc;
+}
+
+.post ol li, .pages ol li, .comment-content ol li {
+	list-style: decimal;
+}
+
+.post ul.split3cols li, .pages ul.split3cols li {
+	float: left;
+	width: 155px;
+	margin-right: 5px;
+}
+	
+.post ul.split2cols li, .pages ul.split2cols li {
+	float: left;
+	width: 240px;
+	margin-right: 5px;
+}
+
+.pages ul.split3cols,.pages ul.split2cols {
+	font-size: 13px;
+	overflow: auto;
+	width: 520px;
+}
+	
+.entry h1, .entry h2, .entry h3, .entry h4, #comment-form h3, .commentform h3 {
+	padding: 5px 5px 2px 0;
+}
+
+h1, h2, h3, h4 {
+	font-family: 'Droid Sans', Arial, 'sans serif';
+	font-weight: normal;
+}
+
+.entry h1, .entry h2, .entry h3, .entry h4 {
+	border-bottom: 1px solid #ccc;
+}
+
+.entry h1 {
+	font-size: 23px;
+	margin-top: 22px;
+	margin-bottom: 10px;
+}
+	
+.entry h2, #comment-form h3,.commentform h3 {
+	font-size: 20px;
+	margin-top: 20px;
+	margin-bottom: 8px;
+}
+	
+.entry h3 {
+	font-size: 17px;
+	margin-top: 15px;
+	margin-bottom: 5px;
+}
+	
+.entry h4 {
+	font-size: 14px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.title h1, .title h2 {
+	font-size: 22px;
+	margin-top: 0;
+	padding-top: 10px;
+	padding-left: 15px;
+}
+
+.pagelinks {
+	clear: both;
+	padding-top: 25px;
+}
+
+.pagelinks p {
+	border: 1px solid #ccc;
+	text-shadow: 0 1px 0 #fff;
+	background: #f0f0f0;
+	padding: 10px;
+	display: inline;
+}
+
+.pagelinks a:link, .pagelinks a:visited {
+	text-decoration: none;
+}
+
+.pagelinks a:hover {
+}
+
+
+
+/* Table Styles
+--------------------------------------------- */
+
+.post table th, .pages table th, .comment table th {
+	font-size: 13px;
+	font-weight: normal;
+	text-transform: uppercase;
+    padding: 2px 4px;
+    text-align: left;
+}
+
+.post table, .pages table, .comment table {
+	margin: 10px 0;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.post td, .pages td, .comment td {
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    padding: 2px 4px;
+}
+
+.entry .post-edit-link {
+	font-size: 13px;
+}
+
+.entry a.post-edit-link:hover {
+	color: #000;
+}
+
+
+
+/* Comment Styles
+--------------------------------------------- */
+
+#comments {
+	clear: both;
+}
+
+#comments h3, h3#reply-title {
+	font-size: 22px;
+	margin: 0;
+	padding: 10px 15px 7px;
+	border-bottom: 1px solid #ccc;
+}
+	
+.commentlist {
+	padding: 15px; 
+	list-style: none; 
+	overflow: hidden;
+	clear: both;
+	margin: 0;
+}
+
+.commentlist li {
+	list-style: none;
+	padding-top: 20px;
+}
+
+#comments ul.children {
+	border: 0px;
+	padding-top: 0px;
+	padding-left: 40px;
+}
+
+#comments .children p {
+	clear: left;
+}
+
+.commentlist p {
+	color:#292929;
+	line-height:24px;
+	clear: left;
+	text-align: justify;
+	padding-bottom: 12px;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	-ms-hyphens: auto;
+	hyphens: auto;
+}
+
+.comment-body {
+	padding: 6px 0px;
+	margin-bottom: 10px;
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+.comment-author .says {
+	display: none;
+}
+
+.commentlist cite, .commentlist cite a {
+	font-style: normal;
+}
+
+#comments .avatar {
+	float: left;
+	margin: 0 15px 0 0;
+}
+
+.comment-meta, .comment-reply-link {
+	font-size: 13px;
+}
+
+.comment .fn, .comment .fn a:link {
+	font-size: 15px;
+}
+
+li.pingback {
+	padding: 0;
+	margin: 0 10px;
+}
+
+.pingback p {
+	margin: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+	text-align: left;
+}
+
+.pingback a:link {
+	text-decoration: none;
+}
+
+#commentform {
+	padding: 5px 20px 10px 15px;
+	margin-top: 10px;
+	line-height: 24px;
+	font-size: 13px;
+}
+
+#respond {
+	padding-bottom: 0;
+}
+
+#comment-form p {
+	padding-bottom: 0;
+}
+
+#comment-form span .required {
+	width: 20px;
+}
+
+#comment-form input, #respond input {
+	display: block;
+	max-width: 300px;
+}
+
+#comment-form input, #respond input, #comment-form textarea, #respond textarea {
+	margin-bottom: 7px;
+}
+
+#comment-form #submit, #respond #submit {
+	height: 30px;
+}
+
+#cancel-comment-reply-link {
+	font-size: 13px;
+}
+
+.comment-nav { 
+	margin: 10px 15px 0 15px;
+	font-size: 13px;
+}
+
+
+
+/* Author Box
+--------------------------------------------- */
+
+#author-box {
+	margin: 0 15px 30px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	background: #f0f0f0;
+	color: gray;
+	text-shadow: 0 1px 0 #fff;
+	font-size: 0.9em;
+	overflow: hidden;
+}
+
+#author-box-content {
+	overflow: hidden;
+	text-align: justify;
+}
+
+#author-gravatar {
+	display: block;
+}
+
+#author-box-title {
+	margin-bottom: 8px;
+}
+
+#author-box .avatar {
+	width: 40px;
+	height: 40px;
+	float: left;
+	margin-right: 10px;
+}
+
+
+
+
+/* Images And Videos 
+--------------------------------------------- */
+
+
+#content .wp-caption {
+	max-width: 100%!important;
+	margin-top: 25px!important;
+	margin-bottom: 25px!important;
+	}
+
+img.centered, img.aligncenter {
+	display: block;
+	margin:0 auto;
+	overflow:hidden;
+	}
+	
+img.alignright {
+	display: inline;
+	}
+	
+img.alignleft {
+	display: inline;
+	}
+
+#content img {
+	max-width:100%;
+	height: auto;
+}
+
+#content img.aligncenter, #content .wp-caption.aligncenter {
+	margin: 0 auto;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+#content img.alignleft, #content .wp-caption.alignleft {
+	margin: 15px 20px 0 0;
+}
+
+#content img.alignright, #content .wp-caption.alignright {
+	margin: 15px 0 0 20px;
+}
+
+
+#content img.alignnone {
+	margin: 20px 0;
+}
+#content .wp-caption.alignnone {
+	margin: 0 0 20px 0;
+}
+
+#content .single-entry-content .wp-caption {
+	max-width: 100%;
+	text-align: center;
+}
+
+.wp-caption-text {
+	font-size: 13px;
+	text-align: center;
+}
+
+#content object,
+#content embed,
+#content iframe {
+	max-width: 100%;
+	margin: 25px 0 25px 0;
+	display: block;
+}
+
+#content .social_share_privacy_area iframe {
+	margin: 0;
+}
+
+
+
+/* Other 
+--------------------------------------------- */
+
+
+.subscribe-to-doi-comments #subscribe {
+	float: left;
+	margin-right: 5px;
+	margin-top: 5px;
+}
+
+.sticky {
+	background: #f0f0f0;
+	border: 1px solid #ccc;
+	padding-bottom: 5px;
+	text-shadow: 0 1px 0 #fff;
+}
+
+.sticky .pagelinks p {
+	background: #fff;
+}
+
+.gallery-caption {
+}
+
+.bypostauthor {
+}
+
+.form-allowed-tags {
+	display: none;
+}
+
+.nocomments {
+	margin-left: 15px;
+	color: #7F7F7F;
+}
+
+.results {
+	background: #f0f0f0;
+	padding: 5px 15px 5px 15px;
+	margin: 0 0 10px 0;
+}
+
+.comment-awaiting-moderation {
+	font-size: 13px;
+	font-style: normal;
+}
+	
+a, input, submit, textarea, button {
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition: all 0.2s ease-out;
+	-o-transition: all 0.2s ease-out;
+	ms-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+}
+
+.navigation {
+	margin-left: 15px;
+	height: 40px;
+}
+
+.search-result {
+	margin: 8px 15px;
+	color: #808080;
+	font-size: 14px;
+	text-transform: uppercase;
+}
+
+#sidebarsearch input[type="text"] {
+	border-right: none;
+	margin-right: -3px;
+	margin-left: 10px;
+}
+
+
+
+/* Quick2Wire Specfic
+  --------------------------------------------*/
+
+.office-address {
+  text-align: center;
+}
+
+#newsletter-signup {
+  padding-left: 10px;
+  padding-bottom: 5px;
+}
+
+#newsletter-signup h4 {
+  font-size: 1.3em;
+  font-style: italic;
+  margin-left: 0px;
+}
+
+#newsletter-signup input[type="submit"] {
+  font-weight: bold;
+}
+
+/* Post Formats
+--------------------------------------------- */
+
+.format-link h2 a {
+	color: #fff;
+	padding: 3px 5px 0px;
+}
+
+.format-link h2 a:hover {
+	background: #292929;
+}
+
+.format-title {
+	text-transform: uppercase;
+}
+.home .format-aside .title, .home .format-quote .title {
+	display: none;
+}
+
+.home .format-aside .meta, .home .format-quote .meta {
+	border-top: none;
+}
+
+
+/* Shortcodes
+--------------------------------------------- */
+
+.pullquote-left {
+	width: 200px;
+	float: left;
+	padding: 15px 15px 15px 0;
+}
+
+.pullquote-right {
+	width: 200px;
+	float: right;
+	padding: 15px 0 15px 15px;
+}
+
+
+/* Design WordPress Gallery
+--------------------------------------------- */
+
+.gallery {
+	margin: 0 auto;
+}
+
+.gallery-item {
+	float: left;
+	margin-top: 10px;
+	text-align: center;
+	width: 33%;
+}
+
+.gallery-caption {
+	margin-left: 0;
+}
+
+	
+/* Media Queries For Responsive Design 
+--------------------------------------------- */
+
+
+@media screen and (min-width: 1050px) {
+	nav, #footer {
+		border-left: 1px solid #ccc;
+		border-right: 1px solid #ccc;
+	}
+}
+
+@media screen and (min-width: 851px) {
+
+	#main {
+		padding: 0 10px;
+	}
+
+	#footer .left, #footer .right, nav ul {
+		margin: 10px 10px 0 10px;
+	}
+
+	#wrapper nav, #wrapper #footer {
+		background: #f0f0f0;
+		height: 50px;
+		padding-top: 3px;
+	}
+
+	#wrapper nav {
+		display: block!important;
+		border-bottom: 1px solid #ccc;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+
+	#header {
+		margin: 0 0 25px;
+	}
+
+	#footer { 
+		border-top: 1px solid #ccc;
+	}
+
+	button#hidemenu, button#showmenu, #mobilesearch {
+		display: none;
+	}
+
+	nav ul {
+		padding: 0;
+		margin: 0;
+		float: left;
+	}
+
+	nav ul ul {
+		display: none;
+		float: left;
+		position: absolute;
+		top: 29px;
+		left: 0;
+		z-index: 500;
+		font-size: 12px;
+		padding: 0;
+	}
+
+	nav ul ul ul {
+		left: 100%;
+		top: 0;
+		font-size: 12px;
+	}
+
+	nav ul li {
+		list-style: none;
+		position: relative;
+		float: left;
+		margin: 0;
+		padding: 0;
+	}
+
+	nav ul .menuhovered a {
+		color: #000;
+	}
+
+	nav ul ul li {
+		padding: 0;
+		margin-bottom: 0;
+	}
+
+	nav ul li a {
+		display: block;
+		padding: 10px 8px 9px 8px;
+		line-height: 17px;
+	}
+
+	nav ul ul li a {
+		color: #ccc!important;
+		padding: 10px 10px 7px 7px;
+		width: 9em;
+		margin-bottom: 0;
+		background: rgba(41, 41, 41, 0.9);
+	}
+		
+	nav ul ul li a:hover {
+		color: #fff!important;
+	}
+		
+	nav ul li:hover > ul {
+		display: block;
+	}
+
+	nav button {
+		width: 80px;
+		height: 30px;
+	}
+		
+	nav .arrow-up {
+		height: 9px;
+		width: 100%;
+		border: none;
+		padding-top: 3px;
+		background: transparent url(images/arrow-up.png) 5px bottom no-repeat;
+	}
+	
+	nav ul ul ul .arrow-up {
+		display: none;
+	}		
+
+	#content {
+		float: left;
+		#max-width: 67%;
+		max-width: 68%;
+		#margin-left: 15px;
+	}
+
+	#header #logo {
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+			
+	aside {
+		min-width: 180px;
+		#width: 25%;
+		width: 28%;
+		float: right;
+		#margin-top: 7px;
+		margin-right: 2%;
+		padding-right: 0px;
+		padding-left: 0px;
+	}
+
+	aside#sidebar-2 {
+		clear: right;
+	}
+
+	#wrapper {
+		max-width: 1050px;
+	}
+		
+	.right {
+		float: right; 
+		width: 40%; 
+		text-align: right;
+	}
+
+	.left {
+		width: 40%;
+		text-align: left;
+		float: left;
+	}
+
+	#top {
+		display: none;
+	}
+
+
+
+	/* Shortcodes 
+	--------------------------------------------- */
+
+	.columns-, .columns-2, .columns-3 {
+		-webkit-column-gap: 30px;
+		-moz-column-gap: 30px;
+		column-gap: 30px;
+	}
+
+	.columns-2, .columns- {
+		-webkit-column-count: 2;
+		-moz-column-count: 2;
+		column-count: 2;
+	}
+
+	.columns-3 {
+		-webkit-column-count: 3;
+		-moz-column-count: 3;
+		column-count: 3;
+	}
+}
+
+
+
+@media screen and (max-width: 850px) {
+	nav li.arrow-up, nav, #headersearch {
+		display: none;
+	}
+
+	#mobilesearch {
+		float: right;
+		margin: 0 15px 0 0;
+	}
+
+	#mobilesearch input[type=text] {
+		width: 100px;
+		border-right: none;
+	}
+
+	#header #head {
+		padding: 15px;
+		clear: none;
+	}
+
+	#head h1 {
+		font-size: 30px;
+		}
+
+	#wrapper nav {
+		display: none;
+		padding-top: 10px;
+		text-align: left;
+		clear: both;
+		}
+
+	nav ul {
+		padding-left: 0;
+	}
+
+	nav ul li {
+		list-style: none;
+		line-height: 14px;
+		margin: 0 0 1px 0;
+		padding: 0 0 0 0;
+		float: none;
+		}
+
+	nav ul li a {
+		padding: 10px 15px;
+		display: block;
+		color: #292929;
+		background: #F0F0F0;
+	}
+
+	nav ul li a:active, nav ul li a:focus, nav ul li a:hover {
+		color: #fff;
+	}
+
+	nav ul ul {
+		border: none;
+		padding-top: 0;
+		}
+
+	nav ul ul ul {
+		border: none;
+		}
+
+	nav ul ul li {
+		padding-left: 7%;
+		padding-bottom: 0;
+		padding-top: 1px;
+		margin: 0;
+		}
+
+	nav ul ul ul li {
+		padding-top: 1px;
+	}
+
+	button#hidemenu, button#showmenu {
+		float: left;
+		margin: 0 0 0 15px;
+		}
+
+	button#hidemenu {
+		display: none;
+	}
+
+
+	#footer {
+		padding: 10px;
+	}
+
+	aside {
+		#width: 100%;
+		#clear: left;
+		margin-top: 40px;
+		#background: #f0f0f0;
+		padding: 10px 10px 0 10px;
+		}
+
+	aside#sidebar-1 {
+		clear: left;
+		width: 48%;
+		float: left;
+		padding: 10px 0;
+	}
+
+	aside#sidebar-2 {
+		width: 50%;
+		float: right;
+		padding: 10px 0;
+	}
+
+	.widget {
+		max-width: 300px;
+		margin: 0 auto;
+		margin-bottom: 20px;
+		}
+		
+	#footer .right, #footer .left {
+		clear: both;
+		padding: 5px 5px;
+		margin: 0 auto;
+		text-align: center;
+		font-size: 13px;
+		}
+
+	#header-image-div {
+		margin-bottom: 15px;
+	}
+
+	#sidebar-bottom {
+		padding: 0 20px;
+	}
+
+	#top {
+		text-align: center;
+	}
+
+	#main {
+		padding-top: 15px;
+	}
+
+	#onlybig {
+		display: none;
+	}
+
+	#header {
+		max-width: 100%;
+	}
+}
+
+
+
+@media screen and (min-width: 501px) {
+	.comment {
+		overflow: hidden;
+	}
+	
+	.indexexzerpt {
+		margin-left: 180px;
+	}
+
+	.comment-content {
+		margin: 15px 5px 0 0;
+	}
+}
+
+
+
+@media screen and (max-width: 500px) {
+	#header {
+		padding-top: 0;
+	}
+
+	#wrapper {
+		padding: 0;
+	}
+	
+	.thumbnail {
+		display: none;
+		}
+
+	#head h1 {
+		font-size: 28px;
+		}
+
+	#mobilesearch input[type=text] {
+		width: 50px;
+	}
+
+	#comments .avatar {
+		width: 40px;
+		margin-bottom: 10px;
+		margin-top: -5px;
+		}
+
+	ul.children {
+		padding-left: 10px;
+		}
+		
+	.comment-content {
+		margin-top: 5px;
+		}
+
+	aside#sidebar-1, aside#sidebar-2 {
+		width: 100%;
+	}
+
+	aside#sidebar-2	{
+		clear: both;
+		float: left;
+		margin-top: 0;
+	}
+
+	.entry, .commentlist p, #author-box-content {
+		text-align: left;
+	}
+}
+
+
+/* Social Links Custom Widget (Thank you elmastudio.de / Yoko)
+--------------------------------------------- */
+
+.widget_sociallinks a {
+	padding: 0 20px;
+	#margin-left: -12px;
+}
+
+li.widget_sociallinks {
+	background: none!important;
+	float: left;
+	width: 40%;
+}
+
+.widget_sociallinks a.rss {
+	background:url(images/social/rss-icon.png) 0 0 no-repeat!important;
+}
+
+.widget_sociallinks a.twitter {
+	background:url(images/social/twitter-icon.png) 0 0 no-repeat!important;
+}
+
+.widget_sociallinks a.facebook {
+	background:url(images/social/fb-icon.png) 0 0 no-repeat!important;
+}
+
+.widget_sociallinks a.flickr {
+	background:url(images/social/flickr-icon.png) 0 0 no-repeat!important;
+}
+
+.widget_sociallinks a.vimeo {
+	background:url(images/social/vimeo-icon.png) 0 0 no-repeat!important;
+}
+
+.widget_sociallinks a.linkedin {
+	background:url(images/social/linkedin-icon.png) 0 0 no-repeat!important;
+}
+
+.widget_sociallinks a.delicious {
+	background:url(images/social/delicious-icon.png) 0 0 no-repeat!important;
+}
+
+.widget_sociallinks a.googleplus {
+	background:url(images/social/googleplus-icon.png) 0 0 no-repeat!important;
+}
+
+.widget_sociallinks a.diaspora {
+	background:url(images/social/diaspora-icon.png) 0 0 no-repeat!important;
+}
+
+.widget_sociallinks a.identi {
+	background:url(images/social/identi-icon.png) 0 0 no-repeat!important;
+}

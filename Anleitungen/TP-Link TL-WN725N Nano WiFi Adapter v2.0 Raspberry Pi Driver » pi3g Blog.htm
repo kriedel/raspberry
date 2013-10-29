@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<!--[if IE 6]> <html id="ie6" lang="en-US"> <![endif]-->
+<!--[if IE 7]> <html id="ie7" lang="en-US"> <![endif]-->
+<!--[if IE 8]> <html id="ie8" lang="en-US"> <![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)]><!-->
+<html lang="en-US"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<link rel="pingback" href="http://blog.pi3g.com/xmlrpc.php">
+
+	<title>  TP-Link TL-WN725N Nano WiFi Adapter v2.0 Raspberry Pi Driver » pi3g Blog</title>
+	<!--[if lt IE 9]>
+	<script src="http://blog.pi3g.com/wp-content/themes/suffusion/scripts/html5.js" type="text/javascript"></script>
+	<![endif]-->
+<link rel="alternate" type="application/rss+xml" title="pi3g Blog » Feed" href="http://blog.pi3g.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="pi3g Blog » Comments Feed" href="http://blog.pi3g.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="pi3g Blog » TP-Link TL-WN725N Nano WiFi Adapter v2.0 Raspberry Pi Driver Comments Feed" href="http://blog.pi3g.com/2013/05/tp-link-tl-wn725n-nano-wifi-adapter-v2-0-raspberry-pi-driver/feed/">
+<link rel="stylesheet" id="twoclick-social-media-buttons-css" href="TP-Link%20TL-WN725N%20Nano%20WiFi%20Adapter%20v2.0%20Raspberry%20Pi%20Driver%20%C2%BB%20pi3g%20Blog-Dateien/socialshareprivacy-min.css" type="text/css" media="all">
+<link rel="stylesheet" id="frm-forms0-css" href="TP-Link%20TL-WN725N%20Nano%20WiFi%20Adapter%20v2.0%20Raspberry%20Pi%20Driver%20%C2%BB%20pi3g%20Blog-Dateien/formidablepro.css" type="text/css" media="all">
+<link rel="stylesheet" id="suffusion-theme-css" href="TP-Link%20TL-WN725N%20Nano%20WiFi%20Adapter%20v2.0%20Raspberry%20Pi%20Driver%20%C2%BB%20pi3g%20Blog-Dateien/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="suffusion-theme-skin-1-css" href="TP-Link%20TL-WN725N%20Nano%20WiFi%20Adapter%20v2.0%20Raspberry%20Pi%20Driver%20%C2%BB%20pi3g%20Blog-Dateien/skin.css" type="text/css" media="all">
+<!--[if !IE]>--><link rel="stylesheet" id="suffusion-rounded-css" href="TP-Link%20TL-WN725N%20Nano%20WiFi%20Adapter%20v2.0%20Raspberry%20Pi%20Driver%20%C2%BB%20pi3g%20Blog-Dateien/rounded-corners.css" type="text/css" media="all">
+<!--<![endif]-->
+<!--[if gt IE 8]><link rel='stylesheet' id='suffusion-rounded-css'  href='http://blog.pi3g.com/wp-content/themes/suffusion/rounded-corners.css?ver=4.4.6' type='text/css' media='all' />
+<![endif]-->
+<!--[if lt IE 8]><link rel='stylesheet' id='suffusion-ie-css'  href='http://blog.pi3g.com/wp-content/themes/suffusion/ie-fix.css?ver=4.4.6' type='text/css' media='all' />
+<![endif]-->
+<link rel="stylesheet" id="suffusion-generated-css" href="TP-Link%20TL-WN725N%20Nano%20WiFi%20Adapter%20v2.0%20Raspberry%20Pi%20Driver%20%C2%BB%20pi3g%20Blog-Dateien/a.css" type="text/css" media="all">
+<script src="TP-Link%20TL-WN725N%20Nano%20WiFi%20Adapter%20v2.0%20Raspberry%20Pi%20Driver%20%C2%BB%20pi3g%20Blog-Dateien/a_002.htm" async=""></script><script src="TP-Link%20TL-WN725N%20Nano%20WiFi%20Adapter%20v2.0%20Raspberry%20Pi%20Driver%20%C2%BB%20pi3g%20Blog-Dateien/ga.js" async="" type="text/javascript"></script><script type="text/javascript" src="TP-Link%20TL-WN725N%20Nano%20WiFi%20Adapter%20v2.0%20Raspberry%20Pi%20Driver%20%C2%BB%20pi3g%20Blog-Dateien/jquery.js"></script>
+<script type="text/javascript" src="TP-Link%20TL-WN725N%20Nano%20WiFi%20Adapter%20v2.0%20Raspberry%20Pi%20Driver%20%C2%BB%20pi3g%20Blog-Dateien/comment-reply.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var Suffusion_JS = {"wrapper_width_type_page_template_1l_sidebar_php":"fixed","wrapper_max_width_page_template_1l_sidebar_php":"1200","wrapper_min_width_page_template_1l_sidebar_php":"600","wrapper_orig_width_page_template_1l_sidebar_php":"75","wrapper_width_type_page_template_1r_sidebar_php":"fixed","wrapper_max_width_page_template_1r_sidebar_php":"1200","wrapper_min_width_page_template_1r_sidebar_php":"600","wrapper_orig_width_page_template_1r_sidebar_php":"75","wrapper_width_type_page_template_1l1r_sidebar_php":"fixed","wrapper_max_width_page_template_1l1r_sidebar_php":"1200","wrapper_min_width_page_template_1l1r_sidebar_php":"600","wrapper_orig_width_page_template_1l1r_sidebar_php":"75","wrapper_width_type_page_template_2l_sidebars_php":"fixed","wrapper_max_width_page_template_2l_sidebars_php":"1200","wrapper_min_width_page_template_2l_sidebars_php":"600","wrapper_orig_width_page_template_2l_sidebars_php":"75","wrapper_width_type_page_template_2r_sidebars_php":"fixed","wrapper_max_width_page_template_2r_sidebars_php":"1200","wrapper_min_width_page_template_2r_sidebars_php":"600","wrapper_orig_width_page_template_2r_sidebars_php":"75","wrapper_width_type":"fixed","wrapper_max_width":"1200","wrapper_min_width":"600","wrapper_orig_width":"75","wrapper_width_type_page_template_no_sidebars_php":"fixed","wrapper_max_width_page_template_no_sidebars_php":"1200","wrapper_min_width_page_template_no_sidebars_php":"600","wrapper_orig_width_page_template_no_sidebars_php":"75","suf_featured_interval":"4000","suf_featured_transition_speed":"1000","suf_featured_fx":"fade","suf_featured_pause":"Pause","suf_featured_resume":"Resume","suf_featured_sync":"0","suf_featured_pager_style":"numbers","suf_nav_delay":"500","suf_nav_effect":"fade","suf_navt_delay":"500","suf_navt_effect":"fade","suf_jq_masonry_enabled":"disabled","suf_fix_aspect_ratio":"preserve","suf_show_drop_caps":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="TP-Link%20TL-WN725N%20Nano%20WiFi%20Adapter%20v2.0%20Raspberry%20Pi%20Driver%20%C2%BB%20pi3g%20Blog-Dateien/suffusion.js"></script>
+<script type="text/javascript" src="TP-Link%20TL-WN725N%20Nano%20WiFi%20Adapter%20v2.0%20Raspberry%20Pi%20Driver%20%C2%BB%20pi3g%20Blog-Dateien/ie-fix.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.pi3g.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.pi3g.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="TP-Link 150Mbps Wireless N Nano USB Adapter TL-WN725N und Raspberry Pi" href="http://blog.pi3g.com/2013/05/tp-link-150mbps-wireless-n-nano-usb-adapter-tl-wn725n-und-raspberry-pi/">
+<link rel="next" title="Set up an Intranet Web-Notepad on the Raspberry Pi" href="http://blog.pi3g.com/2013/05/set-up-an-intranet-web-notepad-on-the-raspberry-pi/">
+<link rel="canonical" href="http://blog.pi3g.com/2013/05/tp-link-tl-wn725n-nano-wifi-adapter-v2-0-raspberry-pi-driver/">
+<link rel="shortlink" href="http://blog.pi3g.com/?p=353">
+
+<!-- Article Thumbnail -->
+<link href="TP-Link%20TL-WN725N%20Nano%20WiFi%20Adapter%20v2.0%20Raspberry%20Pi%20Driver%20%C2%BB%20pi3g%20Blog-Dateien/download-tp-link-wlan-fix-image4.png" rel="image_src">
+
+<!-- OpenGraph Tags (added by 2-Click Social Media Buttons) -->
+<meta property="og:site_name" content="pi3g Blog">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TP-Link TL-WN725N Nano WiFi Adapter v2.0 Raspberry Pi Driver">
+<meta property="og:url" content="http://blog.pi3g.com/2013/05/tp-link-tl-wn725n-nano-wifi-adapter-v2-0-raspberry-pi-driver/">
+<meta property="og:image" content="http://blog.pi3g.com/wp-content/uploads/2013/05/download-tp-link-wlan-fix-image4.png">
+<meta property="og:description" content="This is a summary of the German article about the TP-Link nano WiFi TL-WN725N USB stick, and how to get Version 2.0 of this stick to work with Raspbian. If you're a beginner, there's a finished image with the fix to download for you, too.">
+<!-- /OpenGraph Tags -->
+
+<!-- Start Additional Feeds -->
+<!-- End Additional Feeds -->
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<!-- location header -->
+<!-- Start Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36310094-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<!-- End Google Analytics -->
+<script src="TP-Link%20TL-WN725N%20Nano%20WiFi%20Adapter%20v2.0%20Raspberry%20Pi%20Driver%20%C2%BB%20pi3g%20Blog-Dateien/embed.js" async="" type="text/javascript"></script><script charset="UTF-8" async="" src="TP-Link%20TL-WN725N%20Nano%20WiFi%20Adapter%20v2.0%20Raspberry%20Pi%20Driver%20%C2%BB%20pi3g%20Blog-Dateien/alfie.js"></script></head>
+
+<body class="single single-post postid-353 single-format-standard light-theme-gray-1 suffusion-custom preset-1000px device-desktop">
+    				<div id="wrapper" class="fix">
+					<div id="header-container" class="custom-header fix">
+					<header id="header" class="fix">
+			<h2 class="blogtitle left"><a href="http://blog.pi3g.com/">pi3g Blog</a></h2>
+		<div class="description right">Unlimited Raspberry Pi possibilities</div>
+    </header><!-- /header -->
+ 	<nav id="nav" class="tab fix">
+		<div class="col-control left">
+	<!-- right-header-widgets -->
+	<div id="right-header-widgets" class="warea">
+	
+<form method="get" class="searchform " action="http://blog.pi3g.com/">
+	<input name="s" class="searchfield" value="Search" onfocus="if (this.value == 'Search') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search';}" type="text">
+	<input class="searchsubmit" value="" name="searchsubmit" type="submit">
+</form>
+	</div>
+	<!-- /right-header-widgets -->
+		</div><!-- /col-control -->
+	</nav><!-- /nav -->
+			</div><!-- //#header-container -->
+			<div id="container" class="fix">
+				    <div id="main-col">
+		  	<div id="content">
+	<article class="post-353 post type-post status-publish format-standard hentry category-hardware tag-driver tag-fix tag-image tag-linux tag-nano-wifi tag-raspbian tag-tp-link-tl-wn725n tag-version-2 category-45-id full-content meta-position-corners fix" id="post-353">
+<header class="post-header title-container fix">
+	<div class="title">
+		<h1 class="posttitle"><a href="http://blog.pi3g.com/2013/05/tp-link-tl-wn725n-nano-wifi-adapter-v2-0-raspberry-pi-driver/" class="entry-title" rel="bookmark" title="TP-Link TL-WN725N Nano WiFi Adapter v2.0 Raspberry Pi Driver">TP-Link TL-WN725N Nano WiFi Adapter v2.0 Raspberry Pi Driver</a></h1>
+		<div class="postdata fix">
+					<span class="category"><span class="icon">&nbsp;</span><a href="http://blog.pi3g.com/category/hardware/" title="View all posts in Hardware" rel="category tag">Hardware</a></span>
+							<span class="comments"><span class="icon">&nbsp;</span><a href="#respond">Add comments</a></span>
+					</div><!-- /.postdata -->
+		</div><!-- /.title -->
+		<div class="date"><span class="month">May</span> <span class="day">08</span><span class="year">2013</span></div>
+	</header><!-- /.title-container -->
+	<span class="post-format-icon">&nbsp;</span><span class="updated" title="2013-05-08T12:18:38+00:00"></span>		<div class="entry-container fix">
+			<div class="entry fix">
+<div class="twoclick_social_bookmarks_post_353 social_share_privacy clearfix 1.5 locale-en_US sprite-en_US"><ul class="social_share_privacy_area_353"><li class="twoclick-facebook"><div class="twoclick-button-container help_info"><span class="info">2
+ Klicks für mehr Datenschutz: Erst wenn Sie hier klicken, wird der 
+Button aktiv und Sie können Ihre Empfehlung an Facebook senden. Schon 
+beim Aktivieren werden Daten an Dritte übertragen - siehe <em>i</em>.</span><span class="switch off">nicht mit Facebook verbunden</span><div class="fb_recommend dummy_btn"><span class="fb_recommend_dummy twoclick-network">&nbsp;</span></div></div></li><li class="twoclick-twitter"><div class="twoclick-button-container help_info"><span class="info">2
+ Klicks für mehr Datenschutz: Erst wenn Sie hier klicken, wird der 
+Button aktiv und Sie können Ihre Empfehlung an Twitter senden. Schon 
+beim Aktivieren werden Daten an Dritte übertragen - siehe <em>i</em>.</span><span class="switch off">nicht mit Twitter verbunden</span><div class="tweet dummy_btn"><span class="twitter_dummy twoclick-network">&nbsp;</span></div></div></li><li class="twoclick-gplus"><div class="twoclick-button-container help_info"><span class="info">2
+ Klicks für mehr Datenschutz: Erst wenn Sie hier klicken, wird der 
+Button aktiv und Sie können Ihre Empfehlung an Google+ senden. Schon 
+beim Aktivieren werden Daten an Dritte übertragen - siehe <em>i</em>.</span><span class="switch off">nicht mit Google+verbunden</span><div class="gplusone dummy_btn"><span class="gplus_one_dummy twoclick-network">&nbsp;</span></div></div></li><li class="twoclick-flattr"><div class="twoclick-button-container help_info"><span class="info">2
+ Klicks für mehr Datenschutz: Erst wenn Sie hier klicken, wird der 
+Button aktiv und Sie können Ihre Empfehlung an Flattr senden. Schon beim
+ Aktivieren werden Daten an Dritte übertragen - siehe <em>i</em>.</span><span class="switch off">nicht mit Flattr verbunden</span><div class="flattrbtn dummy_btn"><span class="flattr_dummy twoclick-network">&nbsp;</span></div></div></li><li class="twoclick-linkedin"><div class="twoclick-button-container help_info"><span class="info">2
+ Klicks für mehr Datenschutz: Erst wenn Sie hier klicken, wird der 
+Button aktiv und Sie können Ihre Empfehlung an LinkedIn senden. Schon 
+beim Aktivieren werden Daten an Dritte übertragen - siehe <em>i</em>.</span><span class="switch off">nicht mit LinkedIn verbunden</span><div class="linkedinbtn dummy_btn"><span class="linkedin_dummy twoclick-network">&nbsp;</span></div></div></li><li class="settings_info"><div class="settings_info_menu off"><a href="http://www.heise.de/ct/artikel/2-Klicks-fuer-mehr-Datenschutz-1333879.html"><span class="help_info icon"><span class="info">Wenn
+ Sie diese Felder durch einen Klick aktivieren, werden Informationen an 
+Facebook, Twitter, Flattr, Xing, t3n, LinkedIn, Pinterest oder Google 
+eventuell ins Ausland übertragen und unter Umständen auch dort 
+gespeichert. Näheres erfahren Sie durch einen Klick auf das <em>i</em>.</span></span></a><span style="cursor: pointer;" class="settings">Einstellungen</span><form><fieldset><legend>Dauerhaft aktivieren und Datenüber-tragung zustimmen:</legend><input name="perma_status_facebook" id="perma_status_facebook" type="checkbox"><label for="perma_status_facebook">Facebook</label><input name="perma_status_twitter" id="perma_status_twitter" type="checkbox"><label for="perma_status_twitter">Twitter</label><input name="perma_status_gplus" id="perma_status_gplus" type="checkbox"><label for="perma_status_gplus">Google+</label><input name="perma_status_flattr" id="perma_status_flattr" type="checkbox"><label for="perma_status_flattr">Flattr</label></fieldset></form></div></li></ul></div><div class="twoclick-js"><script type="text/javascript">/* <![CDATA[ */
+jQuery(document).ready(function($){var jQueryVersion = $().jquery;if(jQueryVersion < '1.7') {return false; } else {if($('.twoclick_social_bookmarks_post_353')){$('.twoclick_social_bookmarks_post_353').socialSharePrivacy({"services":{"facebook":{"status":"on","txt_info":"2 Klicks f\u00fcr mehr Datenschutz: Erst wenn Sie hier klicken, wird der Button aktiv und Sie k\u00f6nnen Ihre Empfehlung an Facebook senden. Schon beim Aktivieren werden Daten an Dritte \u00fcbertragen - siehe <em>i<\/em>.","perma_option":"on","action":"recommend","language":"en_US"},"twitter":{"reply_to":"pi3g","tweet_text":"TP-Link%20TL-WN725N%20Nano%20WiFi%20Adapter%20v2.0%20Raspberry%20Pi%20Driver%20%C2%BB%20pi3g%20Blog%20%23driver%20%23fix%20%23image%20%23linux%20%23na","status":"on","txt_info":"2 Klicks f\u00fcr mehr Datenschutz: Erst wenn Sie hier klicken, wird der Button aktiv und Sie k\u00f6nnen Ihre Empfehlung an Twitter senden. Schon beim Aktivieren werden Daten an Dritte \u00fcbertragen - siehe <em>i<\/em>.","perma_option":"on","language":"en","referrer_track":""},"gplus":{"status":"on","txt_info":"2 Klicks f\u00fcr mehr Datenschutz: Erst wenn Sie hier klicken, wird der Button aktiv und Sie k\u00f6nnen Ihre Empfehlung an Google+ senden. Schon beim Aktivieren werden Daten an Dritte \u00fcbertragen - siehe <em>i<\/em>.","perma_option":"on","referrer_track":""},"flattr":{"uid":"pi3g","status":"on","the_title":"TP-Link%20TL-WN725N%20Nano%20WiFi%20Adapter%20v2.0%20Raspberry%20Pi%20Driver","the_excerpt":"This is a summary of the German article about the TP-Link nano WiFi TL-WN725N USB stick, and how to get Version 2.0 of this stick to work with Raspbian. If you're a beginner, there's a finished image with the fix to download for you, too.","txt_info":"2 Klicks f\u00fcr mehr Datenschutz: Erst wenn Sie hier klicken, wird der Button aktiv und Sie k\u00f6nnen Ihre Empfehlung an Flattr senden. Schon beim Aktivieren werden Daten an Dritte \u00fcbertragen - siehe <em>i<\/em>.","perma_option":"on"},"linkedin":{"status":"on","txt_info":"2 Klicks f\u00fcr mehr Datenschutz: Erst wenn Sie hier klicken, wird der Button aktiv und Sie k\u00f6nnen Ihre Empfehlung an LinkedIn senden. Schon beim Aktivieren werden Daten an Dritte \u00fcbertragen - siehe <em>i<\/em>.","perma_option":"off"}},"txt_help":"Wenn Sie diese Felder durch einen Klick aktivieren, werden Informationen an Facebook, Twitter, Flattr, Xing, t3n, LinkedIn, Pinterest oder Google eventuell ins Ausland \u00fcbertragen und unter Umst\u00e4nden auch dort gespeichert. N\u00e4heres erfahren Sie durch einen Klick auf das <em>i<\/em>.","settings_perma":"Dauerhaft aktivieren und Daten\u00fcber-tragung zustimmen:","info_link":"http:\/\/www.heise.de\/ct\/artikel\/2-Klicks-fuer-mehr-Datenschutz-1333879.html","uri":"http:\/\/blog.pi3g.com\/2013\/05\/tp-link-tl-wn725n-nano-wifi-adapter-v2-0-raspberry-pi-driver\/","post_id":353,"post_title_referrer_track":"TP-Link+TL-WN725N+Nano+WiFi+Adapter+v2.0+Raspberry+Pi+Driver","display_infobox":"on"});}}});
+/* ]]&gt; */</script></div><p>This is a short summary of the <a href="http://blog.pi3g.com/2013/05/tp-link-150mbps-wireless-n-nano-usb-adapter-tl-wn725n-und-raspberry-pi/" target="_blank">German article</a>
+ I have posted yesterday. Have a look at it, if you want to see photos 
+how to distinguish Version 1.0 from Version 2.0 of this TP-Link TL-WN725
+ N Nano WiFi USB dongle.</p>
+<h3>What is this about?</h3>
+<p>TP-Link changed the chip driving it’s TL-WN725N Nano WiFi stick. 
+Whereas v1.0 would work out of the box with the newest Raspbian 
+(02-09-13) v2.0 does not work unless you install a custom driver.</p>
+<h3>Driver installation procedure</h3>
+<p>MrEngman from the Raspberry Pi Forum has compiled a driver for v2.0 
+(which uses the 8188eu chip), including modifications for making the 
+blue LED work and less debug output (thus making it faster).</p>
+<p>Here are his installation instructions, quoted from this forum post on the Raspberry Pi Forum:</p>
+<div id="scid:f32c3428-b7e9-4f15-a8ea-c502c7ff2e88:40f2e34a-5a2b-47ee-b608-6cba9fb6a763" class="wlWriterSmartContent" style="float: none; padding-bottom: 0px; padding-top: 0px; padding-left: 0px; margin: 0px; display: inline; padding-right: 0px">
+<pre class="brush: text;">wget https://dl.dropboxusercontent.com/u/80256631/8188eu-20130209.tar.gz
+tar -zxvf 8188eu-20130209.tar.gz
+sudo install -p -m 644 8188eu.ko /lib/modules/3.6.11+/kernel/drivers/net/wireless</pre>
+</div>
+<p>Once you have installed the driver you should activate it:</p>
+<div id="scid:f32c3428-b7e9-4f15-a8ea-c502c7ff2e88:a35eecdb-b705-493d-9196-9e093712722a" class="wlWriterSmartContent" style="float: none; padding-bottom: 0px; padding-top: 0px; padding-left: 0px; margin: 0px; display: inline; padding-right: 0px">
+<pre class="brush: text;">sudo depmod -a
+sudo modprobe 8188eu</pre>
+</div>
+<p>The first command will update the kernel module settings – on the 
+next reboot, the new driver should be included automatically. The second
+ command allows you to load the driver immediately. Now you can try <em>ifconfig</em> to see wlan0 – it should be available now.</p>
+<h3>Raspbian Image with driver</h3>
+<p>We have bundled the driver with a fresh Raspbian image, based on Raspbian 2013-02-09.</p>
+<p>Additionally we have updated the apt cache, and installed all 
+currently available updates to the default packages. This should save 
+you some bandwidth and – more importantly – time.</p>
+<p>This image will be 4 GB in size when you decompress it (use 7-zip), 
+and should be installed by the usual method of image writing to SD 
+cards. Please note that we have <strong>not </strong>expanded the image to fit the whole (4 GB) SD card, you still need to run <em>sudo raspi-config </em>to finish the set-up.</p>
+<p>The original tar.gz file from MrEngman is in the folder 
+/home/pi/wlan-fix – just in case you should ever need it, it is already 
+installed and activated for you in this image.</p>
+<p><a href="http://cassidy.pi3g.com/rpi_images/raspbian-wifi-fix130508.7z" target="_blank"><img title="download-tp-link-wlan-fix-image[4]" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" alt="download-tp-link-wlan-fix-image[4]" src="TP-Link%20TL-WN725N%20Nano%20WiFi%20Adapter%20v2.0%20Raspberry%20Pi%20Driver%20%C2%BB%20pi3g%20Blog-Dateien/download-tp-link-wlan-fix-image4.png" width="100" border="0"></a><font size="5"><strong><a href="http://cassidy.pi3g.com/rpi_images/raspbian-wifi-fix130523.7z" target="_blank">Download raspbian-wifi-fix130523.7z</a> (532 MB)</strong></font></p>
+<h3>&nbsp;</h3>
+<h3>Update</h3>
+<p>I have updated the image today (31.05.2013). It has all updates as of
+ the 23rd of may of a stock Raspbian install. Also I have resized the 
+image to the real size the partitions need initially.</p>
+<p>Please note, if you run updates the driver may become disabled. Simply use </p>
+<p><strong>sudo depmod -a<br>sudo modprobe 8188eu</strong></p>
+<p>to fix this after the updates.</p>
+<p>&nbsp;</p>
+<h3>Simple WiFi network setup</h3>
+<p>In the simple case of the Raspberry Pi being used with WLAN only, a 
+DHCP access point / router, and no roaming is required, you should be 
+fine with the followíng <em>/etc/network/interfaces</em> file</p>
+<div id="scid:f32c3428-b7e9-4f15-a8ea-c502c7ff2e88:a8145878-55b9-4c39-8d2f-7cedfa9fea24" class="wlWriterSmartContent" style="float: none; padding-bottom: 0px; padding-top: 0px; padding-left: 0px; margin: 0px; display: inline; padding-right: 0px">
+<pre class="brush: text;">auto lo
+
+iface lo inet loopback
+#iface eth0 inet dhcp
+
+allow-hotplug wlan0
+auto wlan0
+iface wlan0 inet dhcp
+        wpa-ssid "your-ssid"
+        wpa-psk "your-password"
+#wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+iface default inet dhcp
+</pre>
+</div>
+<p>Change <em>your-ssid</em> and <em>your-password</em>,<em> </em>but please keep the quotation marks around them. As you see in the setup above, the wpa_supplicant.conf is commented out.</p>
+			</div><!--/entry -->
+		</div><!-- .entry-container -->
+<footer class="post-footer postdata fix">
+<span class="author"><span class="icon">&nbsp;</span>Posted by <span class="vcard"><a href="http://blog.pi3g.com/author/max/" class="url fn" rel="author">Max</a></span> at 12:18 pm</span>		<span class="tags tax"><span class="icon">&nbsp;</span>Tagged with: <a href="http://blog.pi3g.com/tag/driver/" rel="tag">driver</a>, <a href="http://blog.pi3g.com/tag/fix/" rel="tag">fix</a>, <a href="http://blog.pi3g.com/tag/image/" rel="tag">image</a>, <a href="http://blog.pi3g.com/tag/linux/" rel="tag">linux</a>, <a href="http://blog.pi3g.com/tag/nano-wifi/" rel="tag">nano wifi</a>, <a href="http://blog.pi3g.com/tag/raspbian/" rel="tag">Raspbian</a>, <a href="http://blog.pi3g.com/tag/tp-link-tl-wn725n/" rel="tag">tp-link tl-wn725n</a>, <a href="http://blog.pi3g.com/tag/version-2/" rel="tag">version 2</a></span>
+	</footer><!-- .post-footer -->
+
+<div id="disqus_thread"><iframe verticalscrolling="no" horizontalscrolling="no" src="TP-Link%20TL-WN725N%20Nano%20WiFi%20Adapter%20v2.0%20Raspberry%20Pi%20Driver%20%C2%BB%20pi3g%20Blog-Dateien/a.htm" style="width: 100%; border: medium none; overflow: hidden; height: 7141px;" role="complementary" allowtransparency="true" data-disqus-uid="1" id="dsq1" scrolling="no" width="100%" frameborder="0"></iframe><iframe style="width: 693px; border: medium none; overflow: hidden; top: 0px; min-width: 693px; max-width: 693px; position: fixed; max-height: 29px; min-height: 29px; height: 29px; display: none;" role="alert" allowtransparency="true" data-disqus-uid="-indicator-north" id="dsq-indicator-north" scrolling="no" frameborder="0"></iframe><iframe style="width: 693px; border: medium none; overflow: hidden; bottom: 0px; min-width: 693px; max-width: 693px; position: fixed; max-height: 29px; min-height: 29px; height: 29px; display: none;" role="alert" allowtransparency="true" data-disqus-uid="-indicator-south" id="dsq-indicator-south" scrolling="no" frameborder="0"></iframe></div>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+    var disqus_url = 'http://blog.pi3g.com/2013/05/tp-link-tl-wn725n-nano-wifi-adapter-v2-0-raspberry-pi-driver/';
+    var disqus_identifier = '353 http://blog.pi3g.com/?p=353';
+    var disqus_container_id = 'disqus_thread';
+    var disqus_domain = 'disqus.com';
+    var disqus_shortname = 'pi3g-blog';
+    var disqus_title = "TP-Link TL-WN725N Nano WiFi Adapter v2.0 Raspberry Pi Driver";
+        var disqus_config = function () {
+        var config = this; // Access to the config object
+        config.language = '';
+
+        /*
+           All currently supported events:
+            * preData — fires just before we request for initial data
+            * preInit - fires after we get initial data but before we load any dependencies
+            * onInit  - fires when all dependencies are resolved but before dtpl template is rendered
+            * afterRender - fires when template is rendered but before we show it
+            * onReady - everything is done
+         */
+
+        config.callbacks.preData.push(function() {
+            // clear out the container (its filled for SEO/legacy purposes)
+            document.getElementById(disqus_container_id).innerHTML = '';
+        });
+                config.callbacks.onReady.push(function() {
+            // sync comments in the background so we don't block the page
+            var script = document.createElement('script');
+            script.async = true;
+            script.src = '?cf_action=sync_comments&post_id=353';
+
+            var firstScript = document.getElementsByTagName( "script" )[0];
+            firstScript.parentNode.insertBefore(script, firstScript);
+        });
+                    };
+/* ]]> */
+</script>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+    var DsqLocal = {
+        'trackbacks': [
+            {
+                'author_name':    "TP-Link TL-WN725N version 2 in Raspberry Pi | Programming and Technology",
+                'author_url':    "http:\/\/tech.enekochan.com\/2013\/05\/29\/tp-link-tl-wn725n-version-2-in-raspberry-pi\/",
+                'date':            "05\/29\/2013 10:02 AM",
+                'excerpt':        "[...] http:\/\/blog.pi3g.com\/2013\/05\/tp-link-tl-wn725n-nano-wifi-adapter-v2-0-raspberry-pi-driver\/ [...] ",
+                'type':            "pingback"            }
+,            {
+                'author_name':    "TP-Link TL-WN725N WiFi usb adapter throughput on Raspberry Pi &raquo; pi3g Blog",
+                'author_url':    "http:\/\/blog.pi3g.com\/2013\/06\/tp-link-tl-wn725n-wifi-usb-adapter-throughput-on-raspberry-pi\/",
+                'date':            "06\/03\/2013 10:16 PM",
+                'excerpt':        "[...] is the result for version 2 of the TP-Link WiFi Adapter, using a custom driver (none included with the ...",
+                'type':            "pingback"            }
+,            {
+                'author_name':    "TP-Link TL-WN725N Nano WiFi Adapter v2.0 e Raspberry Pi",
+                'author_url':    "http:\/\/www.bufferoverflow.it\/2013\/06\/10\/tp-link-tl-wn725n-nano-wifi-adapter-v2-0-e-raspberry-pi\/",
+                'date':            "06\/10\/2013 08:51 PM",
+                'excerpt':        "[...] il funzionamento del TL-WN725N v2, le istruzioni di installazione e il driver sono scaricabili dal pi3g blog, le riporto ...",
+                'type':            "pingback"            }
+        ],
+        'trackback_url': "http:\/\/blog.pi3g.com\/2013\/05\/tp-link-tl-wn725n-nano-wifi-adapter-v2-0-raspberry-pi-driver\/trackback\/"    };
+/* ]]> */
+</script>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.' + 'disqus.com' + '/embed.js?pname=wordpress&pver=2.74';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+/* ]]> */
+</script>
+	</article><!--/post -->
+<nav class="post-nav fix">
+<table>
+<tbody><tr>
+	<td class="previous"><a href="http://blog.pi3g.com/2013/05/tp-link-150mbps-wireless-n-nano-usb-adapter-tl-wn725n-und-raspberry-pi/" rel="prev"><span class="icon">&nbsp;</span> TP-Link 150Mbps Wireless N Nano USB Adapter TL-WN725N und Raspberry Pi</a></td>
+	<td class="next"><a href="http://blog.pi3g.com/2013/05/raspberry-pi-kamera-jetzt-bei-farnell-1-stck-verfgbar/" rel="next"><span class="icon">&nbsp;</span> Raspberry Pi Kamera: JETZT bei Farnell 1 Stück verfügbar</a></td>
+</tr>
+</tbody></table>
+</nav>
+      </div><!-- content -->
+    </div><!-- main col -->
+<div id="sidebar-shell-1" class="sidebar-shell sidebar-shell-right">
+<div class="dbx-group right boxed warea" id="sidebar">
+<!--widget start --><aside id="search-2" class="dbx-box suf-widget search"><div class="dbx-content">
+<form method="get" class="searchform " action="http://blog.pi3g.com/">
+	<input name="s" class="searchfield" value="Search" onfocus="if (this.value == 'Search') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search';}" type="text">
+	<input class="searchsubmit" value="" name="searchsubmit" type="submit">
+</form>
+</div></aside><!--widget end --><!--widget start --><aside id="text-2" class="dbx-box suf-widget widget_text"><h3 class="dbx-handle plain">Visit our shop /  Besuchen Sie unseren Shop</h3><div class="dbx-content">			<div class="textwidget"><a href="https://shop.pi3g.com/"><img src="TP-Link%20TL-WN725N%20Nano%20WiFi%20Adapter%20v2.0%20Raspberry%20Pi%20Driver%20%C2%BB%20pi3g%20Blog-Dateien/shop.png"></a></div>
+		</div></aside><!--widget end --><!--widget start --><aside id="pages-2" class="dbx-box suf-widget widget_pages"><h3 class="dbx-handle plain">Menü / Menu</h3><div class="dbx-content">		<ul>
+			<li class="page_item page-item-93"><a href="http://blog.pi3g.com/impressum/">Impressum</a></li>
+<li class="page_item page-item-87"><a href="http://blog.pi3g.com/support/">Support</a></li>
+		</ul>
+		</div></aside><!--widget end --><!--widget start --><aside id="text-3" class="dbx-box suf-widget widget_text"><h3 class="dbx-handle plain">my.pi3g.com</h3><div class="dbx-content">			<div class="textwidget"><a href="https://my.pi3g.com/">my.pi3g.com</a> is the perfect place to look for downloads, manuals and installation instructions - it's all about your pi3g Raspberry Pi.
+<br><br>
+<a href="https://my.pi3g.com/">my.pi3g.com</a> ist der perfekte Ort für Sie nach Downloads, Handbüchern und Installationsanleitungen für Ihren pi3g Raspberry Pi zu suchen.
+
+
+</div>
+		</div></aside><!--widget end -->		<!--widget start --><aside id="recent-posts-2" class="dbx-box suf-widget widget_recent_entries"><h3 class="dbx-handle plain">Recent Posts</h3><div class="dbx-content">				<ul>
+					<li>
+				<a href="http://blog.pi3g.com/2013/07/rckruf-hdmi-dvi-adapter/" title="Rückruf HDMI / DVI Adapter">Rückruf HDMI / DVI Adapter</a>
+						</li>
+					<li>
+				<a href="http://blog.pi3g.com/2013/07/weston-wayland-browsers/" title="Weston / Wayland &amp; browsers">Weston / Wayland &amp; browsers</a>
+						</li>
+					<li>
+				<a href="http://blog.pi3g.com/2013/07/ipv6-setup/" title="IPv6 Setup">IPv6 Setup</a>
+						</li>
+					<li>
+				<a href="http://blog.pi3g.com/2013/07/kostenloses-webinar-hardware-hacking-mit-raspberry-pi/" title="Kostenloses Webinar “Hardware Hacking mit Raspberry Pi”">Kostenloses Webinar “Hardware Hacking mit Raspberry Pi”</a>
+						</li>
+					<li>
+				<a href="http://blog.pi3g.com/2013/06/the-map-is-not-the-territory/" title="The map is not the territory">The map is not the territory</a>
+						</li>
+				</ul>
+		</div></aside><!--widget end --><!--widget start --><aside id="recent-comments-2" class="dbx-box suf-widget widget_recent_comments"><h3 class="dbx-handle plain">Recent Comments</h3><div class="dbx-content"><ul id="recentcomments"><li class="recentcomments">Marcin on <a href="http://blog.pi3g.com/2013/05/tp-link-tl-wn725n-nano-wifi-adapter-v2-0-raspberry-pi-driver/#comment-618">TP-Link TL-WN725N Nano WiFi Adapter v2.0 Raspberry Pi Driver</a></li><li class="recentcomments">Chuck on <a href="http://blog.pi3g.com/2013/05/tp-link-tl-wn725n-nano-wifi-adapter-v2-0-raspberry-pi-driver/#comment-617">TP-Link TL-WN725N Nano WiFi Adapter v2.0 Raspberry Pi Driver</a></li><li class="recentcomments">Jan van Haarst on <a href="http://blog.pi3g.com/2013/07/ipv6-setup/#comment-616">IPv6 Setup</a></li><li class="recentcomments">pi3g on <a href="http://blog.pi3g.com/2013/07/weston-wayland-browsers/#comment-615">Weston / Wayland &amp; browsers</a></li><li class="recentcomments">pi3g on <a href="http://blog.pi3g.com/2013/07/weston-wayland-browsers/#comment-614">Weston / Wayland &amp; browsers</a></li></ul></div></aside><!--widget end --><!--widget start --><aside id="archives-2" class="dbx-box suf-widget widget_archive"><h3 class="dbx-handle plain">Archives</h3><div class="dbx-content">		<ul>
+			<li><a href="http://blog.pi3g.com/2013/07/" title="July 2013">July 2013</a></li>
+	<li><a href="http://blog.pi3g.com/2013/06/" title="June 2013">June 2013</a></li>
+	<li><a href="http://blog.pi3g.com/2013/05/" title="May 2013">May 2013</a></li>
+	<li><a href="http://blog.pi3g.com/2013/04/" title="April 2013">April 2013</a></li>
+	<li><a href="http://blog.pi3g.com/2013/03/" title="March 2013">March 2013</a></li>
+	<li><a href="http://blog.pi3g.com/2013/02/" title="February 2013">February 2013</a></li>
+	<li><a href="http://blog.pi3g.com/2013/01/" title="January 2013">January 2013</a></li>
+	<li><a href="http://blog.pi3g.com/2012/12/" title="December 2012">December 2012</a></li>
+	<li><a href="http://blog.pi3g.com/2012/11/" title="November 2012">November 2012</a></li>
+		</ul>
+</div></aside><!--widget end --><!--widget start --><aside id="categories-2" class="dbx-box suf-widget widget_categories"><h3 class="dbx-handle plain">Categories</h3><div class="dbx-content">		<ul>
+	<li class="cat-item cat-item-326"><a href="http://blog.pi3g.com/category/administration/">Administration</a>
+</li>
+	<li class="cat-item cat-item-217"><a href="http://blog.pi3g.com/category/appliances/">Appliances</a>
+</li>
+	<li class="cat-item cat-item-247"><a href="http://blog.pi3g.com/category/electronics-2/">Electronics</a>
+</li>
+	<li class="cat-item cat-item-236"><a href="http://blog.pi3g.com/category/free/">free</a>
+</li>
+	<li class="cat-item cat-item-138"><a href="http://blog.pi3g.com/category/fun/">fun</a>
+</li>
+	<li class="cat-item cat-item-45"><a href="http://blog.pi3g.com/category/hardware/">Hardware</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="http://blog.pi3g.com/category/misc/">misc</a>
+</li>
+	<li class="cat-item cat-item-132"><a href="http://blog.pi3g.com/category/my-pi3g-com/">my.pi3g.com</a>
+</li>
+	<li class="cat-item cat-item-124"><a href="http://blog.pi3g.com/category/os-fun/">OS fun</a>
+</li>
+	<li class="cat-item cat-item-281"><a href="http://blog.pi3g.com/category/raspberry-server/">Raspberry Server</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://blog.pi3g.com/category/raspbmc/">Raspbmc</a>
+</li>
+	<li class="cat-item cat-item-226"><a href="http://blog.pi3g.com/category/realtime/">Realtime</a>
+</li>
+	<li class="cat-item cat-item-237"><a href="http://blog.pi3g.com/category/services/">services</a>
+</li>
+	<li class="cat-item cat-item-14"><a href="http://blog.pi3g.com/category/shop/">Shop</a>
+</li>
+	<li class="cat-item cat-item-61"><a href="http://blog.pi3g.com/category/software/">Software</a>
+</li>
+	<li class="cat-item cat-item-317"><a href="http://blog.pi3g.com/category/strategy/">Strategy</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://blog.pi3g.com/category/uncategorized/">Uncategorized</a>
+</li>
+	<li class="cat-item cat-item-308"><a href="http://blog.pi3g.com/category/wayland/">Wayland</a>
+</li>
+	<li class="cat-item cat-item-39"><a href="http://blog.pi3g.com/category/wifi/">WiFi</a>
+</li>
+	<li class="cat-item cat-item-112"><a href="http://blog.pi3g.com/category/windows/">Windows</a>
+</li>
+	<li class="cat-item cat-item-75"><a href="http://blog.pi3g.com/category/xbmc/">XBMC</a>
+</li>
+		</ul>
+</div></aside><!--widget end --><!--widget start --><aside id="meta-2" class="dbx-box suf-widget widget_meta"><h3 class="dbx-handle plain">Meta</h3><div class="dbx-content">			<ul>
+						<li><a href="http://blog.pi3g.com/wp-login.php">Log in</a></li>
+			<li><a href="http://blog.pi3g.com/feed/" title="Syndicate this site using RSS 2.0">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://pi3g-blog.disqus.com/latest.rss" title="The latest comments to all posts in RSS">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li>
+						</ul>
+</div></aside><!--widget end --></div><!--/sidebar -->
+</div>
+	</div><!-- /container -->
+
+<footer>
+	<div id="cred">
+		<table>
+			<tbody><tr>
+				<td class="cred-left">© 2012 <a href="http://blog.pi3g.com/">pi3g Blog</a></td>
+				<td class="cred-center"></td>
+				<td class="cred-right"><a href="http://aquoid.com/news/themes/suffusion/">Suffusion theme by Sayontan Sinha</a></td>
+			</tr>
+		</tbody></table>
+	</div>
+</footer>
+<!-- 20 queries, 41MB in 0.200 seconds. -->
+</div><!--/wrapper -->
+<!-- location footer -->
+<div style="text-align: center;">Performance Optimization <a href="http://www.w3-edge.com/wordpress-plugins/" rel="external nofollow">WordPress Plugins</a> by W3 EDGE</div><script type="text/javascript" src="TP-Link%20TL-WN725N%20Nano%20WiFi%20Adapter%20v2.0%20Raspberry%20Pi%20Driver%20%C2%BB%20pi3g%20Blog-Dateien/social_bookmarks-min.js"></script>
+<script type="text/javascript" src="TP-Link%20TL-WN725N%20Nano%20WiFi%20Adapter%20v2.0%20Raspberry%20Pi%20Driver%20%C2%BB%20pi3g%20Blog-Dateien/jquery_002.js"></script>
+
+
+
+
+</body></html>
+<!-- Served from: blog.pi3g.com @ 2013-07-15 13:39:59 by W3 Total Cache -->

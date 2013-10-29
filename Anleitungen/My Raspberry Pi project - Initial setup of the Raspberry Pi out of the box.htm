@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en"><head><script type="text/javascript" async="" src="My%20Raspberry%20Pi%20project%20-%20Initial%20setup%20of%20the%20Raspberry%20Pi%20out%20of%20the%20box-Dateien/quant.js"></script><script>var __pbpa = true;</script><script>var translated_warning_string = 'Warning: Never enter your Tumblr password unless \u201chttps://www.tumblr.com/login\u201d\x0ais the address in your web browser.\x0a\x0aYou should also see a green \u201cTumblr, Inc.\u201d identification in the address bar.\x0a\x0aSpammers and other bad guys use fake forms to steal passwords.\x0a\x0aTumblr will never ask you to log in from a user\u2019s blog.\x0a\x0aAre you absolutely sure you want to continue?';</script><script type="text/javascript" language="javascript" src="My%20Raspberry%20Pi%20project%20-%20Initial%20setup%20of%20the%20Raspberry%20Pi%20out%20of%20the%20box-Dateien/pre_tumblelog.js"></script>
+ 
+<!--
+
+"Notations" theme designed by Ben Delaney (http://bendelaney.me)
+
+Available in the Tumblr theme garden: http://www.tumblr.com/theme/8631 -->
+
+
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=790">
+	<title>My Raspberry Pi project - Initial setup of the Raspberry Pi out of the box.</title>	
+	<meta name="description" content="Initial setup of the Raspberry Pi out of the box. Once the default Raspbian Wheezy image installed, I use the following steps to get the basic software I need and configuration that works well for me....">
+	<link rel="shortcut icon" href="http://assets.tumblr.com/images/default_avatar_128.png">
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="http://raspberrypi.werquin.com/rss">
+	
+	<meta name="if:Use Quicksand Font" content="1">
+	<meta name="if:Show High Res Photo Links" content="1">
+	<meta name="if:Show Note Count" content="1">
+	<meta name="if:Show Word Count" content="1">
+	<meta name="if:Show Tags" content="1">
+	<meta name="if:Show Short URL" content="1">
+	<meta name="if:Show Notes on Permalink Page" content="1">
+	<meta name="if:Show Ask Link" content="0">
+	<meta name="if:Show Submit Link" content="0">
+	<meta name="if:Hide Install Theme Link" content="0">
+	<meta name="text:Disqus Shortname" content="">
+	<meta name="image:BackgroundImage" content="http://static.tumblr.com/ybdgkw4/ffzkxsss6/bg-400-paper2.jpg">
+	
+	<script src="My%20Raspberry%20Pi%20project%20-%20Initial%20setup%20of%20the%20Raspberry%20Pi%20out%20of%20the%20box-Dateien/mootools-yui-compressed.js" type="text/javascript" charset="utf-8"></script>
+	<script src="My%20Raspberry%20Pi%20project%20-%20Initial%20setup%20of%20the%20Raspberry%20Pi%20out%20of%20the%20box-Dateien/mootools-1.js" type="text/javascript" charset="utf-8"></script>
+
+	
+	<link rel="stylesheet" href="My%20Raspberry%20Pi%20project%20-%20Initial%20setup%20of%20the%20Raspberry%20Pi%20out%20of%20the%20box-Dateien/base64_quicksandfonts.css" type="text/css" charset="utf-8">
+	
+	
+	<style type="text/css">
+		* {margin:0; padding:0;}
+		fieldset,img {border:0;}
+		ol,ul {list-style:none;}
+		a:active, a:focus {outline: 0;}
+		h1,h2,h3,h4,h5,h6,span {font-size:100%;font-weight:normal;}
+
+		body {
+			font-family:QuicksandBook, Helvetica, Arial, sans-serif;
+			text-shadow:#efefef 1px 1px 0px;
+			font-size: 22px;
+			color: #222;
+			background-color:#f8f8f8;
+			background-image:url(http://static.tumblr.com/ybdgkw4/ffzkxsss6/bg-400-paper2.jpg);
+			margin: 40px 0 20px 0;
+			padding: 0;
+			}
+
+		a, a:visited {
+			color: #222;
+			font-family: QuicksandBold, Helvetica, Arial, sans-serif;
+			font-weight: bold;
+			border-bottom:1px solid #aaa;
+			text-decoration: none;
+			}
+		a:hover {
+			border-bottom:none;
+			}				
+		em, i {
+			font-family: QuicksandBookOblique, Helvetica, Arial, sans-serif;
+			font-style: italic;
+			}
+		strong, b {
+			font-family: QuicksandBold, Helvetica, Arial, sans-serif;
+			font-weight: bold;
+			}
+		strong em, strong i, b em, b i {
+			font-family: QuicksandBoldOblique, Helvetica, Arial, sans-serif;
+			font-weight: bold;
+			font-style: italic;
+			}
+		a#InstallThisTheme {
+			background: url(http://static.tumblr.com/thpaaos/dHHkt0jor/install_theme.png);
+			display: block;
+			height: 20px;
+			position: absolute;
+			right: 2px;
+			text-indent: -9999px;
+			top: 26px;
+			width: 96px;
+			z-index: 5000;	
+			}	
+		#Main {
+			width: 770px;
+			margin: 0 auto; 
+			padding: 8px 0 0 0;
+			}
+			#Header {}
+				#Header .Title {
+					padding: 0 0 10px 0;
+					position: relative;
+					}
+					#Header .Title a.Title {
+						width: 688px;
+						color: #222;
+						font-size: 45px;
+						line-height: 1;
+						font-family: QuicksandBold, Helvetica, Arial, sans-serif;
+						font-weight: bold;
+						letter-spacing: 3px;
+						text-decoration: none;
+						text-shadow:#ddd 1px 1px 0px, #999 0px 0px 10px, #999 0px 0px 10px;
+						border-bottom: 0px;
+						}
+
+				#Header .PageLinks {
+					font-size: 14px;
+					margin:5px 0 14px;
+					height:1%;
+					overflow:hidden;
+					}
+					#Header .PageLinks a {
+						display:block;
+						float:left;
+						margin-right:14px;
+						
+						}
+					
+				#Header .Description {
+					font-size: 14px;
+					padding: 8px 0px 34px;
+					}
+					#Header .Description a {
+						text-decoration: none;
+						}
+
+			.DynamicHeader {
+				font-size: 30px;
+				font-family:QuicksandBook, Helvetica, Arial, sans-serif;
+				}
+				.DynamicHeader span {
+					font-family:QuicksandBold, Helvetica, Arial, sans-serif;
+					font-weight: bold;
+					}
+
+			.Post {
+				margin: 50px 0px 0px 0px;
+				line-height: 1.4; 
+				}
+				.Post img {
+					max-width: 100%;
+					-webkit-box-shadow: #444 0px 0px 6px;
+					-moz-box-shadow: 	#444 0px 0px 6px;
+					}
+			
+				.Post a.Title {
+					display:block;
+					line-height: 1.4;
+					color: #222;
+					margin-bottom:22px;
+					font-family:QuicksandBold, Helvetica, Arial, sans-serif;
+					font-weight: bold;
+					letter-spacing: 2px;
+					text-transform:uppercase;
+					text-decoration:none;
+					text-shadow:#ccc 1px 1px 0px, #666 0px 0px 6px;
+					border-bottom:0px;
+				  	}
+					.Post a.Title:hover {
+						text-decoration:underline;
+						}
+				.Post.Single a.Title {
+					margin-bottom:60px;
+					}
+
+				/* Photo Posts */
+				.Post .ThePhoto a {
+					border-bottom:0px;
+					}
+				
+				/* PhotoSet Posts */
+				.Post .PhotoSet embed {
+					-webkit-box-shadow: #444 0px 0px 6px;
+					-moz-box-shadow: 	#444 0px 0px 6px;
+					}
+				/* Quote Posts */
+				.Post .TheQuote.short {
+					font-family: QuicksandLight, Helvetica, Arial, sans-serif;
+					font-size: 75px;
+					letter-spacing: -5px;
+					line-height: 0.85;
+					}
+				.Post .TheQuote.medium {
+					font-size: 54px;
+					line-height: 0.9;
+					font-family: QuicksandLight, Helvetica, Arial, sans-serif;
+					letter-spacing:-3px;
+					}
+				.Post .TheQuote.long {
+					font-size: 34px;
+					line-height: 1;
+					font-family: QuicksandLight, Helvetica, Arial, sans-serif;
+					letter-spacing:-1px;
+					}
+				.Post .Quote .QuoteSource {
+					font-family:QuicksandBold, Helvetica, Arial, sans-serif;
+					font-weight: bold;
+					text-shadow:#999 0px 0px 10px;
+					}
+
+				/* Chat Posts */
+				.Post .Chat li {
+					line-height:1;
+					margin-bottom:12px;
+					border-bottom: 2px dotted #ccc;
+					clear:left;
+					}
+					.Post .Chat li .Label {
+						display:block;
+						float:left;
+						font-family:QuicksandBold, Helvetica, Arial, sans-serif;
+						font-weight: bold;
+						}
+					.Post .Chat li .Line {
+						margin-left:240px;
+						}
+
+				/* Link Post */
+				.Post .Link .TheLink {
+					color: #222;
+					font-family:QuicksandBold, Helvetica, Arial, sans-serif;
+					font-weight: bold;
+					letter-spacing: 2px;
+					text-transform:uppercase;
+					text-decoration:none;
+					text-shadow:#ccc 1px 1px 0px, #666 0px 0px 6px;
+					}
+
+				/* Audio Post */
+				.Post .Audio .AlbumArt img {
+					display:block;
+					}
+				.Post .Audio .AudioPlayerWrapper {
+					background:#000;
+					width:210px;
+					}
+				.Post .Audio .audio_player {
+					border-top: 3px solid #000;
+					opacity:0.8;
+					height: 27px;
+					margin-bottom: 6px;
+					}
+				.Post .Audio .SongInfo {
+					font-size: 12px;
+					line-height: 1;
+					margin-bottom:12px;
+					}
+					.Post .Audio .SongInfo span {
+						display:block;
+						}
+						
+				/* Question/Answer Post */
+				.Post .Answer .QuestionBox {
+					background:#eee;
+					height:1%;
+					overflow:hidden;
+					border-top: 1px solid #ccc;
+					border-bottom: 1px solid #fff;
+					}
+					.Post .Answer .TheAsker {
+						float:left;
+						}
+						.Post .Answer .TheAsker .AskerPhoto {
+							float:left;
+							width: 96px;
+							height:96px;
+							overflow:hidden;
+							float:left;
+							margin-right:8px;
+							}
+						.Post .Answer .TheAsker .AskerPhoto img {
+							-webkit-box-shadow: none;
+							-moz-box-shadow: 	none;
+							}
+						.Post .Answer .TheAsker .AskerName a {
+							display:block;
+							float:left;
+							font-size: 12px;
+							line-height: 1;
+							padding:8px 8px 0px;
+							border-bottom: none;
+							}
+						.Post .Answer .Asks {
+							float:left;
+							font-size: 12px;
+							line-height: 1;
+							padding:8px 8px 0px;
+							}
+					.Post .Answer .TheQuestion {
+						margin-left:40%;
+						padding:14px;
+						font-family:QuicksandLightOblique, Helvetica, Arial, sans-serif;
+						border-left: 1px solid #ccc;
+						}
+					.Post .Answer .TheAnswer {
+						padding:12px 48px;
+						}
+
+			/* Generic Post stuff */
+			.Post .PostBody {
+					font-size:70%;
+					line-height:1.2;
+					}
+				.Post .PostBody a {
+					color: #000;
+					border-bottom:1px solid #aaa;
+					text-decoration: none;
+					}
+				.Post .PostBody a:hover {
+					color: #222;
+					border-bottom:none;
+					}				
+				.Post .PostBody p {
+					margin-bottom:22px;
+					}
+				.Post .PostBody ul {
+					list-style: disc outside;
+					padding-left:20px;
+					margin-bottom:22px;
+					}
+				.Post .PostBody ol {
+					list-style: decimal outside;
+					padding-left:20px;
+					margin-bottom:22px;
+					}
+				.Post .PostBody small {
+					font-size: 11px;
+					line-height:11px!important;
+					}
+				.Post .PostBody blockquote {
+					border-left: 1px solid #AAA;
+					margin-left: 40px;
+					padding-left: 12px;
+					margin-bottom:22px;
+					}
+				.Post .Bottom {
+					color: #aaa;
+					width: 100%;
+					font-size: 12px;
+					line-height: 1.5;
+					margin-top:20px;
+					}
+					.Post .Bottom .Reblog {
+						float:left;
+						margin-right:13px;
+						}
+					.Post .Bottom span {
+						padding: 0 13px 0 0;
+						}
+						.Post .Bottom .Reblog span,
+						.Post .Bottom span.Notes a,
+						.Post .Bottom span.ShortUrl span,
+						.Post .Bottom span.Tags span  {
+							text-transform: uppercase;
+							padding-right:0;
+							}
+					.Post .Bottom em {font-style: normal;}
+					.Post .Bottom a {
+						color: #a5a5a5;
+						font-family:QuicksandBook, Helvetica, Arial, sans-serif;
+						}
+					.Post .Bottom a:hover { 
+						text-decoration: underline;
+						color:#000;
+						}
+					.Post .Bottom .Tags {
+						display:block;
+						}
+				.Post .PermaPageNotes a.NotesAnchor {
+					border-bottom: none;
+					text-decoration: none;
+					}
+				ol.notes {
+					width: 100%;
+					border-bottom: solid 1px #ccc;
+					padding: 48px 0 0 0px;
+					margin: 8px 0px 0px 0px;
+					list-style-type: none;
+					}
+	
+					ol.notes a { color: #444444; }
+
+					ol.notes li.note {
+						color: #777;
+						font-size: 10px;
+						border-top: solid 1px #ccc;
+						padding: 4px;
+						}
+
+						ol.notes li.note img.avatar {
+					    vertical-align: -4px;
+					    margin-right: 10px;
+					    width: 16px;
+					    height: 16px;
+						}
+
+						ol.notes li.note span.action { margin-bottom: 5px; }
+
+						ol.notes li.note blockquote {
+							border-color: #eee;
+							padding: 4px 10px;
+							margin: 10px 0px 0px 25px;
+							}
+							ol.notes li.note blockquote a { text-decoration: none; }
+
+						ol.notes li.note a:hover { text-decoration: underline; }
+
+			
+			#Footer {
+				padding: 200px 0 8px;
+				font-size: 12px;
+				color: #8E8E8E;
+				line-height: 1.5em;
+				overflow: hidden;
+				}
+				#Footer a {
+					color: #202020;
+					font-weight: bold;
+					margin-right:10px;
+					text-transform: uppercase;
+					text-decoration: none;
+					}
+				#Footer .UtilityLinks {
+					width:67%;
+					float:left;
+					height:20px;
+					}
+				#Footer .Pagination {
+					width:33%;
+					float:right;
+					text-align: right;
+					height:20px;
+					}
+					#Footer .Numeration {
+						padding-right:12px;
+						}
+				#Footer .Search {
+					clear:both;
+					padding-top:24px;
+					padding-bottom:20px;
+					}
+					#Footer form input.Text {
+						width: 278px;
+						}
+				#Footer .Hints {
+					font-size: 14px;
+					padding-bottom:14px;
+					}
+				#Footer .Colophon {
+					font-size: 12px;
+					line-height: 1;
+					padding-bottom:14px;
+					}
+				#Footer .Colophon a {
+					color: #888;
+					margin-right:0;
+					}
+
+		/* iPhone */
+		@media screen and (max-device-width: 481px) {
+			#Header .Title a.Title {font-size:2.2em; -webkit-text-stroke-width: 1px; -webkit-text-stroke-color: #222;}
+			.Post .PostBody {font-size:1.3em; }
+		}
+		/* End iPhone */
+	
+		@media print {
+			body {
+				color:black;
+				font-size:12pt;
+				line-height:24pt;
+				padding:20px 40px 40px 40px;
+				}	
+			body * {
+				text-shadow:none!important;
+				font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+				float:none;
+				}
+			#Main {
+				width:auto;
+				margin:5%;
+				padding:0;
+				}
+			#Header,
+			#Pagination,
+			#Footer,
+			.Post .Bottom .PrintPostLink,
+			.Post .Bottom .Notes,
+			.Post .Bottom .Words,
+			.Post .Bottom .Tags,
+			#InstallThisTheme,
+			#tumblr_controls {display:none!important;}
+			.Post {
+				margin:0px!important;
+				page-break-after: always;
+				}
+			.Post.Single {
+				page-break-after:auto;
+				}
+			.Post a.Title {margin-top:20px!important;}
+		}
+
+		pre {
+	overflow: auto;
+	width: 100%;
+        height: 500px;
+        background-color:#e0e0e0;
+	}
+	</style>
+	
+	<script type="text/javascript" charset="utf-8">
+		window.addEvent('domready', function() {
+			var Posts = $$('.Post');
+			var PhotoSetEmbeds = $$('.html_photoset embed');
+
+			Posts.each(function(post, index, array) {
+				if (post.getElement('.Words') != null) {
+					var body = post.getElement('.PostBody');
+					var NumberOfWords = body.get('text').split(' ').length;
+					post.getElement('.WordCount').set('html', NumberOfWords);
+				}
+
+				if (post.getElement('embed.photoset')) {
+					var PhotoSetEmbed = post.getElement('embed.photoset');
+					PhotoSetEmbed.setProperties({
+						 width: '770'
+						,height: '771'
+					});
+				}
+
+				if (post.getElement('.Video') && !post.hasClass('do_not_resize')) {
+					var el = post.getElement('object') || post.getElement('iframe') || post.getElement('embed');
+					if (el) {
+						var w = el.getProperty('width');
+						var h = el.getProperty('height');
+						var p = ((770 - w) * 100)/w;
+						var newW = 770;
+						var newH = (h * ('1.'+p).toFloat()).round(); 
+						el.setProperties({width:newW, height:newH});
+						if (el.getElement('embed')) {
+							el.getElement('embed').setProperties({width:newW, height:newH});
+						}
+					}
+				}
+			});
+
+			
+			var uri = window.location.search.substring(1);
+			if (uri.contains('print')) {
+				$$('.Post .PrintPostLink', '.Post .Notes', '.Post .PermaPageNotes', '.Post .Words', '.Post .Tags').each(function(el) {
+					el.setStyle('display', 'none');
+				});
+				(function() { window.print(); }).delay(400)
+			}
+			
+		});
+	</script>
+
+
+<!-- BEGIN TUMBLR FACEBOOK OPENGRAPH TAGS -->
+<!-- If you'd like to specify your own Open Graph tags, define the og:url and og:title tags in your theme's HTML. -->
+<!-- Read more: http://ogp.me/ -->
+<meta property="fb:app_id" content="48119224995">
+<meta property="og:site_name" content="My Raspberry Pi project">
+<meta property="og:title" content="Initial setup of the Raspberry Pi out of the box.">
+<meta property="og:url" content="http://raspberrypi.werquin.com/post/43645313109/initial-setup-of-the-raspberry-pi-out-of-the-box">
+<meta property="og:description" content="Once the default Raspbian Wheezy image installed, I use the following steps to get the basic software I need and configuration that works well for me. I do all of this with an SSH connection, I never...">
+<meta property="og:determiner" content="a">
+<meta property="og:type" content="tumblr-feed:entry">
+<meta property="og:image" content="http://assets.tumblr.com/images/og/text_200.png">
+<!-- END TUMBLR FACEBOOK OPENGRAPH TAGS -->
+
+
+<!-- TWITTER TAGS -->
+<meta charset="utf-8">
+            <meta name="twitter:card" content="summary">
+            <meta name="twitter:description" content="Once the default Raspbian Wheezy image installed, I use the following steps to get the basic software I need and configuration that works well for me. I do all of this with an SSH connection, I never hooked up a display nor keyboard to the Raspberry Pi.
+ My 10 step guide&amp;#160;:
+ Do the initial configuration with the provided utility sudo raspi-config 
+ Update all software to latest versions sudo apt-get update sudo apt-get upgrade sudo apt-get dist-upgrade 
+ Change &amp;#8220;raspberry&amp;#8221; hostname by editing following 2 files sudo nano /etc/hostname sudo nano /etc/hosts reboot 
+ Change passwords &amp;gt;set root user password&amp;#160;: sudo passwd &amp;gt;Change pi password&amp;#160;: su passwd pi 
+ Check serial / proc speed cat /proc/cpuinfo 
+ Install Remote Desktop (remote login into graphical mode) sudo apt-get install xrdp &amp;gt; You can now remotely login into the graphical raspberry pi interface with &amp;#8220;Remote Dektop&amp;#8221; and use the built in WIFI utility to setup the wifi connection&amp;#160;! cf&amp;#160;: http://www.raspberrypiblog.com/2012/10/how-to-setup-remote-desktop-from.html 
+ Install Lighttpd (webserver) with python binding sudo apt-get install lighttpd &amp;gt; Change the directory owner and group sudo chown www-data:www-data /var/www &amp;gt; Allow the group to write to the directory sudo chmod 775 /var/www &amp;gt; Add the pi user to the www-data group sudo usermod -a -G www-data pi &amp;gt; Edit lighttpd config file&amp;#160;: sudo nano /etc/lighttpd/lighttpd.conf &amp;gt;Change/add bold statements&amp;#160;: server.modules = ( &nbsp; &nbsp; &nbsp; &nbsp; &amp;#8220;mod_access&amp;#8221;, &nbsp; &nbsp; &nbsp; &nbsp; &amp;#8220;mod_alias&amp;#8221;, &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&quot;mod_fastcgi&quot;, &nbsp; &nbsp; &nbsp; &nbsp; &amp;#8220;mod_compress&amp;#8221;, &nbsp; &nbsp; &nbsp; &nbsp; &amp;#8220;mod_redirect&amp;#8221;, ) index-file.names &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;= ( &amp;#8220;index.php&amp;#8221;, &quot;index.py&quot;, &amp;#8230; static-file.exclude-extensions = ( &amp;#8220;.php&amp;#8221;, &quot;.py&quot;, &amp;#8220;.pl&amp;#8221;, &amp;#8220;.fcgi&amp;#8221; ) Add at end&amp;#160;: $HTTP[&amp;#8220;url&amp;#8221;] =~ &amp;#8220;^/&amp;#8221; { &nbsp; &nbsp; &nbsp; &nbsp; cgi.assign = ( &amp;#8220;.py&amp;#8221; =&amp;gt; &amp;#8220;/usr/bin/python&amp;#8221; ) } SAVE&amp;#160;! &amp;gt; Copy config file&amp;#160;: sudo cp /etc/lighttpd/conf-available/10-cgi.conf /etc/lighttpd/conf-enabled 
+ Allow lighttpd usr (ww-data) to have root access (security risk but needed for GPIO access) sudo visudo &amp;gt; Add at end&amp;#160;: www-data ALL=(ALL) NOPASSWD: ALL &amp;gt; SAVE and restart web server&amp;#160;! sudo service lighttpd force-reload 
+ Set Python to execute as root (Security risk&amp;#160;! but allows easy access to GPIO) cd /usr/bin sudo chmod u+s python 
+ Add some needed python libraries and update to latest versions sudo apt-get install python-daemon sudo apt-get install python-dev sudo apt-get install python-pip sudo easy_install -U distribute
+
+ That&amp;#8217;s it. Raedy to do some programming ;-)">
+            <meta name="twitter:title" content="Initial setup of the Raspberry Pi out of the box.">
+            <meta name="twitter:url" content="http://raspberrypi.werquin.com/post/43645313109/initial-setup-of-the-raspberry-pi-out-of-the-box">
+            <meta name="twitter:site" content="tumblr">
+            <meta name="twitter:app:name:iphone" content="Tumblr">
+            <meta name="twitter:app:name:ipad" content="Tumblr">
+            <meta name="twitter:app:name:googleplay" content="Tumblr">
+            <meta name="twitter:app:id:iphone" content="305343404">
+            <meta name="twitter:app:id:ipad" content="305343404">
+            <meta name="twitter:app:id:googleplay" content="com.tumblr">
+            <meta name="twitter:app:url:iphone" content="tumblr://x-callback-url/blog?blogName=raspberrypool&amp;postID=43645313109&amp;referrer=twitter-cards">
+            <meta name="twitter:app:url:ipad" content="tumblr://x-callback-url/blog?blogName=raspberrypool&amp;postID=43645313109&amp;referrer=twitter-cards">
+            <meta name="twitter:app:url:googleplay" content="tumblr://x-callback-url/blog?blogName=raspberrypool&amp;postID=43645313109&amp;referrer=twitter-cards">
+    
+
+<script type="text/javascript" src="My%20Raspberry%20Pi%20project%20-%20Initial%20setup%20of%20the%20Raspberry%20Pi%20out%20of%20the%20box-Dateien/tumblelog.js"></script><style id="tumblr_teaser_follow_css" type="text/css">
+#tumblr_teaser_follow {
+display: block;
+opacity: 1;
+visibility: hidden;
+position: fixed;
+bottom: 0px;
+right: 0px;
+width: 1px;
+height: 1px;
+z-index: 2147483647;
+}
+#tumblr_teaser_follow.open {
+visibility: visible;
+width: 310px;
+height: 110px;
+}
+</style><style id="tumblr_iframe_css" type="text/css">
+#tumblr_controls {
+display: block;
+opacity: 1;
+visibility: hidden;
+position: absolute;
+top: 0px;
+right: 0px;
+width: 1px;
+height: 1px;
+z-index: 2147483647;
+}
+#tumblr_controls.visible {
+visibility: visible;
+}
+.tumblr_mobile_banner {
+position: relative;
+}
+html.tumblr_mobile_banner body iframe#tumblr_controls.visible.tumblr_sticky_iframe {
+position: absolute !important;
+visibility: visible !important;
+top: 0 !important;
+opacity: 1 !important;
+}
+.tumblr_mobile_banner #tumblr_controls {
+position: absolute !important;
+visibility: visible !important;
+top: 0 !important;
+-webkit-transform: translateY(-100%);
+-moz-transform: translateY(-100%);
+-ms-transform: translateY(-100%);
+-o-transform: translateY(-100%);
+transform: translateY(-100%);
+-webkit-transition: -webkit-transform 0.2s ease-out;
+-moz-transition: -moz-transform 0.2s ease-out;
+-ms-transition: -ms-transform 0.2s ease-out;
+-o-transition: -o-transform 0.2s ease-out;
+transition: transform 0.2s ease-out;
+}
+.tumblr_mobile_banner #tumblr_controls.visible {
+-webkit-transform: none;
+-moz-transform: none;
+-ms-transform: none;
+-o-transform: none;
+transform: none;
+}
+</style>
+<meta http-equiv="x-dns-prefetch-control" content="off">
+
+<meta name="keywords" content="installation,software,Debian,Raspberry Pi">
+
+</head>
+<body>
+	<div id="Main">
+		
+		<div id="Header">
+			<div class="Title">
+				<a href="http://raspberrypi.werquin.com/" class="Title">My Raspberry Pi project</a>
+			</div>
+			
+				<div class="PageLinks" style="display: none; display: block;">
+			        
+    			    <a href="http://raspberrypi.werquin.com/ask">Ask me anything</a>
+                    
+				</div>
+			
+			<div class="Description">
+				A couple of notes to follow my progress in developing a custom 
+controller using the Raspberry Pi. It's goal is to automate the swimming
+ pool pump, heating and lightning based on water temperature and 
+external temperature while allowing remote control and monitoring. Local
+ control will be done through a menu system on a small LCD screen with 
+just 2 buttons ... 
+<br><br>Xavier Werquin
+			</div>
+		</div>
+		
+		
+
+		<div class="DynamicHeader">
+			
+			
+		</div>
+
+		
+			<div class="Post Single raspberry_pi debian software installation">
+				
+				<div class="Text">
+					
+					<a href="http://raspberrypi.werquin.com/post/43645313109/initial-setup-of-the-raspberry-pi-out-of-the-box" class="Title">Initial setup of the Raspberry Pi out of the box.</a>
+					
+				
+					<div class="PostBody"><p>Once the default Raspbian Wheezy image 
+installed, I use the following steps to get the basic software I need 
+and configuration that works well for me. I do all of this with an SSH 
+connection, I never hooked up a display nor keyboard to the Raspberry 
+Pi.</p>
+<p>My 10 step guide&nbsp;:</p>
+<ol><li>Do the initial configuration with the provided utility<br><br>sudo raspi-config<br><br></li>
+<li>Update all software to latest versions<br><br>sudo apt-get update<br>sudo apt-get upgrade<br>sudo apt-get dist-upgrade<br><br></li>
+<li>Change “raspberry” hostname by editing following 2 files<br><br>sudo nano /etc/hostname<br>sudo nano /etc/hosts<br>reboot<br><br></li>
+<li>Change passwords<br><br>&gt;set root user password&nbsp;:<br>sudo passwd<br><br>&gt;Change pi password&nbsp;:<br>su<br>passwd pi<br><br></li>
+<li>Check serial / proc speed<br><br>cat /proc/cpuinfo<br><br></li>
+<li>Install Remote Desktop (remote login into graphical mode)<br><br>sudo apt-get install xrdp<br><br>&gt;
+ You can now remotely login into the graphical raspberry pi interface 
+with “Remote Dektop” and use the built in WIFI utility to setup the wifi
+ connection&nbsp;!<br><br>cf&nbsp;: <a href="http://www.raspberrypiblog.com/2012/10/how-to-setup-remote-desktop-from.html">http://www.raspberrypiblog.com/2012/10/how-to-setup-remote-desktop-from.html</a><br><br></li>
+<li>Install Lighttpd (webserver) with python binding<br><br>sudo apt-get install lighttpd<br><br>&gt; Change the directory owner and group<br>sudo chown www-data:www-data /var/www<br><br>&gt; Allow the group to write to the directory<br>sudo chmod 775 /var/www<br><br>&gt; Add the pi user to the www-data group<br>sudo usermod -a -G www-data pi<br><br>&gt; Edit lighttpd config file&nbsp;:<br>sudo nano /etc/lighttpd/lighttpd.conf<br><br>&gt;Change/add bold statements&nbsp;:<br><br>server.modules = (<br>&nbsp; &nbsp; &nbsp; &nbsp; “mod_access”,<br>&nbsp; &nbsp; &nbsp; &nbsp; “mod_alias”,<br>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<strong>"mod_fastcgi",<br></strong>&nbsp; &nbsp; &nbsp; &nbsp; “mod_compress”,<br>&nbsp; &nbsp; &nbsp; &nbsp; “mod_redirect”,<br>)<br><br>index-file.names &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;= ( “index.php”, <strong>"index.py"</strong>, …<br>static-file.exclude-extensions = ( “.php”, <strong>".py",</strong> “.pl”, “.fcgi” )<br><br>Add at end&nbsp;:<br><br><strong>$HTTP[“url”] =~ “^/” {<br></strong><strong>&nbsp; &nbsp; &nbsp; &nbsp; cgi.assign = ( “.py” =&gt; “/usr/bin/python” )<br></strong><strong>}<br><br></strong>SAVE&nbsp;!<br><br>&gt; Copy config file&nbsp;:<br><br>sudo cp /etc/lighttpd/conf-available/10-cgi.conf /etc/lighttpd/conf-enabled<br><br></li>
+<li>Allow lighttpd usr (ww-data) to have root access<br>(security risk but needed for GPIO access)<br><br>sudo visudo<br><br>&gt; Add at end&nbsp;:<br><br><strong>www-data ALL=(ALL) NOPASSWD: ALL</strong><br><br>&gt; SAVE and restart web server&nbsp;!<br><br>sudo service lighttpd force-reload<br><br></li>
+<li>Set Python to execute as root<br>(Security risk&nbsp;! but allows easy access to GPIO)<br><br>cd /usr/bin<br>sudo chmod u+s python<br><br></li>
+<li>Add some needed python libraries and update to latest versions<br><br>sudo apt-get install python-daemon<br>sudo apt-get install python-dev<br>sudo apt-get install python-pip<br>sudo easy_install -U distribute</li>
+</ol>
+<p>That’s it. Raedy to do some programming ;-)</p></div>
+				</div>
+				
+
+				
+
+    			
+
+				
+
+				
+			
+				
+
+				
+
+				
+
+				
+
+				
+
+				<!-- Post Bottom -->
+				<div class="Bottom">
+					<div class="Reblog">
+						
+
+						<!--  -->
+					</div>
+
+					
+					    
+						
+						
+					
+				
+					
+
+					
+					
+						<span class="Notes">
+							<a href="http://raspberrypi.werquin.com/post/43645313109/initial-setup-of-the-raspberry-pi-out-of-the-box#Notes">Notes: 3</a>
+						</span>
+					
+					
+					
+					
+					<span class="Comments">
+						<a href="http://raspberrypi.werquin.com/post/43645313109/initial-setup-of-the-raspberry-pi-out-of-the-box#disqus_thread">0 Comments</a>
+					</span>
+					
+
+                    
+					<span class="Permalink">
+						<a href="http://raspberrypi.werquin.com/post/43645313109/initial-setup-of-the-raspberry-pi-out-of-the-box" class="Time">2/11/13 — 3:44pm</a>
+					</span>
+
+					
+					<span class="ShortUrl">
+						<span>Short URL</span>: <a href="http://tmblr.co/ZaA4ysefTg1L">http://tmblr.co/ZaA4ysefTg1L</a>
+					</span>
+					
+					
+				
+					
+					
+						<span class="Tags">
+							<span>Filed under</span>: 
+							
+								<a href="http://raspberrypi.werquin.com/tagged/Raspberry-Pi">#Raspberry Pi</a>&nbsp;
+							
+								<a href="http://raspberrypi.werquin.com/tagged/Debian">#Debian</a>&nbsp;
+							
+								<a href="http://raspberrypi.werquin.com/tagged/software">#software</a>&nbsp;
+							
+								<a href="http://raspberrypi.werquin.com/tagged/installation">#installation</a>&nbsp;
+							
+						</span>
+					
+					
+				
+				</div>
+				<!-- /Post Bottom -->
+
+				
+					
+					<span class="PermaPageNotes">
+						<a name="Notes" class="NotesAnchor">&nbsp;</a>
+						
+
+<ol class="notes">
+
+    <!-- START NOTES -->
+                            
+        
+                                                                
+        
+        
+        <li class="note like tumblelog_sterzy without_commentary">
+
+                                                                                <a rel="nofollow" class="avatar_frame" target="_blank" href="http://sterzy.tumblr.com/" title="Sterzy "><img src="My%20Raspberry%20Pi%20project%20-%20Initial%20setup%20of%20the%20Raspberry%20Pi%20out%20of%20the%20box-Dateien/avatar_31a19e7d4c16_16.png" class="avatar " alt=""></a>
+                
+                <span class="action">
+                    
+                                            <a rel="nofollow" href="http://sterzy.tumblr.com/" title="Sterzy">sterzy</a> likes this                                    </span>
+
+                <div class="clear"></div>
+
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note like tumblelog_kwebster7327 without_commentary">
+
+                                                                                <a rel="nofollow" class="avatar_frame" target="_blank" href="http://kwebster7327.tumblr.com/" title="Untitled "><img src="My%20Raspberry%20Pi%20project%20-%20Initial%20setup%20of%20the%20Raspberry%20Pi%20out%20of%20the%20box-Dateien/avatar_7bffd6fac497_16.png" class="avatar " alt=""></a>
+                
+                <span class="action">
+                    
+                                            <a rel="nofollow" href="http://kwebster7327.tumblr.com/" title="Untitled">kwebster7327</a> likes this                                    </span>
+
+                <div class="clear"></div>
+
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note reblog tumblelog_robcosever-alex without_commentary">
+
+                        
+                
+                                                                                        <a rel="nofollow" class="avatar_frame" target="_blank" href="http://robcosever-alex.tumblr.com/" title="01010100 01101000 01101001 01110011 00100000 01101"><img src="My%20Raspberry%20Pi%20project%20-%20Initial%20setup%20of%20the%20Raspberry%20Pi%20out%20of%20the%20box-Dateien/avatar_fbc8c2b4ed5c_16.png" class="avatar " alt=""></a>
+                    
+                    <span class="action" data-post-url="http://robcosever-alex.tumblr.com/post/43761784831">
+                                                    
+                                                                        
+                                                                        
+                                    <a rel="nofollow" href="http://robcosever-alex.tumblr.com/" class="tumblelog" title="01010100 01101000 01101001 01110011 00100000 01101">robcosever-alex</a> reblogged this from <a rel="nofollow" href="http://raspberrypi.werquin.com/" class="source_tumblelog" title="My Raspberry Pi project">raspberrypool</a>
+                                                                        
+                                                                        
+                                    </span>
+                    <div class="clear"></div>
+
+                                    
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note like tumblelog_goodbadargyle without_commentary">
+
+                                                                                <a rel="nofollow" class="avatar_frame" target="_blank" href="http://thegoodthebadandtheargyle.com/" title="the good, the bad, and the argyle "><img src="My%20Raspberry%20Pi%20project%20-%20Initial%20setup%20of%20the%20Raspberry%20Pi%20out%20of%20the%20box-Dateien/avatar_4e64b5eb8edd_16.png" class="avatar " alt=""></a>
+                
+                <span class="action">
+                    
+                                            <a rel="nofollow" href="http://thegoodthebadandtheargyle.com/" title="the good, the bad, and the argyle">goodbadargyle</a> likes this                                    </span>
+
+                <div class="clear"></div>
+
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note reblog tumblelog_raspberrypool original_post without_commentary">
+
+                        
+                
+                                                                                        <a rel="nofollow" class="avatar_frame" target="_blank" href="http://raspberrypi.werquin.com/" title="My Raspberry Pi project"><img src="My%20Raspberry%20Pi%20project%20-%20Initial%20setup%20of%20the%20Raspberry%20Pi%20out%20of%20the%20box-Dateien/default_avatar_16.png" class="avatar " alt=""></a>
+                    
+                    <span class="action" data-post-url="http://raspberrypi.werquin.com/post/43645313109">
+                                                    
+                                                            <a rel="nofollow" href="http://raspberrypi.werquin.com/" class="tumblelog" title="My Raspberry Pi project">raspberrypool</a> posted this                                                                        </span>
+                    <div class="clear"></div>
+
+                                    
+                        
+        </li>
+    
+    
+    <!-- END NOTES -->
+</ol>
+
+					</span>
+					
+				
+				
+				
+				
+				
+				
+					
+						
+						<div class="notecontainer" style="margin: 20px 0 0 0; padding: 1px 10px 10px 0px;">
+							<div id="disqus_thread"><iframe verticalscrolling="no" horizontalscrolling="no" src="My%20Raspberry%20Pi%20project%20-%20Initial%20setup%20of%20the%20Raspberry%20Pi%20out%20of%20the%20box-Dateien/a.htm" style="width: 100% ! important; border: medium none ! important; overflow: hidden ! important; height: 644px ! important;" role="complementary" allowtransparency="true" data-disqus-uid="2" id="dsq-2" frameborder="0" scrolling="no" width="100%"></iframe></div>
+							<script type="text/javascript" src="My%20Raspberry%20Pi%20project%20-%20Initial%20setup%20of%20the%20Raspberry%20Pi%20out%20of%20the%20box-Dateien/embed.js"></script>
+							<noscript><a href="http://raspberrypiscine.disqus.com/?url=ref">View the discussion thread</a></noscript>
+						</div>
+						<div style="text-align: right; margin-top: 5px">
+							
+						</div>
+						
+					
+				
+				
+			</div>
+		
+
+		<div id="Footer">
+			<div class="Pagination">
+				
+
+				
+				<a href="http://raspberrypi.werquin.com/post/43642135269" class="Button">Previous post</a>
+				<a href="http://raspberrypi.werquin.com/post/43641511544" class="Button">Next post</a> 
+				
+			</div>
+
+			<div class="UtilityLinks">
+				<a href="http://raspberrypi.werquin.com/archive">Archive</a>
+				<a href="http://raspberrypi.werquin.com/rss">RSS</a>
+				
+				
+			</div>
+
+			<div class="Search">
+				<form action="/search" method="get">
+				    <input class="Text" name="q" placeholder="Search" type="search">
+				</form>
+			</div>
+
+			<div class="Colophon">
+				This website uses the <a href="http://www.tumblr.com/theme/8631">NOTATIONS</a> theme by <a href="http://bendelaney.me/">Ben Delaney</a>, and is powered by <a href="http://tumblr.com/">TUMBLR</a>.
+			</div>
+		</div>
+	</div>
+	
+	
+		<script type="text/javascript">
+			//<![CDATA[
+			(function() {
+				var links = document.getElementsByTagName('a');
+				var query = '?';
+				for(var i = 0; i < links.length; i++) {
+					if(links[i].href.indexOf('#disqus_thread') >= 0) {
+						query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+					}
+				}
+				document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/raspberrypiscine/get_num_replies.js' + query + '"></' + 'script>');
+			})();
+			//]]>
+		</script><script charset="utf-8" type="text/javascript" src="My%20Raspberry%20Pi%20project%20-%20Initial%20setup%20of%20the%20Raspberry%20Pi%20out%20of%20the%20box-Dateien/get_num_replies.js"></script>
+	
+<!-- BEGIN TUMBLR CODE -->
+        
+    
+        <iframe class=" visible" id="tumblr_controls" style="position: fixed; z-index: 2147483647; top: 0px; right: 0px; border: 0px none; background-color: transparent; overflow: hidden;" src="My%20Raspberry%20Pi%20project%20-%20Initial%20setup%20of%20the%20Raspberry%20Pi%20out%20of%20the%20box-Dateien/o.htm" frameborder="0" height="1" scrolling="no" width="1"></iframe>    <div id="teaser_iframe_container" style="display:none;"><iframe src="My%20Raspberry%20Pi%20project%20-%20Initial%20setup%20of%20the%20Raspberry%20Pi%20out%20of%20the%20box-Dateien/teaser.htm" id="teaser_iframe" frameborder="0" height="1" scrolling="no" width="1"></iframe></div>
+
+<script type="text/javascript">
+    (function(Tumblr){
+        var follow_iframe_initialized = false;
+        if (Tumblr.FollowTeaser && Tumblr.PostMessageListener) {
+            // Don't do anything until the first initialize event
+            Tumblr.PostMessageListener.initialize(function(message, origin) {
+                if (follow_iframe_initialized || message.length < 2) return;
+
+                if (message[0] === 'follow_iframe' && message[1] === 'enable') {
+                    Tumblr.FollowTeaser.current_page = 1;
+                    Tumblr.FollowTeaser.infer_infinite_scroll = true;
+                    Tumblr.FollowTeaser.create_from_tumblr_controls("http:\/\/assets.tumblr.com\/assets\/html\/iframe\/follow.html?_v=db2b3a36f43a268aff2b3dded79f5474");
+                    Tumblr.FollowTeaser.scroll_listener(true);
+                    follow_iframe_initialized = true;
+                }
+            });
+        }
+    })(this.Tumblr || (this.Tumblr = {}));
+</script>
+    
+    <!--[if IE]><script type="text/javascript">document.getElementById('tumblr_controls').allowTransparency=true;</script><![endif]-->
+    
+        
+<iframe src="My%20Raspberry%20Pi%20project%20-%20Initial%20setup%20of%20the%20Raspberry%20Pi%20out%20of%20the%20box-Dateien/analytics.htm" style="background-color:transparent; overflow:hidden; position:absolute; top:0; left:0 z-index:9999;" id="ga_target" frameborder="0" height="1" scrolling="no" width="1"></iframe>
+
+    <script>
+        var COMSCORE = true;
+        window.setTimeout(function() {
+            var analytics_frame = document.getElementById('ga_target');
+            analytics_frame.contentWindow.postMessage('enable_comscore;' + window.location, analytics_frame.src.split('/analytics.html')[0]);
+        }, 1000);
+    </script>
+
+
+
+    <script type="text/javascript">
+      var _qevents = _qevents || [];
+
+      (function() {
+       var elem = document.createElement('script');
+
+       elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+       elem.async = true;
+       elem.type = "text/javascript";
+       var scpt = document.getElementsByTagName('script')[0];
+       scpt.parentNode.insertBefore(elem, scpt);
+      })();
+    </script>
+    <script type="text/javascript">
+        _qevents.push( { qacct: 'p-19UtqE8ngoZbM' } );
+    </script>
+    <noscript>
+        <div style="display: none;"><img src="//pixel.quantserve.com/pixel/'p-19UtqE8ngoZbM'.gif" height="1" width="1" alt="Quantcast"/></div>
+    </noscript>
+
+
+    <script type="text/javascript">!function(s){s.src='http://www.tumblr.com/impixu?T=1383033514&J=eyJ0eXBlIjoidXJsIiwidXJsIjoiaHR0cDpcL1wvcmFzcGJlcnJ5cGkud2VycXVpbi5jb21cL3Bvc3RcLzQzNjQ1MzEzMTA5XC9pbml0aWFsLXNldHVwLW9mLXRoZS1yYXNwYmVycnktcGktb3V0LW9mLXRoZS1ib3giLCJyZXF0eXBlIjowLCJyb3V0ZSI6IlwvcG9zdFwvOmlkXC86c3VtbWFyeSJ9&U=IDKFKBLPPI&K=598cdb427720c1033d1c92cb5e165f0ede0261492f5abfd80cc980dbdc0cff92&R=http%3A%2F%2Fraspberrypi.werquin.com%2F'.replace(/&R=[^&$]*/,'').concat('&R='+escape(document.referrer)).slice(0,2000).replace(/%.?.?$/,'');}(new Image());</script><noscript><img style="position:absolute;z-index:-3334;top:0px;left:0px;visibility:hidden;" src="http://www.tumblr.com/impixu?T=1383033514&J=eyJ0eXBlIjoidXJsIiwidXJsIjoiaHR0cDpcL1wvcmFzcGJlcnJ5cGkud2VycXVpbi5jb21cL3Bvc3RcLzQzNjQ1MzEzMTA5XC9pbml0aWFsLXNldHVwLW9mLXRoZS1yYXNwYmVycnktcGktb3V0LW9mLXRoZS1ib3giLCJyZXF0eXBlIjowLCJyb3V0ZSI6IlwvcG9zdFwvOmlkXC86c3VtbWFyeSIsIm5vc2NyaXB0IjoxfQ==&U=IDKFKBLPPI&K=7f57cfc376d9470eb42b9b40af8a52d4731a49959e695948fd22cfc9ee4bc501&R=http%3A%2F%2Fraspberrypi.werquin.com%2F"></noscript>
+<script type="text/javascript">!function(s){s.src='http://www.tumblr.com/impixu?T=1383033514&J=eyJ0eXBlIjoicG9zdCIsInVybCI6Imh0dHA6XC9cL3Jhc3BiZXJyeXBpLndlcnF1aW4uY29tXC9wb3N0XC80MzY0NTMxMzEwOVwvaW5pdGlhbC1zZXR1cC1vZi10aGUtcmFzcGJlcnJ5LXBpLW91dC1vZi10aGUtYm94IiwicmVxdHlwZSI6MCwicm91dGUiOiJcL3Bvc3RcLzppZFwvOnN1bW1hcnkiLCJwb3N0cyI6W3sicG9zdGlkIjoiNDM2NDUzMTMxMDkiLCJibG9naWQiOiI5NDg2MzAwMCIsInNvdXJjZSI6MzN9XX0=&U=BLCJPPAOHH&K=75e03ebc179726176c94cf5f318e571d5c3d4f9ddc37b1eb137ab6fd47717b36&R=http%3A%2F%2Fraspberrypi.werquin.com%2F'.replace(/&R=[^&$]*/,'').concat('&R='+escape(document.referrer)).slice(0,2000).replace(/%.?.?$/,'');}(new Image());</script><noscript><img style="position:absolute;z-index:-3334;top:0px;left:0px;visibility:hidden;" src="http://www.tumblr.com/impixu?T=1383033514&J=eyJ0eXBlIjoicG9zdCIsInVybCI6Imh0dHA6XC9cL3Jhc3BiZXJyeXBpLndlcnF1aW4uY29tXC9wb3N0XC80MzY0NTMxMzEwOVwvaW5pdGlhbC1zZXR1cC1vZi10aGUtcmFzcGJlcnJ5LXBpLW91dC1vZi10aGUtYm94IiwicmVxdHlwZSI6MCwicm91dGUiOiJcL3Bvc3RcLzppZFwvOnN1bW1hcnkiLCJwb3N0cyI6W3sicG9zdGlkIjoiNDM2NDUzMTMxMDkiLCJibG9naWQiOiI5NDg2MzAwMCIsInNvdXJjZSI6MzN9XSwibm9zY3JpcHQiOjF9&U=BLCJPPAOHH&K=cc92cffcba289dabfc9190b34b9a8990fb42b5ae81a1c714dbead353781c3c3e&R=http%3A%2F%2Fraspberrypi.werquin.com%2F"></noscript>
+
+
+
+
+
+                                                                            <script type="text/javascript" src="My%20Raspberry%20Pi%20project%20-%20Initial%20setup%20of%20the%20Raspberry%20Pi%20out%20of%20the%20box-Dateien/rapid-3.js"></script>
+                <script>
+                    (function(YAHOO) {
+                        if (YAHOO) {
+                            YAHOO.i13n.beacon_server = 'nol.yahoo.com';
+                            var keys = { pd:'/post/:id/:summary', _li:0, i_rad:0, i_strm:0 };
+                            YAHOO.rapid = new YAHOO.i13n.Rapid({spaceid:1197719230, oo:1, client_only:1, yql_enabled:false, keys:keys});
+                        }
+                    })(window.YAHOO);
+                </script>
+                        <!-- END TUMBLR CODE -->
+
+
+</body></html>

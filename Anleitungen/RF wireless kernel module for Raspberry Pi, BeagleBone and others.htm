@@ -1,0 +1,1470 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>RF wireless kernel module for Raspberry Pi, BeagleBone and others</title>
+<meta name="robots" content="noodp,noydir">
+<link rel="Shortcut Icon" href="http://s1.wp.com/wp-content/themes/vip/hackaday2/images/favicon.ico?m=1353160633g" type="image/x-icon">
+<link rel="stylesheet" href="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/style.css" type="text/css" media="screen">
+
+<meta name="description" content="If you've done any wireless work with hobby electronics you probably recognize this part. The green PCB is an RFM12B wireless board. They come in a few different operating bandwidths, the 433 MHz is probably the most common.">
+<meta name="keywords" content="linux hacks, wireless hacks, beaglebone, beaglebone black, rfm12b, rpi, wireless">
+		<script type="text/javascript" async="" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/quant.js"></script><script src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/widgets.js" id="twitter-wjs"></script><script async="" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/cbgapi.loaded_1"></script><script async="" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/cbgapi.loaded_0"></script><script gapi_processed="true" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/plusone.js" async="" type="text/javascript"></script><script src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/all.js" id="facebook-jssdk"></script><script src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/remote-login.php" type="text/javascript"></script>
+		<script type="text/javascript">
+		/* <![CDATA[ */
+			if ( 'function' === typeof WPRemoteLogin ) {
+				document.cookie = "wordpress_test_cookie=test; path=/";
+				if ( document.cookie.match( /(;|^)\s*wordpress_test_cookie\=/ ) ) {
+					WPRemoteLogin();
+				}
+			}
+		/* ]]> */
+		</script>
+		<link rel="alternate" type="application/rss+xml" title="Hack a Day » Feed" href="http://feeds2.feedburner.com/hackaday/LgoM">
+<link rel="alternate" type="application/rss+xml" title="Hack a Day » Comments Feed" href="http://hackaday.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Hack a Day » RF wireless kernel module for Raspberry Pi, BeagleBone and&nbsp;others Comments Feed" href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/feed/">
+<script type="text/javascript">
+/* <![CDATA[ */
+function addLoadEvent(func){var oldonload=window.onload;if(typeof window.onload!='function'){window.onload=func;}else{window.onload=function(){oldonload();func();}}}
+/* ]]> */
+</script>
+<link rel="canonical" href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/">
+<link rel="stylesheet" id="all-css-0" href="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/a.css" type="text/css" media="all">
+<script type="text/javascript">
+/* <![CDATA[ */
+var SafeCommentsAjax = {"ajaxurl":"http:\/\/hackaday.com\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/a_002.js"></script>
+<link rel="stylesheet" id="all-css-0" href="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/style_002.css" type="text/css" media="all">
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='http://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563g&#038;ver=20110606' type='text/css' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://hackadaycom.wordpress.com/xmlrpc.php?rsd">
+<link rel="alternate" type="application/json+oembed" href="http://public-api.wordpress.com/oembed/1.0/?format=json&amp;url=http%3A%2F%2Fhackaday.com%2F2013%2F06%2F27%2Frf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others%2F&amp;for=wpcom-auto-discovery"><link rel="alternate" type="application/xml+oembed" href="http://public-api.wordpress.com/oembed/1.0/?format=xml&amp;url=http%3A%2F%2Fhackaday.com%2F2013%2F06%2F27%2Frf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others%2F&amp;for=wpcom-auto-discovery">
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="RF wireless kernel module for Raspberry Pi, BeagleBone and others">
+<meta property="og:url" content="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/">
+<meta property="og:description" content="If you've done any wireless work with hobby electronics you probably recognize this part. The green PCB is an RFM12B wireless board. They come in a few different operating bandwidths, the 433 MHz i...">
+<meta property="og:site_name" content="Hack a Day">
+<meta property="og:image" content="http://i0.wp.com/hackadaycom.files.wordpress.com/2013/06/rfm12b-kernel-module.png?fit=1600%2C1600">
+<meta name="twitter:site" content="@hackaday">
+<meta name="twitter:image" content="http://i0.wp.com/hackadaycom.files.wordpress.com/2013/06/rfm12b-kernel-module.png?fit=1600%2C1600">
+<meta name="twitter:card" content="photo">
+<meta name="twitter:creator" content="@hackaday">
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom">
+<meta property="article:author" content="https://www.facebook.com/profile.php?id=748024731">
+<link rel="shortcut icon" type="image/x-icon" href="http://0.gravatar.com/blavatar/4f3e6b6daa090af416a1ba595885efd1?s=16" sizes="16x16">
+<link rel="icon" type="image/x-icon" href="http://0.gravatar.com/blavatar/4f3e6b6daa090af416a1ba595885efd1?s=16" sizes="16x16">
+<link rel="apple-touch-icon-precomposed" href="http://1.gravatar.com/blavatar/5560f98f805877b0e332f191cb9e0af3?s=114">
+<link rel="openid.server" href="http://hackadaycom.wordpress.com/?openidserver=1">
+<link rel="openid.delegate" href="http://hackadaycom.wordpress.com/">
+<link rel="search" type="application/opensearchdescription+xml" href="http://hackaday.com/osd.xml" title="Hack a Day">
+<link rel="search" type="application/opensearchdescription+xml" href="http://wordpress.com/opensearch.xml" title="WordPress.com">
+		<style>
+		/* <![CDATA[ */
+		/* Block: reblog */
+		
+		.reblog-from img                   { margin: 0 10px 0 0; vertical-align: middle; padding: 0; border: 0; }
+		.reblogger-note img.avatar         { float: left; padding: 0; border: 0; }
+		.reblogger-note-content            { margin: 0 0 20px; }
+		.reblog-post .wpcom-enhanced-excerpt-content { border-left: 3px solid #eee; padding-left: 15px; }
+		.reblog-post ul.thumb-list         { display: block; list-style: none; margin: 2px 0; padding: 0; clear: both; }
+		.reblog-post ul.thumb-list li      { display: inline; margin: 0; padding: 0 1px; border: 0; }
+		.reblog-post ul.thumb-list li a    { margin: 0; padding: 0; border: 0; }
+		.reblog-post ul.thumb-list li img  { margin: 0; padding: 0; border: 0; }
+		
+		.reblog-post .wpcom-enhanced-excerpt { clear: both; }
+		
+		.reblog-post .wpcom-enhanced-excerpt address,
+		.reblog-post .wpcom-enhanced-excerpt li,
+		.reblog-post .wpcom-enhanced-excerpt h1,
+		.reblog-post .wpcom-enhanced-excerpt h2,
+		.reblog-post .wpcom-enhanced-excerpt h3,
+		.reblog-post .wpcom-enhanced-excerpt h4,
+		.reblog-post .wpcom-enhanced-excerpt h5,
+		.reblog-post .wpcom-enhanced-excerpt h6,
+		.reblog-post .wpcom-enhanced-excerpt p { font-size: 100% !important; }
+		
+		.reblog-post .wpcom-enhanced-excerpt blockquote,
+		.reblog-post .wpcom-enhanced-excerpt pre,
+		.reblog-post .wpcom-enhanced-excerpt code,
+		.reblog-post .wpcom-enhanced-excerpt q { font-size: 98% !important; }
+		
+
+		/* ]]> */
+		</style>
+		
+<script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+		<style>
+			.wpcom-related-posts ul li {
+				list-style-type: none;
+				display: inline-block;
+			}
+		</style>
+			<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		<style type="text/css">
+			.recentcomments a {
+				display: inline !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			table.recentcommentsavatartop img.avatar, table.recentcommentsavatarend img.avatar {
+				border: 0px;
+				margin: 0;
+			}
+
+			table.recentcommentsavatartop a, table.recentcommentsavatarend a {
+				border: 0px !important;
+				background-color: transparent !important;
+			}
+
+			td.recentcommentsavatarend, td.recentcommentsavatartop {
+				padding: 0px 0px 1px 0px;
+				margin: 0px;
+			}
+
+			td.recentcommentstextend {
+				border: none !important;
+				padding: 0px 0px 2px 10px;
+			}
+
+			.rtl td.recentcommentstextend {
+				padding: 0px 10px 2px 0px;
+			}
+
+			td.recentcommentstexttop {
+				border: none !important;
+				padding: 0px 0px 0px 10px;
+			}
+
+			.rtl td.recentcommentstexttop {
+				padding: 0px 10px 0px 0px;
+			}
+		</style>
+		<meta name="application-name" content="Hack a Day"><meta name="msapplication-window" content="width=device-width;height=device-height"><meta name="msapplication-tooltip" content="Fresh hacks every day"><meta name="msapplication-task" content="name=Subscribe;action-uri=http://feeds2.feedburner.com/hackaday/LgoM;icon-uri=http://0.gravatar.com/blavatar/4f3e6b6daa090af416a1ba595885efd1?s=16"><style id="syntaxhighlighteranchor"></style>
+
+<script>jQuery(document).ready(function($) { 
+	$("cswap li a").click(function() { 
+		$("link").attr("href",$(this).attr('rel'));
+		return false;
+	});
+});</script>
+
+<!-- Supplyframe Ads -->
+<!--<script type='text/javascript' src='http://ads.supplyframe.com/openads/www/delivery/spcjs.php?id=31&amp;block=1'></script>-->
+<script type="text/javascript">
+function OA_show(e){if(typeof OA_output[e]=="undefined"){return}else{document.write(OA_output[e])}}function OA_showpop(e){zones=window.OA_zones?window.OA_zones:false;var t=e;if(typeof window.OA_zones!="undefined"){if(typeof zones[e]=="undefined"){return}t=zones[e]}var n="<"+"script type='text/javascript' ";n+="src='"+OA_p+"?zoneid="+t;n+="&source="+escape(OA_source)+"&r="+OA_r;OA_spc+="&amp%3Bblock=1";if(window.location)n+="&loc="+escape(window.location);if(document.referrer)n+="&referer="+escape(document.referrer);n+="'><"+"/script>";document.write(n)}if(typeof OA_zones!="undefined"){var OA_zoneids="";for(var zonename in OA_zones)OA_zoneids+=escape(zonename+"="+OA_zones[zonename]+"|");OA_zoneids+="&nz=1"}else{var OA_zoneids=escape("426|427|428|429")}if(typeof OA_source=="undefined"){OA_source=""}var OA_p=location.protocol=="https:"?"https://ads.supplyframe.com/openads/www/delivery/spc.php":"http://ads.supplyframe.com/openads/www/delivery/spc.php";var OA_r=Math.floor(Math.random()*99999999);OA_output=new Array;var OA_spc="<"+"script type='text/javascript' ";OA_spc+="src='"+OA_p+"?zones="+OA_zoneids;OA_spc+="&source="+escape(OA_source)+"&r="+OA_r;OA_spc+="&amp%3Bblock=1";OA_spc+=document.charset?"&charset="+document.charset:document.characterSet?"&charset="+document.characterSet:"";if(window.location)OA_spc+="&loc="+escape(window.location);if(document.referrer)OA_spc+="&referer="+escape(document.referrer);OA_spc+="'><"+"/script>";document.write(OA_spc);var OA_fo="";OA_fo+="<"+"script type='text/javascript' src='http://ads.supplyframe.com/openads/www/delivery/fl.js'><"+"/script>\n";document.write(OA_fo);
+</script><script type="text/javascript" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/spc.js"></script><script type="text/javascript" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/fl.js"></script>
+
+
+<meta name="google-site-verification" content="v0_F4q2HixEv6wrQCEKBEbp2Wuj0oI9ywwaN6aoV0JE">
+<style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}
+.fb_invisible{display:none}
+.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}
+.fb_reset > div{overflow:hidden}
+.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}
+.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}
+.fb_dialog_content{background:#fff;color:#333}
+.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px;top:8px\9;right:7px\9}
+.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}
+.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}
+.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}
+.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}
+.fb_dialog_loader{background-color:#f2f2f2;border:1px solid #606060;font-size:24px;padding:20px}
+.fb_dialog_top_left,
+.fb_dialog_top_right,
+.fb_dialog_bottom_left,
+.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}
+.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}
+.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}
+.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}
+.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right,
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right{width:10px;height:100%}
+.fb_dialog_vert_left{margin-left:-10px}
+.fb_dialog_vert_right{right:0;margin-right:-10px}
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{width:100%;height:10px}
+.fb_dialog_horiz_top{margin-top:-10px}
+.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}
+.fb_dialog_iframe{line-height:0}
+.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3b5998;color:#fff;font-size:14px;font-weight:bold;margin:0}
+.fb_dialog_content .dialog_title > span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif)
+no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}
+body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}
+.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif)
+white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}
+.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}
+#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}
+#fb-root #fb_dialog_ipad_overlay.hidden{display:none}
+.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}
+.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0 0, 0 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}
+.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%
+}
+.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px
+}
+.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px
+}
+.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0 0, 0 100%, from(#4966A6),
+color-stop(0.5, #355492), to(#2A4887));border:1px solid #29447e;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset,
+rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}
+.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}
+.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}
+.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}
+.fb_dialog_content .dialog_footer{background:#f2f2f2;border:1px solid #555;border-top-color:#ccc;height:40px}
+#fb_dialog_loader_close{float:left}
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{display:inline-block;position:relative}
+.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}
+.fb_iframe_widget iframe{position:absolute}
+.fb_iframe_widget_lift{z-index:1}
+.fb_hide_iframes iframe{position:relative;left:-10000px}
+.fb_iframe_widget_loader{position:relative;display:inline-block}
+.fb_iframe_widget_fluid{display:inline}
+.fb_iframe_widget_fluid span{width:100%}
+.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}
+.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}
+.fb_connect_bar_container div,
+.fb_connect_bar_container span,
+.fb_connect_bar_container a,
+.fb_connect_bar_container img,
+.fb_connect_bar_container strong{background:none;border-spacing:0;border:0;direction:ltr;font-style:normal;font-variant:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal;vertical-align:baseline}
+.fb_connect_bar_container{position:fixed;left:0 !important;right:0 !important;height:42px !important;padding:0 25px !important;margin:0 !important;vertical-align:middle !important;border-bottom:1px solid #333 !important;background:#3b5998 !important;z-index:99999999 !important;overflow:hidden !important}
+.fb_connect_bar_container_ie6{position:absolute;top:expression(document.compatMode=="CSS1Compat"? document.documentElement.scrollTop+"px":body.scrollTop+"px")}
+.fb_connect_bar{position:relative;margin:auto;height:100%;width:100%;padding:6px 0 0 0 !important;background:none;color:#fff !important;font-family:"lucida grande", tahoma, verdana, arial, sans-serif !important;font-size:13px !important;font-style:normal !important;font-variant:normal !important;font-weight:normal !important;letter-spacing:normal !important;line-height:1 !important;text-decoration:none !important;text-indent:0 !important;text-shadow:none !important;text-transform:none !important;white-space:normal !important;word-spacing:normal !important}
+.fb_connect_bar a:hover{color:#fff}
+.fb_connect_bar .fb_profile img{height:30px;width:30px;vertical-align:middle;margin:0 6px 5px 0}
+.fb_connect_bar div a,
+.fb_connect_bar span,
+.fb_connect_bar span a{color:#bac6da;font-size:11px;text-decoration:none}
+.fb_connect_bar .fb_buttons{float:right;margin-top:7px}
+.fb_edge_widget_with_comment{position:relative;*z-index:1000}
+.fb_edge_widget_with_comment span.fb_edge_comment_widget{position:absolute}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget{z-index:1}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget .FB_Loader{left:0;top:1px;margin-top:6px;margin-left:0;background-position:50% 50%;background-color:#fff;height:150px;width:394px;border:1px #666 solid;border-bottom:2px solid #283e6c;z-index:1}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.dark .FB_Loader{background-color:#000;border-bottom:2px solid #ccc}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.siderender
+.FB_Loader{margin-top:0}
+.fbpluginrecommendationsbarleft,
+.fbpluginrecommendationsbarright{position:fixed !important;bottom:0;z-index:999}
+.fbpluginrecommendationsbarleft{left:10px}
+.fbpluginrecommendationsbarright{right:10px}</style></head>
+<body data-twttr-rendered="true" class="single single-post postid-99373 single-format-standard typekit-enabled header-image content-sidebar mp6 highlander-enabled highlander-light">
+
+<div class=" fb_reset" id="fb-root"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/xd_arbiter.htm" style="border: medium none;" tab-index="-1" title="Facebook Cross Domain Communication Frame" aria-hidden="true" id="fb_xdm_frame_http" allowtransparency="true" name="fb_xdm_frame_http" frameborder="0" scrolling="no"></iframe><iframe src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/xd_arbiter_002.htm" style="border: medium none;" tab-index="-1" title="Facebook Cross Domain Communication Frame" aria-hidden="true" id="fb_xdm_frame_https" allowtransparency="true" name="fb_xdm_frame_https" frameborder="0" scrolling="no"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div id="wrap">
+<div id="header"><div class="wrap"><div id="title-area"><p id="title"><a href="http://hackaday.com/" title="Hack a Day">Hack a Day</a></p><p id="description">Fresh hacks every day</p></div><!-- end #title-area --><div class="widget-area"><div id="leaderboard">
+	<script type="text/javascript">
+		/* [id426] 728x90 */
+		OA_show(426);
+	</script><script language="JavaScript1.1" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/ck.js">
+</script><a target="_blank" href="http://ad.doubleclick.net/click;h=v8/3e7b/c/27a/%2a/a;276267753;0-0;0;103366975;3454-728/90;55822404/55711693/1;;%7Eokv=;pc=%5BTPAS_ID%5D;;%7Esscs=%3fhttp://ads.supplyframe.com/openads/www/delivery/ck.php?oaparams=2__bannerid=57898__zoneid=426__cb=6b22a52a1c__oadest=http%3A%2F%2Fanalytics.supplyframe.com%2Ftrackingservlet%2Ftrack%2F%3Faction%3DadClick%26value1%3D%7Btaxonomy_enc%7D%26value2%3D57898%26value3%3D4%26zone%3D426%26extra%3Dquery%3D%7Bterm_enc%7D%7Ccontextualmatch%3Dnolimitation%7Ccookietax%3D870%7Cectime%3D%7Bectime%7D%7Cecstatus%3D%7Becstatus%7D%7Cmanufacturer%3D%7Bmanufacturer_enc%7D%7Cpart_number%3D%7Bpart_number_enc%7D%7Ccb%3D6b22a52a1c%7Ch_value%3D70d1a3b8afd15d7d1381732269%7Ch_crc%3D3155442145%7Cgeo%3Dde%7Cbp%3D0.68479019919819%7Cbpf%3D6.2140446848382%7Ccp%3D5%26zone%3D426%26url%3Dhttp%3a%2f%2fwww.ti.com/tool/msp-exp430f5529lp"><img src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/MCU_MSP_New_MSP430_USB_LaunchPad_728x90st.gif" alt="Click here to find out more!" border="0"></a>
+<noscript>
+<a href="http://ads.supplyframe.com/openads/www/delivery/ck.php?oaparams=2__bannerid=57898__zoneid=426__cb=6b22a52a1c__oadest=http%3A%2F%2Fanalytics.supplyframe.com%2Ftrackingservlet%2Ftrack%2F%3Faction%3DadClick%26value1%3D{taxonomy_enc}%26value2%3D57898%26value3%3D4%26zone%3D426%26extra%3Dquery%3D{term_enc}%7Ccontextualmatch%3Dnolimitation%7Ccookietax%3D870%7Cectime%3D{ectime}%7Cecstatus%3D{ecstatus}%7Cmanufacturer%3D{manufacturer_enc}%7Cpart_number%3D{part_number_enc}%7Ccb%3D6b22a52a1c%7Ch_value%3D70d1a3b8afd15d7d1381732269%7Ch_crc%3D3155442145%7Cgeo%3Dde%7Cbp%3D0.68479019919819%7Cbpf%3D6.2140446848382%7Ccp%3D5%26zone%3D426%26url%3Dhttp%3A%2F%2Fad.doubleclick.net%2Fjump%2FN5744.1822344.HACKADAY.COM%2FB7882991.10%3Bsz%3D728x90%3Bpc%3D%5BTPAS_ID%5D%3Bclick%3D%7Bclickurl%7D%3Bord%3D%7Brandom%7D%3F" target="_blank">
+<IMG SRC="http://ad.doubleclick.net/ad/N5744.1822344.HACKADAY.COM/B7882991.10;sz=728x90;pc=[TPAS_ID];click=http://ads.supplyframe.com/openads/www/delivery/ck.php?oaparams=2__bannerid=57898__zoneid=426__cb=6b22a52a1c__oadest=http%3A%2F%2Fanalytics.supplyframe.com%2Ftrackingservlet%2Ftrack%2F%3Faction%3DadClick%26value1%3D{taxonomy_enc}%26value2%3D57898%26value3%3D4%26zone%3D426%26extra%3Dquery%3D{term_enc}%7Ccontextualmatch%3Dnolimitation%7Ccookietax%3D870%7Cectime%3D{ectime}%7Cecstatus%3D{ecstatus}%7Cmanufacturer%3D{manufacturer_enc}%7Cpart_number%3D{part_number_enc}%7Ccb%3D6b22a52a1c%7Ch_value%3D70d1a3b8afd15d7d1381732269%7Ch_crc%3D3155442145%7Cgeo%3Dde%7Cbp%3D0.68479019919819%7Cbpf%3D6.2140446848382%7Ccp%3D5%26zone%3D426%26url%3D;ord=6b22a52a1c?" BORDER=0 WIDTH=728 HEIGHT=90 ALT="Advertisement"></A>
+</noscript><div id="beacon_6b22a52a1c" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/lg_003.gif" alt="" style="width: 0px; height: 0px;" height="0" width="0"></div><script type="text/javascript" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/ga.js"></script>
+<script type="text/javascript">
+var pageTracker;
+setTimeout('startGA();', 500);
+function startGA()
+{
+if (typeof(_gat) == 'object') {
+pageTracker = _gat._getTracker("UA-81436-2");
+pageTracker._initData();
+pageTracker._trackPageview();
+}
+}
+</script>
+<script type="text/javascript">
+_qoptions={
+qacct:"p-16me67-PXyTDw"
+};
+</script>
+<script type="text/javascript" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/quant.js"></script>
+<noscript>
+<a href="http://www.quantcast.com/p-16me67-PXyTDw" target="_blank"><img
+src="http://pixel.quantserve.com/pixel/p-16me67-PXyTDw.gif" style="display:
+none;" border="0" height="1" width="1" alt="Quantcast"/></a>
+</noscript><img src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/a_002.gif" alt="" style="display:none" height="0" width="0">
+
+</div></div><!-- end .widget-area --></div><!-- end .wrap --></div><!--end #header--><div id="nav"><div class="wrap"><ul id="menu-main" class="menu menu-primary superfish sf-js-enabled"><li id="menu-item-90201" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-90201"><a href="http://www.hackaday.com/">Home</a></li>
+<li id="menu-item-97770" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-97770"><a href="http://www.youtube.com/subscription_center?add_user=hackaday">Our Videos</a></li>
+<li id="menu-item-77211" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-77211"><a href="http://hackaday.com/contact-hack-a-day/">Submit a Tip</a></li>
+<li id="menu-item-90210" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-90210"><a href="http://forums.hackaday.com/">Forums</a></li>
+<li id="menu-item-101802" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101802"><a href="http://hackaday.com/hackaday-staff/">Staff</a></li>
+<li class="right date">October 13, 2013</li></ul></div><!-- end .wrap --></div><div id="inner"><div class="wrap">	<div id="content-sidebar-wrap">
+				<div id="content" class="hfeed">
+				<div class="post-99373 post type-post status-publish format-standard hentry category-linux-hacks category-wireless-hacks tag-beaglebone tag-beaglebone-black tag-rfm12b tag-rpi tag-wireless">
+
+				<h1 class="entry-title">RF wireless kernel module for Raspberry Pi, BeagleBone and&nbsp;others</h1>
+		
+		<div class="post-info"><span class="date published time" title="2013-06-27T14:01:04+00:00">June 27, 2013</span>  By <span class="author vcard"><span class="fn"><a href="http://hackaday.com/author/mikehackaday/" class="fn n" title="Mike Szczys" rel="author">Mike Szczys</a></span></span> <span class="post-comments"><a href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/#comments">18 Comments</a></span> </div>		<div class="entry-content">
+			<p><img class="aligncenter size-large wp-image-99375" alt="rfm12b-kernel-module" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/rfm12b-kernel-module.png" height="311" width="580"></p>
+<p>If you’ve done any wireless work with hobby electronics you probably 
+recognize this part. The green PCB is an RFM12B wireless board. They 
+come in a few different operating bandwidths, the 433 MHz is probably 
+the most common. They’re super easy to interface with a small 
+microcontroller but what about an embedded Linux board? That is the 
+focus of this project, which <a href="https://github.com/gkaindl/rfm12b-linux" target="_blank">builds a kernel driver for the RF module</a>.</p>
+<p>You can get your own RFM12B for a few bucks. They’re quite versatile 
+when paired, but a lot of inexpensive wireless consumer goods operate on
+ this band so the board can be used to send commands to wireless 
+outlets, light fixtures, etc. [Georg] has been working with the 
+BeagleBone, BeagleBone Black, and Raspberry Pi. His software package 
+lets you build a kernel module to add an entry for the device into the 
+/dev directory of a Linux system. So far the three boards listed are all
+ that’s supported, but if you have five I/O pins available it should be a
+ snap to tailor this to other hardware.</p>
+<p>Wondering what else you can do with the setup? This will get the receiving end of <a href="http://hackaday.com/2012/09/28/doorbell-to-internet-bridge-also-useful-for-other-home-automation/">a text-messaging doorbell</a>&nbsp;up and running in no time.</p>
+<p><span id="more-99373"></span></p>
+<p><span class="embed-youtube" style="text-align:center; display: block;"><iframe class="youtube-player" type="text/html" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/5aeSIBstJS0.htm" frameborder="0" height="295" width="470"></iframe></span></p>
+<div class="wpcom-related-posts" id="wpcom-related-posts-99373">
+<ul>
+<li>
+<a href="http://public-api.wordpress.com/bar/?stat=ES-Related-Post-Hit&amp;bin=MLT-Query&amp;redirect_to=http%3A%2F%2Fhackaday.com%2F2012%2F11%2F17%2Feve-radio-breakout-board-for-the-raspberry-pi%2F&amp;sr=1&amp;signature=d3272d4bb0c5ecfe983b32771565e4af" target="_blank">EVE radio breakout board for the Raspberry&nbsp;Pi</a>
+</li>
+<li>
+<a href="http://public-api.wordpress.com/bar/?stat=ES-Related-Post-Hit&amp;bin=MLT-Query&amp;redirect_to=http%3A%2F%2Fhackaday.com%2F2013%2F07%2F30%2Fxbox-360-light-right-and-rf-module-connected-to-raspberry-pi%2F&amp;sr=1&amp;signature=9a359fbc0416945c3141a8c25bc9608d" target="_blank">Xbox 360 light right and RF module connected to Raspberry&nbsp;Pi</a>
+</li>
+<li>
+<a href="http://public-api.wordpress.com/bar/?stat=ES-Related-Post-Hit&amp;bin=MLT-Query&amp;redirect_to=http%3A%2F%2Fhackaday.com%2F2013%2F03%2F02%2Fbuilding-a-touchscreen-xbmc-setup-with-the-raspberry-pi%2F&amp;sr=1&amp;signature=15cb072d7e48d2b5e250d76ca87d1e99" target="_blank">Building a touchscreen XBMC setup with the Raspberry&nbsp;Pi</a>
+</li>
+<li>
+<a href="http://public-api.wordpress.com/bar/?stat=ES-Related-Post-Hit&amp;bin=MLT-Query&amp;redirect_to=http%3A%2F%2Fhackaday.com%2F2013%2F03%2F13%2Fmailbox-notifier-texts-when-the-letter-carrier-arrives%2F&amp;sr=1&amp;signature=36d320bb7a1bdf16eb20b21bf58f61e0" target="_blank">Mailbox notifier texts when the letter carrier&nbsp;arrives</a>
+</li>
+<li>
+<a href="http://public-api.wordpress.com/bar/?stat=ES-Related-Post-Hit&amp;bin=MLT-Query&amp;redirect_to=http%3A%2F%2Fhackaday.com%2F2012%2F11%2F16%2Femulating-a-student-clicker-with-an-arduino%2F&amp;sr=1&amp;signature=4b1e5c3e0f79185f133e61b900d19995" target="_blank">Emulating a student clicker with an&nbsp;Arduino</a>
+</li>
+</ul>
+</div><div id="jp-post-flair" class="sharedaddy sd-like-enabled sd-sharing-enabled"></div>		</div><!-- end .entry-content -->
+		<div class="post-meta"><span class="categories">Filed Under: <a href="http://hackaday.com/category/linux-hacks/" title="View all posts in linux hacks" rel="category tag">linux hacks</a>, <a href="http://hackaday.com/category/wireless-hacks/" title="View all posts in wireless hacks" rel="category tag">wireless hacks</a></span>  <span class="tags">Tagged With: <a href="http://hackaday.com/tag/beaglebone/" rel="tag">beaglebone</a>, <a href="http://hackaday.com/tag/beaglebone-black/" rel="tag">beaglebone black</a>, <a href="http://hackaday.com/tag/rfm12b/" rel="tag">rfm12b</a>, <a href="http://hackaday.com/tag/rpi/" rel="tag">RPi</a>, <a href="http://hackaday.com/tag/wireless/" rel="tag">wireless</a></span> </div><div align="center">
+	<script type="text/javascript">
+		/* [id429] 300x250 */
+		OA_show(429);
+	</script><script language="JavaScript1.1" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/ck_003.js">
+</script><a target="_blank" href="http://ad.doubleclick.net/click;h=v8/3e7b/c/26b/%2a/k;276267799;1-0;0;103366971;4307-300/250;56058992/55948306/1;;%7Eokv=;pc=%5BTPAS_ID%5D;;%7Esscs=%3fhttp://ads.supplyframe.com/openads/www/delivery/ck.php?oaparams=2__bannerid=57897__zoneid=429__cb=409ff8a09b__oadest=http%3A%2F%2Fanalytics.supplyframe.com%2Ftrackingservlet%2Ftrack%2F%3Faction%3DadClick%26value1%3D%7Btaxonomy_enc%7D%26value2%3D57897%26value3%3D4%26zone%3D429%26extra%3Dquery%3D%7Bterm_enc%7D%7Ccontextualmatch%3Dnolimitation%7Ccookietax%3D870%7Cectime%3D%7Bectime%7D%7Cecstatus%3D%7Becstatus%7D%7Cmanufacturer%3D%7Bmanufacturer_enc%7D%7Cpart_number%3D%7Bpart_number_enc%7D%7Ccb%3D409ff8a09b%7Ch_value%3Ddc491769835cf60a1381732269%7Ch_crc%3D3155442145%7Cgeo%3Dde%7Cbp%3D1%7Cbpf%3D1.0498102781707%7Ccp%3D5%26zone%3D429%26url%3Dhttp%3a%2f%2fwww.ti.com/pwr-bms-hh-easygauges-bs-en"><img src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/PWR_BMS_HH_Gen_Purpose_Gauges_300x250st.jpg" alt="Click here to find out more!" border="0"></a>
+<noscript>
+<a href="http://ads.supplyframe.com/openads/www/delivery/ck.php?oaparams=2__bannerid=57897__zoneid=429__cb=409ff8a09b__oadest=http%3A%2F%2Fanalytics.supplyframe.com%2Ftrackingservlet%2Ftrack%2F%3Faction%3DadClick%26value1%3D{taxonomy_enc}%26value2%3D57897%26value3%3D4%26zone%3D429%26extra%3Dquery%3D{term_enc}%7Ccontextualmatch%3Dnolimitation%7Ccookietax%3D870%7Cectime%3D{ectime}%7Cecstatus%3D{ecstatus}%7Cmanufacturer%3D{manufacturer_enc}%7Cpart_number%3D{part_number_enc}%7Ccb%3D409ff8a09b%7Ch_value%3Ddc491769835cf60a1381732269%7Ch_crc%3D3155442145%7Cgeo%3Dde%7Cbp%3D1%7Cbpf%3D1.0498102781707%7Ccp%3D5%26zone%3D429%26url%3Dhttp%3A%2F%2Fad.doubleclick.net%2Fjump%2FN5744.1822344.HACKADAY.COM%2FB7882991.8%3Bsz%3D300x250%3Bpc%3D%5BTPAS_ID%5D%3Bclick%3D%7Bclickurl%7D%3Bord%3D%7Brandom%7D%3F" target="_blank">
+<IMG SRC="http://ad.doubleclick.net/ad/N5744.1822344.HACKADAY.COM/B7882991.8;sz=300x250;pc=[TPAS_ID];click=http://ads.supplyframe.com/openads/www/delivery/ck.php?oaparams=2__bannerid=57897__zoneid=429__cb=409ff8a09b__oadest=http%3A%2F%2Fanalytics.supplyframe.com%2Ftrackingservlet%2Ftrack%2F%3Faction%3DadClick%26value1%3D{taxonomy_enc}%26value2%3D57897%26value3%3D4%26zone%3D429%26extra%3Dquery%3D{term_enc}%7Ccontextualmatch%3Dnolimitation%7Ccookietax%3D870%7Cectime%3D{ectime}%7Cecstatus%3D{ecstatus}%7Cmanufacturer%3D{manufacturer_enc}%7Cpart_number%3D{part_number_enc}%7Ccb%3D409ff8a09b%7Ch_value%3Ddc491769835cf60a1381732269%7Ch_crc%3D3155442145%7Cgeo%3Dde%7Cbp%3D1%7Cbpf%3D1.0498102781707%7Ccp%3D5%26zone%3D429%26url%3D;ord=409ff8a09b?" BORDER=0 WIDTH=300 HEIGHT=250 ALT="Advertisement"></A>
+</noscript><div id="beacon_409ff8a09b" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/lg_002.gif" alt="" style="width: 0px; height: 0px;" height="0" width="0"></div><script type="text/javascript" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/ga.js"></script>
+<script type="text/javascript">
+var pageTracker;
+setTimeout('startGA();', 500);
+function startGA()
+{
+if (typeof(_gat) == 'object') {
+pageTracker = _gat._getTracker("UA-81436-2");
+pageTracker._initData();
+pageTracker._trackPageview();
+}
+}
+</script>
+<script type="text/javascript">
+_qoptions={
+qacct:"p-16me67-PXyTDw"
+};
+</script>
+<script type="text/javascript" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/quant.js"></script>
+<noscript>
+<a href="http://www.quantcast.com/p-16me67-PXyTDw" target="_blank"><img
+src="http://pixel.quantserve.com/pixel/p-16me67-PXyTDw.gif" style="display:
+none;" border="0" height="1" width="1" alt="Quantcast"/></a>
+</noscript><img src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/a.gif" alt="" style="display:none" height="0" width="0">
+
+</div>
+	</div><!-- end .postclass -->
+	<div class="author-box"><div> <strong>About Mike Szczys</strong><br><p><a href="http://twitter.com/szczys">@szczys</a> <a href="https://plus.google.com/115692595442155139953?rel=author">Google+</a></p>
+</div></div><!-- end .authorbox-->		<div id="comments">
+			<h3>Comments</h3>			<ol class="comment-list">
+				
+	<li class="comment even thread-even depth-1 highlander-comment" id="comment-1020321">
+
+		
+		<div class="comment-author vcard">
+						<cite class="fn">qwerty</cite> <span class="says">says:</span>	 	</div><!-- end .comment-author -->
+
+		<div class="comment-meta commentmetadata">
+			<a href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/comment-page-1/#comment-1020321">June 27, 2013 at 4:03 pm</a>
+					</div><!-- end .comment-meta -->
+
+		<div class="comment-content">
+			
+			<p>Kernel driver aside, which is a great thing, what’s so special 
+about this module? I see there are cheaper ones on ebay and other online
+ vendors.</p>
+		</div><!-- end .comment-content -->
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/?replytocom=1020321#respond" onclick='return addComment.moveForm("comment-1020321", "1020321", "respond", "99373")'>Reply</a><span class="safe-comments-report-link">
+			<span id="safe-comments-result-1020321"><a class="hide-if-no-js" href="javascript:void(0);" onclick="safe_report_comments_flag_comment( '1020321', 'bd8a683d45', 'safe-comments-result-1020321');">Report comment</a></span></span>		</div>
+
+		<ul class="children">
+
+	<li class="comment odd alt depth-2 highlander-comment" id="comment-1020336">
+
+		
+		<div class="comment-author vcard">
+						<cite class="fn">saw0</cite> <span class="says">says:</span>	 	</div><!-- end .comment-author -->
+
+		<div class="comment-meta commentmetadata">
+			<a href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/comment-page-1/#comment-1020336">June 27, 2013 at 5:02 pm</a>
+					</div><!-- end .comment-meta -->
+
+		<div class="comment-content">
+			
+			<p>From what i understand,without a Kernel Driver you would need a 
+external MCU or LogicIC for the cheap RFs for the embedded Linux Boards 
+like the Pi</p>
+		</div><!-- end .comment-content -->
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/?replytocom=1020336#respond" onclick='return addComment.moveForm("comment-1020336", "1020336", "respond", "99373")'>Reply</a><span class="safe-comments-report-link">
+			<span id="safe-comments-result-1020336"><a class="hide-if-no-js" href="javascript:void(0);" onclick="safe_report_comments_flag_comment( '1020336', 'bd8a683d45', 'safe-comments-result-1020336');">Report comment</a></span></span>		</div>
+
+		</li><!-- #comment-## -->
+
+	<li class="comment even depth-2 highlander-comment" id="comment-1020338">
+
+		
+		<div class="comment-author vcard">
+						<cite class="fn"><a href="http://justgeek.de/" rel="external nofollow" class="url">NsN</a></cite> <span class="says">says:</span>	 	</div><!-- end .comment-author -->
+
+		<div class="comment-meta commentmetadata">
+			<a href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/comment-page-1/#comment-1020338">June 27, 2013 at 5:06 pm</a>
+					</div><!-- end .comment-meta -->
+
+		<div class="comment-content">
+			
+			<p>Compared to pure RF transcievers these modules have a few neat features.</p>
+<p>Most importantly, they take care of the low level RF stuff. This way 
+you just have to push / read the data bytewise per SPI and in the mean 
+time you can do other stuff.</p>
+<p>Most of the cheaper modules require you to directly set the signal 
+state. This means that you also have to take care of timing, coding, 
+matching a preamble and that you have to continously listen. On the 
+other hand, this gives you a lot more flexibility as well.</p>
+		</div><!-- end .comment-content -->
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/?replytocom=1020338#respond" onclick='return addComment.moveForm("comment-1020338", "1020338", "respond", "99373")'>Reply</a><span class="safe-comments-report-link">
+			<span id="safe-comments-result-1020338"><a class="hide-if-no-js" href="javascript:void(0);" onclick="safe_report_comments_flag_comment( '1020338', 'bd8a683d45', 'safe-comments-result-1020338');">Report comment</a></span></span>		</div>
+
+		</li><!-- #comment-## -->
+
+	<li class="comment odd alt depth-2 highlander-comment" id="comment-1020451">
+
+		
+		<div class="comment-author vcard">
+						<cite class="fn"><a href="http://www.electrobob.com/" rel="external nofollow" class="url">Bogdan</a></cite> <span class="says">says:</span>	 	</div><!-- end .comment-author -->
+
+		<div class="comment-meta commentmetadata">
+			<a href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/comment-page-1/#comment-1020451">June 28, 2013 at 1:10 am</a>
+					</div><!-- end .comment-meta -->
+
+		<div class="comment-content">
+			
+			<p>You might also think of the 2.4GHz ones, like the NRF24L01. The 
+RFM12 has some advantages and disadvantages over this one: longer range 
+but lower data rate, no automatic packet handling, harder to block by 
+standing near it (the 2.4GHz is easily blocked by standing close to the 
+receiver), easier to find at big vendors etc. </p>
+<p>I am a bit skeptical about the PI servicing the interrupt fast enough
+ to get data one byte at the time when the CPU load is high…. Maybe a 
+RFM23 would have been better? It has a 64B fifo, which could store an 
+entire packet. They are about 30% more than the RFM12 with a lot more 
+features.</p>
+		</div><!-- end .comment-content -->
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/?replytocom=1020451#respond" onclick='return addComment.moveForm("comment-1020451", "1020451", "respond", "99373")'>Reply</a><span class="safe-comments-report-link">
+			<span id="safe-comments-result-1020451"><a class="hide-if-no-js" href="javascript:void(0);" onclick="safe_report_comments_flag_comment( '1020451', 'bd8a683d45', 'safe-comments-result-1020451');">Report comment</a></span></span>		</div>
+
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment byuser comment-author-truthspew even thread-odd thread-alt depth-1 highlander-comment" id="comment-1020347">
+
+		
+		<div class="comment-author vcard">
+						<cite class="fn"><a href="http://truthspew.wordpress.com/" rel="external nofollow" class="url">truthspew</a></cite> <span class="says">says:</span>	 	</div><!-- end .comment-author -->
+
+		<div class="comment-meta commentmetadata">
+			<a href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/comment-page-1/#comment-1020347">June 27, 2013 at 5:36 pm</a>
+					</div><!-- end .comment-meta -->
+
+		<div class="comment-content">
+			
+			<p>I’m constantly pondering the fact that 433MHz is right smack in 
+the licenses amateur radio bands. I know I had to go through this with 
+TI to get my Chronos watch, had to provide my amateur radio license. And
+ according to the 70cm band plan, 433MHz is right where repeater inputs 
+start.</p>
+		</div><!-- end .comment-content -->
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/?replytocom=1020347#respond" onclick='return addComment.moveForm("comment-1020347", "1020347", "respond", "99373")'>Reply</a><span class="safe-comments-report-link">
+			<span id="safe-comments-result-1020347"><a class="hide-if-no-js" href="javascript:void(0);" onclick="safe_report_comments_flag_comment( '1020347', 'bd8a683d45', 'safe-comments-result-1020347');">Report comment</a></span></span>		</div>
+
+		<ul class="children">
+
+	<li class="comment odd alt depth-2 highlander-comment" id="comment-1020397">
+
+		
+		<div class="comment-author vcard">
+						<cite class="fn"><a href="http://twitter.com/drwho8" rel="external nofollow" class="url">drwho8 (@drwho8)</a></cite> <span class="says">says:</span>	 	</div><!-- end .comment-author -->
+
+		<div class="comment-meta commentmetadata">
+			<a href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/comment-page-1/#comment-1020397">June 27, 2013 at 9:26 pm</a>
+					</div><!-- end .comment-meta -->
+
+		<div class="comment-content">
+			
+			<p>I beg your pardon! 433MHz is also part of the ISM band. Where are 
+you located, that you needed to go through that insanity? Its legal in 
+Europe, although the band next to it, 868MHz is also used by ISM 
+hardware. As for the Chronos Watch I might get one if I found a use for 
+the thing.</p>
+		</div><!-- end .comment-content -->
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/?replytocom=1020397#respond" onclick='return addComment.moveForm("comment-1020397", "1020397", "respond", "99373")'>Reply</a><span class="safe-comments-report-link">
+			<span id="safe-comments-result-1020397"><a class="hide-if-no-js" href="javascript:void(0);" onclick="safe_report_comments_flag_comment( '1020397', 'bd8a683d45', 'safe-comments-result-1020397');">Report comment</a></span></span>		</div>
+
+		<ul class="children">
+
+	<li class="comment byuser comment-author-truthspew even depth-3 highlander-comment" id="comment-1020486">
+
+		
+		<div class="comment-author vcard">
+						<cite class="fn"><a href="http://truthspew.wordpress.com/" rel="external nofollow" class="url">truthspew</a></cite> <span class="says">says:</span>	 	</div><!-- end .comment-author -->
+
+		<div class="comment-meta commentmetadata">
+			<a href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/comment-page-1/#comment-1020486">June 28, 2013 at 3:21 am</a>
+					</div><!-- end .comment-meta -->
+
+		<div class="comment-content">
+			
+			<p>Yeah – I know. However 70cm didn’t get moved to the ISM band until
+ fairly recently. So if you get one of these 433MHz modules be prepared 
+to accept interference. </p>
+		</div><!-- end .comment-content -->
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/?replytocom=1020486#respond" onclick='return addComment.moveForm("comment-1020486", "1020486", "respond", "99373")'>Reply</a><span class="safe-comments-report-link">
+			<span id="safe-comments-result-1020486"><a class="hide-if-no-js" href="javascript:void(0);" onclick="safe_report_comments_flag_comment( '1020486', 'bd8a683d45', 'safe-comments-result-1020486');">Report comment</a></span></span>		</div>
+
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="comment-1020352">
+
+		
+		<div class="comment-author vcard">
+						<cite class="fn">Dojo</cite> <span class="says">says:</span>	 	</div><!-- end .comment-author -->
+
+		<div class="comment-meta commentmetadata">
+			<a href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/comment-page-1/#comment-1020352">June 27, 2013 at 6:19 pm</a>
+					</div><!-- end .comment-meta -->
+
+		<div class="comment-content">
+			
+			<p>433MHz is legal for ISM use in europe. I tend to use the 868MHz 
+ISM band (which is primary ISM) to not disturb amateur radio. Some 
+repeaters have very stupidly been assigned an input frequency on the 
+same channel car remotes operate, so you sometimes hear one being 
+repeated if someone else is talking and has keyed up the transmitter.</p>
+		</div><!-- end .comment-content -->
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/?replytocom=1020352#respond" onclick='return addComment.moveForm("comment-1020352", "1020352", "respond", "99373")'>Reply</a><span class="safe-comments-report-link">
+			<span id="safe-comments-result-1020352"><a class="hide-if-no-js" href="javascript:void(0);" onclick="safe_report_comments_flag_comment( '1020352', 'bd8a683d45', 'safe-comments-result-1020352');">Report comment</a></span></span>		</div>
+
+		</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="comment-1020383">
+
+		
+		<div class="comment-author vcard">
+						<cite class="fn"><a href="http://madscientistlabs.blogspot.com/" rel="external nofollow" class="url">DeKay</a></cite> <span class="says">says:</span>	 	</div><!-- end .comment-author -->
+
+		<div class="comment-meta commentmetadata">
+			<a href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/comment-page-1/#comment-1020383">June 27, 2013 at 8:37 pm</a>
+					</div><!-- end .comment-meta -->
+
+		<div class="comment-content">
+			
+			<p>This is really great.  Previous attempts to get this working from 
+user space have failed because the small FIFOs on the RFM12B resulted in
+ buffer underruns and the like.   I just wish the 12B had a programmable
+ sync word so it could interoperate with my CC1021 based weather 
+station.</p>
+		</div><!-- end .comment-content -->
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/?replytocom=1020383#respond" onclick='return addComment.moveForm("comment-1020383", "1020383", "respond", "99373")'>Reply</a><span class="safe-comments-report-link">
+			<span id="safe-comments-result-1020383"><a class="hide-if-no-js" href="javascript:void(0);" onclick="safe_report_comments_flag_comment( '1020383', 'bd8a683d45', 'safe-comments-result-1020383');">Report comment</a></span></span>		</div>
+
+		<ul class="children">
+
+	<li class="comment odd alt depth-2 highlander-comment" id="comment-1020450">
+
+		
+		<div class="comment-author vcard">
+						<cite class="fn">Old'un</cite> <span class="says">says:</span>	 	</div><!-- end .comment-author -->
+
+		<div class="comment-meta commentmetadata">
+			<a href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/comment-page-1/#comment-1020450">June 28, 2013 at 12:57 am</a>
+					</div><!-- end .comment-meta -->
+
+		<div class="comment-content">
+			
+			<p>What weather station is that? I’ve got the reverse problem at the 
+moment – Using a CC1110, I can’t snoop my RFM-based weather station 
+(from Maplin in the UK <a href="http://www.maplin.co.uk/professional-wireless-weather-centre-220865" rel="nofollow" target="_blank">http://www.maplin.co.uk/professional-wireless-weather-centre-220865</a> – it’s the spitting image of HopeRF’s reference platform), as the CC can’t do a matching FSK datarate…</p>
+		</div><!-- end .comment-content -->
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/?replytocom=1020450#respond" onclick='return addComment.moveForm("comment-1020450", "1020450", "respond", "99373")'>Reply</a><span class="safe-comments-report-link">
+			<span id="safe-comments-result-1020450"><a class="hide-if-no-js" href="javascript:void(0);" onclick="safe_report_comments_flag_comment( '1020450', 'bd8a683d45', 'safe-comments-result-1020450');">Report comment</a></span></span>		</div>
+
+		<ul class="children">
+
+	<li class="comment even depth-3 highlander-comment" id="comment-1020737">
+
+		
+		<div class="comment-author vcard">
+						<cite class="fn"><a href="http://madscientistlabs.blogspot.com/" rel="external nofollow" class="url">DeKay</a></cite> <span class="says">says:</span>	 	</div><!-- end .comment-author -->
+
+		<div class="comment-meta commentmetadata">
+			<a href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/comment-page-1/#comment-1020737">June 28, 2013 at 11:52 am</a>
+					</div><!-- end .comment-meta -->
+
+		<div class="comment-content">
+			
+			<p>Davis VP2.<br>
+<a href="http://madscientistlabs.blogspot.ca/search/label/Davis%20VP2" rel="nofollow" target="_blank">http://madscientistlabs.blogspot.ca/search/label/Davis%20VP2</a></p>
+		</div><!-- end .comment-content -->
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/?replytocom=1020737#respond" onclick='return addComment.moveForm("comment-1020737", "1020737", "respond", "99373")'>Reply</a><span class="safe-comments-report-link">
+			<span id="safe-comments-result-1020737"><a class="hide-if-no-js" href="javascript:void(0);" onclick="safe_report_comments_flag_comment( '1020737', 'bd8a683d45', 'safe-comments-result-1020737');">Report comment</a></span></span>		</div>
+
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment odd alt depth-2 highlander-comment" id="comment-1020910">
+
+		
+		<div class="comment-author vcard">
+						<cite class="fn">Happy Heyoka</cite> <span class="says">says:</span>	 	</div><!-- end .comment-author -->
+
+		<div class="comment-meta commentmetadata">
+			<a href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/comment-page-1/#comment-1020910">June 29, 2013 at 2:19 am</a>
+					</div><!-- end .comment-meta -->
+
+		<div class="comment-content">
+			
+			<p>You might like to look at “FIFO and Reset Mode Command” and 
+“Synchron pattern Command” for the RF12; have no idea if the kernel 
+module in question exposes these… I’m no expert but I’m pretty sure you 
+can program at least the first eight bits of the sync pattern; if you 
+use 16 bit sync word, I would have to resort to a test instrument to 
+check the other eight, documentation is pretty vague on that.</p>
+<p>The RF12 is pretty flexible within it’s limitations – the next 
+question is what documentation do you have about the modulation scheme 
+for that weather station (…)</p>
+		</div><!-- end .comment-content -->
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/?replytocom=1020910#respond" onclick='return addComment.moveForm("comment-1020910", "1020910", "respond", "99373")'>Reply</a><span class="safe-comments-report-link">
+			<span id="safe-comments-result-1020910"><a class="hide-if-no-js" href="javascript:void(0);" onclick="safe_report_comments_flag_comment( '1020910', 'bd8a683d45', 'safe-comments-result-1020910');">Report comment</a></span></span>		</div>
+
+		<ul class="children">
+
+	<li class="comment even depth-3 highlander-comment" id="comment-1021436">
+
+		
+		<div class="comment-author vcard">
+						<cite class="fn"><a href="http://madscientistlabs.blogspot.com/" rel="external nofollow" class="url">DeKay</a></cite> <span class="says">says:</span>	 	</div><!-- end .comment-author -->
+
+		<div class="comment-meta commentmetadata">
+			<a href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/comment-page-1/#comment-1021436">July 1, 2013 at 7:40 am</a>
+					</div><!-- end .comment-meta -->
+
+		<div class="comment-content">
+			
+			<p>I need 16 bits because the Davis outdoor sensor suite uses 16 
+bits.  I have fully documented everything on my blog, including how to 
+pick up the transmissions using an IM-Me.</p>
+		</div><!-- end .comment-content -->
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/?replytocom=1021436#respond" onclick='return addComment.moveForm("comment-1021436", "1021436", "respond", "99373")'>Reply</a><span class="safe-comments-report-link">
+			<span id="safe-comments-result-1021436"><a class="hide-if-no-js" href="javascript:void(0);" onclick="safe_report_comments_flag_comment( '1021436', 'bd8a683d45', 'safe-comments-result-1021436');">Report comment</a></span></span>		</div>
+
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="comment-1020448">
+
+		
+		<div class="comment-author vcard">
+						<cite class="fn">Old'un</cite> <span class="says">says:</span>	 	</div><!-- end .comment-author -->
+
+		<div class="comment-meta commentmetadata">
+			<a href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/comment-page-1/#comment-1020448">June 28, 2013 at 12:53 am</a>
+					</div><!-- end .comment-meta -->
+
+		<div class="comment-content">
+			
+			<p>Frequencies, not bandwidths…</p>
+		</div><!-- end .comment-content -->
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/?replytocom=1020448#respond" onclick='return addComment.moveForm("comment-1020448", "1020448", "respond", "99373")'>Reply</a><span class="safe-comments-report-link">
+			<span id="safe-comments-result-1020448"><a class="hide-if-no-js" href="javascript:void(0);" onclick="safe_report_comments_flag_comment( '1020448', 'bd8a683d45', 'safe-comments-result-1020448');">Report comment</a></span></span>		</div>
+
+		</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="comment-1020602">
+
+		
+		<div class="comment-author vcard">
+						<cite class="fn">lwatcdr</cite> <span class="says">says:</span>	 	</div><!-- end .comment-author -->
+
+		<div class="comment-meta commentmetadata">
+			<a href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/comment-page-1/#comment-1020602">June 28, 2013 at 7:57 am</a>
+					</div><!-- end .comment-meta -->
+
+		<div class="comment-content">
+			
+			<p>Nice that their is a driver for this but has Linux actually put in
+ an SPI driver at the kernel level yet. Seems like a good idea to me 
+with all the embedded work going on.</p>
+		</div><!-- end .comment-content -->
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/?replytocom=1020602#respond" onclick='return addComment.moveForm("comment-1020602", "1020602", "respond", "99373")'>Reply</a><span class="safe-comments-report-link">
+			<span id="safe-comments-result-1020602"><a class="hide-if-no-js" href="javascript:void(0);" onclick="safe_report_comments_flag_comment( '1020602', 'bd8a683d45', 'safe-comments-result-1020602');">Report comment</a></span></span>		</div>
+
+		<ul class="children">
+
+	<li class="comment odd alt depth-2 highlander-comment" id="comment-1020632">
+
+		
+		<div class="comment-author vcard">
+						<cite class="fn">Jerry</cite> <span class="says">says:</span>	 	</div><!-- end .comment-author -->
+
+		<div class="comment-meta commentmetadata">
+			<a href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/comment-page-1/#comment-1020632">June 28, 2013 at 8:54 am</a>
+					</div><!-- end .comment-meta -->
+
+		<div class="comment-content">
+			
+			<p><a href="https://www.kernel.org/doc/Documentation/spi/spi-summary" rel="nofollow" target="_blank">https://www.kernel.org/doc/Documentation/spi/spi-summary</a></p>
+		</div><!-- end .comment-content -->
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/?replytocom=1020632#respond" onclick='return addComment.moveForm("comment-1020632", "1020632", "respond", "99373")'>Reply</a><span class="safe-comments-report-link">
+			<span id="safe-comments-result-1020632"><a class="hide-if-no-js" href="javascript:void(0);" onclick="safe_report_comments_flag_comment( '1020632', 'bd8a683d45', 'safe-comments-result-1020632');">Report comment</a></span></span>		</div>
+
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment even thread-even depth-1 highlander-comment" id="comment-1020728">
+
+		
+		<div class="comment-author vcard">
+						<cite class="fn">someone</cite> <span class="says">says:</span>	 	</div><!-- end .comment-author -->
+
+		<div class="comment-meta commentmetadata">
+			<a href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/comment-page-1/#comment-1020728">June 28, 2013 at 11:37 am</a>
+					</div><!-- end .comment-meta -->
+
+		<div class="comment-content">
+			
+			<p>nice!!</p>
+		</div><!-- end .comment-content -->
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/?replytocom=1020728#respond" onclick='return addComment.moveForm("comment-1020728", "1020728", "respond", "99373")'>Reply</a><span class="safe-comments-report-link">
+			<span id="safe-comments-result-1020728"><a class="hide-if-no-js" href="javascript:void(0);" onclick="safe_report_comments_flag_comment( '1020728', 'bd8a683d45', 'safe-comments-result-1020728');">Report comment</a></span></span>		</div>
+
+		</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-1021240">
+
+		
+		<div class="comment-author vcard">
+						<cite class="fn">Alex</cite> <span class="says">says:</span>	 	</div><!-- end .comment-author -->
+
+		<div class="comment-meta commentmetadata">
+			<a href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/comment-page-1/#comment-1021240">June 30, 2013 at 3:11 pm</a>
+					</div><!-- end .comment-meta -->
+
+		<div class="comment-content">
+			
+			<p>Hi I have a few toys laying and some good batteries I also have a 
+spare airhogs action replay ready for scrap parts with a spare rf board 
+from a controller for the ps3  </p>
+<p>The helicopter has ir and I will be desoldering almost everything to 
+make a wind generator to charge some batteries and am wondering if I can
+ gather information somehow and keep a log of how much power I gain  </p>
+<p>I would like to put in the right direction  </p>
+<p>So if anyone can help I would be very happy to have taken a step closer  Sent from my iPhone</p>
+		</div><!-- end .comment-content -->
+
+		<div class="reply">
+			<a class="comment-reply-link" href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/?replytocom=1021240#respond" onclick='return addComment.moveForm("comment-1021240", "1021240", "respond", "99373")'>Reply</a><span class="safe-comments-report-link">
+			<span id="safe-comments-result-1021240"><a class="hide-if-no-js" href="javascript:void(0);" onclick="safe_report_comments_flag_comment( '1021240', 'bd8a683d45', 'safe-comments-result-1021240');">Report comment</a></span></span>		</div>
+
+		</li><!-- #comment-## -->
+			</ol>
+			<div class="navigation">
+				<div class="alignleft"></div>
+				<div class="alignright"></div>
+			</div>
+		</div><!--end #comments-->
+										<div id="respond" class="comment-respond js">
+				<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://hackaday.com/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="http://hackaday.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																										
+
+
+												<input id="highlander_comment_nonce" name="highlander_comment_nonce" value="372fdb02bf" type="hidden"><input name="_wp_http_referer" value="/2013/06/27/rf-wireless-kernel-module-for-raspberry-pi-beaglebone-and-others/" type="hidden">
+<input name="hc_post_as" id="hc_post_as" value="guest" type="hidden">
+
+<div class="comment-form-field comment-textarea">
+	
+	<div id="comment-form-comment"><textarea aria-hidden="true" tabindex="-1" style="height: 40px; resize: none; overflow-y: hidden; position: absolute; top: 0px; left: -9999px; width: 558px; line-height: 20px; text-decoration: none; letter-spacing: 0px;" placeholder="Enter your comment here..." title="Enter your comment here..."></textarea><textarea style="height: 40px; resize: none; overflow-y: hidden;" placeholder="Enter your comment here..." id="comment" name="comment" title="Enter your comment here..."></textarea></div>
+</div>
+
+<div style="display: none;" id="comment-form-identity">
+
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" title="Guest">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" title="WordPress.com">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" title="Twitter">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" title="Facebook">
+					<span></span>
+				</a>
+			</li>
+			<li>
+			<iframe id="googleplus-sign-in" name="googleplus-sign-in" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/a.htm" allowtransparency="true" seamless="seamless" frameborder="0" height="24" scrolling="no" width="24"></iframe>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="" alt="Gravatar" class="no-grav" width="25">
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email"></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text"></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="text"></div>
+				</div>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/wplogo.png" alt="WordPress.com Logo" class="no-grav" width="25">
+			</div>
+
+				<div class="comment-form-fields">
+				<input name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" type="hidden">
+				<input name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" type="hidden">
+				<input name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" type="hidden">
+				<p class="comment-form-posting-as pa-wordpress"><strong></strong> You are commenting using your WordPress.com account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout(%20'wordpress'%20);">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="" alt="Twitter picture" class="no-grav" width="25">
+			</div>
+
+				<div class="comment-form-fields">
+				<input name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" type="hidden">
+				<input name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" type="hidden">
+				<input name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" type="hidden">
+				<p class="comment-form-posting-as pa-twitter"><strong></strong> You are commenting using your Twitter account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout(%20'twitter'%20);">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="" alt="Facebook photo" class="no-grav" width="25">
+			</div>
+
+				<div class="comment-form-fields">
+				<input name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" type="hidden">
+				<input name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" type="hidden">
+				<input name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" type="hidden">
+				<p class="comment-form-posting-as pa-facebook"><strong></strong> You are commenting using your Facebook account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout(%20'facebook'%20);">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="" alt="Google+ photo" class="no-grav" width="25">
+			</div>
+
+				<div class="comment-form-fields">
+				<input name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="" type="hidden">
+				<input name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="" type="hidden">
+				<input name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="" type="hidden">
+				<p class="comment-form-posting-as pa-googleplus"><strong></strong> You are commenting using your Google+ account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout(%20'googleplus'%20);">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+	
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function(){
+	var input = document.createElement( 'input' ),
+	    comment = jQuery( '#comment' );
+
+	if ( 'placeholder' in input ) {
+		comment.attr( 'placeholder', jQuery( '.comment-textarea label' ).remove().text() );
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	jQuery( '#comment-form-identity' ).hide();
+	jQuery( '#comment-form-subscribe' ).hide();
+	jQuery( '#commentform .form-submit' ).hide();
+
+	comment.css( { 'height':'10px' } ).one( 'focus', function() {
+		var timer = setInterval( HighlanderComments.resizeCallback, 10 )
+		jQuery( this ).animate( { 'height': HighlanderComments.initialHeight } ).delay( 100 ).queue( function(n) { clearInterval( timer ); HighlanderComments.resizeCallback(); n(); } );
+		jQuery( '#comment-form-identity' ).slideDown();
+		jQuery( '#comment-form-subscribe' ).slideDown();
+		jQuery( '#commentform .form-submit' ).slideDown();
+	});
+}
+jQuery(document).ready( highlander_expando_javascript );
+</script>
+
+<div style="display: none;" id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input name="subscribe" id="subscribe" value="subscribe" style="width: auto;" tabindex="6" type="checkbox"> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of follow-up comments via email.</label></p><p class="post-subscription-form"><input name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;" tabindex="7" type="checkbox"> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog" style="display: inline;">Notify me of new posts via email.</label></p></div>
+
+												<p style="display: none;" class="form-submit">
+							<input name="submit" id="comment-submit" value="Post Comment" type="submit">
+							<input name="comment_post_ID" value="99373" id="comment_post_ID" type="hidden">
+<input name="comment_parent" id="comment_parent" value="0" type="hidden">
+						</p>
+						
+<input name="genseq" value="1381732267" type="hidden">
+<p style="display: none;"><input id="akismet_comment_nonce" name="akismet_comment_nonce" value="9bb5a158be" type="hidden"></p><script type="text/javascript" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/form.js"></script>
+<p style="display: none;"><input id="ak_js" name="ak_js" value="1381732272087" type="hidden"></p>					</form>
+							</div><!-- #respond -->
+			<div style="clear: both"></div>		</div><!-- end #content -->
+		<div id="sidebar" class="sidebar widget-area">
+<div id="tl_ad">
+	<script type="text/javascript">
+		/* [id428] 300x250 */
+		OA_show(428);
+	</script>
+</div>
+
+
+
+
+
+
+<div class="widget">
+<h4>Never Miss a Hack</h4>
+<div class="textwidget">
+<!-- Place this tag where you want the badge to render. -->
+<div id="___plus_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 280px; height: 131px;"><iframe title="Google+ Badge" data-gapiattached="true" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/badge.htm" name="I0_1381732270934" id="I0_1381732270934" vspace="0" tabindex="0" style="position: static; top: 0px; width: 280px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 131px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+<!-- Place this tag after the last badge tag. -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<div fb-xfbml-state="rendered" class="fb-like fb_edge_widget_with_comment fb_iframe_widget" data-href="https://www.facebook.com/pages/Hack-a-Day/136115233068429?ref=hl" data-send="true" data-width="280" data-show-faces="true" data-colorscheme="dark"><span style="height: 25px; width: 285px;"><iframe src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/like.htm" class="fb_ltr" title="Like this content on Facebook." style="border: medium none; overflow: hidden; height: 25px; width: 285px;" name="f2106210640999c" id="f236d606d4e22a" scrolling="no"></iframe></span></div>
+<br>
+<iframe style="width: 281px; height: 28px;" data-twttr-rendered="true" title="Twitter Follow Button" class="twitter-follow-button twitter-follow-button" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/follow_button.htm" allowtransparency="true" id="twitter-widget-0" frameborder="0" scrolling="no"></iframe>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+<div class="clear"> </div>
+
+</div>
+</div>
+
+<div id="search-2" class="widget widget_search"><div class="widget-wrap"><h4 class="widgettitle">Search</h4>
+
+		<form method="get" class="searchform" action="http://hackaday.com/">
+			
+			<input value="Search this website …" name="s" class="s" onfocus="if (this.value == 'Search this website …') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this website …';}" type="text">
+			<input class="searchsubmit" value="Search" type="submit">
+		</form>
+	</div></div>
+<div id="categories-2" class="widget widget_categories"><div class="widget-wrap"><h4 class="widgettitle">Categories</h4>
+<select name="cat" id="cat" class="postform">
+	<option selected="selected" value="-1">Select Category</option>
+	<option class="level-0" value="114554125">3d Printer hacks&nbsp;&nbsp;(182)</option>
+	<option class="level-0" value="18020710">Android Hacks&nbsp;&nbsp;(256)</option>
+	<option class="level-0" value="18020705">Arduino Hacks&nbsp;&nbsp;(1125)</option>
+	<option class="level-0" value="27981650">ARM&nbsp;&nbsp;(75)</option>
+	<option class="level-0" value="33199679">Ask Hackaday&nbsp;&nbsp;(36)</option>
+	<option class="level-0" value="64298109">ATtiny Hacks&nbsp;&nbsp;(51)</option>
+	<option class="level-0" value="25122024">Beer Hacks&nbsp;&nbsp;(68)</option>
+	<option class="level-0" value="12115263">blackberry hacks&nbsp;&nbsp;(8)</option>
+	<option class="level-0" value="11894719">Cellphone Hacks&nbsp;&nbsp;(345)</option>
+	<option class="level-0" value="35745764">chemistry hacks&nbsp;&nbsp;(118)</option>
+	<option class="level-0" value="24483654">classic hacks&nbsp;&nbsp;(887)</option>
+	<option class="level-0" value="31677810">clock hacks&nbsp;&nbsp;(208)</option>
+	<option class="level-0" value="18755632">cnc hacks&nbsp;&nbsp;(375)</option>
+	<option class="level-0" value="568165">computer hacks&nbsp;&nbsp;(408)</option>
+	<option class="level-0" value="78428">cons&nbsp;&nbsp;(206)</option>
+	<option class="level-0" value="5738">contests&nbsp;&nbsp;(146)</option>
+	<option class="level-0" value="3923181">cooking hacks&nbsp;&nbsp;(95)</option>
+	<option class="level-0" value="2588813">Crowd Funding&nbsp;&nbsp;(48)</option>
+	<option class="level-0" value="10969032">digital audio hacks&nbsp;&nbsp;(440)</option>
+	<option class="level-0" value="10969033">digital cameras hacks&nbsp;&nbsp;(454)</option>
+	<option class="level-0" value="10969034">downloads hacks&nbsp;&nbsp;(102)</option>
+	<option class="level-0" value="107827385">drone hacks&nbsp;&nbsp;(16)</option>
+	<option class="level-0" value="63176382">Engine Hacks&nbsp;&nbsp;(40)</option>
+	<option class="level-0" value="35890">Featured&nbsp;&nbsp;(108)</option>
+	<option class="level-0" value="551890">firefox hacks&nbsp;&nbsp;(23)</option>
+	<option class="level-0" value="53446541">FPGA&nbsp;&nbsp;(10)</option>
+	<option class="level-0" value="18020562">g1 hacks&nbsp;&nbsp;(26)</option>
+	<option class="level-0" value="320557">google hacks&nbsp;&nbsp;(46)</option>
+	<option class="level-0" value="10969036">gps hacks&nbsp;&nbsp;(113)</option>
+	<option class="level-0" value="24535490">green hacks&nbsp;&nbsp;(171)</option>
+	<option class="level-0" value="190105353">Hackaday Columns&nbsp;&nbsp;(41)</option>
+	<option class="level-0" value="27311668">Hackaday links&nbsp;&nbsp;(169)</option>
+	<option class="level-0" value="21755374">Hackerspaces&nbsp;&nbsp;(106)</option>
+	<option class="level-0" value="6310599">HackIt&nbsp;&nbsp;(103)</option>
+	<option class="level-0" value="10969037">handhelds hacks&nbsp;&nbsp;(191)</option>
+	<option class="level-0" value="79">hardware&nbsp;&nbsp;(323)</option>
+	<option class="level-0" value="66307084">Holiday Hacks&nbsp;&nbsp;(102)</option>
+	<option class="level-0" value="10969038">home entertainment hacks&nbsp;&nbsp;(538)</option>
+	<option class="level-0" value="5660882">home hacks&nbsp;&nbsp;(754)</option>
+	<option class="level-0" value="2708">how-to&nbsp;&nbsp;(143)</option>
+	<option class="level-0" value="908478">internet hacks&nbsp;&nbsp;(10)</option>
+	<option class="level-0" value="831">Interviews&nbsp;&nbsp;(14)</option>
+	<option class="level-0" value="1416772">iphone hacks&nbsp;&nbsp;(181)</option>
+	<option class="level-0" value="1275163">ipod hacks&nbsp;&nbsp;(145)</option>
+	<option class="level-0" value="4157506">Kindle hacks&nbsp;&nbsp;(17)</option>
+	<option class="level-0" value="46717088">Kinect hacks&nbsp;&nbsp;(87)</option>
+	<option class="level-0" value="10969048">laptops hacks&nbsp;&nbsp;(112)</option>
+	<option class="level-0" value="10969055">laser hacks&nbsp;&nbsp;(180)</option>
+	<option class="level-0" value="18020716">led hacks&nbsp;&nbsp;(756)</option>
+	<option class="level-0" value="10626">lifehacks&nbsp;&nbsp;(59)</option>
+	<option class="level-0" value="729674">linux hacks&nbsp;&nbsp;(140)</option>
+	<option class="level-0" value="20732807">lockpicking hacks&nbsp;&nbsp;(13)</option>
+	<option class="level-0" value="10969060">macs hacks&nbsp;&nbsp;(138)</option>
+	<option class="level-0" value="144395979">Marijuana Hacks&nbsp;&nbsp;(3)</option>
+	<option class="level-0" value="11284667">Medical hacks&nbsp;&nbsp;(120)</option>
+	<option class="level-0" value="139916">Microcontrollers&nbsp;&nbsp;(560)</option>
+	<option class="level-0" value="5611793">misc hacks&nbsp;&nbsp;(1797)</option>
+	<option class="level-0" value="18020730">multitouch hacks&nbsp;&nbsp;(92)</option>
+	<option class="level-0" value="22652725">musical hacks&nbsp;&nbsp;(322)</option>
+	<option class="level-0" value="18020722">netbook hacks&nbsp;&nbsp;(50)</option>
+	<option class="level-0" value="6166512">Network Hacks&nbsp;&nbsp;(10)</option>
+	<option class="level-0" value="103">news&nbsp;&nbsp;(1126)</option>
+	<option class="level-0" value="1861880">nintendo ds hacks&nbsp;&nbsp;(34)</option>
+	<option class="level-0" value="114555425">nintendo gameboy hacks&nbsp;&nbsp;(91)</option>
+	<option class="level-0" value="18020685">nintendo hacks&nbsp;&nbsp;(278)</option>
+	<option class="level-0" value="4992726">nintendo wii hacks&nbsp;&nbsp;(78)</option>
+	<option class="level-0" value="118011206">Nook Hacks&nbsp;&nbsp;(1)</option>
+	<option class="level-0" value="114556430">palm pre hacks&nbsp;&nbsp;(6)</option>
+	<option class="level-0" value="245123">parts&nbsp;&nbsp;(79)</option>
+	<option class="level-0" value="10969081">peripherals hacks&nbsp;&nbsp;(674)</option>
+	<option class="level-0" value="16325149">phone hacks&nbsp;&nbsp;(20)</option>
+	<option class="level-0" value="10969088">playstation hacks&nbsp;&nbsp;(124)</option>
+	<option class="level-0" value="2060">podcasts&nbsp;&nbsp;(8)</option>
+	<option class="level-0" value="10969096">portable audio hacks&nbsp;&nbsp;(67)</option>
+	<option class="level-0" value="10969099">portable video hacks&nbsp;&nbsp;(58)</option>
+	<option class="level-0" value="588444">psp hacks&nbsp;&nbsp;(48)</option>
+	<option class="level-0" value="23971578">radio hacks&nbsp;&nbsp;(163)</option>
+	<option class="level-0" value="47">rants&nbsp;&nbsp;(32)</option>
+	<option class="level-0" value="69218551">Raspberry Pi&nbsp;&nbsp;(210)</option>
+	<option class="level-0" value="21870780">repair hacks&nbsp;&nbsp;(105)</option>
+	<option class="level-0" value="189174145">Retrotechtacular&nbsp;&nbsp;(8)</option>
+	<option class="level-0" value="309">reviews&nbsp;&nbsp;(22)</option>
+	<option class="level-0" value="10969101">robots hacks&nbsp;&nbsp;(920)</option>
+	<option class="level-0" value="30302">roundup&nbsp;&nbsp;(37)</option>
+	<option class="level-0" value="10969111">security hacks&nbsp;&nbsp;(482)</option>
+	<option class="level-0" value="2301">Software Development&nbsp;&nbsp;(96)</option>
+	<option class="level-0" value="3796421">software hacks&nbsp;&nbsp;(53)</option>
+	<option class="level-0" value="10969116">solar hacks&nbsp;&nbsp;(49)</option>
+	<option class="level-0" value="10969121">tablet pcs hacks&nbsp;&nbsp;(42)</option>
+	<option class="level-0" value="3075183">teardown&nbsp;&nbsp;(35)</option>
+	<option class="level-0" value="12936984">Tech Hacks&nbsp;&nbsp;(3)</option>
+	<option class="level-0" value="10969130">tool hacks&nbsp;&nbsp;(719)</option>
+	<option class="level-0" value="25277004">toy hacks&nbsp;&nbsp;(390)</option>
+	<option class="level-0" value="10969134">transportation hacks&nbsp;&nbsp;(514)</option>
+	<option class="level-0" value="1">Uncategorized&nbsp;&nbsp;(334)</option>
+	<option class="level-0" value="3184456">video hacks&nbsp;&nbsp;(229)</option>
+	<option class="level-0" value="34942364">Virtual Reality&nbsp;&nbsp;(12)</option>
+	<option class="level-0" value="50802420">weapons hacks&nbsp;&nbsp;(76)</option>
+	<option class="level-0" value="12552193">wearable hacks&nbsp;&nbsp;(214)</option>
+	<option class="level-0" value="39510952">Weekly roundup&nbsp;&nbsp;(18)</option>
+	<option class="level-0" value="4891215">wireless hacks&nbsp;&nbsp;(358)</option>
+	<option class="level-0" value="7079455">xbox hacks&nbsp;&nbsp;(134)</option>
+</select>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+	var dropdown = document.getElementById("cat");
+	function onCatChange() {
+		if ( dropdown.options[dropdown.selectedIndex].value > 0 ) {
+			location.href = "http://hackaday.com/?cat="+dropdown.options[dropdown.selectedIndex].value;
+		}
+	}
+	dropdown.onchange = onCatChange;
+/* ]]> */
+</script>
+
+</div></div>
+<div id="featured-post-2" class="widget featuredpost"><div class="widget-wrap"><h4 class="widgettitle">In case you missed it</h4>
+<div class="post-104856 post type-post status-publish format-standard hentry category-arduino-hacks category-beer-hacks category-featured tag-atmega168 tag-bottle-opener tag-fail tag-haduino tag-osh-park"><a href="http://hackaday.com/2013/10/11/haduino-open-your-beer-using-arduino/" title="HaDuino: Open Your Beer Using&nbsp;Arduino" class="alignleft"><img src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/haduino-thumbnail-with-title.png" class="attachment-thumbnail" alt="haduino-thumbnail-with-title" height="50" width="90"></a><h2><a href="http://hackaday.com/2013/10/11/haduino-open-your-beer-using-arduino/" title="HaDuino: Open Your Beer Using&nbsp;Arduino">HaDuino: Open Your Beer Using&nbsp;Arduino</a></h2><p class="byline post-info"><br> <span class="post-comments"><a href="http://hackaday.com/2013/10/11/haduino-open-your-beer-using-arduino/#comments">49 Comments</a></span></p></div><!--end post_class()-->
+
+<div class="post-104349 post type-post status-publish format-standard hentry category-featured tag-cnc tag-hackaday-hackerspace-henchmen tag-machine-tools"><a href="http://hackaday.com/2013/10/07/hackaday-hackerspace-henchmen-equals-free-stuff-for-you/" title="Hackaday Hackerspace Henchmen == Free Stuff for&nbsp;You" class="alignleft"><img src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/2013-10-01_hackaday_hackerspace_henchmen_thumb-250x250.png" class="attachment-thumbnail" alt="2013-10-01_Hackaday_Hackerspace_Henchmen_thumb-250x250" height="90" width="90"></a><h2><a href="http://hackaday.com/2013/10/07/hackaday-hackerspace-henchmen-equals-free-stuff-for-you/" title="Hackaday Hackerspace Henchmen == Free Stuff for&nbsp;You">Hackaday Hackerspace Henchmen == Free Stuff for&nbsp;You</a></h2><p class="byline post-info"><br> <span class="post-comments"><a href="http://hackaday.com/2013/10/07/hackaday-hackerspace-henchmen-equals-free-stuff-for-you/#comments">18 Comments</a></span></p></div><!--end post_class()-->
+
+<div class="post-104367 post type-post status-publish format-standard hentry category-featured tag-adblock tag-advertising"><a href="http://hackaday.com/2013/10/04/new-ads-please-whitelist-hackaday-on-adblock/" title="New Ads – Please Whitelist Hackaday on&nbsp;Adblock" class="alignleft"><img src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/adblock-plus-whitelist.png" class="attachment-thumbnail" alt="adblock-plus-whitelist" height="42" width="90"></a><h2><a href="http://hackaday.com/2013/10/04/new-ads-please-whitelist-hackaday-on-adblock/" title="New Ads – Please Whitelist Hackaday on&nbsp;Adblock">New Ads – Please Whitelist Hackaday on&nbsp;Adblock</a></h2><p class="byline post-info"><br> <span class="post-comments"><a href="http://hackaday.com/2013/10/04/new-ads-please-whitelist-hackaday-on-adblock/#comments">160 Comments</a></span></p></div><!--end post_class()-->
+
+<div class="post-103405 post type-post status-publish format-standard hentry category-featured category-radio-hacks category-rants tag-amateur-radio tag-bill-meara tag-ham-radio"><a href="http://hackaday.com/2013/09/23/guest-rant-ham-radio-hackers-paradise/" title="Guest Rant: Ham Radio — Hackers’&nbsp;Paradise" class="alignleft"><img src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/meara-bill-rant-wordbench.jpg" class="attachment-thumbnail" alt="meara-bill-rant-wordbench" height="67" width="90"></a><h2><a href="http://hackaday.com/2013/09/23/guest-rant-ham-radio-hackers-paradise/" title="Guest Rant: Ham Radio — Hackers’&nbsp;Paradise">Guest Rant: Ham Radio — Hackers’&nbsp;Paradise</a></h2><p class="byline post-info"><br> <span class="post-comments"><a href="http://hackaday.com/2013/09/23/guest-rant-ham-radio-hackers-paradise/#comments">143 Comments</a></span></p></div><!--end post_class()-->
+
+<div class="post-103391 post type-post status-publish format-standard hentry category-featured tag-staff tag-survey"><a href="http://hackaday.com/2013/09/20/getting-your-feedback-and-a-staff-update/" title="Getting Your Feedback and a Staff&nbsp;Update" class="alignleft"><img src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/had-staff-update-9-2013.png" class="attachment-thumbnail" alt="had-staff-update-9-2013" height="90" width="90"></a><h2><a href="http://hackaday.com/2013/09/20/getting-your-feedback-and-a-staff-update/" title="Getting Your Feedback and a Staff&nbsp;Update">Getting Your Feedback and a Staff&nbsp;Update</a></h2><p class="byline post-info"><br> <span class="post-comments"><a href="http://hackaday.com/2013/09/20/getting-your-feedback-and-a-staff-update/#comments">37 Comments</a></span></p></div><!--end post_class()-->
+
+<p class="more-from-category"><a href="http://hackaday.com/category/featured/" title="Featured">More Posts from this Category</a></p></div></div>
+<div id="featured-post-3" class="widget featuredpost"><div class="widget-wrap"><h4 class="widgettitle">Our Columns</h4>
+<div class="post-104927 post type-post status-publish format-standard hentry category-hackaday-columns category-hackaday-links tag-apollo tag-button tag-fitbit tag-folding-chair tag-hard-drive-platter-clock tag-word-clock"><a href="http://hackaday.com/2013/10/13/hackaday-links-october-13-2013/" title="Hackaday Links: October 13,&nbsp;2013" class="alignright"><img src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/2013-08_links_thumbnail.png" class="attachment-thumbnail" alt="2013-08_Links_thumbnail" height="75" width="90"></a><h2><a href="http://hackaday.com/2013/10/13/hackaday-links-october-13-2013/" title="Hackaday Links: October 13,&nbsp;2013">Hackaday Links: October 13,&nbsp;2013</a></h2><p class="byline post-info"><br> <span class="post-comments"><a href="http://hackaday.com/2013/10/13/hackaday-links-october-13-2013/#comments">2 Comments</a></span></p></div><!--end post_class()-->
+
+<div class="post-104839 post type-post status-publish format-standard hentry category-digital-cameras-hacks category-hackaday-columns tag-brushless-motor tag-fail-of-the-week tag-stm32 tag-turntable"><a href="http://hackaday.com/2013/10/10/fail-of-the-week-photography-turntable/" title="Fail of the Week: Photography&nbsp;Turntable" class="alignright"><img src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/fotw-spinning-platform.png" class="attachment-thumbnail" alt="fotw-spinning-platform" height="67" width="90"></a><h2><a href="http://hackaday.com/2013/10/10/fail-of-the-week-photography-turntable/" title="Fail of the Week: Photography&nbsp;Turntable">Fail of the Week: Photography&nbsp;Turntable</a></h2><p class="byline post-info"><br> <span class="post-comments"><a href="http://hackaday.com/2013/10/10/fail-of-the-week-photography-turntable/#comments">26 Comments</a></span></p></div><!--end post_class()-->
+
+<div class="post-104779 post type-post status-publish format-standard hentry category-hackaday-columns tag-3d-printering tag-resin tag-stereolithography"><a href="http://hackaday.com/2013/10/09/3d-printering-you-want-uv-resin/" title="3D Printering: You Want UV&nbsp;Resin?" class="alignright"><img src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/3d-featured1.png" class="attachment-thumbnail" alt="3d-featured" height="75" width="90"></a><h2><a href="http://hackaday.com/2013/10/09/3d-printering-you-want-uv-resin/" title="3D Printering: You Want UV&nbsp;Resin?">3D Printering: You Want UV&nbsp;Resin?</a></h2><p class="byline post-info"><br> <span class="post-comments"><a href="http://hackaday.com/2013/10/09/3d-printering-you-want-uv-resin/#comments">31 Comments</a></span></p></div><!--end post_class()-->
+
+<div class="post-104719 post type-post status-publish format-standard hentry category-digital-audio-hacks category-hackaday-columns tag-retrotechtacular tag-synthesizer"><a href="http://hackaday.com/2013/10/08/retrotechtacular-discovering-electronic-music/" title="Retrotechtacular: Discovering Electronic&nbsp;Music" class="alignright"><img src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/retrotechtacular-discovering-electronic-music.jpg" class="attachment-thumbnail" alt="retrotechtacular-discovering-electronic-music" height="67" width="90"></a><h2><a href="http://hackaday.com/2013/10/08/retrotechtacular-discovering-electronic-music/" title="Retrotechtacular: Discovering Electronic&nbsp;Music">Retrotechtacular: Discovering Electronic&nbsp;Music</a></h2><p class="byline post-info"><br> <span class="post-comments"><a href="http://hackaday.com/2013/10/08/retrotechtacular-discovering-electronic-music/#comments">20 Comments</a></span></p></div><!--end post_class()-->
+
+<div class="post-104429 post type-post status-publish format-standard hentry category-hackaday-columns category-hackaday-links tag-ereader tag-ibeacon tag-organization tag-pizza-box tag-stem tag-thecontrollerproject tag-xbee"><a href="http://hackaday.com/2013/10/06/hackaday-links-october-6-2013/" title="Hackaday Links: October 6,&nbsp;2013" class="alignright"><img src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/2013-08_links_thumbnail.png" class="attachment-thumbnail" alt="2013-08_Links_thumbnail" height="75" width="90"></a><h2><a href="http://hackaday.com/2013/10/06/hackaday-links-october-6-2013/" title="Hackaday Links: October 6,&nbsp;2013">Hackaday Links: October 6,&nbsp;2013</a></h2><p class="byline post-info"><br> <span class="post-comments"><a href="http://hackaday.com/2013/10/06/hackaday-links-october-6-2013/#comments">8 Comments</a></span></p></div><!--end post_class()-->
+
+</div></div>
+<div id="recent-comments-2" class="widget widget_recent_comments"><div class="widget-wrap"><h4 class="widgettitle">Recent comments</h4>
+				<ul id="recentcomments">
+											<li class="recentcomments">
+							<a href="http://ghlargh.com/" rel="external nofollow" class="url">Sven</a> on <a href="http://hackaday.com/2013/10/13/turbot-is-a-beampicaxe-hybrid/comment-page-1/#comment-1075236">Turbot is a Beam/Picaxe&nbsp;Hybrid</a>						</li>
+												<li class="recentcomments">
+							Wonko on <a href="http://hackaday.com/2013/10/02/calling-european-hackerspaces/comment-page-2/#comment-1075227">Calling European&nbsp;Hackerspaces!</a>						</li>
+												<li class="recentcomments">
+							Trui on <a href="http://hackaday.com/2013/10/13/the-greenest-wall-powered-clock/comment-page-1/#comment-1075225">The Greenest Wall-Powered&nbsp;Clock</a>						</li>
+												<li class="recentcomments">
+							Galane on <a href="http://hackaday.com/2013/10/13/turbot-is-a-beampicaxe-hybrid/comment-page-1/#comment-1075211">Turbot is a Beam/Picaxe&nbsp;Hybrid</a>						</li>
+												<li class="recentcomments">
+							Tony on <a href="http://hackaday.com/2013/10/13/the-greenest-wall-powered-clock/comment-page-1/#comment-1075209">The Greenest Wall-Powered&nbsp;Clock</a>						</li>
+												<li class="recentcomments">
+							Tony on <a href="http://hackaday.com/2013/10/13/3d-printer-made-from-e-waste-in-africa/comment-page-1/#comment-1075206">3D Printer Made from E-waste in&nbsp;Africa</a>						</li>
+												<li class="recentcomments">
+							MLK on <a href="http://hackaday.com/2013/10/13/3d-printer-made-from-e-waste-in-africa/comment-page-1/#comment-1075197">3D Printer Made from E-waste in&nbsp;Africa</a>						</li>
+												<li class="recentcomments">
+							Erik on <a href="http://hackaday.com/2013/10/13/how-do-you-build-a-relay-cpu/comment-page-1/#comment-1075196">How Do You Build a Relay&nbsp;CPU?</a>						</li>
+												<li class="recentcomments">
+							safeness on <a href="http://hackaday.com/2012/12/07/building-an-arm-cross-compiler-on-osx/comment-page-1/#comment-1075195">Building an ARM cross compiler on&nbsp;OSX</a>						</li>
+												<li class="recentcomments">
+							lnmaurer on <a href="http://hackaday.com/2013/10/12/a-simple-forth-development-board/comment-page-1/#comment-1075194">A simple Forth development&nbsp;board</a>						</li>
+										</ul>
+				</div></div>
+<div id="calendar-2" class="widget widget_calendar"><div class="widget-wrap"><h4 class="widgettitle">Find Hacks by Date</h4>
+<div id="calendar_wrap"><table id="wp-calendar">
+	<caption>June 2013</caption>
+	<thead>
+	<tr>
+		<th scope="col" title="Sunday">S</th>
+		<th scope="col" title="Monday">M</th>
+		<th scope="col" title="Tuesday">T</th>
+		<th scope="col" title="Wednesday">W</th>
+		<th scope="col" title="Thursday">T</th>
+		<th scope="col" title="Friday">F</th>
+		<th scope="col" title="Saturday">S</th>
+	</tr>
+	</thead>
+
+	<tfoot>
+	<tr>
+		<td colspan="3" id="prev"><a href="http://hackaday.com/2013/05/" title="View posts for May 2013">« May</a></td>
+		<td class="pad">&nbsp;</td>
+		<td colspan="3" id="next"><a href="http://hackaday.com/2013/07/" title="View posts for July 2013">Jul »</a></td>
+	</tr>
+	</tfoot>
+
+	<tbody>
+	<tr>
+		<td colspan="6" class="pad">&nbsp;</td><td><a href="http://hackaday.com/2013/06/01/" title="2013 LayerOne badge hacking contest&nbsp;winner, Arduino-compatible, quad-core ARM dev&nbsp;board, Complicated iPhone garage door&nbsp;opener, TP-Link router turned into a DALI automated lighting&nbsp;controller, Off the shelf EEG hardware records your&nbsp;dreams">1</a></td>
+	</tr>
+	<tr>
+		<td><a href="http://hackaday.com/2013/06/02/" title="Delta-type 3D printer built using extruded&nbsp;rails, Building a miniature x-ray&nbsp;tube, A black box for a&nbsp;motorcycle, USB fume extractor takes stink out of soldering&nbsp;sessions, Hackaday Links: Sunday, June 2nd,&nbsp;2013">2</a></td><td><a href="http://hackaday.com/2013/06/03/" title="Hardware store robot&nbsp;hand, Benchmarking USB transfer&nbsp;speeds, The thinnest Xbox laptop&nbsp;yet, Quick and dirty touch-sensitive keyboard&nbsp;project, Keurig hack now automatically fills the water&nbsp;reservoir, A very tiny gamma ray&nbsp;detector">3</a></td><td><a href="http://hackaday.com/2013/06/04/" title="Dead simple jamming gripper&nbsp;design, Nikkor optical&nbsp;glass, Raspi Internet radio with Google&nbsp;Music, Hackaday retro edition&nbsp;roundup, Automated aquarium fertilizer&nbsp;doser, Hand crafting a&nbsp;tuba, GoPro panning time-lapse with Ikea egg&nbsp;timer, How does that ship get into the&nbsp;bottle?, Building a treadle powered&nbsp;lathe, Ship building in&nbsp;Volgograd, Superbly built walking&nbsp;cane">4</a></td><td><a href="http://hackaday.com/2013/06/05/" title="Hacking high school exams and foiling them with&nbsp;statistics, Retrotechtacular: How I wrote Pitfall for the Atari&nbsp;2600, HANDMADE.hackaday: Celebrate&nbsp;Craftsmanship, Whats up with these subdomains at&nbsp;Hackaday?, Plex hack runs Apple TV without a&nbsp;Jailbreak, [Jimmy the torch] making blown&nbsp;glass, Ask Hackaday: How are these thieves exploiting automotive keyless&nbsp;entry?">5</a></td><td><a href="http://hackaday.com/2013/06/06/" title="NES Zapper modified to work with an old Nintendo VS.&nbsp;cabinet, Making a bow from&nbsp;scratch, Sugar Painting: street vendors make works of edible&nbsp;art, Hacking the R-390A military shortwave radio receiver to transmit as&nbsp;well, Sliding gopro rig for&nbsp;timelapse, Alarm clock uses Raspberry Pi to poll Google&nbsp;Calendar">6</a></td><td><a href="http://hackaday.com/2013/06/07/" title="The construction of an triode, by&nbsp;hand, Apple MagSafe protocol&nbsp;hacking, Smoothing PLA printed&nbsp;parts, iOS keyboard exploit allows brute force iPad lock screen&nbsp;attack, Embedded solution for uploading webcam pictures to the&nbsp;cloud">7</a></td><td><a href="http://hackaday.com/2013/06/08/" title="No space in the garage? Build a Lamborghini in the&nbsp;basement, USB infrared receiver looks good sitting in your&nbsp;livingroom, 3D mapping of rooms,&nbsp;again, Wireless unread email counter tells you how busy you’re&nbsp;not, Raspberry Pi used to build a smart&nbsp;television, Omniwheel robot build uses a bit of&nbsp;everything">8</a></td>
+	</tr>
+	<tr>
+		<td><a href="http://hackaday.com/2013/06/09/" title="Ask Hackaday: Can you steal a car with a mini tesla&nbsp;coil?, Echolocation pinpoints where a gunshot came&nbsp;from, 1,200 hours of work results in the smallest v12&nbsp;engine, This week on&nbsp;HANDMADE.hackaday, Open source&nbsp;PLC, Super-cap powered blinky jewelry charged by the sun or&nbsp;USB, Hackaday Links: Sunday, June 9th,&nbsp;2013">9</a></td><td><a href="http://hackaday.com/2013/06/10/" title="Learning letters, particularly R, F, I, &amp;&nbsp;D, A binary clock that uses&nbsp;bulbs, Incredible bow lathe work in&nbsp;Morocco, Gesture control uses WiFi doppler&nbsp;shift, Automated programming and testing jig built with Raspberry&nbsp;Pi">10</a></td><td><a href="http://hackaday.com/2013/06/11/" title="60,000 RPM vacuum powered rotary tool was 3D&nbsp;printed, Giving toys an electronic&nbsp;voice, An interview with&nbsp;Shapeways, Arc Reactor replica could have been crafted in a&nbsp;cave, 3D printed hand-cranked digital&nbsp;computer, Building a WiFi enabled Nixie&nbsp;counter, Giving an RC tank a fire control&nbsp;computer">11</a></td><td><a href="http://hackaday.com/2013/06/12/" title="Telegraph sounder clicks out email&nbsp;messages, The birth of a tool: Damascus steel knife&nbsp;making, Loading Atari games from an SD&nbsp;card, Building a digital scale from&nbsp;scratch, Using electrical conduit for a 3D printer&nbsp;frame, Ditch that boring mouse for a military-grade&nbsp;trackball">12</a></td><td><a href="http://hackaday.com/2013/06/13/" title="Building a&nbsp;Strandbeest, AuPod, the solid gold iPod nano&nbsp;watch, Dummy batteries let you use an AC&nbsp;adapter, Upgrading a hackerspace’s&nbsp;shelving, Beck’s beer bottle sound&nbsp;recording, Heading to New York to judge the RedBull Creation&nbsp;Contest!, Wet spill vacuum cleaner&nbsp;attachment">13</a></td><td><a href="http://hackaday.com/2013/06/14/" title="The making of a katana hand&nbsp;guard, Guitarduino show and&nbsp;tell, Hackaday at the Redbull Creation Challenge: The teams begin to&nbsp;build, Machining beer can solder&nbsp;stencils, HackIt: Sony invites you to hack its SmartWatch&nbsp;firmware, RedBull creation update: Fantastic videos from the welder&nbsp;company!">14</a></td><td><a href="http://hackaday.com/2013/06/15/" title="Wherein books are judged by their&nbsp;cover, Raspberry Pi Tor proxy lets you take anonymity with&nbsp;you, The secret projects at the RedBull Creation&nbsp;Challenge, Custom driver board for paintball&nbsp;gun">15</a></td>
+	</tr>
+	<tr>
+		<td><a href="http://hackaday.com/2013/06/16/" title="Autonomous RC car navigates by&nbsp;waypoints, Water tank level meter prevents&nbsp;overflow, Hackaday Links: Sunday, June 16th,&nbsp;2013">16</a></td><td><a href="http://hackaday.com/2013/06/17/" title="Giving the VirtualBoy a VGA&nbsp;out, Letting Bluetooth take the wires out of your&nbsp;headphones, Adding WiFi to a kid’s&nbsp;tablet, Raspberry Pi replaces a Volvo nav&nbsp;system, Coopering wine&nbsp;barrels, Modifying a CRT television for use as an arcade&nbsp;monitor, Causing trouble at RedBull Creation&nbsp;2013">17</a></td><td><a href="http://hackaday.com/2013/06/18/" title="[Frank] builds a chair from a&nbsp;sequoia, Pager message sniffing with RPi and&nbsp;SDR, RedBull Creation 2013: final thoughts and&nbsp;recap, Best robot demos from ICRA&nbsp;2013, Brushless gimbal 3D printed and bolted to&nbsp;quadcopter">18</a></td><td><a href="http://hackaday.com/2013/06/19/" title="R2D2 cake plays Leia’s distress&nbsp;message, Crystal oven temperature sensor reads 0.01F&nbsp;resolution, Adding wireless charging to any&nbsp;phone, Long distance PS3&nbsp;controller, PBX blade for multiple extension home&nbsp;telephony, Black Ash basket weaving from&nbsp;scratch, Using an angle grinder as a bench&nbsp;grinder">19</a></td><td><a href="http://hackaday.com/2013/06/20/" title="We should build mandolins and&nbsp;violas, Building a blink based input&nbsp;device, An interview with [David] of&nbsp;Ultimaker, Giving digital calipers&nbsp;Bluetooth, Modeling squid cells in code foregoes connecting voltage to&nbsp;animals, Building custom game controllers for people with physical&nbsp;disabilities, Solar powered&nbsp;hovercraft">20</a></td><td><a href="http://hackaday.com/2013/06/21/" title="A folding knife made from&nbsp;scratch, Hacking a Medion WiFi streaming radio found at&nbsp;Aldi, Building a synth on a&nbsp;breadboard, An Arduino power&nbsp;inverter, Giving a crank flashlight a super capacitor&nbsp;overhaul, 3D scanning by calculating the focus of each&nbsp;pixel">21</a></td><td><a href="http://hackaday.com/2013/06/22/" title="Wetlev 2 water jet pack marginally less lethal than prior&nbsp;version, Outputting text on a paper tape&nbsp;machine, A charming Arduino king cobra&nbsp;game, Sony SmartWatch running Arduino&nbsp;sketches, Heart-shaped project takes no&nbsp;shortcuts, [Ricky's] rugged DVD&nbsp;player">22</a></td>
+	</tr>
+	<tr>
+		<td><a href="http://hackaday.com/2013/06/23/" title="Kinect full body&nbsp;scanner, Turning a phone into a Geiger&nbsp;counter, Raspberry Pi Bitcoin&nbsp;miner, Adding RGB backlight to arcade&nbsp;buttons, Hackaday Links: Sunday, June 23rd,&nbsp;2013, A 555 player&nbsp;piano">23</a></td><td><a href="http://hackaday.com/2013/06/24/" title="Transformer built from MIT admissions mailing&nbsp;tube, What’s happening at LIFE.hackaday&nbsp;lateley, 16 core computer made of&nbsp;ATMegas, Lots of seven segment displays with a single&nbsp;ATtiny, TI’s CC3000 WiFi chip gets a&nbsp;library, How to build a Tron bar that Daft Punk would hang out&nbsp;at, Build a waterproof music controller on the&nbsp;cheap">24</a></td><td><a href="http://hackaday.com/2013/06/25/" title="Signmaking in glass and&nbsp;gold, Solder trick to make your own surface mount breakout&nbsp;boards, LED tie plays&nbsp;Tetris, Tearing apart an organ and making a MIDI&nbsp;keyboard, Life sized Katamari Damacy ball controls game but isn’t&nbsp;sticky, Chest freezer kegerator conversion has six beers on&nbsp;tap, The Ondes Martenot; Better than a&nbsp;Theremin">25</a></td><td><a href="http://hackaday.com/2013/06/26/" title="Prototyping a Maglev train using&nbsp;LEGO, Thundercats,&nbsp;HO!, WALL-O-TRON, the interactive rock climbing&nbsp;wall, ShapeOko build log — it’s a CNC mill in a&nbsp;box, Building an IR mouse interface for the&nbsp;disabled, Atari 2600 has a Raspberry Pi hiding under the&nbsp;hood">26</a></td><td><a href="http://hackaday.com/2013/06/27/" title="Astrosmash style video game as Sony SmartWatch&nbsp;firmware, Measuring ketosis with an&nbsp;Arduino, The Thunderball jetpack becomes a&nbsp;quadcopter, Hackers in Africa are building their own&nbsp;aircraft, RF wireless kernel module for Raspberry Pi, BeagleBone and&nbsp;others, The trials of repairing a&nbsp;MacBook">27</a></td><td><a href="http://hackaday.com/2013/06/28/" title="Dimming LED bulbs designed to replace halogen&nbsp;lamps, Send an Arduino to the moon for&nbsp;$300, Bringing eLua to the&nbsp;mbed, An XBMC controller built for&nbsp;Grandma, Car stereo AUX input taps into CD ribbon&nbsp;cable">28</a></td><td><a href="http://hackaday.com/2013/06/29/" title="Build a light following bristlebot as a way to teach&nbsp;science, Easily 3D print mesh&nbsp;screens">29</a></td>
+	</tr>
+	<tr>
+		<td><a href="http://hackaday.com/2013/06/30/" title="Google Science Fair finalist explains squid-inspired underwater&nbsp;propulsion, Retrotechtacular: Bell Labs introduces a thing called&nbsp;‘UNIX’, Air-powered gripper design makes them easy to&nbsp;produce, Hackaday Links: Sunday, June 30th,&nbsp;2013">30</a></td>
+		<td class="pad" colspan="6">&nbsp;</td>
+	</tr>
+	</tbody>
+	</table></div></div></div>
+
+<br>
+<div id="tl_ad_bottom">
+<script type="text/javascript">
+	/* [id427] 160x600 */
+		OA_show(427);
+</script><script language="JavaScript1.1" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/ck_002.js">
+</script><a target="_blank" href="http://ad.doubleclick.net/click;h=v8/3e7b/c/27a/%2a/z;276267798;5-0;0;103366970;2321-160/600;56059029/55948343/1;;%7Eokv=;pc=%5BTPAS_ID%5D;;%7Esscs=%3fhttp://ads.supplyframe.com/openads/www/delivery/ck.php?oaparams=2__bannerid=57899__zoneid=427__cb=956a37ac79__oadest=http%3A%2F%2Fanalytics.supplyframe.com%2Ftrackingservlet%2Ftrack%2F%3Faction%3DadClick%26value1%3D%7Btaxonomy_enc%7D%26value2%3D57899%26value3%3D4%26zone%3D427%26extra%3Dquery%3D%7Bterm_enc%7D%7Ccontextualmatch%3Dnolimitation%7Ccookietax%3D870%7Cectime%3D%7Bectime%7D%7Cecstatus%3D%7Becstatus%7D%7Cmanufacturer%3D%7Bmanufacturer_enc%7D%7Cpart_number%3D%7Bpart_number_enc%7D%7Ccb%3D956a37ac79%7Ch_value%3D8d1ae28b5b58a6b71381732269%7Ch_crc%3D3155442145%7Cgeo%3Dde%7Cbp%3D0.68479019919819%7Cbpf%3D6.2140446848382%7Ccp%3D5%26zone%3D427%26url%3Dhttp%3a%2f%2fwww.ti.com/hpa-hval-hvl-swi-ts3a226e-bs-en"><img src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/HVAL_HVL_SC_TS3A226AE_160x600st.gif" alt="Click here to find out more!" border="0"></a>
+<noscript>
+<a href="http://ads.supplyframe.com/openads/www/delivery/ck.php?oaparams=2__bannerid=57899__zoneid=427__cb=956a37ac79__oadest=http%3A%2F%2Fanalytics.supplyframe.com%2Ftrackingservlet%2Ftrack%2F%3Faction%3DadClick%26value1%3D{taxonomy_enc}%26value2%3D57899%26value3%3D4%26zone%3D427%26extra%3Dquery%3D{term_enc}%7Ccontextualmatch%3Dnolimitation%7Ccookietax%3D870%7Cectime%3D{ectime}%7Cecstatus%3D{ecstatus}%7Cmanufacturer%3D{manufacturer_enc}%7Cpart_number%3D{part_number_enc}%7Ccb%3D956a37ac79%7Ch_value%3D8d1ae28b5b58a6b71381732269%7Ch_crc%3D3155442145%7Cgeo%3Dde%7Cbp%3D0.68479019919819%7Cbpf%3D6.2140446848382%7Ccp%3D5%26zone%3D427%26url%3Dhttp%3A%2F%2Fad.doubleclick.net%2Fjump%2FN5744.1822344.HACKADAY.COM%2FB7882991.7%3Bsz%3D160x600%3Bpc%3D%5BTPAS_ID%5D%3Bclick%3D%7Bclickurl%7D%3Bord%3D%7Brandom%7D%3F" target="_blank">
+<IMG SRC="http://ad.doubleclick.net/ad/N5744.1822344.HACKADAY.COM/B7882991.7;sz=160x600;pc=[TPAS_ID];click=http://ads.supplyframe.com/openads/www/delivery/ck.php?oaparams=2__bannerid=57899__zoneid=427__cb=956a37ac79__oadest=http%3A%2F%2Fanalytics.supplyframe.com%2Ftrackingservlet%2Ftrack%2F%3Faction%3DadClick%26value1%3D{taxonomy_enc}%26value2%3D57899%26value3%3D4%26zone%3D427%26extra%3Dquery%3D{term_enc}%7Ccontextualmatch%3Dnolimitation%7Ccookietax%3D870%7Cectime%3D{ectime}%7Cecstatus%3D{ecstatus}%7Cmanufacturer%3D{manufacturer_enc}%7Cpart_number%3D{part_number_enc}%7Ccb%3D956a37ac79%7Ch_value%3D8d1ae28b5b58a6b71381732269%7Ch_crc%3D3155442145%7Cgeo%3Dde%7Cbp%3D0.68479019919819%7Cbpf%3D6.2140446848382%7Ccp%3D5%26zone%3D427%26url%3D;ord=956a37ac79?" BORDER=0 WIDTH=160 HEIGHT=600 ALT="Advertisement"></A>
+</noscript><div id="beacon_956a37ac79" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/lg.gif" alt="" style="width: 0px; height: 0px;" height="0" width="0"></div><script type="text/javascript" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/ga.js"></script>
+<script type="text/javascript">
+var pageTracker;
+setTimeout('startGA();', 500);
+function startGA()
+{
+if (typeof(_gat) == 'object') {
+pageTracker = _gat._getTracker("UA-81436-2");
+pageTracker._initData();
+pageTracker._trackPageview();
+}
+}
+</script>
+<script type="text/javascript">
+_qoptions={
+qacct:"p-16me67-PXyTDw"
+};
+</script>
+<script type="text/javascript" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/quant.js"></script>
+<noscript>
+<a href="http://www.quantcast.com/p-16me67-PXyTDw" target="_blank"><img
+src="http://pixel.quantserve.com/pixel/p-16me67-PXyTDw.gif" style="display:
+none;" border="0" height="1" width="1" alt="Quantcast"/></a>
+</noscript><img src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/a_003.gif" alt="" style="display:none" height="0" width="0">
+
+</div>
+
+<br>
+
+
+
+
+
+
+</div><img src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/impression.gif" id="hdTrack" class="trackImg">	</div><!-- end #content-sidebar-wrap -->
+	</div><!-- end .wrap --></div><!-- end #inner --><div id="footer" class="footer"><div class="wrap"><div class="gototop"><p><a href="#wrap" rel="nofollow">Return to top of page</a></p></div><div class="creds"><p>Copyright © 2013 ·  <a href="http://www.studiopress.com/" title="Genesis Framework">Genesis Framework</a> · <a href="http://wordpress.org/" title="WordPress">WordPress</a> · <a href="http://hackadaycom.wordpress.com/wp-login.php">Log in</a></p></div></div><!-- end .wrap --></div><!-- end #footer -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-42734042-1");
+pageTracker._trackPageview();
+</script>
+<!-- Start Quantcast tag -->
+<script type="text/javascript">
+_qoptions={
+qacct:"p-cc6zkdHuZwUDM"
+};
+</script>
+<script type="text/javascript" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/quant.js"></script>
+<noscript>
+<img src="http://pixel.quantserve.com/pixel/p-cc6zkdHuZwUDM.gif"
+style="display: none;" border="0" height="1" width="1"
+alt="Quantcast"/>
+</noscript></div><iframe style="width: 1px; height: 1px; position: absolute; top: -100px;" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/postmessageRelay.htm" id="oauth2relay541045233" name="oauth2relay541045233"></iframe><!-- end #wrap -->
+
+<script type="text/javascript">
+var _qevents = _qevents || [], wpcomQuantcastData = {"qacct":"p-18-mFEk4J448M","labels":",language.en,type.wpcom,posttag.beaglebone,posttag.beaglebone-black,posttag.rfm12b,posttag.rpi,posttag.wireless,vip.hackadaycom"};
+function wpcomQuantcastPixel( labels, options ) {
+	var i, defaults = wpcomQuantcastData, data = { event: 'ajax' };
+
+	labels  = labels  || '';
+	options = options || {};
+
+	if ( typeof labels != 'string' )
+		options = labels;
+
+	for ( i in defaults ) {
+		data[i] = defaults[i];
+	}
+
+	for ( i in options ) {
+		data[i] = options[i];
+	}
+
+	if ( data.labels ) {
+		data.labels += ',' + labels;
+	} else {
+		data.labels = labels;
+	}
+
+	_qevents.push( data );
+};
+(function() {var elem = document.createElement('script');elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";elem.async = true;elem.type = "text/javascript";var scpt = document.getElementsByTagName('script')[0];scpt.parentNode.insertBefore(elem, scpt);  })();
+_qevents.push( wpcomQuantcastData );
+</script>
+<noscript><div style="display: none;"><img src="//pixel.quantserve.com/pixel/p-18-mFEk4J448M.gif?labels=%2Clanguage.en%2Ctype.wpcom%2Cposttag.beaglebone%2Cposttag.beaglebone-black%2Cposttag.rfm12b%2Cposttag.rpi%2Cposttag.wireless%2Cvip.hackadaycom" height="1" width="1" alt="" /></div></noscript>
+
+
+		<!-- /// LOAD CHARTBEAT /// -->
+		<script type="text/javascript">
+		var _sf_async_config={};
+		_sf_async_config.uid = 2021;
+		_sf_async_config.useCanonical = true;
+		
+		(function(){
+		  function loadChartbeat() {
+			window._sf_endpt=(new Date()).getTime();
+			var e = document.createElement('script');
+			e.setAttribute('language', 'javascript');
+			e.setAttribute('type', 'text/javascript');
+			e.setAttribute('src',
+			   (("https:" == document.location.protocol) ? "https://s3.amazonaws.com/" : "http://") +
+			   "static.chartbeat.com/js/chartbeat.js");
+			document.body.appendChild(e);
+		  }
+		  var oldonload = window.onload;
+		  window.onload = (typeof window.onload != 'function') ?
+			 loadChartbeat : function() { oldonload(); loadChartbeat(); };
+		})();
+		</script>
+			<div style="display:none">
+	</div>
+<script type="text/javascript">
+/* <![CDATA[ */
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"http:\/\/hackadaycom.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"http:\/\/hackadaycom.wordpress.com\/wp-login.php?action=logout&_wpnonce=43344da41d","homeURL":"http:\/\/hackaday.com\/","postID":"99373","gravDefault":"mystery","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"0"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/a.js"></script>
+<script type="text/javascript" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/a_003.js"></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/w.js" type="text/javascript"></script>
+<script type="text/javascript">
+st_go({'blog':'4779443','v':'wpcom','tz':'-7','user_id':'0','post':'99373','subd':'hackadaycom'});
+function st_vt() {var x=document.createElement("img");x.src="http://stats.wordpress.com/g.gif?blog=4779443&v=wpcomvt&tz=-7&user_id=0&post=99373&subd=hackadaycom&rand="+Math.random();}
+ex_go({'crypt':'UE40eW5QN0p8M2Y/RE1BNmNJfGhxNCVxUDExYmtib2E/SzdEJm0lUEtbdFU0fFk4cHZvcUFrZT90Tn4yQm1+R3NyNTdkRXFNdWdRL3RxNF9NeFJXd3ViMXhfT2h6ZHRJenMmfm5UcGFbN1EvMDA0NCxUcWxkTmY4akVwWk40a1lMNi8zUXVjX1BmRi1OMW8lU1s9YVdnbFssREVVZl1FRzlFbksma1F6MnFHS19JUXRIfl83Nz8tX2VjV016QnFHZiY/T3czQj8lQy90JWdKbVc0diUrPW5HNFN3YiY2TEVQUWNxZF1xcmFDbmpjOTI1REdKcE9yP1htVnlNVjJteXE9NGI9cU5OQw=='});
+addLoadEvent(function(){linktracker_init('4779443',99373);});
+	</script><img id="wpstats" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/g_002.gif" alt=""><img id="wpstats2" src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/g.gif" alt="" style="display:none">
+<noscript><img src="http://stats.wordpress.com/b.gif?v=noscript" style="height:0px;width:0px;overflow:hidden" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//stats.wordpress.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+
+<script src="RF%20wireless%20kernel%20module%20for%20Raspberry%20Pi,%20BeagleBone%20and%20others-Dateien/chartbeat.js" type="text/javascript" language="javascript"></script></body></html>

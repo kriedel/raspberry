@@ -1,0 +1,2591 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- start: showthread -->
+<html xml:lang="de" xmlns="http://www.w3.org/1999/xhtml" lang="de"><head>
+<title>Lighttpd Webserver + PHP5 + MySQL Server unter Raspbian</title>
+<meta property="fb:admins" content="seidel.philipp.de">
+<meta property="og:site_name" content="Deutsches Raspberry Pi Forum | Die RPi Community">
+<meta property="og:title" content="Lighttpd Webserver + PHP5 + MySQL Server unter Raspbian">
+<meta property="og:description" content="Edit: Jetzt mit phpMyadmin ; getestet mit 2012-12-...">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://www.forum-raspberrypi.de/Thread-tutorial-lighttpd-webserver-php5-mysql-server-unter-raspbian">
+<meta property="og:image" content="http://www.forum-raspberrypi.de/images/raspi/logo.png">
+<meta property="og:image" content="http://www.winfuture-forum.de/uploads/av-48078.gif?dateline=1334155940">
+<meta property="og:image" content="http://www.forum-raspberrypi.de/uploads/201208/post_5_1344103580_3b9868567543549969b03221551df0cf_thumb.png">
+<meta property="og:image" content="http://www.forum-raspberrypi.de/uploads/201208/post_5_1344105101_37336c6ca2aa00cebf2dc9c80aa0f89b_thumb.png">
+<meta property="og:image" content="http://www.forum-raspberrypi.de/uploads/201208/post_5_1344106522_adb74118810e8a891a41f8802ec791f5_thumb.png">
+<meta property="og:image" content="http://www.forum-raspberrypi.de/uploads/201208/post_5_1344103580_3b9868567543549969b03221551df0cf_thumb.png">
+<meta property="og:image" content="http://www.forum-raspberrypi.de/uploads/201208/post_5_1344105101_37336c6ca2aa00cebf2dc9c80aa0f89b_thumb.png">
+<meta property="og:image" content="http://www.forum-raspberrypi.de/uploads/201208/post_5_1344106522_adb74118810e8a891a41f8802ec791f5_thumb.png">
+<!-- start: headerinclude -->
+<link rel="alternate" type="application/rss+xml" title="Letzte Themen (RSS 2.0)" href="http://www.forum-raspberrypi.de/syndication.php">
+<link rel="alternate" type="application/atom+xml" title="Letzte Themen (Atom 1.0)" href="http://www.forum-raspberrypi.de/syndication.php?type=atom1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta name="Content-Language" content="de">
+<script type="text/javascript" src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/prototype.js"></script>
+<script type="text/javascript" src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/general.js"></script>
+<script type="text/javascript" src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/popup_menu.js"></script>
+<link type="text/css" rel="stylesheet" href="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/global.css">
+<link type="text/css" rel="stylesheet" href="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/css3.css">
+<link type="text/css" rel="stylesheet" href="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/css.css">
+<link type="text/css" rel="stylesheet" href="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star_ratings.css">
+<link type="text/css" rel="stylesheet" href="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/showthread.css">
+<link type="text/css" rel="stylesheet" href="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/lightbox.css">
+
+<script type="text/javascript">
+<!--
+	var cookieDomain = ".forum-raspberrypi.de";
+	var cookiePath = "/";
+	var cookiePrefix = "";
+	var deleteevent_confirm = "Möchtest Du dieses Ereignis wirklich löschen?";
+	var removeattach_confirm = "Möchtest du die ausgewählten Anhänge wirklich löschen?";
+	var loading_text = 'Lade.<br />Bitte warten...';
+	var saving_changes = 'Änderungen werden gespeichert ...';
+	var use_xmlhttprequest = "1";
+	var my_post_key = "58f52f39868bbff03d0cd984e4ebd8dd";
+	var imagepath = "images/raspi";
+// -->
+</script>
+
+<meta name="description" content="Deutsches inoffizielles Forum für Raspberry Pi Besitzer">
+<meta name="keywords" content="Forum, Raspberry Pi, Projekte,  Linux, deutsch">
+<meta name="robots" content="index, follow">
+<meta name="language" content="German, de, deutsch">
+<meta name="author" content="www.forum-raspberrypi.de">
+<meta name="publisher" content="www.forum-raspberrypi.de">
+<meta name="copyright" content="www.forum-raspberrypi.de">
+<meta name="page-topic" content="Deutsches Raspberry Pi Forum">
+<meta name="page-type" content="Computer und Hardware">
+<meta name="audience" content="alle">
+<meta name="google-site-verification" content="I5m7u9JHXYg31oCjMfWcakz8bt3Z_9G-ctpppQBB9pU">
+
+
+<script language="javascript" type="text/javascript" src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/myadvertisements.js"></script>
+
+
+<script language="JavaScript">
+function startCountdown() {
+document.write("<span id='countdown'></span>");
+var countdownDate = new Date("4/12/2013 00:00 AM");//input desired date here
+var currentDate = new Date();
+var dateDifference = new Date(countdownDate-currentDate);
+var seconds = dateDifference.valueOf()/1000;
+CountBack(seconds);
+}
+function CountBack(seconds) {
+var DisplayFormat = "DAYS Tagen, HOURS Stunden, MINS Minuten, SECS Sekunden.";
+   DisplayFormat = DisplayFormat.replace("DAYS", (Math.floor(seconds/86400))%100000);
+   DisplayFormat = DisplayFormat.replace("HOURS", (Math.floor(seconds/3600))%24);
+   DisplayFormat = DisplayFormat.replace("MINS", (Math.floor(seconds/60))%60);
+   DisplayFormat = DisplayFormat.replace("SECS", (Math.floor(seconds))%60);
+   document.getElementById("countdown").innerHTML = DisplayFormat;
+setTimeout("CountBack("+(seconds-1)+")", 1000);
+}
+
+
+  $(function() {
+    if ($.browser.msie && $.browser.version.substr(0,1)<7)
+    {
+      $('.tooltip').mouseover(function(){
+            $(this).children('span').show();
+          }).mouseout(function(){
+            $(this).children('span').hide();
+          })
+    }
+  });
+</script>
+<!-- end: headerinclude -->
+<script type="text/javascript">
+<!--
+	var quickdelete_confirm = "Möchtest du diesen Beitrag wirklich löschen?";
+// -->
+</script>
+<script type="text/javascript" src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/thread.js"></script>
+<script type="text/javascript" src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/scriptaculous.js"></script><script type="text/javascript" src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/effects.js"></script><script type="text/javascript" src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/builder.js"></script>
+<script type="text/javascript" src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/lightbox.js"></script>
+<script type="text/javascript" src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/thankyoulike.js"></script>
+<script type="text/javascript">
+<!--
+	var tylEnabled = "1";
+	var tylCollapsible = "0";
+	var tylUser = "0";
+-->
+</script>
+<script type="text/javascript" src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/itsmybirthday.js"></script>
+<script type="text/javascript">
+<!--
+	var imb_wishesEnabled = "0";
+	var imb_wishesRemovable = "1";
+-->
+</script>
+<script type="text/javascript" src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/codeselect.js"></script><link rel="search" type="application/opensearchdescription+xml" title="Deutsches Raspberry Pi Forum | Die RPi Community" href="http://www.forum-raspberrypi.de/search.php?action=opensearch">
+        <!-- twitter app card start-->
+        <!-- https://dev.twitter.com/docs/cards/types/app-card -->
+        <meta name="twitter:card" content="app">
+    
+        <meta name="twitter:app:id:iphone" content="307880732">
+        <meta name="twitter:app:url:iphone" content="tapatalk://">
+        <meta name="twitter:app:id:ipad" content="307880732">
+        <meta name="twitter:app:url:ipad" content="tapatalk://">
+        
+        <meta name="twitter:app:id:googleplay" content="com.quoord.tapatalkpro.activity">
+        <meta name="twitter:app:url:googleplay" content="tapatalk://www.forum-raspberrypi.de/?location=topic&amp;tid=177">
+        
+    <!-- twitter app card -->
+    
+    <!-- Tapatalk Banner head start -->
+    <link href="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/appbanner.css" rel="stylesheet" type="text/css" media="screen">
+    <script type="text/javascript">
+        var is_mobile_skin     = 0;
+        var app_ios_id         = "307880732";
+        var app_android_id     = "com.quoord.tapatalkpro.activity";
+        var app_kindle_url     = "";
+        var app_banner_message = "Follow {your_forum_name} <br /> with {app_name} for [os_platform]";
+        var app_forum_name     = "Raspberry Pi Forum";
+        var app_location_url   = "tapatalk://www.forum-raspberrypi.de/?location=topic&amp;tid=177";
+        var functionCallAfterWindowLoad = 0
+    </script>
+    <script src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/appbanner.js" type="text/javascript"></script>
+    <!-- Tapatalk Banner head end-->
+
+<meta name="description" content="Edit: Jetzt mit phpMyadmin ; getestet mit 2012-12-16-wheezy-raspbian.img Edit:Image zum Download bereit gestellt (siehe unten) Vorab solltest du die root Partition an die Größe deiner SD-Karte angleic">
+<link rel="canonical" href="http://www.forum-raspberrypi.de/Thread-tutorial-lighttpd-webserver-php5-mysql-server-unter-raspbian">
+</head>
+<body>
+ 
+    <!-- Tapatalk smart banner body start --> 
+<script type="text/javascript">tapatalkDetect()</script><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/i.gif" style="display:none;" border="0">
+ 
+    <!-- Tapatalk smart banner body end --> 
+	<!-- start: header -->
+<div id="container">
+		<a name="top" id="top"></a>
+		<div id="header">
+			<div id="logo">
+				<div class="wrapper">
+					<a class="name" align="middle" href="http://www.forum-raspberrypi.de/"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/logo_002.png" alt="Deutsches Raspberry Pi Forum | Die RPi Community" title="Deutsches Raspberry Pi Forum | Die RPi Community">
+&nbsp;&nbsp;Raspberry Pi Forum</a>
+
+
+<span style="float:right; margin-top:8px;">
+<form method="post" action="search.php">
+<input name="action" value="do_search" type="hidden">
+<input class="radio" name="postthread" value="1" checked="checked" type="hidden">
+<input name="showresults" value="threads" checked="checked" type="hidden">
+<input id="search" class="searchbox" onfocus="this.value=''" size="10" value="Suchbegriff(e)" name="keywords" type="text">
+</form>
+<span id="erweiterte_suche"> <a href="http://www.forum-raspberrypi.de/search.php">» Erweiterte Suche</a></span>
+</span>
+
+				</div>
+			</div>
+			<div id="panel">
+				<div class="upper"><!-- This div(class="upper") is closed in the header_welcomeblock_member and header_welcomeblock_guest templates -->
+					<div class="wrapper">
+						<ul class="menu top_links">
+							<li><a href="http://www.forum-raspberrypi.de/search.php" class="search">Suche</a></li>
+							<li><a href="http://www.forum-raspberrypi.de/memberlist.php" class="memberlist">Mitglieder</a></li>
+                                                        <li><a href="http://www.forum-raspberrypi.de/page-mitglieder-landkarte" class="map">Usermap</a></li>
+                                                        <li><a href="http://www.forum-raspberrypi.de/page-shop" class="shopcart">Zubehör Shop</a></li>
+                                                        <li><a href="http://www.forum-raspberrypi.de/mydownloads.php" class="mydownloads">Downloads</a></li>
+                                                        <li><a href="http://www.forum-raspberrypi.de/page-teamspeak" class="teamspeak">TeamSpeak</a></li>
+                                                        <li><a href="http://www.forum-raspberrypi.de/page-irc" class="irc">IRC-Channel</a></li>
+                                                        
+                                                        
+						</ul>
+						<!-- start: header_welcomeblock_guest -->
+<script type="text/javascript">
+<!--
+	lang.username = "Benutzername";
+	lang.password = "Passwort";
+	lang.login = "Login";
+	lang.lost_password = "<a href=\"http://www.forum-raspberrypi.de/member.php?action=lostpw\" class=\"lost_password\">Passwort vergessen?<\/a>";
+	lang.register_url = "<a href=\"http://www.forum-raspberrypi.de/member.php?action=register\" class=\"register\">Registrieren<\/a>";
+	lang.remember_me = "Merken";
+// -->
+</script>
+<!-- Continuation of div(class="upper") as opened in the header template -->
+	<span class="welcome" id="quick_login">Hallo, Gast! <a href="http://www.forum-raspberrypi.de/member.php?action=login" onclick="MyBB.quickLogin(); return false;" class="login">Anmelden</a> <a href="http://www.forum-raspberrypi.de/member.php?action=register" class="register">Registrieren</a></span>
+	</div>
+</div>
+<!-- end: header_welcomeblock_guest -->
+			</div>
+		</div>
+		<div id="content">
+<div class="wrapper">
+<a href="http://www.forum-raspberrypi.de/page-moderator-werden"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/wwu_half_size.jpg" alt="Moderator werden"></a>
+&nbsp;
+				
+				
+				
+				
+				<!-- start: nav -->
+
+<div class="navigation">
+<!-- start: nav_bit -->
+<a href="http://www.forum-raspberrypi.de/index.php">Deutsches Raspberry Pi Forum | Die RPi Community</a><!-- start: nav_sep -->
+›
+<!-- end: nav_sep -->
+<!-- end: nav_bit --><!-- start: nav_bit -->
+<a href="http://www.forum-raspberrypi.de/Forum-verschiedenes">Verschiedenes</a><!-- start: nav_sep -->
+›
+<!-- end: nav_sep -->
+<!-- end: nav_bit --><!-- start: nav_bit -->
+<a href="http://www.forum-raspberrypi.de/Forum-tutorials-anleitungen?page=3">Tutorials &amp; Anleitungen</a> <img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/arrow_down.gif" alt="v" title="" class="pagination_breadcrumb_link" id="breadcrumb_multipage"><!-- start: multipage_breadcrumb -->
+<div id="breadcrumb_multipage_popup" class="pagination pagination_breadcrumb" style="display: none;">
+<!-- start: multipage_prevpage -->
+<a href="http://www.forum-raspberrypi.de/forumdisplay.php?fid=50&amp;page=2" class="pagination_previous">« Zurück</a>
+<!-- end: multipage_prevpage --><!-- start: multipage_page -->
+<a href="http://www.forum-raspberrypi.de/forumdisplay.php?fid=50" class="pagination_page">1</a>
+<!-- end: multipage_page --><!-- start: multipage_page -->
+<a href="http://www.forum-raspberrypi.de/forumdisplay.php?fid=50&amp;page=2" class="pagination_page">2</a>
+<!-- end: multipage_page --><!-- start: multipage_page_link_current -->
+ <a href="http://www.forum-raspberrypi.de/forumdisplay.php?fid=50&amp;page=3" class="pagination_current">3</a>
+<!-- end: multipage_page_link_current --><!-- start: multipage_page -->
+<a href="http://www.forum-raspberrypi.de/forumdisplay.php?fid=50&amp;page=4" class="pagination_page">4</a>
+<!-- end: multipage_page --><!-- start: multipage_page -->
+<a href="http://www.forum-raspberrypi.de/forumdisplay.php?fid=50&amp;page=5" class="pagination_page">5</a>
+<!-- end: multipage_page --><!-- start: multipage_end -->
+ <a href="http://www.forum-raspberrypi.de/forumdisplay.php?fid=50&amp;page=6" class="pagination_last">6</a>
+<!-- end: multipage_end --><!-- start: multipage_nextpage -->
+<a href="http://www.forum-raspberrypi.de/forumdisplay.php?fid=50&amp;page=4" class="pagination_next">Weiter »</a>
+<!-- end: multipage_nextpage -->
+</div>
+<script type="text/javascript">
+// <!--
+	if(use_xmlhttprequest == "1")
+	{
+		new PopupMenu("breadcrumb_multipage");
+	}
+// -->
+</script>
+<!-- end: multipage_breadcrumb -->
+<!-- end: nav_bit --><!-- start: nav_sep_active -->
+<br><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/nav_bit.gif" alt="">
+<!-- end: nav_sep_active --><!-- start: nav_bit_active -->
+<span class="active">[Tutorial]&nbsp;Lighttpd Webserver + PHP5 + MySQL Server unter Raspbian</span>
+<!-- end: nav_bit_active -->
+</div>
+<!-- end: nav -->
+			<div class="board_message">Derzeit kann es aus bisher unbekannten Gründen zu längeren Ladezeiten kommen. Wir bitten das zu entschuldigen.
+</div>
+
+
+				
+<center><a href="http://www.forum-raspberrypi.de/page-gewinnspiel-raspberry-pi-geek"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/banner.png"></a></center><br>
+<!-- end: header -->
+	
+	<div class="float_left">
+		<!-- start: multipage -->
+<div class="pagination">
+<span class="pages">Seiten (2):</span>
+<!-- start: multipage_page_current -->
+ <span class="pagination_current">1</span>
+<!-- end: multipage_page_current --><!-- start: multipage_page -->
+<a href="http://www.forum-raspberrypi.de/Thread-tutorial-lighttpd-webserver-php5-mysql-server-unter-raspbian?page=2" class="pagination_page">2</a>
+<!-- end: multipage_page --><!-- start: multipage_nextpage -->
+<a href="http://www.forum-raspberrypi.de/Thread-tutorial-lighttpd-webserver-php5-mysql-server-unter-raspbian?page=2" class="pagination_next">Weiter »</a>
+<!-- end: multipage_nextpage -->
+</div>
+<!-- end: multipage -->
+
+	</div>
+	<div class="float_right">
+		<!-- start: showthread_newreply -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=177"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/newreply.gif" alt="Antwort schreiben" title="Antwort schreiben"></a>&nbsp;
+<!-- end: showthread_newreply -->
+	</div>
+	<!-- start: showthread_ratethread -->
+<div style="margin-top: 6px; padding-right: 10px;" class="float_right">
+		<script type="text/javascript" src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/rating.js"></script>
+		<div id="success_rating_177" style="float: left; padding-top: 2px; padding-right: 10px;">&nbsp;</div>
+		<strong style="float: left; padding-right: 10px;">Themabewertung:</strong>
+		<div class="inline_rating">
+			<ul class="star_rating star_rating_notrated" id="rating_thread_177">
+				<li style="width: 100%" class="current_rating" id="current_rating_177">1 Bewertungen - 5 im Durchschnitt</li>
+				<li><a class="one_star" title="1 Stern von 5" href="http://www.forum-raspberrypi.de/ratethread.php?tid=177&amp;rating=1&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd">1</a></li>
+				<li><a class="two_stars" title="2 Stern von 5" href="http://www.forum-raspberrypi.de/ratethread.php?tid=177&amp;rating=2&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd">2</a></li>
+				<li><a class="three_stars" title="3 Stern von 5" href="http://www.forum-raspberrypi.de/ratethread.php?tid=177&amp;rating=3&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd">3</a></li>
+				<li><a class="four_stars" title="4 Stern von 5" href="http://www.forum-raspberrypi.de/ratethread.php?tid=177&amp;rating=4&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd">4</a></li>
+				<li><a class="five_stars" title="5 Stern von 5" href="http://www.forum-raspberrypi.de/ratethread.php?tid=177&amp;rating=5&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd">5</a></li>
+			</ul>
+		</div>
+</div>
+<!-- end: showthread_ratethread -->
+	<table class="tborder" style="clear: both; border-bottom-width: 0;" border="0" cellpadding="5" cellspacing="0">
+		<tbody><tr>
+			<td class="thead" colspan="2">
+				<div style="float: right;">
+					<span class="smalltext"><strong><a href="http://www.forum-raspberrypi.de/showthread.php?mode=threaded&amp;tid=177&amp;pid=757#pid757">Baumstrukturmodus</a> | <a href="http://www.forum-raspberrypi.de/showthread.php?mode=linear&amp;tid=177&amp;pid=757#pid757">Linearer Modus</a></strong></span>
+				</div>
+				<div>
+					 <strong>[Tutorial]&nbsp;Lighttpd Webserver + PHP5 + MySQL Server unter Raspbian</strong>
+				</div>
+			</td>
+		</tr>
+		
+	</tbody></table>
+	<div id="posts">
+		<!-- start: postbit -->
+
+<a name="pid757" id="pid757"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_757" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					04.08.2012, 21:00 <span id="edited_by_757"><!-- start: postbit_editedby -->
+<span class="smalltext">(Dieser Beitrag wurde zuletzt bearbeitet: 08.02.2013 21:13 von <a href="http://www.forum-raspberrypi.de/User-ps915">ps915</a>.)</span>
+
+
+<!-- end: postbit_editedby --></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-lighttpd-webserver-php5-mysql-server-unter-raspbian?pid=757#pid757">#1</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-ps915"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/av-48078.gif" alt="" height="70" width="54"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-ps915"><span style="color: green;"><strong><em>ps915</em></strong></span></a></span></strong> <!-- start: postbit_online -->
+<a href="http://www.forum-raspberrypi.de/online.php" title="Online"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/buddy_online.gif" alt="Online" border="0"></a>
+<!-- end: postbit_online --><br>
+							<span class="smalltext">
+								Administrator<br>
+								<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <!-- start: postbit_groupimage -->
+<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/administrator.png" alt="Administrators" title="Administrators">
+<!-- end: postbit_groupimage --><br>
+                                                                Anzahl:<b>2</b> RPis - Modell:<b>Modell B (256 MB RAM)</b> - Betriebssystem:<b>Raspbian
+Raspbmc</b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 766<br>
+Registriert seit: Apr 2012
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=5"><strong class="reputation_positive">13</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 156
+<br>
+Gefällt mir erhalten: 197 in 80 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>Lighttpd Webserver + PHP5 + MySQL Server unter Raspbian </strong></span>
+<div class="post_body postmsg" id="pid_757">Edit: Jetzt mit phpMyadmin ; getestet mit 2012-12-16-wheezy-raspbian.img<br>
+Edit:Image zum Download bereit gestellt (siehe unten)<br>
+<br>
+Vorab solltest du die root Partition an die Größe deiner SD-Karte angleichen.<br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('52403df3bc40e')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="52403df3bc40e">sudo raspi-config</code></div></div>
+expand_rootfs -&gt; OK -&gt; Finish -&gt; Reboot<br>
+<br>
+<span style="font-weight: bold;">1. Paketlisten aktualisieren</span><br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('52403df3beb24')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="52403df3beb24">sudo apt-get update</code></div></div>
+<br>
+<span style="font-weight: bold;">2. Lighttpd, MySQL, PHP5 und phpMyAdmin installieren</span><br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('52403df3c1245')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="52403df3c1245">sudo apt-get install lighttpd php5-cgi mysql-server mysql-client phpmyadmin</code></div></div>
+<span style="text-decoration: underline;">Konfiguration Mysql:</span><ul>
+<li>MySQL Password für den user "root" eingeben</li>
+<li>MySQL Password für den user "root" wiederholen</li>
+<li>Lighttpd zur Konfiguration auswählen<br>
+</li></ul>
+<span style="text-decoration: underline;">Konfiguration phpMyAdmin</span><ul>
+<li>"Configure database for phpmyadmin with dbconfig-common?" -&gt; YES</li>
+<li>phpMyAdmin Passwort vergeben (wahlweise MySQL Password von vorhin)</li>
+<li>MySQL Password von vorhin eingeben</li>
+<li>MySQL Password von vorhin wiederholen<br>
+</li></ul>
+Danach solltest du folgendes sehen, wenn du die IP deines RPI aufrufst.<br>
+<!-- start: postbit_attachments_thumbnails_thumbnail -->
+<a rel="lightbox[post_757]" href="http://www.forum-raspberrypi.de/attachment.php?aid=117" target="_blank"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/attachment.png" class="attachment" alt=""></a>&nbsp;&nbsp;&nbsp;
+<!-- end: postbit_attachments_thumbnails_thumbnail --><br>
+Lighttpd's root Verzeichnis ist /var/www<br>
+Die Konfigurationsdatei findest du unter /etc/lighttpd/lighttpd.conf<br>
+<br>
+<span style="font-weight: bold;">3. PHP5 konfigurieren</span><br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('52403df3c3945')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="52403df3c3945">sudo nano /etc/php5/cgi/php.ini</code></div></div>
+An das Ende der Datei folgendes anfügen<br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('52403df3c6054')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="52403df3c6054">cgi.fix_pathinfo = 1</code></div></div>
+<span style="font-style: italic;">Kleiner Tipp: Mit STRG + V blätterst du schnell nach unten</span><br>
+<br>
+Nun noch "mod_fastcgi" Modul eintragen<br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('52403df3c8769')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="52403df3c8769">sudo nano /etc/lighttpd/lighttpd.conf</code></div></div>
+So sollte es aussehen<br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('52403df3cae6b')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="52403df3cae6b">server.modules = (<br>
+"mod_fastcgi",<br>
+"mod_access",<br>
+"mod_alias",<br>
+"mod_compress",<br>
+"mod_redirect",<br>
+# "mod_rewrite",<br>
+)</code></div></div>
+<br>
+Zuletzt noch am Ende der Datei "lighttpd.conf" das fastcgi Modul einfügen und die phpmyadmin Konfiguration<br>
+<br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('52403df3cd57c')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="52403df3cd57c">fastcgi.server = ( ".php" =&gt; ((<br>
+"bin-path" =&gt; "/usr/bin/php5-cgi",<br>
+"socket" =&gt; "/tmp/php.socket"<br>
+)))<br>
+include "phpmyadmin.conf"</code></div></div>
+Wir benutzten fastcgi zum parsen, da es im Gegensatz zum normalen cgi mehr Performance liefert<br>
+<br>
+Danach muss mit diesem Befehl noch phpMyAdmin aktiviert werden<br>
+<br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('52403df3cfc97')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="52403df3cfc97">sudo cp /etc/phpmyadmin/lighttpd.conf /etc/lighttpd/phpmyadmin.conf</code></div></div>
+<br>
+<br>
+<span style="font-weight: bold;">4. lighttpd neustarten</span><br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('52403df3d23a9')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="52403df3d23a9">sudo /etc/init.d/lighttpd restart</code></div></div>
+<br>
+<span style="font-weight: bold;">5. lighttpd testen</span><br>
+Nun testen wir die Installation indem wir uns die phpinfo anzeigen 
+lassen. Dazu erstellen wir einen Datei auf dem Server wie folgt.<br>
+<br>
+Wir die Datei info.php <br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('52403df3da690')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="52403df3da690">sudo nano /var/www/info.php</code></div></div>
+<br>
+Mit dem Nano Editor schreiben wir nun folgenden Text in die Datei <br>
+<div class="codeblock phpcodeblock"><div class="title">PHP-Code: <small><a href="javascript:" onclick="SelectAll('52403df3dbfe5')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body"><div dir="ltr"><code id="52403df3dbfe5"><span style="color: #0000BB">&lt;?php<br>phpinfo</span><span style="color: #007700">();<br></span><span style="color: #0000BB">?&gt;</span></code></div></div></div>
+<span style="font-weight: bold;">Tipp Zu Nano:</span><br>
+Um den Editor zu verlassen und Datei speichern, ist die Tastenkombination <span style="font-weight: bold;">Strg + X</span> zu drücken. <br>
+Sollen die Änderungen zwischendurch gespeichert der Editor aber noch nicht verlassen werden, ist <span style="font-weight: bold;">Strg + O</span> zu drücken.<br>
+<br>
+Nun öffne die Datei über deinen Browser: <a href="http://192.168.0.108/info.php" target="_blank">http://192.168.0.108/info.php</a><br>
+<!-- start: postbit_attachments_thumbnails_thumbnail -->
+<a rel="lightbox[post_757]" href="http://www.forum-raspberrypi.de/attachment.php?aid=118" target="_blank"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/attachment_003.png" class="attachment" alt=""></a>&nbsp;&nbsp;&nbsp;
+<!-- end: postbit_attachments_thumbnails_thumbnail --><br>
+<br>
+Wie du unter Server API siehst läuft PHP nun unter dem FastCGI Modul.<br>
+Weiter unten wirst du erkennen, dass MySQL noch nicht von PHP unterstützt wird. Noch nicht! <img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/icon_wink.gif" style="vertical-align: middle;" alt="Icon_wink" title="Icon_wink" border="0"><br>
+<br>
+<span style="font-weight: bold;">6. MySQL support unter PHP5 einrichten</span><br>
+Damit MySQL und PHP zusammenarbeiten können sind noch einige Pakete notwendig.<br>
+<br>
+Mit diesem Befehl erhältst du eine Übersicht. Suche dir deine Pakete nun aus!<br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('52403df3de72f')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="52403df3de72f">apt-cache search php5</code></div></div>
+<br>
+Wir haben uns für diese wichtigsten Pakete entschieden und installieren diese nun.<br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('52403df3e0e03')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="52403df3e0e03">sudo apt-get 
+install php5-mysql php5-curl php5-gd php5-idn php-pear php5-imagick 
+php5-imap php5-mcrypt php5-memcache php5-mhash php5-ming php5-ps 
+php5-pspell php5-recode php5-snmp php5-sqlite php5-tidy php5-xmlrpc 
+php5-xsl php5-json</code></div></div>
+<br>
+<span style="font-weight: bold;">7. lighttpd neustarten</span><br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('52403df3e3af1')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="52403df3e3af1">sudo /etc/init.d/lighttpd restart</code></div></div>
+<br>
+<span style="font-weight: bold;">8. Installation testen</span><br>
+Nun öffne die Datei über deinen Browser: <a href="http://192.168.0.108/info.php" target="_blank">http://192.168.0.108/info.php</a><br>
+<br>
+MySQL ist nun von PHP5 unterstützt<br>
+<!-- start: postbit_attachments_thumbnails_thumbnail -->
+<a rel="lightbox[post_757]" href="http://www.forum-raspberrypi.de/attachment.php?aid=119" target="_blank"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/attachment_002.png" class="attachment" alt=""></a>&nbsp;&nbsp;&nbsp;
+<!-- end: postbit_attachments_thumbnails_thumbnail --><br>
+<br>
+<br>
+Nun läuft dein Performance Webserver auf Basis von lighttpd und FastCGI.<br>
+<br>
+<hr>
+<span style="font-weight: bold;">Webserver Image Download</span><br>
+<br>
+Ich habe einen Server aufgesetzt und als Image bereit gestellt:<br>
+2012-12-16-wheezy-raspbian<ul>
+<li>8GB Image</li>
+<li>PHP5</li>
+<li>MySQL Server</li>
+<li>phpMyAdmin</li>
+<li>lighttpd<br>
+</li></ul>
+Benutzername: pi <br>
+Passwort: raspberry<br>
+MySQL / phpMyAdmin Benutzername: root<br>
+MySQL / phpMyAdmin Passwort: raspberrypiforum<br>
+<br>
+config.txt<ul>
+<li>gpu_mem=16</li>
+<li>arm_freq=900<br>
+</li></ul>
+Benutzung des Images auf eigene Gefahr! Ich übernehme keine Verantwortung für eventuell entstehende Schäden<br>
+Download: <!-- start: postbit_attachments_attachment -->
+<br><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/zip.gif" alt=".zip" border="0">&nbsp;&nbsp;<a href="http://www.forum-raspberrypi.de/attachment.php?aid=328" target="_blank">2012-12-16-wheezy-raspbian_lighttpd_web_server_www.forum.raspberrypi.de.zip</a> (Größe: 741.73 MB / Downloads: 100)
+<!-- end: postbit_attachments_attachment --><br>
+<br>
+<br>
+<br>
+<br>
+<div style="text-align: center;"><span style="font-weight: bold;"><span style="font-size: medium;">Wenn du Fragen und/oder Verbesserungsvorschläge hast, zögere nicht diese unter diesem Beitrag zu stellen.<br>
+Über ein kurzes <span style="text-decoration: underline;">Feedback</span>, ob es geklappt hat würde ich mich auch sehr freuen!</span></span></div></div>
+			
+
+				
+				<div class="post_meta" id="post_meta_757">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_www -->
+<a href="http://www.forum-raspberrypi.de/" target="_blank"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_www.gif" alt="Webseite des Benutzers besuchen" title="Webseite des Benutzers besuchen"></a>
+<!-- end: postbit_www --><!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=5"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_757"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=757&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(757, 177);" title="Like Post" id="tyl_a757"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i757" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=177&amp;replyto=757"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="" id="tyl_757">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_757" style=""><strong>Den folgenden 2 Mitgliedern gefällt ps915's Beitrag:</strong></span><span id="tyl_title_collapsed_757" style="display: none;"></span><br>
+				<span id="tyl_data_757" style=""><span class="smalltext"></span><a href="http://www.forum-raspberrypi.de/User-joerg-sh" class="smalltext">Joerg-SH</a><span class="smalltext"></span><span class="smalltext">, </span><a href="http://www.forum-raspberrypi.de/User-logan517" class="smalltext">logan517</a><span class="smalltext"></span></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_757">
+			
+		</tr>
+	</tbody>
+</table><div onclick="MyAdvertisements.do_click(3);"><div style="margin:5px;" align="left">	
+<b>
+<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/tick-circle-frame.png" alt="Thema als erledigt markieren" title="Thema als erledigt markieren">
+ Wenn dein Problem oder deine Frage geklärt worden ist markiere bitte 
+dein Thema als "erledigt" indem du auf den "Erledigt" Button oben rechts
+ neben dem "Antworten" Button klickst. Vielen Dank!
+</b>
+</div>
+<table class="tborder" style="margin-bottom: 5px; " border="0" cellpadding="5" cellspacing="0">
+<tbody>
+		<tr>
+			<td class="trow2 post_content ">
+			<div align="center">
+				<a href="http://www.amazon.de/?_encoding=UTF8&amp;camp=1638&amp;creative=19454&amp;linkCode=ur2&amp;site-redirect=de&amp;tag=amazon0ee3-21" target="_blank">
+				<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/coffee.png" alt="Kaffe für das Forum" title="Kaffe für das Forum">
+				</a>
+			</div>
+			</td>
+		</tr>
+</tbody>
+</table></div>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid826" id="pid826"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_826" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					13.08.2012, 19:08 <span id="edited_by_826"></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-lighttpd-webserver-php5-mysql-server-unter-raspbian?pid=826#pid826">#2</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-eknap"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/logo.png" alt="" height="70" width="70"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-eknap">eknap</a></span></strong> <!-- start: postbit_offline -->
+<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/buddy_offline.gif" title="Offline" alt="Offline">
+<!-- end: postbit_offline --><br>
+							<span class="smalltext">
+								der Unwissende<br>
+								<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <br>
+                                                                Anzahl:<b>3</b> RPis - Modell:<b>Modell B (256 MB RAM)
+Modell B (512 MB RAM)</b> - Betriebssystem:<b>Debian
+Raspbian
+Raspbmc</b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 33<br>
+Registriert seit: Jul 2012
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=127"><strong class="reputation_neutral">0</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 12
+<br>
+Gefällt mir erhalten: 0 in 0 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>RE: [Tutorial] Lighttpd Webserver + PHP5 + MySQL Server unter Raspbian </strong></span>
+<div class="post_body postmsg" id="pid_826">Hallo<br>
+wie kann ich den zb. den pfad für die Daten auf zum beispiel auf einen USB Speicher oder eine Externe Festplatte legen?<br>
+<br>
+LG</div>
+			
+
+				
+				<div class="post_meta" id="post_meta_826">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=127"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_826"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=826&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(826, 177);" title="Like Post" id="tyl_a826"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i826" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=177&amp;replyto=826"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="display: none;" id="tyl_826">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_826" style=""></span><span id="tyl_title_collapsed_826" style="display: none;"></span><br>
+				<span id="tyl_data_826" style=""></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_826">
+			
+		</tr>
+	</tbody>
+</table>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid829" id="pid829"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_829" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					13.08.2012, 20:06 <span id="edited_by_829"></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-lighttpd-webserver-php5-mysql-server-unter-raspbian?pid=829#pid829">#3</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-ps915"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/av-48078.gif" alt="" height="70" width="54"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-ps915"><span style="color: green;"><strong><em>ps915</em></strong></span></a></span></strong> <!-- start: postbit_online -->
+<a href="http://www.forum-raspberrypi.de/online.php" title="Online"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/buddy_online.gif" alt="Online" border="0"></a>
+<!-- end: postbit_online --><br>
+							<span class="smalltext">
+								Administrator<br>
+								<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <!-- start: postbit_groupimage -->
+<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/administrator.png" alt="Administrators" title="Administrators">
+<!-- end: postbit_groupimage --><br>
+                                                                Anzahl:<b>2</b> RPis - Modell:<b>Modell B (256 MB RAM)</b> - Betriebssystem:<b>Raspbian
+Raspbmc</b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 766<br>
+Registriert seit: Apr 2012
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=5"><strong class="reputation_positive">13</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 156
+<br>
+Gefällt mir erhalten: 197 in 80 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>RE: [Tutorial] Lighttpd Webserver + PHP5 + MySQL Server unter Raspbian </strong></span>
+<div class="post_body postmsg" id="pid_829">Das ist leider nicht möglich! Falls es dir darum geht bequem die Dateien hochzuladen bzw zu ändern kannst du entweder einen <a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-ftp-server-proftpd-installation" target="_blank">FTP-Server</a> oder einen <a href="http://www.forum-raspberrypi.de/Thread-tutorial-samba-windows-freigabe-server-installation-raspbian-debian" target="_blank">Samba Server</a> installieren.</div>
+			
+
+				
+				<div class="post_meta" id="post_meta_829">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_www -->
+<a href="http://www.forum-raspberrypi.de/" target="_blank"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_www.gif" alt="Webseite des Benutzers besuchen" title="Webseite des Benutzers besuchen"></a>
+<!-- end: postbit_www --><!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=5"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_829"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=829&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(829, 177);" title="Like Post" id="tyl_a829"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i829" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=177&amp;replyto=829"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="display: none;" id="tyl_829">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_829" style=""></span><span id="tyl_title_collapsed_829" style="display: none;"></span><br>
+				<span id="tyl_data_829" style=""></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_829">
+			
+		</tr>
+	</tbody>
+</table>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid831" id="pid831"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_831" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					13.08.2012, 21:20 <span id="edited_by_831"></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-lighttpd-webserver-php5-mysql-server-unter-raspbian?pid=831#pid831">#4</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="" width="1">
+													</td>
+						<td class="post_author">
+							<strong><span class="largetext">Benutzer gelöscht</span></strong> <br>
+							<span class="smalltext">
+								Unregistered<br>
+								
+                                                                <br>
+                                                                Anzahl:<b></b> RPis - Modell:<b></b> - Betriebssystem:<b></b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_guest -->
+&nbsp;
+<!-- end: postbit_author_guest -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>RE: [Tutorial] Lighttpd Webserver + PHP5 + MySQL Server unter Raspbian </strong></span>
+<div class="post_body postmsg" id="pid_831">Also wenn er die httpdocs 
+meint also die PHP files usw die kann er hinlegen wo er mag. das kann 
+man in der lighthttp.conf einstellen wo der ordner dafür sein soll.<br>
+<br>
+Entschuldigt wenn ich etwas falsch verstanden habe<br>
+<br>
+server.document-root = "/var/www/"<br>
+<br>
+hier kannst du jeden pfad in deinem system angeben, allerdings musst du darauf achten das der<br>
+Webserver auf diesen pfad lese und schreibrechte hat.<br>
+<br>
+server.document-root = "/mnt/deineexterne/webserver"</div>
+			
+
+				
+				<div class="post_meta" id="post_meta_831">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=177&amp;replyto=831"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="display: none;" id="tyl_831">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_831" style=""></span><span id="tyl_title_collapsed_831" style="display: none;"></span><br>
+				<span id="tyl_data_831" style=""></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_831">
+			
+		</tr>
+	</tbody>
+</table>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid832" id="pid832"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_832" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					13.08.2012, 22:15 <span id="edited_by_832"></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-lighttpd-webserver-php5-mysql-server-unter-raspbian?pid=832#pid832">#5</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-ps915"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/av-48078.gif" alt="" height="70" width="54"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-ps915"><span style="color: green;"><strong><em>ps915</em></strong></span></a></span></strong> <!-- start: postbit_online -->
+<a href="http://www.forum-raspberrypi.de/online.php" title="Online"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/buddy_online.gif" alt="Online" border="0"></a>
+<!-- end: postbit_online --><br>
+							<span class="smalltext">
+								Administrator<br>
+								<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <!-- start: postbit_groupimage -->
+<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/administrator.png" alt="Administrators" title="Administrators">
+<!-- end: postbit_groupimage --><br>
+                                                                Anzahl:<b>2</b> RPis - Modell:<b>Modell B (256 MB RAM)</b> - Betriebssystem:<b>Raspbian
+Raspbmc</b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 766<br>
+Registriert seit: Apr 2012
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=5"><strong class="reputation_positive">13</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 156
+<br>
+Gefällt mir erhalten: 197 in 80 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>RE: [Tutorial] Lighttpd Webserver + PHP5 + MySQL Server unter Raspbian </strong></span>
+<div class="post_body postmsg" id="pid_832">Schreibe doch bitte dazu unter welchem Punkt er es ändern kann!</div>
+			
+
+				
+				<div class="post_meta" id="post_meta_832">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_www -->
+<a href="http://www.forum-raspberrypi.de/" target="_blank"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_www.gif" alt="Webseite des Benutzers besuchen" title="Webseite des Benutzers besuchen"></a>
+<!-- end: postbit_www --><!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=5"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_832"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=832&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(832, 177);" title="Like Post" id="tyl_a832"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i832" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=177&amp;replyto=832"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="display: none;" id="tyl_832">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_832" style=""></span><span id="tyl_title_collapsed_832" style="display: none;"></span><br>
+				<span id="tyl_data_832" style=""></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_832">
+			
+		</tr>
+	</tbody>
+</table>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid1989" id="pid1989"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_1989" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					04.11.2012, 17:20 <span id="edited_by_1989"></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-lighttpd-webserver-php5-mysql-server-unter-raspbian?pid=1989#pid1989">#6</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-fr34k"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/spam.gif" alt="" height="44" width="42"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-fr34k">Fr34k</a></span></strong> <!-- start: postbit_online -->
+<a href="http://www.forum-raspberrypi.de/online.php" title="Online"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/buddy_online.gif" alt="Online" border="0"></a>
+<!-- end: postbit_online --><br>
+							<span class="smalltext">
+								Forumbewohner<br>
+								<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <br>
+                                                                Anzahl:<b>1</b> RPis - Modell:<b>Modell B (256 MB RAM)</b> - Betriebssystem:<b>Andere</b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 70<br>
+Registriert seit: Nov 2012
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=526"><strong class="reputation_neutral">0</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 7
+<br>
+Gefällt mir erhalten: 2 in 2 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>RE: Lighttpd Webserver + PHP5 + MySQL Server unter Raspbian </strong></span>
+<div class="post_body postmsg" id="pid_1989">Guten Tag,<br>
+<br>
+Danke für das TUT. Ich habe alles nach deinem Tutorial installiert. info.php konnte ich aufrufen.<br>
+Nun wollte ich PCC installieren aber ich bekomme für http://raspbmc/pcc/install.php Forbiden 403.<br>
+Weis du einen Rat ?</div>
+			
+
+				
+				<div class="post_meta" id="post_meta_1989">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=526"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_1989"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=1989&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(1989, 177);" title="Like Post" id="tyl_a1989"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i1989" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=177&amp;replyto=1989"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="display: none;" id="tyl_1989">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_1989" style=""></span><span id="tyl_title_collapsed_1989" style="display: none;"></span><br>
+				<span id="tyl_data_1989" style=""></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_1989">
+			
+		</tr>
+	</tbody>
+</table>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid2000" id="pid2000"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_2000" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					04.11.2012, 21:04 <span id="edited_by_2000"></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-lighttpd-webserver-php5-mysql-server-unter-raspbian?pid=2000#pid2000">#7</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-agent47"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/suckxp.gif" alt="" height="70" width="50"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-agent47">agent47</a></span></strong> <!-- start: postbit_offline -->
+<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/buddy_offline.gif" title="Offline" alt="Offline">
+<!-- end: postbit_offline --><br>
+							<span class="smalltext">
+								Alter Hase<br>
+								<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <br>
+                                                                Anzahl:<b>3</b> RPis - Modell:<b>Modell B (256 MB RAM)
+Modell B (512 MB RAM)</b> - Betriebssystem:<b>Debian
+OpenELEC</b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 253<br>
+Registriert seit: Sep 2012
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=271"><strong class="reputation_positive">1</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 1
+<br>
+Gefällt mir erhalten: 21 in 21 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>RE: Lighttpd Webserver + PHP5 + MySQL Server unter Raspbian </strong></span>
+<div class="post_body postmsg" id="pid_2000">der Benutzer unter dem 
+Lighttpd läuft (glaube ist auch www-data) hat bestimmt keine rechte die 
+PHP Scripte aus zu führen probiere es mal mit <br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('52403df424e34')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="52403df424e34">sudo chmod 0755 -R /var/www</code></div></div>
+</div>
+			
+
+				
+				<div class="post_meta" id="post_meta_2000">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_www -->
+<a href="http://rpi-controlcenter.de/" target="_blank"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_www.gif" alt="Webseite des Benutzers besuchen" title="Webseite des Benutzers besuchen"></a>
+<!-- end: postbit_www --><!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=271"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_2000"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=2000&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(2000, 177);" title="Like Post" id="tyl_a2000"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i2000" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=177&amp;replyto=2000"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="display: none;" id="tyl_2000">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_2000" style=""></span><span id="tyl_title_collapsed_2000" style="display: none;"></span><br>
+				<span id="tyl_data_2000" style=""></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_2000">
+			
+		</tr>
+	</tbody>
+</table>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid2003" id="pid2003"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_2003" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					04.11.2012, 22:15 <span id="edited_by_2003"><!-- start: postbit_editedby -->
+<span class="smalltext">(Dieser Beitrag wurde zuletzt bearbeitet: 05.11.2012 19:39 von <a href="http://www.forum-raspberrypi.de/User-fr34k">Fr34k</a>.)</span>
+
+
+<!-- end: postbit_editedby --></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-lighttpd-webserver-php5-mysql-server-unter-raspbian?pid=2003#pid2003">#8</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-fr34k"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/spam.gif" alt="" height="44" width="42"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-fr34k">Fr34k</a></span></strong> <!-- start: postbit_online -->
+<a href="http://www.forum-raspberrypi.de/online.php" title="Online"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/buddy_online.gif" alt="Online" border="0"></a>
+<!-- end: postbit_online --><br>
+							<span class="smalltext">
+								Forumbewohner<br>
+								<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <br>
+                                                                Anzahl:<b>1</b> RPis - Modell:<b>Modell B (256 MB RAM)</b> - Betriebssystem:<b>Andere</b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 70<br>
+Registriert seit: Nov 2012
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=526"><strong class="reputation_neutral">0</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 7
+<br>
+Gefällt mir erhalten: 2 in 2 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>RE: Lighttpd Webserver + PHP5 + MySQL Server unter Raspbian </strong></span>
+<div class="post_body postmsg" id="pid_2003">das war die Lösung vielen dank<br>
+<br>
+Edit:<br>
+<br>
+Nun wollte ich PCC kopieren per ftp und ich bekomme diesmal den fehler<br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('52403df4277b0')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="52403df4277b0">(18:38:38) [T] 257 "/home/pi"<br>
+(18:38:38) [T]&nbsp;&nbsp;&nbsp;&nbsp; MKD /var/www/pcc<br>
+(18:38:38) [T] 550 Create directory operation failed.<br>
+(18:38:38) [T]&nbsp;&nbsp;&nbsp;&nbsp; CWD /var/www/pcc<br>
+(18:38:38) [T] 550 Failed to change directory.<br>
+(18:38:38) [T] (Benutzer hat Verbindung getrennt)</code></div></div>
+</div>
+			
+
+				
+				<div class="post_meta" id="post_meta_2003">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=526"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_2003"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=2003&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(2003, 177);" title="Like Post" id="tyl_a2003"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i2003" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=177&amp;replyto=2003"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="display: none;" id="tyl_2003">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_2003" style=""></span><span id="tyl_title_collapsed_2003" style="display: none;"></span><br>
+				<span id="tyl_data_2003" style=""></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_2003">
+			
+		</tr>
+	</tbody>
+</table>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid3140" id="pid3140"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_3140" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					21.12.2012, 17:04 <span id="edited_by_3140"></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-lighttpd-webserver-php5-mysql-server-unter-raspbian?pid=3140#pid3140">#9</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-joerg-sh"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/invalid_url.gif" alt="" height="70" width="70"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-joerg-sh">Joerg-SH</a></span></strong> <!-- start: postbit_offline -->
+<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/buddy_offline.gif" title="Offline" alt="Offline">
+<!-- end: postbit_offline --><br>
+							<span class="smalltext">
+								Newbie<br>
+								<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <!-- start: postbit_groupimage -->
+<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/member.png" alt="Registered" title="Registered">
+<!-- end: postbit_groupimage --><br>
+                                                                Anzahl:<b>2</b> RPis - Modell:<b>Modell B (512 MB RAM)</b> - Betriebssystem:<b>Raspbian</b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 5<br>
+Registriert seit: Sep 2012
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=316"><strong class="reputation_neutral">0</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 1
+<br>
+Gefällt mir erhalten: 1 in 1 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>RE: Lighttpd Webserver + PHP5 + MySQL Server unter Raspbian </strong></span>
+<div class="post_body postmsg" id="pid_3140">Hallo,<br>
+hat gut geklappt alles.<br>
+<br>
+Ich bekomme leider beim info.php ein "403 Forbidden"<br>
+<br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('52403df42ea78')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="52403df42ea78">sudo chmod 0755 -R /var/www</code></div></div>
+half da auch nicht.<br>
+<br>
+Grüße<br>
+<br>
+Jörg</div>
+			
+
+				
+				<div class="post_meta" id="post_meta_3140">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=316"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_3140"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=3140&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(3140, 177);" title="Like Post" id="tyl_a3140"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i3140" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=177&amp;replyto=3140"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="display: none;" id="tyl_3140">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_3140" style=""></span><span id="tyl_title_collapsed_3140" style="display: none;"></span><br>
+				<span id="tyl_data_3140" style=""></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_3140">
+			
+		</tr>
+	</tbody>
+</table>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid3148" id="pid3148"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_3148" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					21.12.2012, 19:38 <span id="edited_by_3148"></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-lighttpd-webserver-php5-mysql-server-unter-raspbian?pid=3148#pid3148">#10</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-agent47"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/suckxp.gif" alt="" height="70" width="50"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-agent47">agent47</a></span></strong> <!-- start: postbit_offline -->
+<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/buddy_offline.gif" title="Offline" alt="Offline">
+<!-- end: postbit_offline --><br>
+							<span class="smalltext">
+								Alter Hase<br>
+								<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <br>
+                                                                Anzahl:<b>3</b> RPis - Modell:<b>Modell B (256 MB RAM)
+Modell B (512 MB RAM)</b> - Betriebssystem:<b>Debian
+OpenELEC</b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 253<br>
+Registriert seit: Sep 2012
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=271"><strong class="reputation_positive">1</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 1
+<br>
+Gefällt mir erhalten: 21 in 21 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>RE: Lighttpd Webserver + PHP5 + MySQL Server unter Raspbian </strong></span>
+<div class="post_body postmsg" id="pid_3148">gib mal auf der Kommandozeile folgenden Befehl ein:<br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('52403df43389d')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="52403df43389d">sudo chown www-data -R /var/www/</code></div></div>
+<br>
+Damit setzt du für alle Dateien die im Server Root liegen den Benutzer www-data als Besitzer.</div>
+			
+
+				
+				<div class="post_meta" id="post_meta_3148">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_www -->
+<a href="http://rpi-controlcenter.de/" target="_blank"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_www.gif" alt="Webseite des Benutzers besuchen" title="Webseite des Benutzers besuchen"></a>
+<!-- end: postbit_www --><!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=271"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_3148"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=3148&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(3148, 177);" title="Like Post" id="tyl_a3148"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i3148" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=177&amp;replyto=3148"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="display: none;" id="tyl_3148">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_3148" style=""></span><span id="tyl_title_collapsed_3148" style="display: none;"></span><br>
+				<span id="tyl_data_3148" style=""></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_3148">
+			
+		</tr>
+	</tbody>
+</table>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid3159" id="pid3159"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_3159" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					22.12.2012, 14:30 <span id="edited_by_3159"></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-lighttpd-webserver-php5-mysql-server-unter-raspbian?pid=3159#pid3159">#11</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-joerg-sh"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/invalid_url.gif" alt="" height="70" width="70"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-joerg-sh">Joerg-SH</a></span></strong> <!-- start: postbit_offline -->
+<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/buddy_offline.gif" title="Offline" alt="Offline">
+<!-- end: postbit_offline --><br>
+							<span class="smalltext">
+								Newbie<br>
+								<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <!-- start: postbit_groupimage -->
+<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/member.png" alt="Registered" title="Registered">
+<!-- end: postbit_groupimage --><br>
+                                                                Anzahl:<b>2</b> RPis - Modell:<b>Modell B (512 MB RAM)</b> - Betriebssystem:<b>Raspbian</b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 5<br>
+Registriert seit: Sep 2012
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=316"><strong class="reputation_neutral">0</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 1
+<br>
+Gefällt mir erhalten: 1 in 1 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>RE: Lighttpd Webserver + PHP5 + MySQL Server unter Raspbian </strong></span>
+<div class="post_body postmsg" id="pid_3159">Prima, funktioniert alles super. Habe dazu noch den FTP Server nach dieser Anleitung Installiert <a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-ftp-server-proftpd-installation" target="_blank">http://www.forum-raspberrypi.de/Thread-t...stallation</a><br>
+<br>
+<br>
+Jetzt muss ich nur noch eigene Inhalte schreiben <img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/icon_smile.gif" style="vertical-align: middle;" alt="Icon_smile" title="Icon_smile" border="0"> <br>
+<br>
+<br>
+Danke für diese wirklich gut geschriebenen Tutorien <br>
+<br>
+<br>
+PS: Es klappt auch alles super vom Windowsrechner aus mit putty</div>
+			
+
+				
+				<div class="post_meta" id="post_meta_3159">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=316"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_3159"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=3159&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(3159, 177);" title="Like Post" id="tyl_a3159"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i3159" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=177&amp;replyto=3159"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="" id="tyl_3159">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_3159" style=""><strong>Den folgenden 1 Mitglied gefällt Joerg-SH's Beitrag:</strong></span><span id="tyl_title_collapsed_3159" style="display: none;"></span><br>
+				<span id="tyl_data_3159" style=""><span class="smalltext"></span><a href="http://www.forum-raspberrypi.de/User-ps915" class="smalltext"><span style="color: green;"><strong><em>ps915</em></strong></span></a><span class="smalltext"></span></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_3159">
+			
+		</tr>
+	</tbody>
+</table><div onclick="MyAdvertisements.do_click(3);"><div style="margin:5px;" align="left">	
+<b>
+<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/tick-circle-frame.png" alt="Thema als erledigt markieren" title="Thema als erledigt markieren">
+ Wenn dein Problem oder deine Frage geklärt worden ist markiere bitte 
+dein Thema als "erledigt" indem du auf den "Erledigt" Button oben rechts
+ neben dem "Antworten" Button klickst. Vielen Dank!
+</b>
+</div>
+<table class="tborder" style="margin-bottom: 5px; " border="0" cellpadding="5" cellspacing="0">
+<tbody>
+		<tr>
+			<td class="trow2 post_content ">
+			<div align="center">
+				<a href="http://www.amazon.de/?_encoding=UTF8&amp;camp=1638&amp;creative=19454&amp;linkCode=ur2&amp;site-redirect=de&amp;tag=amazon0ee3-21" target="_blank">
+				<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/coffee.png" alt="Kaffe für das Forum" title="Kaffe für das Forum">
+				</a>
+			</div>
+			</td>
+		</tr>
+</tbody>
+</table></div>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid5770" id="pid5770"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_5770" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					13.02.2013, 19:07 <span id="edited_by_5770"><!-- start: postbit_editedby -->
+<span class="smalltext">(Dieser Beitrag wurde zuletzt bearbeitet: 14.02.2013 00:47 von <a href="http://www.forum-raspberrypi.de/User-logan517">logan517</a>.)</span>
+
+
+<!-- end: postbit_editedby --></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-lighttpd-webserver-php5-mysql-server-unter-raspbian?pid=5770#pid5770">#12</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-logan517"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/invalid_url.gif" alt="" height="70" width="70"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-logan517">logan517</a></span></strong> <!-- start: postbit_offline -->
+<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/buddy_offline.gif" title="Offline" alt="Offline">
+<!-- end: postbit_offline --><br>
+							<span class="smalltext">
+								Newbie<br>
+								<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <br>
+                                                                Anzahl:<b>1</b> RPis - Modell:<b>Modell B (512 MB RAM)</b> - Betriebssystem:<b></b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 15<br>
+Registriert seit: Dec 2012
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=909"><strong class="reputation_neutral">0</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 2
+<br>
+Gefällt mir erhalten: 9 in 3 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>RE: Lighttpd Webserver + PHP5 + MySQL Server unter Raspbian </strong></span>
+<div class="post_body postmsg" id="pid_5770">Hi,<br>
+<br>
+also ich hatte zuerst nur lighttpd, php und mysql installiert. Php 
+nicht, weil es irgendwie nicht funktioniert hat, weiß nun nicht mehr 
+welchen Fehler ich dabei bekommen habe.<br>
+<br>
+So, nun wollte ich Phpmyadmin einfach nachinstallieren, allerdings hat das auch nicht funktioniert.<br>
+<br>
+Ich habe nun einfach alles deinstalliert und wollte das nun nochmal neu 
+installieren und nun bekomme ich folgende Fehlermeldung, wobei das 
+Passwort zu 100% richtig ist.<br>
+<br>
+Paketkonfiguration<br>
+<br>
+<blockquote><cite>Zitat:</cite>&nbsp;┌──────────────────────────────────────────────────────────────┤
+ Konfiguriere phpmyadmin 
+├──────────────────────────────────────────────────────────────┐<br>
+&nbsp;│ Ein Fehler ist beim Installieren der Datenbank 
+aufgetreten:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ │<br>
+&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ │<br>
+&nbsp;│ ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)<br>
+<br>
+...</blockquote>
+<br>
+<br>
+folgendes habe ich eingegeben:<br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('52403df4386ba')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="52403df4386ba">sudo apt-get --purge remove lighttpd* php* mysql* phpmyadmin*<br>
+sudo apt-get autoremove<br>
+sudo reboot<br>
+sudo apt-get update<br>
+sudo apt-get install lighttpd php5-cgi mysql-server mysql-client phpmyadmin</code></div></div>
+<br>
+mich wundert es, weil ich bei der installation nicht viel falsch machen 
+kann, vertippt habe ich mich nicht, habe ein wirklich sehr einfaches 
+passwort angegeben, wollte das später erst ändern.<br>
+<br>
+edit:<br>
+also wenn ich bei der installation bei dem Punkt "Configure database for
+ phpmyadmin with dbconfig-common?" auf NO setze, dann bekomme ich bei 
+der installation zumindest kein Fehler mehr, allerdings beim einloggen 
+ins phpmyadmin ein 500internal error und wenn ich die configs bearbeite 
+und dann lighttpd neustarten möchte, bekomme ich diese fehlemeldung<br>
+<blockquote><cite>Zitat:</cite>sudo /etc/init.d/lighttpd restart<br>
+Duplicate config variable in conditional 0 global: fastcgi.server<br>
+2013-02-13 23:47:21: (configfile.c.943) source: 
+/etc/lighttpd/lighttpd.conf line: 35 pos: 8 parser failed somehow near 
+here: (EOL)</blockquote>
+</div>
+			
+
+				
+				<div class="post_meta" id="post_meta_5770">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=909"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_5770"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=5770&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(5770, 177);" title="Like Post" id="tyl_a5770"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i5770" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=177&amp;replyto=5770"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="display: none;" id="tyl_5770">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_5770" style=""></span><span id="tyl_title_collapsed_5770" style="display: none;"></span><br>
+				<span id="tyl_data_5770" style=""></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_5770">
+			
+		</tr>
+	</tbody>
+</table>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid6494" id="pid6494"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_6494" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					24.02.2013, 01:37 <span id="edited_by_6494"></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-lighttpd-webserver-php5-mysql-server-unter-raspbian?pid=6494#pid6494">#13</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-nachtzleben"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/invalid_url.gif" alt="" height="70" width="70"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-nachtzleben">nachtzleben</a></span></strong> <!-- start: postbit_offline -->
+<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/buddy_offline.gif" title="Offline" alt="Offline">
+<!-- end: postbit_offline --><br>
+							<span class="smalltext">
+								Newbie<br>
+								<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <!-- start: postbit_groupimage -->
+<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/member.png" alt="Registered" title="Registered">
+<!-- end: postbit_groupimage --><br>
+                                                                Anzahl:<b>1</b> RPis - Modell:<b>Modell B (512 MB RAM)</b> - Betriebssystem:<b>Raspbian</b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 5<br>
+Registriert seit: Feb 2013
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=1940"><strong class="reputation_neutral">0</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 1
+<br>
+Gefällt mir erhalten: 0 in 0 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/brick.gif" alt="Brick" style="vertical-align: middle;">&nbsp;RE: Lighttpd Webserver + PHP5 + MySQL Server unter Raspbian </strong></span>
+<div class="post_body postmsg" id="pid_6494">Moin logan517,<br>
+<br>
+Deine Fehlermeldung in der "line 35 pos 8 near (EOL)" etc ist bei mir genauso. Hast Du mittlerweile eine Lösung erreicht?!<br>
+<br>
+zum Tutorial: mit apache (anderes Tutorial) hat es sofort geklappt. an 
+lighttpd interessiert mich eher, der wenige Speicherbedarf. Aber leider 
+ist bei mir die Luft raus bei Punkt 4 : sudo /etc/init.d/lighttpd 
+restart" bricht ab mit der gleichen Meldund von logan.<br>
+<br>
+Sorry, ich sehe den Baum vor lauter Wald einfach nicht.<br>
+<br>
+danke für ein weiteres unter die Arme greifen.<br>
+<br>
+nachtzleben</div>
+			
+
+				
+				<div class="post_meta" id="post_meta_6494">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=1940"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_6494"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=6494&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(6494, 177);" title="Like Post" id="tyl_a6494"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i6494" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=177&amp;replyto=6494"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="display: none;" id="tyl_6494">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_6494" style=""></span><span id="tyl_title_collapsed_6494" style="display: none;"></span><br>
+				<span id="tyl_data_6494" style=""></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_6494">
+			
+		</tr>
+	</tbody>
+</table>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid6697" id="pid6697"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_6697" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					27.02.2013, 12:40 <span id="edited_by_6697"></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-lighttpd-webserver-php5-mysql-server-unter-raspbian?pid=6697#pid6697">#14</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-lupurus"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/invalid_url.gif" alt="" height="70" width="70"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-lupurus">Lupurus</a></span></strong> <!-- start: postbit_offline -->
+<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/buddy_offline.gif" title="Offline" alt="Offline">
+<!-- end: postbit_offline --><br>
+							<span class="smalltext">
+								Junior<br>
+								<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <br>
+                                                                Anzahl:<b>1</b> RPis - Modell:<b>Modell B (512 MB RAM)</b> - Betriebssystem:<b>Andere</b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 44<br>
+Registriert seit: Feb 2013
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=2013"><strong class="reputation_neutral">0</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 2
+<br>
+Gefällt mir erhalten: 2 in 2 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>RE: Lighttpd Webserver + PHP5 + MySQL Server unter Raspbian </strong></span>
+<div class="post_body postmsg" id="pid_6697">Hi,<br>
+<br>
+erst einmal danke für das Tutorial. Ich konnte den Webserver nun 
+einrichten, leider komme ich nicht auf phpmyadmin, es kommt immer ein 
+404-Fehler. In welchem Verzeichnis ist das denn nun drin?<br>
+<br>
+Sonst zum Tutorial:<br>
+<br>
+Müssen die Konfigurationen bezüglich fastcgi denn sein? Reicht nicht ein&nbsp;<br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('52403df44982e')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="52403df44982e">sudo lighty-enable-mod fastcgi</code></div></div>
+<br>
+?<br>
+<br>
+Im Übrigen: Das Kopieren der .conf-Datei halte ich ebenfalls nicht für sinnvoll. Besser wäre:<br>
+<br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('52403df44bf45')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="52403df44bf45">sudo ln -s /etc/phpmyadmin/lighttpd.conf /etc/lighttpd/phpmyadmin.conf</code></div></div>
+</div>
+			
+
+				
+				<div class="post_meta" id="post_meta_6697">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=2013"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_6697"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=6697&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(6697, 177);" title="Like Post" id="tyl_a6697"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i6697" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=177&amp;replyto=6697"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="display: none;" id="tyl_6697">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_6697" style=""></span><span id="tyl_title_collapsed_6697" style="display: none;"></span><br>
+				<span id="tyl_data_6697" style=""></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_6697">
+			
+		</tr>
+	</tbody>
+</table>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid8378" id="pid8378"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_8378" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					22.03.2013, 16:01 <span id="edited_by_8378"></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-lighttpd-webserver-php5-mysql-server-unter-raspbian?pid=8378#pid8378">#15</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-aplaceformyhead"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/invalid_url.gif" alt="" height="70" width="70"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-aplaceformyhead">aplaceformyhead</a></span></strong> <!-- start: postbit_offline -->
+<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/buddy_offline.gif" title="Offline" alt="Offline">
+<!-- end: postbit_offline --><br>
+							<span class="smalltext">
+								Junior<br>
+								<img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <br>
+                                                                Anzahl:<b>1</b> RPis - Modell:<b>Modell B (512 MB RAM)</b> - Betriebssystem:<b>Raspbian</b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 35<br>
+Registriert seit: Mar 2013
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=2383"><strong class="reputation_neutral">0</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 4
+<br>
+Gefällt mir erhalten: 0 in 0 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>RE: Lighttpd Webserver + PHP5 + MySQL Server unter Raspbian </strong></span>
+<div class="post_body postmsg" id="pid_8378">Habe das selbe Problem:<br>
+<br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('52403df44e64e')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="52403df44e64e">pi@raspberrypi /var/www $ sudo /etc/init.d/lighttpd restart<br>
+Duplicate config variable in conditional 0 global: fastcgi.server<br>
+2013-03-22 13:59:15: (configfile.c.943) source: 
+/etc/lighttpd/lighttpd.conf line: 35 pos: 8 parser failed somehow near 
+here: (EOL)&nbsp;</code></div></div>
+<br>
+<br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('52403df450d60')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="52403df450d60">pi@raspberrypi /var/www $ sudo nano /etc/lighttpd/lighttpd.conf<br>
+server.modules = (<br>
+&nbsp; &nbsp; &nbsp; &nbsp; "mod_fastcgi",<br>
+&nbsp; &nbsp; &nbsp; &nbsp; "mod_access",<br>
+&nbsp; &nbsp; &nbsp; &nbsp; "mod_alias",<br>
+&nbsp; &nbsp; &nbsp; &nbsp; "mod_compress",<br>
+&nbsp; &nbsp; &nbsp; &nbsp; "mod_redirect",<br>
+# &nbsp; &nbsp; &nbsp; "mod_rewrite",<br>
+)<br>
+<br>
+server.document-root &nbsp; &nbsp; &nbsp; &nbsp;= "/var/www"<br>
+server.upload-dirs &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;= ( "/var/cache/lighttpd/uploads" )<br>
+server.errorlog &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; = "/var/log/lighttpd/error.log"<br>
+server.pid-file &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; = "/var/run/lighttpd.pid"<br>
+server.username &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; = "www-data"<br>
+server.groupname &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;= "www-data"<br>
+server.port &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; = 80<br>
+<br>
+<br>
+index-file.names &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;= ( "index.php", "index.html", "index.lighttpd.html" )<br>
+url.access-deny &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; = ( "~", ".inc" )<br>
+static-file.exclude-extensions = ( ".php", ".pl", ".fcgi" )<br>
+<br>
+compress.cache-dir &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;= "/var/cache/lighttpd/compress/"<br>
+compress.filetype &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; = ( "application/javascript", "text/css", "text/html", "text/plain" )<br>
+<br>
+# default listening port for IPv6 falls back to the IPv4 port<br>
+include_shell "/usr/share/lighttpd/use-ipv6.pl " + server.port<br>
+include_shell "/usr/share/lighttpd/create-mime.assign.pl"<br>
+include_shell "/usr/share/lighttpd/include-conf-enabled.pl"<br>
+<br>
+include_shell "/usr/share/lighttpd/create-mime.assign.pl"<br>
+include_shell "/usr/share/lighttpd/include-conf-enabled.pl"<br>
+<br>
+fastcgi.server = ( ".php" =&gt; ((<br>
+"bin-path" =&gt; "/usr/bin/php5-cgi",<br>
+"socket" =&gt; "/tmp/php.socket"<br>
+)))<br>
+include "phpmyadmin.conf"</code></div></div>
+<br>
+<br>
+kann mir jemand helfen bzw. sagen wo mein Fehler ist?</div>
+			
+
+				
+				<div class="post_meta" id="post_meta_8378">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=2383"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_8378"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=8378&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(8378, 177);" title="Like Post" id="tyl_a8378"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i8378" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=177&amp;replyto=8378"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="display: none;" id="tyl_8378">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_8378" style=""></span><span id="tyl_title_collapsed_8378" style="display: none;"></span><br>
+				<span id="tyl_data_8378" style=""></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_8378">
+			
+		</tr>
+	</tbody>
+</table>
+<!-- end: postbit -->
+	</div>
+	<table class="tborder" style="border-top-width: 0;" border="0" cellpadding="5" cellspacing="0">
+		<tbody><tr>
+			<td colspan="2" class="tfoot">
+				<!-- start: showthread_search -->
+	<div class="float_right">
+		<form action="search.php" method="post">
+			<input name="action" value="thread" type="hidden">
+			<input name="tid" value="177" type="hidden">
+			<input name="keywords" value="Suchbegriff(e)" onfocus="if(this.value == 'Suchbegriff(e)') { this.value = ''; }" onblur="if(this.value=='') { this.value='Suchbegriff(e)'; }" class="textbox" size="25" type="text">
+			<input class="button" value="Durchsuche Thema" type="submit">
+		</form>
+	</div>
+<!-- end: showthread_search -->
+				<div>
+					<strong>« <a href="http://www.forum-raspberrypi.de/Thread-tutorial-lighttpd-webserver-php5-mysql-server-unter-raspbian?action=nextoldest">Ein Thema zurück</a> | <a href="http://www.forum-raspberrypi.de/Thread-tutorial-lighttpd-webserver-php5-mysql-server-unter-raspbian?action=nextnewest">Ein Thema vor</a> »</strong>
+				</div>
+			</td>
+		</tr>
+	</tbody></table>
+	<div class="float_left">
+		<!-- start: multipage -->
+<div class="pagination">
+<span class="pages">Seiten (2):</span>
+<!-- start: multipage_page_current -->
+ <span class="pagination_current">1</span>
+<!-- end: multipage_page_current --><!-- start: multipage_page -->
+<a href="http://www.forum-raspberrypi.de/Thread-tutorial-lighttpd-webserver-php5-mysql-server-unter-raspbian?page=2" class="pagination_page">2</a>
+<!-- end: multipage_page --><!-- start: multipage_nextpage -->
+<a href="http://www.forum-raspberrypi.de/Thread-tutorial-lighttpd-webserver-php5-mysql-server-unter-raspbian?page=2" class="pagination_next">Weiter »</a>
+<!-- end: multipage_nextpage -->
+</div>
+<!-- end: multipage -->
+	</div>
+	<div style="padding-top: 4px;" class="float_right">
+		<!-- start: showthread_newreply -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=177"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/newreply.gif" alt="Antwort schreiben" title="Antwort schreiben"></a>&nbsp;
+<!-- end: showthread_newreply -->
+	</div>
+	<br style="clear: both;">
+	
+        <!-- start: showthread_sharebuttons -->
+<br>
+        <table class="tborder" border="0" cellpadding="5" cellspacing="0">
+         <thead>
+          <tr>
+           <td class="thead" colspan="8">
+            <div class="expcolimage"><img style="cursor: pointer;" src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/collapse.gif" id="ishare_img" class="expander" alt="[-]" title="[-]"></div>
+            <strong>Share/Bookmark</strong>&nbsp;<i>(<a href="javascript:MyBB.popupWindow('misc.php?action=sharebuttonspopup&amp;tid=177',%20'sharebuttons',%20360,%20350);">Show All</a>)</i>
+           </td>
+          </tr>
+         </thead>
+         <tbody style="" id="ishare_e">
+          <!-- start: showthread_sharebuttons_tr_start -->
+<tr>
+<!-- end: showthread_sharebuttons_tr_start --><!-- start: showthread_sharebuttons_button -->
+<td class="trow1" style="padding:10px;" align="center" valign="center"><a href="#" onclick="MyBB.popupWindow('http://www.facebook.com/share.php?u=http%3A%2F%2Fwww.forum-raspberrypi.de%2Fshowthread.php%3Ftid%3D177&amp;t=Lighttpd+Webserver+%2B+PHP5+%2B+MySQL+Server+unter+Raspbian', 'bsharethread', 550, 310);" target=""><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/facebook_big.png" alt="Facebook" title="Facebook"></a></td>
+<!-- end: showthread_sharebuttons_button --><!-- start: showthread_sharebuttons_button -->
+<td class="trow2" style="padding:10px;" align="center" valign="center"><a href="#" onclick="MyBB.popupWindow('http://twitter.com/intent/tweet?text=Lighttpd+Webserver+%2B+PHP5+%2B+MySQL+Server+unter+Raspbian&amp;url=http%3A%2F%2Fwww.forum-raspberrypi.de%2Fshowthread.php%3Ftid%3D177', 'bsharethread', 550, 300);" target=""><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/twitter_big.png" alt="Twitter" title="Twitter"></a></td>
+<!-- end: showthread_sharebuttons_button --><!-- start: showthread_sharebuttons_button -->
+<td class="trow1" style="padding:10px;" align="center" valign="center"><a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fwww.forum-raspberrypi.de%2Fshowthread.php%3Ftid%3D177&amp;title=Lighttpd+Webserver+%2B+PHP5+%2B+MySQL+Server+unter+Raspbian" onclick="" target="_blank"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/linkedin_big.png" alt="Linkedin" title="Linkedin"></a></td>
+<!-- end: showthread_sharebuttons_button --><!-- start: showthread_sharebuttons_button -->
+<td class="trow2" style="padding:10px;" align="center" valign="center"><a href="http://technorati.com/faves/?add=http%3A%2F%2Fwww.forum-raspberrypi.de%2Fshowthread.php%3Ftid%3D177" onclick="" target="_blank"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/technorati_big.png" alt="Technorati" title="Technorati"></a></td>
+<!-- end: showthread_sharebuttons_button --><!-- start: showthread_sharebuttons_button -->
+<td class="trow1" style="padding:10px;" align="center" valign="center"><a href="http://digg.com/submit?phase=2&amp;url=http%3A%2F%2Fwww.forum-raspberrypi.de%2Fshowthread.php%3Ftid%3D177&amp;title=Lighttpd+Webserver+%2B+PHP5+%2B+MySQL+Server+unter+Raspbian" onclick="" target="_blank"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/digg_big.png" alt="Digg" title="Digg"></a></td>
+<!-- end: showthread_sharebuttons_button --><!-- start: showthread_sharebuttons_button -->
+<td class="trow2" style="padding:10px;" align="center" valign="center"><a href="http://www.myspace.com/Modules/PostTo/Pages/?u=http%3A%2F%2Fwww.forum-raspberrypi.de%2Fshowthread.php%3Ftid%3D177&amp;t=Lighttpd+Webserver+%2B+PHP5+%2B+MySQL+Server+unter+Raspbian" onclick="" target="_blank"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/myspace_big.png" alt="MySpace" title="MySpace"></a></td>
+<!-- end: showthread_sharebuttons_button --><!-- start: showthread_sharebuttons_button -->
+<td class="trow1" style="padding:10px;" align="center" valign="center"><a href="http://del.icio.us/post?url=http%3A%2F%2Fwww.forum-raspberrypi.de%2Fshowthread.php%3Ftid%3D177&amp;title=Lighttpd+Webserver+%2B+PHP5+%2B+MySQL+Server+unter+Raspbian" onclick="" target="_blank"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/delicious_big.png" alt="Delicious" title="Delicious"></a></td>
+<!-- end: showthread_sharebuttons_button -->
+         </tr></tbody>
+        </table>
+<!-- end: showthread_sharebuttons -->
+	
+	<!-- start: showthread_similarthreads -->
+<br>
+<table class="tborder" border="0" cellpadding="5" cellspacing="0">
+<tbody><tr>
+<td class="thead" colspan="6" align="center"><strong>Möglicherweise verwandte Themen...</strong></td>
+</tr>
+<tr>
+<td class="tcat" colspan="2" align="center"><span class="smalltext"><strong>Thema:</strong></span></td>
+<td class="tcat" align="center"><span class="smalltext"><strong>Verfasser</strong></span></td>
+<td class="tcat" align="center"><span class="smalltext"><strong>Antworten:</strong></span></td>
+<td class="tcat" align="center"><span class="smalltext"><strong>Ansichten:</strong></span></td>
+<td class="tcat" align="center"><span class="smalltext"><strong>Letzter Beitrag</strong></span></td>
+</tr>
+<!-- start: showthread_similarthreads_bit -->
+<tr>
+	<td class="trow1" align="center" width="2%">&nbsp;</td>
+	<td class="trow1">[Tutorial]&nbsp;<a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-apache-2-installation">Raspberry Pi als Webserver - Apache 2 Installation</a></td>
+	<td class="trow1" align="center"><a href="http://www.forum-raspberrypi.de/User-ps915">ps915</a></td>
+	<td class="trow1" align="center"><a href="javascript:MyBB.whoPosted(100);">37</a></td>
+	<td class="trow1" align="center">33,519</td>
+	<td class="trow1" style="white-space: nowrap">
+		<span class="smalltext">Heute 15:07<br>
+		<a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-apache-2-installation?action=lastpost">Letzter Beitrag</a>: <a href="http://www.forum-raspberrypi.de/User-davenawi">davenawi</a></span>
+	</td>
+	</tr>
+<!-- end: showthread_similarthreads_bit --><!-- start: showthread_similarthreads_bit -->
+<tr>
+	<td class="trow2" align="center" width="2%">&nbsp;</td>
+	<td class="trow2">[Tutorial]&nbsp;<a href="http://www.forum-raspberrypi.de/Thread-tutorial-alarmanlage-magnetkontakte-auslesen-und-speichern-webserver-interface">Alarmanlage - Magnetkontakte auslesen und speichern - Webserver Interface</a></td>
+	<td class="trow2" align="center"><a href="http://www.forum-raspberrypi.de/User-ps915">ps915</a></td>
+	<td class="trow2" align="center"><a href="javascript:MyBB.whoPosted(3250);">7</a></td>
+	<td class="trow2" align="center">1,221</td>
+	<td class="trow2" style="white-space: nowrap">
+		<span class="smalltext">21.09.2013 16:08<br>
+		<a href="http://www.forum-raspberrypi.de/Thread-tutorial-alarmanlage-magnetkontakte-auslesen-und-speichern-webserver-interface?action=lastpost">Letzter Beitrag</a>: <a href="http://www.forum-raspberrypi.de/User-stullenpaule">Stullenpaule</a></span>
+	</td>
+	</tr>
+<!-- end: showthread_similarthreads_bit --><!-- start: showthread_similarthreads_bit -->
+<tr>
+	<td class="trow1" align="center" width="2%">&nbsp;</td>
+	<td class="trow1">[Tutorial]&nbsp;<a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-ftp-server-proftpd-installation">Raspberry Pi als Webserver - FTP-Server (ProFTPD) Installation</a></td>
+	<td class="trow1" align="center"><a href="http://www.forum-raspberrypi.de/User-ps915">ps915</a></td>
+	<td class="trow1" align="center"><a href="javascript:MyBB.whoPosted(109);">80</a></td>
+	<td class="trow1" align="center">46,161</td>
+	<td class="trow1" style="white-space: nowrap">
+		<span class="smalltext">18.09.2013 20:24<br>
+		<a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-ftp-server-proftpd-installation?action=lastpost">Letzter Beitrag</a>: <a href="http://www.forum-raspberrypi.de/User-fillip13">Fillip13</a></span>
+	</td>
+	</tr>
+<!-- end: showthread_similarthreads_bit --><!-- start: showthread_similarthreads_bit -->
+<tr>
+	<td class="trow2" align="center" width="2%">&nbsp;</td>
+	<td class="trow2">[Tutorial]&nbsp;<a href="http://www.forum-raspberrypi.de/Thread-tutorial-owncloud-5-server-installieren-nginx-webserver">Owncloud 5 Server installieren (nginx Webserver)</a></td>
+	<td class="trow2" align="center"><a href="http://www.forum-raspberrypi.de/User-ps915">ps915</a></td>
+	<td class="trow2" align="center"><a href="javascript:MyBB.whoPosted(1837);">135</a></td>
+	<td class="trow2" align="center">27,822</td>
+	<td class="trow2" style="white-space: nowrap">
+		<span class="smalltext">18.09.2013 06:15<br>
+		<a href="http://www.forum-raspberrypi.de/Thread-tutorial-owncloud-5-server-installieren-nginx-webserver?action=lastpost">Letzter Beitrag</a>: <a href="http://www.forum-raspberrypi.de/User-daniel9180">Daniel9180</a></span>
+	</td>
+	</tr>
+<!-- end: showthread_similarthreads_bit --><!-- start: showthread_similarthreads_bit -->
+<tr>
+	<td class="trow1" align="center" width="2%">&nbsp;</td>
+	<td class="trow1">[Tutorial]&nbsp;<a href="http://www.forum-raspberrypi.de/Thread-tutorial-twonky-media-server-auf-raspberrypi-installieren">Twonky Media Server auf RaspberryPI installieren</a></td>
+	<td class="trow1" align="center"><a href="http://www.forum-raspberrypi.de/User-backslash">Backslash</a></td>
+	<td class="trow1" align="center"><a href="javascript:MyBB.whoPosted(804);">9</a></td>
+	<td class="trow1" align="center">5,081</td>
+	<td class="trow1" style="white-space: nowrap">
+		<span class="smalltext">14.09.2013 23:48<br>
+		<a href="http://www.forum-raspberrypi.de/Thread-tutorial-twonky-media-server-auf-raspberrypi-installieren?action=lastpost">Letzter Beitrag</a>: <a href="http://www.forum-raspberrypi.de/User-abcdacbd">abcdacbd</a></span>
+	</td>
+	</tr>
+<!-- end: showthread_similarthreads_bit --><!-- start: showthread_similarthreads_bit -->
+<tr>
+	<td class="trow2" align="center" width="2%">&nbsp;</td>
+	<td class="trow2">[Tutorial]&nbsp;<a href="http://www.forum-raspberrypi.de/Thread-tutorial-strato-hidrive-unter-raspbian-als-virtuelle-festplatte-einbinden">Strato HiDrive unter Raspbian als virtuelle Festplatte einbinden</a></td>
+	<td class="trow2" align="center"><a href="http://www.forum-raspberrypi.de/User-boandlkramer">boandlkramer</a></td>
+	<td class="trow2" align="center"><a href="javascript:MyBB.whoPosted(2592);">11</a></td>
+	<td class="trow2" align="center">616</td>
+	<td class="trow2" style="white-space: nowrap">
+		<span class="smalltext">14.09.2013 16:27<br>
+		<a href="http://www.forum-raspberrypi.de/Thread-tutorial-strato-hidrive-unter-raspbian-als-virtuelle-festplatte-einbinden?action=lastpost">Letzter Beitrag</a>: <a href="http://www.forum-raspberrypi.de/User-django">django</a></span>
+	</td>
+	</tr>
+<!-- end: showthread_similarthreads_bit --><!-- start: showthread_similarthreads_bit -->
+<tr>
+	<td class="trow1" align="center" width="2%">&nbsp;</td>
+	<td class="trow1">[Tutorial]&nbsp;<a href="http://www.forum-raspberrypi.de/Thread-tutorial-owncloud-5-server-installieren-raspbian-wheezy-dropbox-alternative">Owncloud 5 Server installieren (Raspbian Wheezy) - Dropbox Alternative</a></td>
+	<td class="trow1" align="center"><a href="http://www.forum-raspberrypi.de/User-ps915">ps915</a></td>
+	<td class="trow1" align="center"><a href="javascript:MyBB.whoPosted(963);">153</a></td>
+	<td class="trow1" align="center">62,489</td>
+	<td class="trow1" style="white-space: nowrap">
+		<span class="smalltext">13.09.2013 12:29<br>
+		<a href="http://www.forum-raspberrypi.de/Thread-tutorial-owncloud-5-server-installieren-raspbian-wheezy-dropbox-alternative?action=lastpost">Letzter Beitrag</a>: <a href="http://www.forum-raspberrypi.de/User-dcsh">DCSH</a></span>
+	</td>
+	</tr>
+<!-- end: showthread_similarthreads_bit --><!-- start: showthread_similarthreads_bit -->
+<tr>
+	<td class="trow2" align="center" width="2%">&nbsp;</td>
+	<td class="trow2">[Tutorial]&nbsp;<a href="http://www.forum-raspberrypi.de/Thread-tutorial-installation-von-mixxx-auf-dem-raspberry-pi-raspbian-only">Installation von MIXXX auf dem Raspberry Pi (Raspbian only)</a></td>
+	<td class="trow2" align="center"><a href="http://www.forum-raspberrypi.de/User-der-waelder">der_Waelder</a></td>
+	<td class="trow2" align="center"><a href="javascript:MyBB.whoPosted(2590);">3</a></td>
+	<td class="trow2" align="center">827</td>
+	<td class="trow2" style="white-space: nowrap">
+		<span class="smalltext">12.09.2013 15:57<br>
+		<a href="http://www.forum-raspberrypi.de/Thread-tutorial-installation-von-mixxx-auf-dem-raspberry-pi-raspbian-only?action=lastpost">Letzter Beitrag</a>: <a href="http://www.forum-raspberrypi.de/User-cooljef">cooljef</a></span>
+	</td>
+	</tr>
+<!-- end: showthread_similarthreads_bit --><!-- start: showthread_similarthreads_bit -->
+<tr>
+	<td class="trow1" align="center" width="2%">&nbsp;</td>
+	<td class="trow1">[Tutorial]&nbsp;<a href="http://www.forum-raspberrypi.de/Thread-tutorial-samba-windows-freigabe-server-installation-raspbian-debian">Samba - Windows Freigabe Server Installation - Raspbian/Debian</a></td>
+	<td class="trow1" align="center"><a href="http://www.forum-raspberrypi.de/User-ps915">ps915</a></td>
+	<td class="trow1" align="center"><a href="javascript:MyBB.whoPosted(175);">77</a></td>
+	<td class="trow1" align="center">36,246</td>
+	<td class="trow1" style="white-space: nowrap">
+		<span class="smalltext">04.09.2013 10:45<br>
+		<a href="http://www.forum-raspberrypi.de/Thread-tutorial-samba-windows-freigabe-server-installation-raspbian-debian?action=lastpost">Letzter Beitrag</a>: <a href="http://www.forum-raspberrypi.de/User-moach">Moach</a></span>
+	</td>
+	</tr>
+<!-- end: showthread_similarthreads_bit --><!-- start: showthread_similarthreads_bit -->
+<tr>
+	<td class="trow2" align="center" width="2%">&nbsp;</td>
+	<td class="trow2">[Tutorial]&nbsp;<a href="http://www.forum-raspberrypi.de/Thread-tutorial-%C3%BCberwachungscamera-webcam-server-installieren">Überwachungscamera / Webcam-Server installieren</a></td>
+	<td class="trow2" align="center"><a href="http://www.forum-raspberrypi.de/User-exayte">Exayte</a></td>
+	<td class="trow2" align="center"><a href="javascript:MyBB.whoPosted(3258);">11</a></td>
+	<td class="trow2" align="center">3,275</td>
+	<td class="trow2" style="white-space: nowrap">
+		<span class="smalltext">30.08.2013 17:54<br>
+		<a href="http://www.forum-raspberrypi.de/Thread-tutorial-%C3%BCberwachungscamera-webcam-server-installieren?action=lastpost">Letzter Beitrag</a>: <a href="http://www.forum-raspberrypi.de/User-boa-constrictor">Boa Constrictor</a></span>
+	</td>
+	</tr>
+<!-- end: showthread_similarthreads_bit -->
+</tbody></table>
+<!-- end: showthread_similarthreads -->
+	<br>
+	<div class="float_left">
+		<ul class="thread_tools">
+			<li class="printable"><a href="http://www.forum-raspberrypi.de/printthread.php?tid=177">Druckversion anzeigen</a></li>
+			<li class="sendthread"><a href="http://www.forum-raspberrypi.de/sendthread.php?tid=177">Thema einem Freund senden</a></li>
+			<li class="subscription_add"><a href="http://www.forum-raspberrypi.de/usercp2.php?action=addsubscription&amp;tid=177&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd">Thema abonnieren</a></li>
+		</ul>
+	</div>
+
+	<div class="float_right" style="text-align: right;">
+		
+		<!-- start: forumjump_advanced -->
+<form action="forumdisplay.php" method="get">
+<span class="smalltext"><strong>Gehe zu:</strong></span>
+<select name="fid" onchange="window.location=('forumdisplay.php?fid='+this.options[this.selectedIndex].value)">
+<option value="-1">Bitte wähle:</option>
+<option value="-1">--------------------</option>
+<option value="-4">Private Nachrichten</option>
+<option value="-3">Benutzer Control-Panel</option>
+<option value="-5">Wer ist online?</option>
+<option value="-2">Suche</option>
+<option value="-1">Forenstartseite</option>
+<!-- start: forumjump_bit -->
+<option value="1"> Allgemeines</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="30">-- News</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="3">-- Ankündigungen &amp; Wichtiges</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="52">-- Umfragen</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="5"> Software</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="12">-- Allgemeine Software</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="20">-- Multimedia</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="21">-- Netzwerk und Server</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="53">-- Spiele</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="40"> Programmierung</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="6">-- Programmierung</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="41">-- Web-Programmierung</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="13"> Betriebssysteme</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="39">-- Allgemeines</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="14">-- Debian &amp; Raspbian</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="45">-- Raspbmc</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="46">-- OpenELEC</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="36">-- Andere</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="8">---- Arch | ARM</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="16">---- Android</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="22"> Hardware</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="38">-- Allgemeines</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="33">-- Modell A</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="34">-- Modell B</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="62">-- Raspberry Pi Camera Module</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="54">-- WiFi, Bluetooth &amp; DVB-T,C,S</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="55">-- Tastatur/Maus &amp; Fernbedienungen</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="56">-- Soundkarten</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="26">-- USB Geräte &amp; zusätzliche Hardware</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="25">-- SD-Karten</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="24">-- Stromversorgung</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="51">-- GPIO &amp; Elektrotechnik</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="57">-- Displays</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="37">-- Gehäuse</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="10"> Verschiedenes</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="50" selected="selected">-- Tutorials &amp; Anleitungen</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="7">-- Projekte</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="65">---- Crowdfunding</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="63">-- Suche und Biete</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="11">-- Offtopic</option>
+<!-- end: forumjump_bit -->
+</select>
+<!-- start: gobutton -->
+<input class="button" value="Los" type="submit">
+<!-- end: gobutton -->
+</form>
+
+<!-- end: forumjump_advanced -->
+	</div>
+	<br style="clear: both;">
+	<!-- start: showthread_usersbrowsing -->
+<br>
+<span class="smalltext">Benutzer, die gerade dieses Thema anschauen: 1 Gast/Gäste</span>
+<br>
+<!-- end: showthread_usersbrowsing -->
+	<!-- start: footer -->
+<div id="debug"></div>
+	</div>
+</div>
+<div id="footer">
+	<div class="upper">
+		<div class="wrapper">
+			
+			<ul class="menu bottom_links">
+                                <li>» <a href="http://www.forum-raspberrypi.de/page-about">Über das Forum</a></li>
+                                <li>» <a href="http://www.forum-raspberrypi.de/page-partnerseiten">Partnerseiten</a></li>
+				<li>» <a href="mailto:webmaster@forum-raspberrypi.de">Kontakt</a></li>
+				<li>» <a href="#top">Nach oben</a></li>
+				<li>» <a href="http://www.forum-raspberrypi.de/archive/index.php?thread-177.html">Archiv-Modus</a></li>
+				<li>» <a href="http://www.forum-raspberrypi.de/misc.php?action=syndication">RSS-Synchronisation</a></li>
+				<li>» <a href="http://www.forum-raspberrypi.de/misc.php?action=help" class="help">Hilfe</a></li>
+				<li>» <a href="http://raspberrypi.org/" class="help">Raspberry Pi Foundation</a></li>
+				<li>» <a href="http://www.forum-raspberrypi.de/impressum.html" class="help">Impressum</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="lower">
+		<div class="wrapper">
+			<span id="current_time"><strong>Es ist:</strong> 23.09.2013, 15:11</span>
+			<span id="copyright">
+				<!-- MyBB is free software developed and maintained by a volunteer community. 
+					It would be much appreciated by the MyBB Group if you left the full copyright and "powered by" notice intact, 
+					to show your support for MyBB.  If you choose to remove or modify the copyright below, 
+					you may be refused support on the MyBB Community Forums.
+				 
+					This is free software, support us and we'll support you. -->
+				Deutsche Übersetzung: <a href="http://www.mybboard.de/" target="_blank">MyBBoard.de</a>, Powered by <a href="http://www.mybboard.net/" target="_blank">MyBB</a>, © 2002-2013 <a href="http://www.mybboard.net/" target="_blank">MyBB Group</a>.
+				<!-- End powered by -->
+			</span>
+			<span id="theme">
+				<!-- Apart is a series of twelve simple, beautiful themes released completely free of charge.
+					You love Apart - that's why you're using it - so why prevent others from finding Apart
+					by removing this short, simple created by statement? If you make changes to this theme,
+					feel free to modify the created by statement, as long as the originial credit remains
+					intact. Furthermore, if you remove or unjustly modify this simple statement, you will
+					be refused support for the theme.
+	
+					Thanks for your consideration, and best of luck with your forum.
+					- Justin S., bellomandesign.com
+				-->
+				Theme created by <a href="http://bellomandesign.com/" target="_blank">Justin S.</a>
+				<!-- End theme created by statement -->
+Raspberry Pi is a registered trademark of the <a target="_blank" href="http://www.raspberrypi.org/">Raspberry Pi Foundation</a>
+			</span>
+		</div>
+	</div>
+</div>
+<!-- The following piece of code allows MyBB to run scheduled tasks. DO NOT REMOVE --><!-- End task image code -->
+
+</div>
+<!-- end: footer -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-30744939-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+
+<div style="display: none;" id="overlay"></div><div style="display: none;" id="lightbox"><div style="width: 250px; height: 250px;" id="outerImageContainer"><div id="imageContainer"><img id="lightboxImage"><div id="hoverNav"><a id="prevLink" href="#"></a><a id="nextLink" href="#"></a></div><div id="loading"><a id="loadingLink" href="#"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/loading.gif"></a></div></div></div><div id="imageDataContainer"><div id="imageData"><div id="imageDetails"><span id="caption"></span><span id="numberDisplay"></span></div><div id="bottomNav"><a id="bottomNavClose" href="#"><img src="Lighttpd%20Webserver%20+%20PHP5%20+%20MySQL%20Server%20unter%20Raspbian-Dateien/closelabel.gif"></a></div></div></div></div></body></html>
+<!-- end: showthread -->

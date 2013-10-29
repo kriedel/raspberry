@@ -1,0 +1,2264 @@
+<!DOCTYPE html>
+<html lang="en"><head><script type="text/javascript" async="" src="My%20Raspberry%20Pi%20project-Dateien/quant.js"></script><script>var __pbpa = true;</script><script>var translated_warning_string = 'Warning: Never enter your Tumblr password unless \u201chttps://www.tumblr.com/login\u201d\x0ais the address in your web browser.\x0a\x0aYou should also see a green \u201cTumblr, Inc.\u201d identification in the address bar.\x0a\x0aSpammers and other bad guys use fake forms to steal passwords.\x0a\x0aTumblr will never ask you to log in from a user\u2019s blog.\x0a\x0aAre you absolutely sure you want to continue?';</script><script type="text/javascript" language="javascript" src="My%20Raspberry%20Pi%20project-Dateien/pre_tumblelog.js"></script>
+ 
+<!--
+
+"Notations" theme designed by Ben Delaney (http://bendelaney.me)
+
+Available in the Tumblr theme garden: http://www.tumblr.com/theme/8631 -->
+
+
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=790">
+	<title>My Raspberry Pi project</title>	
+	<meta name="description" content="A couple of notes to follow my progress in developing a custom controller using the Raspberry Pi. It's goal is to automate the swimming pool pump, heating and lightning based on water temperature and...">
+	<link rel="shortcut icon" href="http://assets.tumblr.com/images/default_avatar_128.png">
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="http://raspberrypi.werquin.com/rss">
+	
+	<meta name="if:Use Quicksand Font" content="1">
+	<meta name="if:Show High Res Photo Links" content="1">
+	<meta name="if:Show Note Count" content="1">
+	<meta name="if:Show Word Count" content="1">
+	<meta name="if:Show Tags" content="1">
+	<meta name="if:Show Short URL" content="1">
+	<meta name="if:Show Notes on Permalink Page" content="1">
+	<meta name="if:Show Ask Link" content="0">
+	<meta name="if:Show Submit Link" content="0">
+	<meta name="if:Hide Install Theme Link" content="0">
+	<meta name="text:Disqus Shortname" content="">
+	<meta name="image:BackgroundImage" content="http://static.tumblr.com/ybdgkw4/ffzkxsss6/bg-400-paper2.jpg">
+	
+	<script src="My%20Raspberry%20Pi%20project-Dateien/mootools-yui-compressed.js" type="text/javascript" charset="utf-8"></script>
+	<script src="My%20Raspberry%20Pi%20project-Dateien/mootools-1.js" type="text/javascript" charset="utf-8"></script>
+
+	
+	<link rel="stylesheet" href="My%20Raspberry%20Pi%20project-Dateien/base64_quicksandfonts.css" type="text/css" charset="utf-8">
+	
+	
+	<style type="text/css">
+		* {margin:0; padding:0;}
+		fieldset,img {border:0;}
+		ol,ul {list-style:none;}
+		a:active, a:focus {outline: 0;}
+		h1,h2,h3,h4,h5,h6,span {font-size:100%;font-weight:normal;}
+
+		body {
+			font-family:QuicksandBook, Helvetica, Arial, sans-serif;
+			text-shadow:#efefef 1px 1px 0px;
+			font-size: 22px;
+			color: #222;
+			background-color:#f8f8f8;
+			background-image:url(http://static.tumblr.com/ybdgkw4/ffzkxsss6/bg-400-paper2.jpg);
+			margin: 40px 0 20px 0;
+			padding: 0;
+			}
+
+		a, a:visited {
+			color: #222;
+			font-family: QuicksandBold, Helvetica, Arial, sans-serif;
+			font-weight: bold;
+			border-bottom:1px solid #aaa;
+			text-decoration: none;
+			}
+		a:hover {
+			border-bottom:none;
+			}				
+		em, i {
+			font-family: QuicksandBookOblique, Helvetica, Arial, sans-serif;
+			font-style: italic;
+			}
+		strong, b {
+			font-family: QuicksandBold, Helvetica, Arial, sans-serif;
+			font-weight: bold;
+			}
+		strong em, strong i, b em, b i {
+			font-family: QuicksandBoldOblique, Helvetica, Arial, sans-serif;
+			font-weight: bold;
+			font-style: italic;
+			}
+		a#InstallThisTheme {
+			background: url(http://static.tumblr.com/thpaaos/dHHkt0jor/install_theme.png);
+			display: block;
+			height: 20px;
+			position: absolute;
+			right: 2px;
+			text-indent: -9999px;
+			top: 26px;
+			width: 96px;
+			z-index: 5000;	
+			}	
+		#Main {
+			width: 770px;
+			margin: 0 auto; 
+			padding: 8px 0 0 0;
+			}
+			#Header {}
+				#Header .Title {
+					padding: 0 0 10px 0;
+					position: relative;
+					}
+					#Header .Title a.Title {
+						width: 688px;
+						color: #222;
+						font-size: 45px;
+						line-height: 1;
+						font-family: QuicksandBold, Helvetica, Arial, sans-serif;
+						font-weight: bold;
+						letter-spacing: 3px;
+						text-decoration: none;
+						text-shadow:#ddd 1px 1px 0px, #999 0px 0px 10px, #999 0px 0px 10px;
+						border-bottom: 0px;
+						}
+
+				#Header .PageLinks {
+					font-size: 14px;
+					margin:5px 0 14px;
+					height:1%;
+					overflow:hidden;
+					}
+					#Header .PageLinks a {
+						display:block;
+						float:left;
+						margin-right:14px;
+						
+						}
+					
+				#Header .Description {
+					font-size: 14px;
+					padding: 8px 0px 34px;
+					}
+					#Header .Description a {
+						text-decoration: none;
+						}
+
+			.DynamicHeader {
+				font-size: 30px;
+				font-family:QuicksandBook, Helvetica, Arial, sans-serif;
+				}
+				.DynamicHeader span {
+					font-family:QuicksandBold, Helvetica, Arial, sans-serif;
+					font-weight: bold;
+					}
+
+			.Post {
+				margin: 50px 0px 0px 0px;
+				line-height: 1.4; 
+				}
+				.Post img {
+					max-width: 100%;
+					-webkit-box-shadow: #444 0px 0px 6px;
+					-moz-box-shadow: 	#444 0px 0px 6px;
+					}
+			
+				.Post a.Title {
+					display:block;
+					line-height: 1.4;
+					color: #222;
+					margin-bottom:22px;
+					font-family:QuicksandBold, Helvetica, Arial, sans-serif;
+					font-weight: bold;
+					letter-spacing: 2px;
+					text-transform:uppercase;
+					text-decoration:none;
+					text-shadow:#ccc 1px 1px 0px, #666 0px 0px 6px;
+					border-bottom:0px;
+				  	}
+					.Post a.Title:hover {
+						text-decoration:underline;
+						}
+				.Post.Single a.Title {
+					margin-bottom:60px;
+					}
+
+				/* Photo Posts */
+				.Post .ThePhoto a {
+					border-bottom:0px;
+					}
+				
+				/* PhotoSet Posts */
+				.Post .PhotoSet embed {
+					-webkit-box-shadow: #444 0px 0px 6px;
+					-moz-box-shadow: 	#444 0px 0px 6px;
+					}
+				/* Quote Posts */
+				.Post .TheQuote.short {
+					font-family: QuicksandLight, Helvetica, Arial, sans-serif;
+					font-size: 75px;
+					letter-spacing: -5px;
+					line-height: 0.85;
+					}
+				.Post .TheQuote.medium {
+					font-size: 54px;
+					line-height: 0.9;
+					font-family: QuicksandLight, Helvetica, Arial, sans-serif;
+					letter-spacing:-3px;
+					}
+				.Post .TheQuote.long {
+					font-size: 34px;
+					line-height: 1;
+					font-family: QuicksandLight, Helvetica, Arial, sans-serif;
+					letter-spacing:-1px;
+					}
+				.Post .Quote .QuoteSource {
+					font-family:QuicksandBold, Helvetica, Arial, sans-serif;
+					font-weight: bold;
+					text-shadow:#999 0px 0px 10px;
+					}
+
+				/* Chat Posts */
+				.Post .Chat li {
+					line-height:1;
+					margin-bottom:12px;
+					border-bottom: 2px dotted #ccc;
+					clear:left;
+					}
+					.Post .Chat li .Label {
+						display:block;
+						float:left;
+						font-family:QuicksandBold, Helvetica, Arial, sans-serif;
+						font-weight: bold;
+						}
+					.Post .Chat li .Line {
+						margin-left:240px;
+						}
+
+				/* Link Post */
+				.Post .Link .TheLink {
+					color: #222;
+					font-family:QuicksandBold, Helvetica, Arial, sans-serif;
+					font-weight: bold;
+					letter-spacing: 2px;
+					text-transform:uppercase;
+					text-decoration:none;
+					text-shadow:#ccc 1px 1px 0px, #666 0px 0px 6px;
+					}
+
+				/* Audio Post */
+				.Post .Audio .AlbumArt img {
+					display:block;
+					}
+				.Post .Audio .AudioPlayerWrapper {
+					background:#000;
+					width:210px;
+					}
+				.Post .Audio .audio_player {
+					border-top: 3px solid #000;
+					opacity:0.8;
+					height: 27px;
+					margin-bottom: 6px;
+					}
+				.Post .Audio .SongInfo {
+					font-size: 12px;
+					line-height: 1;
+					margin-bottom:12px;
+					}
+					.Post .Audio .SongInfo span {
+						display:block;
+						}
+						
+				/* Question/Answer Post */
+				.Post .Answer .QuestionBox {
+					background:#eee;
+					height:1%;
+					overflow:hidden;
+					border-top: 1px solid #ccc;
+					border-bottom: 1px solid #fff;
+					}
+					.Post .Answer .TheAsker {
+						float:left;
+						}
+						.Post .Answer .TheAsker .AskerPhoto {
+							float:left;
+							width: 96px;
+							height:96px;
+							overflow:hidden;
+							float:left;
+							margin-right:8px;
+							}
+						.Post .Answer .TheAsker .AskerPhoto img {
+							-webkit-box-shadow: none;
+							-moz-box-shadow: 	none;
+							}
+						.Post .Answer .TheAsker .AskerName a {
+							display:block;
+							float:left;
+							font-size: 12px;
+							line-height: 1;
+							padding:8px 8px 0px;
+							border-bottom: none;
+							}
+						.Post .Answer .Asks {
+							float:left;
+							font-size: 12px;
+							line-height: 1;
+							padding:8px 8px 0px;
+							}
+					.Post .Answer .TheQuestion {
+						margin-left:40%;
+						padding:14px;
+						font-family:QuicksandLightOblique, Helvetica, Arial, sans-serif;
+						border-left: 1px solid #ccc;
+						}
+					.Post .Answer .TheAnswer {
+						padding:12px 48px;
+						}
+
+			/* Generic Post stuff */
+			.Post .PostBody {
+					font-size:70%;
+					line-height:1.2;
+					}
+				.Post .PostBody a {
+					color: #000;
+					border-bottom:1px solid #aaa;
+					text-decoration: none;
+					}
+				.Post .PostBody a:hover {
+					color: #222;
+					border-bottom:none;
+					}				
+				.Post .PostBody p {
+					margin-bottom:22px;
+					}
+				.Post .PostBody ul {
+					list-style: disc outside;
+					padding-left:20px;
+					margin-bottom:22px;
+					}
+				.Post .PostBody ol {
+					list-style: decimal outside;
+					padding-left:20px;
+					margin-bottom:22px;
+					}
+				.Post .PostBody small {
+					font-size: 11px;
+					line-height:11px!important;
+					}
+				.Post .PostBody blockquote {
+					border-left: 1px solid #AAA;
+					margin-left: 40px;
+					padding-left: 12px;
+					margin-bottom:22px;
+					}
+				.Post .Bottom {
+					color: #aaa;
+					width: 100%;
+					font-size: 12px;
+					line-height: 1.5;
+					margin-top:20px;
+					}
+					.Post .Bottom .Reblog {
+						float:left;
+						margin-right:13px;
+						}
+					.Post .Bottom span {
+						padding: 0 13px 0 0;
+						}
+						.Post .Bottom .Reblog span,
+						.Post .Bottom span.Notes a,
+						.Post .Bottom span.ShortUrl span,
+						.Post .Bottom span.Tags span  {
+							text-transform: uppercase;
+							padding-right:0;
+							}
+					.Post .Bottom em {font-style: normal;}
+					.Post .Bottom a {
+						color: #a5a5a5;
+						font-family:QuicksandBook, Helvetica, Arial, sans-serif;
+						}
+					.Post .Bottom a:hover { 
+						text-decoration: underline;
+						color:#000;
+						}
+					.Post .Bottom .Tags {
+						display:block;
+						}
+				.Post .PermaPageNotes a.NotesAnchor {
+					border-bottom: none;
+					text-decoration: none;
+					}
+				ol.notes {
+					width: 100%;
+					border-bottom: solid 1px #ccc;
+					padding: 48px 0 0 0px;
+					margin: 8px 0px 0px 0px;
+					list-style-type: none;
+					}
+	
+					ol.notes a { color: #444444; }
+
+					ol.notes li.note {
+						color: #777;
+						font-size: 10px;
+						border-top: solid 1px #ccc;
+						padding: 4px;
+						}
+
+						ol.notes li.note img.avatar {
+					    vertical-align: -4px;
+					    margin-right: 10px;
+					    width: 16px;
+					    height: 16px;
+						}
+
+						ol.notes li.note span.action { margin-bottom: 5px; }
+
+						ol.notes li.note blockquote {
+							border-color: #eee;
+							padding: 4px 10px;
+							margin: 10px 0px 0px 25px;
+							}
+							ol.notes li.note blockquote a { text-decoration: none; }
+
+						ol.notes li.note a:hover { text-decoration: underline; }
+
+			
+			#Footer {
+				padding: 200px 0 8px;
+				font-size: 12px;
+				color: #8E8E8E;
+				line-height: 1.5em;
+				overflow: hidden;
+				}
+				#Footer a {
+					color: #202020;
+					font-weight: bold;
+					margin-right:10px;
+					text-transform: uppercase;
+					text-decoration: none;
+					}
+				#Footer .UtilityLinks {
+					width:67%;
+					float:left;
+					height:20px;
+					}
+				#Footer .Pagination {
+					width:33%;
+					float:right;
+					text-align: right;
+					height:20px;
+					}
+					#Footer .Numeration {
+						padding-right:12px;
+						}
+				#Footer .Search {
+					clear:both;
+					padding-top:24px;
+					padding-bottom:20px;
+					}
+					#Footer form input.Text {
+						width: 278px;
+						}
+				#Footer .Hints {
+					font-size: 14px;
+					padding-bottom:14px;
+					}
+				#Footer .Colophon {
+					font-size: 12px;
+					line-height: 1;
+					padding-bottom:14px;
+					}
+				#Footer .Colophon a {
+					color: #888;
+					margin-right:0;
+					}
+
+		/* iPhone */
+		@media screen and (max-device-width: 481px) {
+			#Header .Title a.Title {font-size:2.2em; -webkit-text-stroke-width: 1px; -webkit-text-stroke-color: #222;}
+			.Post .PostBody {font-size:1.3em; }
+		}
+		/* End iPhone */
+	
+		@media print {
+			body {
+				color:black;
+				font-size:12pt;
+				line-height:24pt;
+				padding:20px 40px 40px 40px;
+				}	
+			body * {
+				text-shadow:none!important;
+				font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+				float:none;
+				}
+			#Main {
+				width:auto;
+				margin:5%;
+				padding:0;
+				}
+			#Header,
+			#Pagination,
+			#Footer,
+			.Post .Bottom .PrintPostLink,
+			.Post .Bottom .Notes,
+			.Post .Bottom .Words,
+			.Post .Bottom .Tags,
+			#InstallThisTheme,
+			#tumblr_controls {display:none!important;}
+			.Post {
+				margin:0px!important;
+				page-break-after: always;
+				}
+			.Post.Single {
+				page-break-after:auto;
+				}
+			.Post a.Title {margin-top:20px!important;}
+		}
+
+		pre {
+	overflow: auto;
+	width: 100%;
+        height: 500px;
+        background-color:#e0e0e0;
+	}
+	</style>
+	
+	<script type="text/javascript" charset="utf-8">
+		window.addEvent('domready', function() {
+			var Posts = $$('.Post');
+			var PhotoSetEmbeds = $$('.html_photoset embed');
+
+			Posts.each(function(post, index, array) {
+				if (post.getElement('.Words') != null) {
+					var body = post.getElement('.PostBody');
+					var NumberOfWords = body.get('text').split(' ').length;
+					post.getElement('.WordCount').set('html', NumberOfWords);
+				}
+
+				if (post.getElement('embed.photoset')) {
+					var PhotoSetEmbed = post.getElement('embed.photoset');
+					PhotoSetEmbed.setProperties({
+						 width: '770'
+						,height: '771'
+					});
+				}
+
+				if (post.getElement('.Video') && !post.hasClass('do_not_resize')) {
+					var el = post.getElement('object') || post.getElement('iframe') || post.getElement('embed');
+					if (el) {
+						var w = el.getProperty('width');
+						var h = el.getProperty('height');
+						var p = ((770 - w) * 100)/w;
+						var newW = 770;
+						var newH = (h * ('1.'+p).toFloat()).round(); 
+						el.setProperties({width:newW, height:newH});
+						if (el.getElement('embed')) {
+							el.getElement('embed').setProperties({width:newW, height:newH});
+						}
+					}
+				}
+			});
+
+			
+		});
+	</script>
+
+
+<!-- BEGIN TUMBLR FACEBOOK OPENGRAPH TAGS -->
+<!-- If you'd like to specify your own Open Graph tags, define the og:url and og:title tags in your theme's HTML. -->
+<!-- Read more: http://ogp.me/ -->
+<meta property="fb:app_id" content="48119224995">
+<meta property="og:title" content="My Raspberry Pi project">
+<meta property="og:url" content="http://raspberrypi.werquin.com/?og=1">
+<meta property="og:description" content="A couple of notes to follow my progress in developing a custom controller using the Raspberry Pi....">
+<meta property="og:type" content="tumblr-feed:tumblelog">
+<meta property="og:image" content="http://assets.tumblr.com/images/default_avatar_128.png">
+<!-- END TUMBLR FACEBOOK OPENGRAPH TAGS -->
+
+
+<!-- TWITTER TAGS -->
+<meta charset="utf-8">
+            <meta name="twitter:site" content="tumblr">
+            <meta name="twitter:card" content="summary">
+            <meta name="twitter:title" content="raspberrypool">
+            <meta name="twitter:description" content="A couple of notes to follow my progress in developing a custom controller using the Raspberry Pi. It's goal is to automate the swimming pool pump, heating and lightning based on water temperature and external temperature while allowing remote control and monitoring. Local control will be done through a menu system on a small LCD screen with just 2 buttons ... 
+&lt;br&gt;&lt;br&gt;Xavier Werquin">
+            <meta name="twitter:app:name:iphone" content="Tumblr">
+            <meta name="twitter:app:name:ipad" content="Tumblr">
+            <meta name="twitter:app:name:googleplay" content="Tumblr">
+            <meta name="twitter:app:id:iphone" content="305343404">
+            <meta name="twitter:app:id:ipad" content="305343404">
+            <meta name="twitter:app:id:googleplay" content="com.tumblr">
+            <meta name="twitter:app:url:iphone" content="tumblr://x-callback-url/blog?blogName=raspberrypool&amp;referrer=twitter-cards">
+            <meta name="twitter:app:url:ipad" content="tumblr://x-callback-url/blog?blogName=raspberrypool&amp;referrer=twitter-cards">
+            <meta name="twitter:app:url:googleplay" content="tumblr://x-callback-url/blog?blogName=raspberrypool&amp;referrer=twitter-cards">
+    
+
+<script type="text/javascript" src="My%20Raspberry%20Pi%20project-Dateien/tumblelog.js"></script><style id="tumblr_teaser_follow_css" type="text/css">
+#tumblr_teaser_follow {
+display: block;
+opacity: 1;
+visibility: hidden;
+position: fixed;
+bottom: 0px;
+right: 0px;
+width: 1px;
+height: 1px;
+z-index: 2147483647;
+}
+#tumblr_teaser_follow.open {
+visibility: visible;
+width: 310px;
+height: 110px;
+}
+</style><style id="tumblr_iframe_css" type="text/css">
+#tumblr_controls {
+display: block;
+opacity: 1;
+visibility: hidden;
+position: absolute;
+top: 0px;
+right: 0px;
+width: 1px;
+height: 1px;
+z-index: 2147483647;
+}
+#tumblr_controls.visible {
+visibility: visible;
+}
+.tumblr_mobile_banner {
+position: relative;
+}
+html.tumblr_mobile_banner body iframe#tumblr_controls.visible.tumblr_sticky_iframe {
+position: absolute !important;
+visibility: visible !important;
+top: 0 !important;
+opacity: 1 !important;
+}
+.tumblr_mobile_banner #tumblr_controls {
+position: absolute !important;
+visibility: visible !important;
+top: 0 !important;
+-webkit-transform: translateY(-100%);
+-moz-transform: translateY(-100%);
+-ms-transform: translateY(-100%);
+-o-transform: translateY(-100%);
+transform: translateY(-100%);
+-webkit-transition: -webkit-transform 0.2s ease-out;
+-moz-transition: -moz-transform 0.2s ease-out;
+-ms-transition: -ms-transform 0.2s ease-out;
+-o-transition: -o-transform 0.2s ease-out;
+transition: transform 0.2s ease-out;
+}
+.tumblr_mobile_banner #tumblr_controls.visible {
+-webkit-transform: none;
+-moz-transform: none;
+-ms-transform: none;
+-o-transform: none;
+transform: none;
+}
+</style>
+<meta http-equiv="x-dns-prefetch-control" content="off">
+
+<meta name="keywords" content="software,Python,Raspberry Pi">
+
+</head>
+<body>
+	<div id="Main">
+		
+		<div id="Header">
+			<div class="Title">
+				<a href="http://raspberrypi.werquin.com/" class="Title">My Raspberry Pi project</a>
+			</div>
+			
+				<div class="PageLinks" style="display: none; display: block;">
+			        
+    			    <a href="http://raspberrypi.werquin.com/ask">Ask me anything</a>
+                    
+				</div>
+			
+			<div class="Description">
+				A couple of notes to follow my progress in developing a custom 
+controller using the Raspberry Pi. It's goal is to automate the swimming
+ pool pump, heating and lightning based on water temperature and 
+external temperature while allowing remote control and monitoring. Local
+ control will be done through a menu system on a small LCD screen with 
+just 2 buttons ... 
+<br><br>Xavier Werquin
+			</div>
+		</div>
+		
+		
+
+		<div class="DynamicHeader">
+			
+			
+		</div>
+
+		
+			<div class="Post  ">
+				
+				<div class="Text">
+					
+					<a href="http://raspberrypi.werquin.com/post/51885842425/intermezzo-raspcam" class="Title">Intermezzo&nbsp;: RaspCam …</a>
+					
+				
+					<div class="PostBody"><p>For personal reasons, I haven’t been able to continue my pool project on the Raspberry Pi for the last 3 months …</p>
+<p>However, when the Raspberry Pi camera module became available, I 
+immediately had the idea to make a compact HD IP webcam to add in my 
+home automation and security system. Personally, I am not interested to 
+stream video, I just want a reactive system that allows me to snap a HD 
+image when certain events occur. I typically would send a lower 
+resolution copy instantly by email and have the HD picture available on a
+ server. This allows me to observe more detail by downloading that 
+picture on request.</p>
+<p>Most off the shelf HD webcams are expensive and are limited to 2Mpx. I
+ also tried using the Raspberry Pi to pilot an external camera through 
+the USB port, but that setup wasn’t responsive enough when you need a 
+instant snapshot. It would typically take 4 to 5 seconds between 
+initiating the snapshot and the picture being taken …</p>
+<p>The cheap 5MPx Raspberry Pi camera module seemed like a good 
+alternative. First testing is very promising as it is very reactive. I 
+managed to get it fixed within the standard Raspberry Pi enclosure from 
+RS (cutting out a 1cm x 1cm rectangle hole) to get a very compact setup.
+ cf below&nbsp;:</p>
+<p><img alt="image" src="My%20Raspberry%20Pi%20project-Dateien/tumblr_inline_mnpy65FORe1qz4rgp.jpg"></p>
+<p><img alt="image" src="My%20Raspberry%20Pi%20project-Dateien/tumblr_inline_mnpy93XYvk1qz4rgp.jpg"></p>
+
+<p>The RPi foundation provides 2 command line utilities for image 
+capture and video capture/streaming. But it is very easy to integrate 
+them into a python script and within a web server for remote 
+access.&nbsp;</p>
+<p>At first I thought the module was slow for image capture until I 
+discovered that there was a 5 second delay by default using minimal 
+parameters. Hence to get an immediate snapshot with the raspistill 
+utility, you have to add the “-t 0” parameter to indicate that you want 0
+ seconds delay ;-)<span><br></span></p>
+<p>To get it working, first follow the official instructions to setup 
+the camera. Once you have it working, follow my instructions on the 
+following blog post (<a href="http://raspberrypi.werquin.com/post/43645313109/initial-setup-of-the-raspberry-pi-out-of-the-box">http://raspberrypi.werquin.com/post/43645313109/initial-setup-of-the-raspberry-pi-out-of-the-box</a>) to configure a lighttpd web server properly configured to run python scripts.</p>
+<p>Paste and copy the following script (snap.py) in the /var/www directory and you’ll get an instant snapshot by calling the url:<br>http://&lt;ip_of_your_RPi&gt;/snap.py</p>
+<pre><span class="c">#!/usr/bin/python</span>
+<a id="cl-2" name="cl-2"></a><span class="kn">import</span> <span class="nn">sys</span>
+<a id="cl-3" name="cl-3"></a><span class="kn">import</span> <span class="nn">subprocess</span>
+<a id="cl-4" name="cl-4"></a><span class="kn">import</span> <span class="nn">os</span>
+<a id="cl-5" name="cl-5"></a>
+<a id="cl-6" name="cl-6"></a><span class="k">try</span><span class="p">:</span>
+<a id="cl-7" name="cl-7"></a>    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s">"/run/shm/img.jpg"</span><span class="p">)</span>
+<a id="cl-8" name="cl-8"></a><span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+<a id="cl-9" name="cl-9"></a>    <span class="k">pass</span>
+<a id="cl-10" name="cl-10"></a>
+<a id="cl-11" name="cl-11"></a>
+<a id="cl-12" name="cl-12"></a><span class="n">error</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span><span class="s">"raspistill -o /run/shm/img.jpg -t 0"</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">STDOUT</span><span class="p">)</span>
+<a id="cl-13" name="cl-13"></a>
+<a id="cl-14" name="cl-14"></a><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="s">"Content-Type: image/jpeg;</span><span class="se">\n\n</span><span class="s">"</span> <span class="o">+</span> <span class="nb">file</span><span class="p">(</span><span class="s">"/run/shm/img.jpg"</span><span class="p">,</span><span class="s">"rb"</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="p">)</span></pre>
+<p>There are of course endless possibilities. I created the following 
+script f.ex. to have a simple url call initiate a HD snapshot, upload 
+the image to my ftp server and then send me an email with a lower 
+resolution image attached ;-)</p>
+<pre>#!/usr/bin/python
+import sys
+import subprocess
+import os
+import ftplib
+import time
+import smtplib
+import Image
+import cStringIO
+from email.mime.image import MIMEImage
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
+# Configuration
+
+FTEMP_DCAM = "/run/shm/imagedcam.jpg"
+CAPT_DCAM = "raspistill -t 0 -o " + FTEMP_DCAM
+FTP_SERVER = '192.168.0.xx'
+FTP_USER = 'xxxx'
+FTP_PASSW = 'xxxx'
+FTP_PREFIX = '/test/HOME-'
+HTTP_PUBLIC = "http://www.xxxx.com"
+EMAIL_FROM = 'xxx@yyy.com'
+EMAIL_TO = 'zzz@www.com'
+EMAIL_SUBJECT = 'Image from RaspCam'
+EMAIL_SERVER = 'smtp.free.fr'
+THUMBNAIL_SIZE = 640,480
+
+
+print 'Removing files'
+
+try:
+    os.remove(FTEMP_DCAM)
+except OSError:
+    pass
+
+print 'Starting capture processes'
+
+g3 = subprocess.Popen(CAPT_DCAM, shell=True, cwd="/run/shm", stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+
+print 'Waiting'
+
+g3.wait()
+
+print 'Storing on FTP'
+
+date_string = time.strftime("%Y%m%d-%H%M")
+
+s = ftplib.FTP(FTP_SERVER,FTP_USER,FTP_PASSW) 
+f = open(FTEMP_DCAM)
+filed = FTP_PREFIX+date_string+'d.jpg'
+s.storbinary('STOR ' + filed, f) 
+f.close() 
+s.quit()
+
+print 'Emailing thumbnails'
+
+
+msg = MIMEMultipart()
+msg['Subject'] = EMAIL_SUBJECT
+msg['From'] = EMAIL_FROM
+msg['To'] = EMAIL_TO
+
+EMAIL_BODY = date_string + "\nImages HD :\n" + HTTP_PUBLIC + filed + "\n"
+
+part1 = MIMEText(EMAIL_BODY, 'plain')
+msg.attach(part1)
+
+im=Image.open(FTEMP_DCAM)
+im.thumbnail(THUMBNAIL_SIZE,Image.ANTIALIAS)
+memf = cStringIO.StringIO()
+im.save(memf, "JPEG")
+img = MIMEImage(memf.getvalue())
+msg.attach(img)
+memf.close()
+
+# Send the email via our own SMTP server.
+s = smtplib.SMTP(EMAIL_SERVER)
+s.sendmail(EMAIL_FROM, EMAIL_TO, msg.as_string())
+s.quit()
+
+print 'Done !'
+</pre>
+
+<p>Have fun&nbsp;!</p>
+
+<p></p></div>
+				</div>
+				
+
+				
+
+    			
+
+				
+
+				
+			
+				
+
+				
+
+				
+
+				
+
+				
+
+				<!-- Post Bottom -->
+				<div class="Bottom">
+					<div class="Reblog">
+						
+
+						<!--  -->
+					</div>
+
+					
+					    
+						
+						
+					
+				
+					
+
+					
+					
+					
+					
+					
+					<span class="Comments">
+						<a href="http://raspberrypi.werquin.com/post/51885842425/intermezzo-raspcam#disqus_thread">2 Comments</a>
+					</span>
+					
+
+                    
+					<span class="Permalink">
+						<a href="http://raspberrypi.werquin.com/post/51885842425/intermezzo-raspcam" class="Time">6/1/13 — 5:12pm</a>
+					</span>
+
+					
+					<span class="ShortUrl">
+						<span>Short URL</span>: <a href="http://tmblr.co/ZaA4ysmKen-v">http://tmblr.co/ZaA4ysmKen-v</a>
+					</span>
+					
+					
+				
+					
+					
+					
+				
+				</div>
+				<!-- /Post Bottom -->
+
+				
+					
+				
+				
+				
+				
+				
+				
+				
+			</div>
+		
+			<div class="Post  ">
+				
+				<div class="Text">
+					
+					<a href="http://raspberrypi.werquin.com/post/44890705367/a-hardware-watchdog-to-monitor-a-deamon-running-with" class="Title">A hardware watchdog to monitor a deamon running with Python</a>
+					
+				
+					<div class="PostBody"><p>Once my project is in place it is 
+important that the system runs 24h/24h 7d/7d. I could use an external 
+system to monitor that the Pi is up and running, however the Raspberry 
+Pi has a build-in Hardware watchdog which will reset/reboot the system 
+if it doesn’t get a keep alive signal within a preset time.</p>
+<p>You’ll find a good article here :&nbsp;<a href="http://binerry.de/post/28263824530/raspberry-pi-watchdog-timer" target="_blank"></a><a href="http://binerry.de/post/28263824530/raspberry-pi-watchdog-timer">http://binerry.de/post/28263824530/raspberry-pi-watchdog-timer</a></p>
+<p>However, most articles on the web show how to install and use a 
+pre-defined watchdog-deamon but not much information on using the 
+watchdog in your proper deamon … even less using Python as your main 
+language …</p>
+<p>Luckily somebody wrote a Python wrapper to interface with the Linux watchdog which can easily be installed with&nbsp;:</p>
+<p><em>easy_install watchdogdev</em></p>
+<p>To enable the hardware watchdog on the raspberry pi, you type&nbsp;:</p>
+<p><em>sudo modprobe bcm2708_wdog</em></p>
+<p>And the following Python code shows how to use it&nbsp;:</p>
+<pre>#!/usr/bin/env python
+from time import sleep
+from watchdogdev import *
+
+wd = watchdog('/dev/watchdog')
+
+for i in range(5):
+    print "Send Keep alive",i
+    wd.keep_alive()
+    for j in range(5): #Change to 15 to see RPi reboot ...
+        print "... Waiting",j,", Left :",wd.get_time_left()
+        sleep(1)
+
+print "Magic Close"        
+wd.magic_close()
+print "Done !"
+</pre>
+<p>The default timer is set to 10 seconds before the watchdog will 
+trigger a reboot if it doesn’t receive a keep alive signal. Hence the 
+above code will send a keep alive every 5 seconds and hence will 
+terminate nicely after 5 loops, showing each time the 5 seconds 
+countdown with the time left from the hardware timer. It stops by 
+issuing the magic code which will stop the hardware watchdog before 
+exiting.</p>
+<p>But if you increase the countdown timer ( j in above example ) to 
+more than 10, then you will see your Pi reboot as soon as the 10 seconds
+ have passed :-)</p></div>
+				</div>
+				
+
+				
+
+    			
+
+				
+
+				
+			
+				
+
+				
+
+				
+
+				
+
+				
+
+				<!-- Post Bottom -->
+				<div class="Bottom">
+					<div class="Reblog">
+						
+
+						<!--  -->
+					</div>
+
+					
+					    
+						
+						
+					
+				
+					
+
+					
+					
+					
+					
+					
+					<span class="Comments">
+						<a href="http://raspberrypi.werquin.com/post/44890705367/a-hardware-watchdog-to-monitor-a-deamon-running-with#disqus_thread">1 Comment</a>
+					</span>
+					
+
+                    
+					<span class="Permalink">
+						<a href="http://raspberrypi.werquin.com/post/44890705367/a-hardware-watchdog-to-monitor-a-deamon-running-with" class="Time">3/9/13 — 12:03am</a>
+					</span>
+
+					
+					<span class="ShortUrl">
+						<span>Short URL</span>: <a href="http://tmblr.co/ZaA4ysfpiStN">http://tmblr.co/ZaA4ysfpiStN</a>
+					</span>
+					
+					
+				
+					
+					
+					
+				
+				</div>
+				<!-- /Post Bottom -->
+
+				
+					
+				
+				
+				
+				
+				
+				
+				
+			</div>
+		
+			<div class="Post  ">
+				
+				<div class="Text">
+					
+					<a href="http://raspberrypi.werquin.com/post/44815465706/almost-final-hardware-with-the-humble-pi" class="Title">Almost final hardware with the Humble Pi …</a>
+					
+				
+					<div class="PostBody"><p>After a couple of hours positioning, 
+soldering and testing, all the connections and the few extra components 
+are integrated on the Humble Pi prototyping board which fits really 
+nicely above the Raspberry Pi.</p>
+<p><img src="My%20Raspberry%20Pi%20project-Dateien/tumblr_inline_mjbcisM4hg1qz4rgp.jpg"></p>
+
+<p>Connections for the LCD, relay board, temperature sensors and 2 
+buttons. A Darlington array and one resistor for the 1 wire network …</p>
+<p><img src="My%20Raspberry%20Pi%20project-Dateien/tumblr_inline_mjbcmejy331qz4rgp.jpg"></p>
+
+<p>The underside has all the connections.</p>
+<p><img src="My%20Raspberry%20Pi%20project-Dateien/tumblr_inline_mjbcpgoirx1qz4rgp.jpg"></p>
+
+<p>The Humble Pi on top of the Raspberry Pi with all the connections 
+made, ready to be integrated into the final electric box. But before 
+doing so, I need to finalize the software environment. Back to some 
+programming and Linux setup in the next couple of days …</p></div>
+				</div>
+				
+
+				
+
+    			
+
+				
+
+				
+			
+				
+
+				
+
+				
+
+				
+
+				
+
+				<!-- Post Bottom -->
+				<div class="Bottom">
+					<div class="Reblog">
+						
+
+						<!--  -->
+					</div>
+
+					
+					    
+						
+						
+					
+				
+					
+
+					
+					
+					
+					
+					
+					<span class="Comments">
+						<a href="http://raspberrypi.werquin.com/post/44815465706/almost-final-hardware-with-the-humble-pi#disqus_thread">1 Comment</a>
+					</span>
+					
+
+                    
+					<span class="Permalink">
+						<a href="http://raspberrypi.werquin.com/post/44815465706/almost-final-hardware-with-the-humble-pi" class="Time">3/8/13 — 12:23am</a>
+					</span>
+
+					
+					<span class="ShortUrl">
+						<span>Short URL</span>: <a href="http://tmblr.co/ZaA4ysflDRpg">http://tmblr.co/ZaA4ysflDRpg</a>
+					</span>
+					
+					
+				
+					
+					
+					
+				
+				</div>
+				<!-- /Post Bottom -->
+
+				
+					
+				
+				
+				
+				
+				
+				
+				
+			</div>
+		
+			<div class="Post  ">
+				
+
+				
+				<div class="Photo">
+					<div class="ThePhoto">
+						<a href="http://raspberrypi.werquin.com/image/44814182665"><img src="My%20Raspberry%20Pi%20project-Dateien/tumblr_mjbc7pCaJ31s6yaxbo1_1280.jpg" alt="The Humble Pi arrived. Time to warm up the soldering iron and think about the layout to fit everything on this little board &amp;#8230;"></a>
+					</div>
+					
+						<div class="PostBody"><p>The Humble Pi arrived. Time to warm up the soldering iron and think about the layout to fit everything on this little board …</p></div>
+					
+				</div>
+				
+
+    			
+
+				
+
+				
+			
+				
+
+				
+
+				
+
+				
+
+				
+
+				<!-- Post Bottom -->
+				<div class="Bottom">
+					<div class="Reblog">
+						
+
+						<!--  -->
+					</div>
+
+					
+				
+					
+					
+						
+							<span class="HighRes">
+								<a href="http://31.media.tumblr.com/5efc25ae4f9713f6fb69a939b3bf92d2/tumblr_mjbc7pCaJ31s6yaxbo1_1280.jpg" class="HighResLink" style="text-transform:uppercase;">High-res</a>
+							</span>
+						
+					
+					
+
+					
+					
+					
+					
+					
+					<span class="Comments">
+						<a href="http://raspberrypi.werquin.com/post/44814182665/the-humble-pi-arrived-time-to-warm-up-the#disqus_thread">0 Comments</a>
+					</span>
+					
+
+                    
+					<span class="Permalink">
+						<a href="http://raspberrypi.werquin.com/post/44814182665/the-humble-pi-arrived-time-to-warm-up-the" class="Time">3/8/13 — 12:07am</a>
+					</span>
+
+					
+					<span class="ShortUrl">
+						<span>Short URL</span>: <a href="http://tmblr.co/ZaA4ysfl8Ya9">http://tmblr.co/ZaA4ysfl8Ya9</a>
+					</span>
+					
+					
+				
+					
+					
+					
+				
+				</div>
+				<!-- /Post Bottom -->
+
+				
+					
+				
+				
+				
+				
+				
+				
+				
+			</div>
+		
+			<div class="Post  ">
+				
+
+				
+
+    			
+
+				
+
+				
+			
+				
+
+				
+
+				
+
+				
+				<div class="Video">
+					<iframe src="My%20Raspberry%20Pi%20project-Dateien/ufje3th2eyc.htm" allowfullscreen="" frameborder="0" height="578" width="770"></iframe>
+					<div class="PostBody">
+						<p>A quick proof of concept of the hardware side with all modules 
+connected and simultaneously reading temperature, driving the LCD, 
+activating the menu with the 2 buttons and switching the Relay board …</p>
+					</div>
+				</div>
+				
+
+				
+
+				<!-- Post Bottom -->
+				<div class="Bottom">
+					<div class="Reblog">
+						
+
+						<!--  -->
+					</div>
+
+					
+				
+					
+
+					
+					
+					
+					
+					
+					<span class="Comments">
+						<a href="http://raspberrypi.werquin.com/post/43896767636/a-quick-proof-of-concept-of-the-hardware-side-with#disqus_thread">1 Comment</a>
+					</span>
+					
+
+                    
+					<span class="Permalink">
+						<a href="http://raspberrypi.werquin.com/post/43896767636/a-quick-proof-of-concept-of-the-hardware-side-with" class="Time">2/24/13 — 4:54pm</a>
+					</span>
+
+					
+					<span class="ShortUrl">
+						<span>Short URL</span>: <a href="http://tmblr.co/ZaA4yseuSuIK">http://tmblr.co/ZaA4yseuSuIK</a>
+					</span>
+					
+					
+				
+					
+					
+					
+				
+				</div>
+				<!-- /Post Bottom -->
+
+				
+					
+				
+				
+				
+				
+				
+				
+				
+			</div>
+		
+			<div class="Post  ">
+				
+				<div class="Text">
+					
+					<a href="http://raspberrypi.werquin.com/post/43894495231/connecting-the-relay-board-through-darlington-array" class="Title">Connecting the Relay board through darlington array.</a>
+					
+				
+					<div class="PostBody"><p>It’s a cheap 5V relay board (<a href="http://goo.gl/syUE2">http://goo.gl/syUE2</a>)
+ with opto-couplers and inputs need to sink to ground to activate the 
+relays. Also it doesn’t work with 3.3V hence the easiest option is to 
+use a ULN2803 darlington array to link the 3.3V GPIO pins with the 5V 
+relay requirements and invert the inputs to “positive ON” …</p>
+<p>Very simple connection diagram&nbsp;:</p>
+<p><img alt="image" src="My%20Raspberry%20Pi%20project-Dateien/tumblr_inline_miqczoPjpC1qz4rgp.jpg"></p>
+
+<p></p>
+<p>With everything else connected, it is more spaghetti like ;-)</p>
+<p><img alt="image" src="My%20Raspberry%20Pi%20project-Dateien/tumblr_inline_miqd221j0f1qz4rgp.jpg"></p>
+<p>And some quick python code to test it out&nbsp;:</p>
+
+<pre>#!/usr/bin/python
+import RPi.GPIO as GPIO
+from time import sleep
+
+Relay={
+    1:10,
+    2:22,
+    3:27,
+    4:17
+    }
+
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)      
+for k in Relay: GPIO.setup(Relay[k], GPIO.OUT) 
+for k in Relay: GPIO.output(Relay[k],0)
+
+while True:
+    for k in Relay: 
+        GPIO.output(Relay[k],1)
+        sleep(0.5)
+    for k in Relay:    
+        GPIO.output(Relay[k],0)
+        sleep(0.5)
+        
+        </pre></div>
+				</div>
+				
+
+				
+
+    			
+
+				
+
+				
+			
+				
+
+				
+
+				
+
+				
+
+				
+
+				<!-- Post Bottom -->
+				<div class="Bottom">
+					<div class="Reblog">
+						
+
+						<!--  -->
+					</div>
+
+					
+					    
+						
+						
+					
+				
+					
+
+					
+					
+					
+					
+					
+					<span class="Comments">
+						<a href="http://raspberrypi.werquin.com/post/43894495231/connecting-the-relay-board-through-darlington-array#disqus_thread">2 Comments</a>
+					</span>
+					
+
+                    
+					<span class="Permalink">
+						<a href="http://raspberrypi.werquin.com/post/43894495231/connecting-the-relay-board-through-darlington-array" class="Time">2/24/13 — 4:18pm</a>
+					</span>
+
+					
+					<span class="ShortUrl">
+						<span>Short URL</span>: <a href="http://tmblr.co/ZaA4yseuKDV-">http://tmblr.co/ZaA4yseuKDV-</a>
+					</span>
+					
+					
+				
+					
+					
+					
+				
+				</div>
+				<!-- /Post Bottom -->
+
+				
+					
+				
+				
+				
+				
+				
+				
+				
+			</div>
+		
+			<div class="Post  ">
+				
+				<div class="Text">
+					
+					<a href="http://raspberrypi.werquin.com/post/43830224272/adding-temperature-probes-ds18b20-1-wire" class="Title">Adding temperature probes (DS18B20&nbsp;1 wire)</a>
+					
+				
+					<div class="PostBody"><p>Following the tutorial from the University of Cambridge Computer Lab (<a href="http://www.cl.cam.ac.uk/freshers/raspberrypi/tutorials/temperature/">http://www.cl.cam.ac.uk/freshers/raspberrypi/tutorials/temperature/</a>),
+ I hooked up a 1 wire DS18B20 temperature sensor to the GPIO 4 
+pin.&nbsp;No need to install anything, the latest Raspbian release has 
+already the needed drivers and software.&nbsp;I was somewhat worried 
+whether the 1 wire bitbanging approach implemented in the RPi kernel 
+would play nice with driving a lot of other GPIO pins for my needs. But a
+ quick testing shows that everything just works fine. Below test code 
+reads the temperature once a second and displays it immediately on the 
+LCD panel …</p>
+<p>The breadboard gets a little crowded … Waiting for a <a href="http://www.hobbytronics.co.uk/raspberry-pi/humble-pi" target="_blank">Humble Pi prototyping board</a> from Hobby Electronics to tidy things up in the final design …</p>
+<p><img alt="image" src="My%20Raspberry%20Pi%20project-Dateien/tumblr_inline_mioxwgLajS1qz4rgp.jpg"></p>
+
+<pre>#!/usr/bin/python
+from lcdxw import *
+import os
+from time import sleep
+
+if not os.path.exists("/sys/bus/w1/devices"):
+    print "enabling 1-wire"
+    os.system("sudo modprobe w1-gpio")
+    os.system("sudo modprobe w1-therm")
+
+l=lcd(Mypins)
+
+while True:
+
+    tfile = open("/sys/bus/w1/devices/28-0000046664e8/w1_slave")
+    text = tfile.read()
+    tfile.close()
+    temperature_data = text.split()[-1]
+    temp1 = float(temperature_data[2:])
+    temp1 = temp1 / 1000
+    l.write(1,1,str(temp1)+" "*16)
+    sleep(1)
+</pre></div>
+				</div>
+				
+
+				
+
+    			
+
+				
+
+				
+			
+				
+
+				
+
+				
+
+				
+
+				
+
+				<!-- Post Bottom -->
+				<div class="Bottom">
+					<div class="Reblog">
+						
+
+						<!--  -->
+					</div>
+
+					
+					    
+						
+						
+					
+				
+					
+
+					
+					
+						<span class="Notes">
+							<a href="http://raspberrypi.werquin.com/post/43830224272/adding-temperature-probes-ds18b20-1-wire#Notes">Notes: 1</a>
+						</span>
+					
+					
+					
+					
+					<span class="Comments">
+						<a href="http://raspberrypi.werquin.com/post/43830224272/adding-temperature-probes-ds18b20-1-wire#disqus_thread">0 Comments</a>
+					</span>
+					
+
+                    
+					<span class="Permalink">
+						<a href="http://raspberrypi.werquin.com/post/43830224272/adding-temperature-probes-ds18b20-1-wire" class="Time">2/23/13 — 9:53pm</a>
+					</span>
+
+					
+					<span class="ShortUrl">
+						<span>Short URL</span>: <a href="http://tmblr.co/ZaA4yseqV2MG">http://tmblr.co/ZaA4yseqV2MG</a>
+					</span>
+					
+					
+				
+					
+					
+					
+				
+				</div>
+				<!-- /Post Bottom -->
+
+				
+					
+				
+				
+				
+				
+				
+				
+				
+			</div>
+		
+			<div class="Post  ">
+				
+				<div class="Text">
+					
+					<a href="http://raspberrypi.werquin.com/post/43808910485/testing-menu-on-lcd-with-2-buttons-connected-to-gpio" class="Title">Testing menu on LCD with 2 buttons connected to GPIO</a>
+					
+				
+					<div class="PostBody"><p>Now that the LCD works, next step was to 
+test my menu system on the LCD and action it with 2 buttons connected to
+ the GPIO. Below the code that allows to do exactly that. works as 
+expected with good reactivity :-)</p>
+<p><img alt="image" src="My%20Raspberry%20Pi%20project-Dateien/tumblr_inline_miokds130L1qz4rgp.jpg"></p>
+<p>Below a schematic of how I connected the LCD and buttons to have it work with below code …</p>
+<p><img alt="image" src="My%20Raspberry%20Pi%20project-Dateien/tumblr_inline_miomb0bIaJ1qz4rgp.jpg"></p>
+
+<p></p>
+<pre>#!/usr/bin/python
+import RPi.GPIO as GPIO
+from time import sleep
+from lcdxw import *
+from menu import *
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(11, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(9, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+l=lcd(Mypins)
+
+m=menu(MyMenu2)
+
+while True:
+    l1,l2=m.display()
+    l.write(1,1,l1+" "*16)
+    l.write(2,1,l2+" "*16)
+
+    if not GPIO.input(11):
+        m.next()
+        sleep(0.1)
+        while not GPIO.input(11): sleep(0.1)
+    if not GPIO.input(9):
+        r=m.select()
+        if r :
+            if r==-1: break
+            l.write(4,1,m.action())
+        sleep(0.1)
+        while not GPIO.input(9): sleep(0.1)
+        l.write(4,1," "*16)
+        
+    sleep(0.1)
+    
+l.clear()    
+    
+</pre></div>
+				</div>
+				
+
+				
+
+    			
+
+				
+
+				
+			
+				
+
+				
+
+				
+
+				
+
+				
+
+				<!-- Post Bottom -->
+				<div class="Bottom">
+					<div class="Reblog">
+						
+
+						<!--  -->
+					</div>
+
+					
+					    
+						
+						
+					
+				
+					
+
+					
+					
+					
+					
+					
+					<span class="Comments">
+						<a href="http://raspberrypi.werquin.com/post/43808910485/testing-menu-on-lcd-with-2-buttons-connected-to-gpio#disqus_thread">0 Comments</a>
+					</span>
+					
+
+                    
+					<span class="Permalink">
+						<a href="http://raspberrypi.werquin.com/post/43808910485/testing-menu-on-lcd-with-2-buttons-connected-to-gpio" class="Time">2/23/13 — 5:10pm</a>
+					</span>
+
+					
+					<span class="ShortUrl">
+						<span>Short URL</span>: <a href="http://tmblr.co/ZaA4ysepDkoL">http://tmblr.co/ZaA4ysepDkoL</a>
+					</span>
+					
+					
+				
+					
+					
+					
+				
+				</div>
+				<!-- /Post Bottom -->
+
+				
+					
+				
+				
+				
+				
+				
+				
+				
+			</div>
+		
+			<div class="Post  ">
+				
+				<div class="Text">
+					
+					<a href="http://raspberrypi.werquin.com/post/43794971882/connecting-the-lcd-based-on-hitachi-hd44780" class="Title">Connecting the LCD (based on Hitachi HD44780) …</a>
+					
+				
+					<div class="PostBody"><p>I initially ordered a 2x16 character LCD, 
+but received a 4x16 character LCD. Great&nbsp;! Except, I couldn’t find 
+any ready to run Hitachi HD44780 library as all of them had some quirks 
+on my display … After digesting the official documentation (cf <a href="http://www.sparkfun.com/datasheets/LCD/HD44780.pdf">http://www.sparkfun.com/datasheets/LCD/HD44780.pdf</a>) and based on some work from Matt Hawkins (<a href="http://www.raspberrypi-spy.co.uk/">http://www.raspberrypi-spy.co.uk/</a>),
+ I wrote my own interface ideally matched with my needs and as simple as
+ possible to use ;-) Below is the library class and when I hooked up the
+ LCD to some GPIO pins (6 in total) it actually worked :-)</p>
+<p><img src="My%20Raspberry%20Pi%20project-Dateien/tumblr_inline_mio5hhSxG61qz4rgp.jpg"></p>
+<pre>#!/usr/bin/python
+import RPi.GPIO as GPIO
+from time import sleep
+
+Mypins={
+    "LCD_RS":7,
+    "LCD_E":8,
+    "LCD_D4":25,
+    "LCD_D5":24,
+    "LCD_D6":23,
+    "LCD_D7":18
+    }
+
+class lcd:
+
+    """
+    Easy access to character LCD displays on Raspberry Pi
+    based on Hitachi HD44780 LCD controller
+    Xavier Werquin - Feb 2013
+     
+    Provide pin layout when initializing in dictionnary,
+    cf above format.
+    """
+
+    def __init__(self,pins,width=16):
+        self.LCD_RS = pins["LCD_RS"]
+        self.LCD_E  = pins["LCD_E"]
+        self.LCD_D4 = pins["LCD_D4"]
+        self.LCD_D5 = pins["LCD_D5"]
+        self.LCD_D6 = pins["LCD_D6"]
+        self.LCD_D7 = pins["LCD_D7"]
+        self.LCD_WIDTH = width
+        self._ADDR={}
+        self._ADDR[1] = 0x80 # LCD RAM address for the 1st line
+        self._ADDR[2] = 0xC0 # LCD RAM address for the 2nd line
+        self._ADDR[3] = self._ADDR[1] + self.LCD_WIDTH # LCD RAM address for the 3rd line
+        self._ADDR[4] = self._ADDR[2] + self.LCD_WIDTH # LCD RAM address for the 4th line 
+        GPIO.setwarnings(False)
+        GPIO.setmode(GPIO.BCM)       # Use BCM GPIO numbers
+        GPIO.setup(self.LCD_E, GPIO.OUT)  # E
+        GPIO.setup(self.LCD_RS, GPIO.OUT) # RS
+        GPIO.setup(self.LCD_D4, GPIO.OUT) # DB4
+        GPIO.setup(self.LCD_D5, GPIO.OUT) # DB5
+        GPIO.setup(self.LCD_D6, GPIO.OUT) # DB6
+        GPIO.setup(self.LCD_D7, GPIO.OUT) # DB7
+        self._param=0x0C
+        self.command(0x33)  # Initialization by instruction
+        self.command(0x32)  # Initialization by instruction
+        self.command(0x28)  # DL=4bits, N=1(2lines), F=0(5x7 dots)
+        self.command(self._param)  # Display ON, Cursor OFF, Blinking OFF
+        self.command(0x06)  # Entry mode; increment cursor, no display shift
+        self.clear()  # Clear display
+
+    def command(self,cmd):
+        # Use only if you know what you are doing.
+        # Could be used to define custom character f.ex.
+        # See HD44780 technical documentation
+        # <a href="http://www.sparkfun.com/datasheets/LCD/HD44780.pdf">http://www.sparkfun.com/datasheets/LCD/HD44780.pdf</a>
+        GPIO.output(self.LCD_RS, False)
+        self._sendbyte(cmd)
+
+    def _sendbyte(self,byte):
+        GPIO.output(self.LCD_D4, byte&amp;0x10==0x10)
+        GPIO.output(self.LCD_D5, byte&amp;0x20==0x20)
+        GPIO.output(self.LCD_D6, byte&amp;0x40==0x40)
+        GPIO.output(self.LCD_D7, byte&amp;0x80==0x80)
+        self._send()
+        GPIO.output(self.LCD_D4, byte&amp;0x01==0x01)
+        GPIO.output(self.LCD_D5, byte&amp;0x02==0x02)
+        GPIO.output(self.LCD_D6, byte&amp;0x04==0x04)
+        GPIO.output(self.LCD_D7, byte&amp;0x08==0x08)
+        self._send()
+        
+    def _send(self):
+        E_PULSE = 0.00005
+        E_DELAY = 0.00005      
+        sleep(E_DELAY)    
+        GPIO.output(self.LCD_E, True)  
+        sleep(E_PULSE)
+        GPIO.output(self.LCD_E, False)  
+        sleep(E_DELAY)      
+
+
+
+    def write(self,line,pos,message):
+        # if pos=0 center message
+        # if pos=-1 align right
+        # otherwise start message at position pos (1-lcd_width) within line
+        _pos = pos
+        _message = message[:self.LCD_WIDTH]
+        if pos == 0 :
+            _pos=1
+            _message = message.center(self.LCD_WIDTH," ")[:self.LCD_WIDTH]
+        elif pos == -1 :
+            _pos=1
+            _message = message.rjust(self.LCD_WIDTH," ")[-self.LCD_WIDTH:]
+        self.position(line,_pos)
+        GPIO.output(self.LCD_RS, True)       
+        for c in _message : self._sendbyte(ord(c))
+        
+
+    def clear(self):
+        self.command(0x1)
+        sleep(0.1)
+
+    def position(self,line,pos):
+        # Set cursor to specific line and position
+        # Line and position start with 1 !
+        _pos = pos-1 if 1 &lt;= pos &lt;= self.LCD_WIDTH else 0
+        _line = line if 1 &lt;= line &lt;= 4 else 1
+        self.command(self._ADDR[_line] + _pos)
+        
+    def cursor(self,show=False,blink=False):
+        # Allows to set cursor underline on or off and
+        # cursor character blinking on or off
+        self._param = self._param | 0b10 if show else self._param &amp; ~0b10
+        self._param = self._param | 0b1 if blink else self._param &amp; ~0b1
+        self.command(self._param)
+
+
+    def display(self,ON=True):
+        # Allows to turn off display (no characters displayed)
+        # However all text is saved and will be displayed when
+        # you turn it back on.
+        self._param = self._param | 0b100 if ON else self._param &amp; ~0b100
+        self.command(self._param)
+        
+        
+if __name__ == "__main__" :
+
+    l=lcd(Mypins)
+    l.write(1,1,"LCD Python class")
+    l.write(2,0,"X. Werquin")
+    l.write(3,-1,"Right aligned")
+    l.write(4,7,"****")
+
+    while True: # Make display flash
+        sleep(1)
+        l.display(False)
+        sleep(0.5)
+        l.display()
+        
+</pre></div>
+				</div>
+				
+
+				
+
+    			
+
+				
+
+				
+			
+				
+
+				
+
+				
+
+				
+
+				
+
+				<!-- Post Bottom -->
+				<div class="Bottom">
+					<div class="Reblog">
+						
+
+						<!--  -->
+					</div>
+
+					
+					    
+						
+						
+					
+				
+					
+
+					
+					
+					
+					
+					
+					<span class="Comments">
+						<a href="http://raspberrypi.werquin.com/post/43794971882/connecting-the-lcd-based-on-hitachi-hd44780#disqus_thread">0 Comments</a>
+					</span>
+					
+
+                    
+					<span class="Permalink">
+						<a href="http://raspberrypi.werquin.com/post/43794971882/connecting-the-lcd-based-on-hitachi-hd44780" class="Time">2/23/13 — 11:40am</a>
+					</span>
+
+					
+					<span class="ShortUrl">
+						<span>Short URL</span>: <a href="http://tmblr.co/ZaA4yseoOZpg">http://tmblr.co/ZaA4yseoOZpg</a>
+					</span>
+					
+					
+				
+					
+					
+					
+				
+				</div>
+				<!-- /Post Bottom -->
+
+				
+					
+				
+				
+				
+				
+				
+				
+				
+			</div>
+		
+			<div class="Post  raspberry_pi python software">
+				
+				<div class="Text">
+					
+					<a href="http://raspberrypi.werquin.com/post/43661674449/another-quick-module-to-enable-persistent-data-in-case" class="Title">Another quick module to enable persistent data in case of power failure</a>
+					
+				
+					<div class="PostBody"><p>As I will probably have several deamons 
+running and need an option to communicate from web scripts to the 
+deamons, I developed below class that will save dictionary like 
+Key=Value pairs in an SQL database, but with a very simple access 
+method.</p>
+<pre>#!/usr/bin/python
+import sqlite3
+import pickle
+
+class sqldict:
+
+    """
+    Implements simple dictionnary for configuration values and persistent
+    data through sqlite. Any Python object that supports pickle can be stored.
+    X.Werquin - Feb 2013
+
+    Usage :
+    Mydict = sqldict("test.db")
+    Mydict.setup()   # Only needed if database doesn't exist
+    Mydict["Foo"] = "Test"
+    Mydict["Bar"] = [(1,2),(3,4)]
+    print Mydict["Foo"],Mydict["Bar"]  # prints : "Test [(1, 2), (3, 4)]"
+    del Mydict["Foo"]  # Deletes key and value from db/dictionary
+    
+    """
+
+    def __init__(self,db,table="sqldict",key='Key'):
+        self._table = table
+        self._key = key
+        self._con = sqlite3.connect(db)
+        self._con.text_factory = str
+        self._cur = self._con.cursor()
+
+    def setup(self):
+        """
+        creates table if it doesn't exist already
+        """
+        sql = "CREATE TABLE IF NOT EXISTS " + self._table + " (" + self._key + " TEXT, Data TEXT)"
+        self._cur.execute(sql)
+        sql = "CREATE UNIQUE INDEX IF NOT EXISTS XWindex ON " + self._table + "(" + self._key + " ASC)"
+        self._cur.execute(sql)
+        self._con.commit()
+
+
+    def keys(self):
+        """
+        Returns list of keys stored in database/dictionary
+        """
+        self._cur.execute("SELECT * FROM " + self._table)
+        rows = self._cur.fetchall()
+        return [str(row[0]) for row in rows]
+
+    def dump(self):
+        """
+        For testing ...
+        Returns string with all "key = value"
+        """
+        self._cur.execute("SELECT * FROM " + self._table)
+        rows = self._cur.fetchall()
+        result=""
+        for row in rows :
+            result += str(row[0]) + " = " + repr(pickle.loads(row[1])) + "\n"
+        return result
+
+    def __call__(self,key):
+        sql = "SELECT * FROM " + self._table + " WHERE Key=?"
+        self._cur.execute(sql, [(key)])
+        result=self._cur.fetchall()
+        return pickle.loads(result[0][1]) if len(result) == 1 else None
+
+    def get(self,key):
+        sql = "SELECT * FROM " + self._table + " WHERE Key=?"
+        self._cur.execute(sql, [(key)])
+        result=self._cur.fetchall()
+        return pickle.loads(result[0][1]) if len(result) == 1 else None
+
+    def __getitem__(self,key):
+        sql = "SELECT * FROM " + self._table + " WHERE Key=?"
+        self._cur.execute(sql, [(key)])
+        result=self._cur.fetchall()
+        return pickle.loads(result[0][1]) if len(result) == 1 else None
+
+    def set(self,key,value):
+        sql = "INSERT OR REPLACE INTO " + self._table + " VALUES (?,?)"
+        self._cur.execute(sql, (key,pickle.dumps(value)))
+        self._con.commit()
+        return True if self._cur.rowcount == 1 else False
+
+    def __setitem__(self,key,value):
+        sql = "INSERT OR REPLACE INTO " + self._table + " VALUES (?,?)"
+        self._cur.execute(sql, (key,pickle.dumps(value)))
+        self._con.commit()
+        return True if self._cur.rowcount == 1 else False
+
+    def __del__(self):
+        self._con.close()
+
+    def delete(self,key):
+        sql = "DELETE FROM " + self._table + " WHERE " + self._key + "=?"
+        self._cur.execute(sql, [(key)])
+        self._con.commit()
+        return True if self._cur.rowcount == 1 else False
+
+    def __delitem__(self,key):
+        sql = "DELETE FROM " + self._table + " WHERE " + self._key + "=?"
+        self._cur.execute(sql, [(key)])
+        self._con.commit()
+        return True if self._cur.rowcount == 1 else False
+    
+ 
+</pre></div>
+				</div>
+				
+
+				
+
+    			
+
+				
+
+				
+			
+				
+
+				
+
+				
+
+				
+
+				
+
+				<!-- Post Bottom -->
+				<div class="Bottom">
+					<div class="Reblog">
+						
+
+						<!--  -->
+					</div>
+
+					
+					    
+						
+						
+					
+				
+					
+
+					
+					
+						<span class="Notes">
+							<a href="http://raspberrypi.werquin.com/post/43661674449/another-quick-module-to-enable-persistent-data-in-case#Notes">Notes: 1</a>
+						</span>
+					
+					
+					
+					
+					<span class="Comments">
+						<a href="http://raspberrypi.werquin.com/post/43661674449/another-quick-module-to-enable-persistent-data-in-case#disqus_thread">0 Comments</a>
+					</span>
+					
+
+                    
+					<span class="Permalink">
+						<a href="http://raspberrypi.werquin.com/post/43661674449/another-quick-module-to-enable-persistent-data-in-case" class="Time">2/21/13 — 9:01pm</a>
+					</span>
+
+					
+					<span class="ShortUrl">
+						<span>Short URL</span>: <a href="http://tmblr.co/ZaA4ysegS4VH">http://tmblr.co/ZaA4ysegS4VH</a>
+					</span>
+					
+					
+				
+					
+					
+						<span class="Tags">
+							<span>Filed under</span>: 
+							
+								<a href="http://raspberrypi.werquin.com/tagged/Raspberry-Pi">#Raspberry Pi</a>&nbsp;
+							
+								<a href="http://raspberrypi.werquin.com/tagged/Python">#Python</a>&nbsp;
+							
+								<a href="http://raspberrypi.werquin.com/tagged/software">#software</a>&nbsp;
+							
+						</span>
+					
+					
+				
+				</div>
+				<!-- /Post Bottom -->
+
+				
+					
+				
+				
+				
+				
+				
+				
+				
+			</div>
+		
+
+		<div id="Footer">
+			<div class="Pagination">
+				
+				<span class="Numeration">
+					1 <em>of</em> 2
+					 
+					<a href="http://raspberrypi.werquin.com/page/2" class="Button">Next page</a>
+				</span>
+				
+
+				
+			</div>
+
+			<div class="UtilityLinks">
+				<a href="http://raspberrypi.werquin.com/archive">Archive</a>
+				<a href="http://raspberrypi.werquin.com/rss">RSS</a>
+				
+				
+			</div>
+
+			<div class="Search">
+				<form action="/search" method="get">
+				    <input class="Text" name="q" placeholder="Search" type="search">
+				</form>
+			</div>
+
+			<div class="Colophon">
+				This website uses the <a href="http://www.tumblr.com/theme/8631">NOTATIONS</a> theme by <a href="http://bendelaney.me/">Ben Delaney</a>, and is powered by <a href="http://tumblr.com/">TUMBLR</a>.
+			</div>
+		</div>
+	</div>
+	
+	
+		<script type="text/javascript">
+			//<![CDATA[
+			(function() {
+				var links = document.getElementsByTagName('a');
+				var query = '?';
+				for(var i = 0; i < links.length; i++) {
+					if(links[i].href.indexOf('#disqus_thread') >= 0) {
+						query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+					}
+				}
+				document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/raspberrypiscine/get_num_replies.js' + query + '"></' + 'script>');
+			})();
+			//]]>
+		</script><script charset="utf-8" type="text/javascript" src="My%20Raspberry%20Pi%20project-Dateien/get_num_replies.js"></script>
+	
+<!-- BEGIN TUMBLR CODE -->
+        
+    
+        <iframe class=" visible" id="tumblr_controls" style="position: fixed; z-index: 2147483647; top: 0px; right: 0px; border: 0px none; background-color: transparent; overflow: hidden;" src="My%20Raspberry%20Pi%20project-Dateien/o.htm" frameborder="0" height="1" scrolling="no" width="1"></iframe>    <div id="teaser_iframe_container" style="display:none;"><iframe src="My%20Raspberry%20Pi%20project-Dateien/teaser.htm" id="teaser_iframe" frameborder="0" height="1" scrolling="no" width="1"></iframe></div>
+
+<script type="text/javascript">
+    (function(Tumblr){
+        var follow_iframe_initialized = false;
+        if (Tumblr.FollowTeaser && Tumblr.PostMessageListener) {
+            // Don't do anything until the first initialize event
+            Tumblr.PostMessageListener.initialize(function(message, origin) {
+                if (follow_iframe_initialized || message.length < 2) return;
+
+                if (message[0] === 'follow_iframe' && message[1] === 'enable') {
+                    Tumblr.FollowTeaser.current_page = 1;
+                    Tumblr.FollowTeaser.infer_infinite_scroll = true;
+                    Tumblr.FollowTeaser.create_from_tumblr_controls("http:\/\/assets.tumblr.com\/assets\/html\/iframe\/follow.html?_v=db2b3a36f43a268aff2b3dded79f5474");
+                    Tumblr.FollowTeaser.scroll_listener(true);
+                    follow_iframe_initialized = true;
+                }
+            });
+        }
+    })(this.Tumblr || (this.Tumblr = {}));
+</script>
+    
+    <!--[if IE]><script type="text/javascript">document.getElementById('tumblr_controls').allowTransparency=true;</script><![endif]-->
+    
+        
+<iframe src="My%20Raspberry%20Pi%20project-Dateien/analytics.htm" style="background-color:transparent; overflow:hidden; position:absolute; top:0; left:0 z-index:9999;" id="ga_target" frameborder="0" height="1" scrolling="no" width="1"></iframe>
+
+    <script>
+        var COMSCORE = true;
+        window.setTimeout(function() {
+            var analytics_frame = document.getElementById('ga_target');
+            analytics_frame.contentWindow.postMessage('enable_comscore;' + window.location, analytics_frame.src.split('/analytics.html')[0]);
+        }, 1000);
+    </script>
+
+
+
+    <script type="text/javascript">
+      var _qevents = _qevents || [];
+
+      (function() {
+       var elem = document.createElement('script');
+
+       elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+       elem.async = true;
+       elem.type = "text/javascript";
+       var scpt = document.getElementsByTagName('script')[0];
+       scpt.parentNode.insertBefore(elem, scpt);
+      })();
+    </script>
+    <script type="text/javascript">
+        _qevents.push( { qacct: 'p-19UtqE8ngoZbM' } );
+    </script>
+    <noscript>
+        <div style="display: none;"><img src="//pixel.quantserve.com/pixel/'p-19UtqE8ngoZbM'.gif" height="1" width="1" alt="Quantcast"/></div>
+    </noscript>
+
+
+    <script type="text/javascript">!function(s){s.src='http://www.tumblr.com/impixu?T=1383033217&J=eyJ0eXBlIjoidXJsIiwidXJsIjoiaHR0cDpcL1wvcmFzcGJlcnJ5cGkud2VycXVpbi5jb21cLyIsInJlcXR5cGUiOjAsInJvdXRlIjoiXC8ifQ==&U=JJCJMJDPMD&K=0fee9ca496e19469627e3ca307f4801b18cfa22c3d014b515ea2c53b3939448a&R=http%3A%2F%2Fwww.google.de%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D8%26ved%3D0CHoQFjAH%26url%3Dhttp%253A%252F%252Fraspberrypi.werquin.com%252F%26ei%3DOmlvUqqaL8GhtAaamYHwBA%26usg%3DAFQjCNFMzfEQDBhCckTiKBmAz21-NOJFqw%26bvm%3Dbv.55123115%2Cd.Yms%26cad%3Drja'.replace(/&R=[^&$]*/,'').concat('&R='+escape(document.referrer)).slice(0,2000).replace(/%.?.?$/,'');}(new Image());</script><noscript><img style="position:absolute;z-index:-3334;top:0px;left:0px;visibility:hidden;" src="http://www.tumblr.com/impixu?T=1383033217&J=eyJ0eXBlIjoidXJsIiwidXJsIjoiaHR0cDpcL1wvcmFzcGJlcnJ5cGkud2VycXVpbi5jb21cLyIsInJlcXR5cGUiOjAsInJvdXRlIjoiXC8iLCJub3NjcmlwdCI6MX0=&U=JJCJMJDPMD&K=c5a11970bac8ae3eeb3ff9516937e96182faff2da8f4148adc50c013d1fe2da8&R=http%3A%2F%2Fwww.google.de%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D8%26ved%3D0CHoQFjAH%26url%3Dhttp%253A%252F%252Fraspberrypi.werquin.com%252F%26ei%3DOmlvUqqaL8GhtAaamYHwBA%26usg%3DAFQjCNFMzfEQDBhCckTiKBmAz21-NOJFqw%26bvm%3Dbv.55123115%2Cd.Yms%26cad%3Drja"></noscript>
+<script type="text/javascript">!function(s){s.src='http://www.tumblr.com/impixu?T=1383033217&J=eyJ0eXBlIjoicG9zdCIsInVybCI6Imh0dHA6XC9cL3Jhc3BiZXJyeXBpLndlcnF1aW4uY29tXC8iLCJyZXF0eXBlIjowLCJyb3V0ZSI6IlwvIiwicG9zdHMiOlt7InBvc3RpZCI6IjUxODg1ODQyNDI1IiwiYmxvZ2lkIjoiOTQ4NjMwMDAiLCJzb3VyY2UiOjMzfSx7InBvc3RpZCI6IjQ0ODkwNzA1MzY3IiwiYmxvZ2lkIjoiOTQ4NjMwMDAiLCJzb3VyY2UiOjMzfSx7InBvc3RpZCI6IjQ0ODE1NDY1NzA2IiwiYmxvZ2lkIjoiOTQ4NjMwMDAiLCJzb3VyY2UiOjMzfSx7InBvc3RpZCI6IjQ0ODE0MTgyNjY1IiwiYmxvZ2lkIjoiOTQ4NjMwMDAiLCJzb3VyY2UiOjMzfSx7InBvc3RpZCI6IjQzODk2NzY3NjM2IiwiYmxvZ2lkIjoiOTQ4NjMwMDAiLCJzb3VyY2UiOjMzfSx7InBvc3RpZCI6IjQzODk0NDk1MjMxIiwiYmxvZ2lkIjoiOTQ4NjMwMDAiLCJzb3VyY2UiOjMzfSx7InBvc3RpZCI6IjQzODMwMjI0MjcyIiwiYmxvZ2lkIjoiOTQ4NjMwMDAiLCJzb3VyY2UiOjMzfSx7InBvc3RpZCI6IjQzODA4OTEwNDg1IiwiYmxvZ2lkIjoiOTQ4NjMwMDAiLCJzb3VyY2UiOjMzfSx7InBvc3RpZCI6IjQzNzk0OTcxODgyIiwiYmxvZ2lkIjoiOTQ4NjMwMDAiLCJzb3VyY2UiOjMzfSx7InBvc3RpZCI6IjQzNjYxNjc0NDQ5IiwiYmxvZ2lkIjoiOTQ4NjMwMDAiLCJzb3VyY2UiOjMzfV19&U=MECFAFDLPK&K=075c4ce1b44d0fb312e86a7cac2d5b11ebbf395b3548ea94d0631ac405451a7a&R=http%3A%2F%2Fwww.google.de%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D8%26ved%3D0CHoQFjAH%26url%3Dhttp%253A%252F%252Fraspberrypi.werquin.com%252F%26ei%3DOmlvUqqaL8GhtAaamYHwBA%26usg%3DAFQjCNFMzfEQDBhCckTiKBmAz21-NOJFqw%26bvm%3Dbv.55123115%2Cd.Yms%26cad%3Drja'.replace(/&R=[^&$]*/,'').concat('&R='+escape(document.referrer)).slice(0,2000).replace(/%.?.?$/,'');}(new Image());</script><noscript><img style="position:absolute;z-index:-3334;top:0px;left:0px;visibility:hidden;" src="http://www.tumblr.com/impixu?T=1383033217&J=eyJ0eXBlIjoicG9zdCIsInVybCI6Imh0dHA6XC9cL3Jhc3BiZXJyeXBpLndlcnF1aW4uY29tXC8iLCJyZXF0eXBlIjowLCJyb3V0ZSI6IlwvIiwicG9zdHMiOlt7InBvc3RpZCI6IjUxODg1ODQyNDI1IiwiYmxvZ2lkIjoiOTQ4NjMwMDAiLCJzb3VyY2UiOjMzfSx7InBvc3RpZCI6IjQ0ODkwNzA1MzY3IiwiYmxvZ2lkIjoiOTQ4NjMwMDAiLCJzb3VyY2UiOjMzfSx7InBvc3RpZCI6IjQ0ODE1NDY1NzA2IiwiYmxvZ2lkIjoiOTQ4NjMwMDAiLCJzb3VyY2UiOjMzfSx7InBvc3RpZCI6IjQ0ODE0MTgyNjY1IiwiYmxvZ2lkIjoiOTQ4NjMwMDAiLCJzb3VyY2UiOjMzfSx7InBvc3RpZCI6IjQzODk2NzY3NjM2IiwiYmxvZ2lkIjoiOTQ4NjMwMDAiLCJzb3VyY2UiOjMzfSx7InBvc3RpZCI6IjQzODk0NDk1MjMxIiwiYmxvZ2lkIjoiOTQ4NjMwMDAiLCJzb3VyY2UiOjMzfSx7InBvc3RpZCI6IjQzODMwMjI0MjcyIiwiYmxvZ2lkIjoiOTQ4NjMwMDAiLCJzb3VyY2UiOjMzfSx7InBvc3RpZCI6IjQzODA4OTEwNDg1IiwiYmxvZ2lkIjoiOTQ4NjMwMDAiLCJzb3VyY2UiOjMzfSx7InBvc3RpZCI6IjQzNzk0OTcxODgyIiwiYmxvZ2lkIjoiOTQ4NjMwMDAiLCJzb3VyY2UiOjMzfSx7InBvc3RpZCI6IjQzNjYxNjc0NDQ5IiwiYmxvZ2lkIjoiOTQ4NjMwMDAiLCJzb3VyY2UiOjMzfV0sIm5vc2NyaXB0IjoxfQ==&U=MECFAFDLPK&K=0ee501fc3fbd9e0d2f3c8d8d540a4a4b18fb3ada09f2bcb7f37ae6c5817c40d3&R=http%3A%2F%2Fwww.google.de%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D8%26ved%3D0CHoQFjAH%26url%3Dhttp%253A%252F%252Fraspberrypi.werquin.com%252F%26ei%3DOmlvUqqaL8GhtAaamYHwBA%26usg%3DAFQjCNFMzfEQDBhCckTiKBmAz21-NOJFqw%26bvm%3Dbv.55123115%2Cd.Yms%26cad%3Drja"></noscript>
+
+
+
+
+
+                                                                            <script type="text/javascript" src="My%20Raspberry%20Pi%20project-Dateien/rapid-3.js"></script>
+                <script>
+                    (function(YAHOO) {
+                        if (YAHOO) {
+                            YAHOO.i13n.beacon_server = 'nol.yahoo.com';
+                            var keys = { pd:'/', _li:0, i_rad:0, i_strm:0 };
+                            YAHOO.rapid = new YAHOO.i13n.Rapid({spaceid:1197719229, oo:1, client_only:1, yql_enabled:false, keys:keys});
+                        }
+                    })(window.YAHOO);
+                </script>
+                        <!-- END TUMBLR CODE -->
+
+
+</body></html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="de-DE">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="de-DE">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="de-DE">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="de-DE"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>Lighttpd - HowTo: Passwort geschütze Verzeichnisse | ROOT ON FIRE</title>
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="stylesheet" type="text/css" media="screen" href="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/style.css">
+<link rel="stylesheet" type="text/css" media="print" href="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/print.css">
+<link rel="pingback" href="http://www.root-on-fire.com/xmlrpc.php">
+<!-- enable HTML5 elements in IE7+8 --> 
+<!--[if lt IE 9]>
+<script src="http://www.root-on-fire.com/wp-content/themes/bugis/js/html5.js" type="text/javascript"></script>
+<![endif]-->
+<link rel="alternate" type="application/rss+xml" title="ROOT ON FIRE » Feed" href="http://www.root-on-fire.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="ROOT ON FIRE » Kommentar-Feed" href="http://www.root-on-fire.com/comments/feed/">
+
+            <script type="text/javascript" async="" src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/quant.js"></script><script async="" src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/cbgapi.loaded_0"></script><script src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/ga.js" async="" type="text/javascript"></script><script type="text/javascript">//<![CDATA[
+            // Google Analytics for WordPress by Yoast v4.3.3 | http://yoast.com/wordpress/google-analytics/
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-11285104-1']);
+				</script><script src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/custom_se_async.js" type="text/javascript"></script>
+<script type="text/javascript">            _gaq.push(['_trackPageview']);
+            (function () {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+            //]]></script>
+			<link rel="alternate" type="application/rss+xml" title="ROOT ON FIRE » Lighttpd – HowTo: Passwort geschütze Verzeichnisse Kommentar-Feed" href="http://www.root-on-fire.com/2010/06/17/lighttpd-howto-passwort-geschutze-verzeichnisse/feed/">
+<link rel="stylesheet" id="twoclick-social-media-buttons-css" href="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/socialshareprivacy-min.css" type="text/css" media="all">
+<link rel="stylesheet" id="contact-form-7-css" href="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/styles.css" type="text/css" media="all">
+<link rel="stylesheet" id="stbCSS-css" href="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/wp-special-textboxes.css" type="text/css" media="all">
+<link rel="stylesheet" id="codecolorer-css" href="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/codecolorer.css" type="text/css" media="screen">
+<link rel="stylesheet" id="wp-pagenavi-css" href="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/pagenavi-css.css" type="text/css" media="all">
+<script type="text/javascript" src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/prototype.js"></script>
+<script type="text/javascript" src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/scriptaculous.js"></script><script type="text/javascript" src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/builder.js"></script><script type="text/javascript" src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/effects_002.js"></script><script type="text/javascript" src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/dragdrop.js"></script><script type="text/javascript" src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/controls.js"></script><script type="text/javascript" src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/slider.js"></script><script type="text/javascript" src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/sound.js"></script>
+<script type="text/javascript" src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/effects.js"></script>
+<script type="text/javascript" src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/lightbox.js"></script>
+<script type="text/javascript" src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/jquery_003.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.root-on-fire.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.root-on-fire.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="(IN)SECURE Magazine – Ausgabe 26 veröffentlicht" href="http://www.root-on-fire.com/2010/06/16/insecure-magazine-%e2%80%93-ausgabe-26-veroffentlicht/">
+<link rel="next" title="HTTPS Everywhere – automatischer SSL Aufruf" href="http://www.root-on-fire.com/2010/06/18/https-everywhere-automatischer-ssl-aufruf/">
+<meta name="generator" content="WordPress 3.6.1">
+<link rel="shortlink" href="http://wp.me/pMDOB-rr">
+
+<!-- Article Thumbnail -->
+<link href="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/lighttpd.png" rel="image_src">
+
+<!-- OpenGraph Tags (added by 2-Click Social Media Buttons) -->
+<meta property="og:site_name" content="ROOT ON FIRE">
+<meta property="og:locale" content="de_DE">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lighttpd – HowTo: Passwort geschütze Verzeichnisse">
+<meta property="og:url" content="http://www.root-on-fire.com/2010/06/17/lighttpd-howto-passwort-geschutze-verzeichnisse/">
+<meta property="og:image" content="http://www.root-on-fire.com/wp-content/uploads/2010/06/lighttpd.png">
+<meta property="og:description" content="Lighttpd unterstützt verschiedene Authentifizierungsmethoden, bei diesem HowTo werde ich auf die einfachste eingehen. Dabei werden Benutzername und Passwort als Klartext gespeichert. Es ist auf alle Fälle ratsam, die Verbindung mit SSL zu verschlüsseln, da sonst das Passwort sehr einfach mitgelesen werden kann.
+
+
+I. Modul aktivieren
+In der Konfigdatei /etc/lighttpd/lighttpd.conf muss zunäc ...">
+<!-- /OpenGraph Tags -->
+
+
+	<!-- begin lightbox scripts -->
+	<script type="text/javascript">
+    //<![CDATA[
+    document.write('<link rel="stylesheet" href="http://www.root-on-fire.com/wp-content/plugins/lightbox-2/Themes/Grey/lightbox.css" type="text/css" media="screen" />');
+    //]]>
+    </script><link rel="stylesheet" href="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/lightbox.css" type="text/css" media="screen">
+	<!-- end lightbox scripts -->
+
+	<!-- Generated by Link Indication Plugin 4.4 - http://sw-guide.de/ -->
+	<style type="text/css" media="screen">
+		@import url( http://www.root-on-fire.com/wp-content/plugins/link-indication/link-indication_style.css );
+	</style>
+	<!-- /Link Indication Plugin -->
+		<style>
+		/* Link color */
+		a, #site-title h1 a, #secondary .textwidget a, #content .entry-header h1.entry-title a:hover, #main-nav ul ul a:hover, #content .entry-meta .cat-links a:hover, #content .entry-meta .tag-links a:hover, #content .entry-meta a.post-date:hover,#content .entry-meta a.share-btn:hover, #content .entry-meta a.like-btn:hover, #secondary a:hover, #respond a:hover, a.post-edit-link:hover, #comments a.comment-reply-link:hover, .comment-header a.comment-time:hover, a.comment-edit-link:hover, a#cancel-comment-reply-link:hover, .widget_calendar table#wp-calendar tbody tr td a, #nav-below .nav-previous a:hover, #nav-below .nav-next a:hover, #image-nav span.previous-image a:hover, #image-nav span.next-image a:hover,#comment-nav-below .nav-next a:hover, #comment-nav-below .nav-previous a:hover, #site-generator a:hover, #content .wp-pagenavi span.current, #content .wp-pagenavi a:hover, #smart-archives-list a:hover, ul#smart-archives-block li a:hover {
+			color: #df1c0b;
+		}
+		#main-nav ul li a:hover, #content .post .entry-summery a:hover, .page-link a:hover, #content .format-link .entry-content a:hover, input#submit:hover, input.wpcf7-submit:hover, #colophon ul.menu a:hover  {
+			background:#df1c0b;
+		}
+	</style>
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+
+<!-- All in One SEO Pack 2.0.4 by Michael Torbert of Semper Fi Web Design[424,502] -->
+<meta name="description" content="Lighttpd unterstützt verschiedene Authentifizierungsmethoden, bei diesem HowTo werde ich auf die einfachste eingehen. Dabei werden Benutzername und Passwort">
+
+<meta name="keywords" content="lighttpd">
+
+<link rel="canonical" href="http://www.root-on-fire.com/2010/06/17/lighttpd-howto-passwort-geschutze-verzeichnisse/">
+<!-- /all in one seo pack -->
+<style type="text/css" media="all">
+/* <![CDATA[ */
+@import url("http://www.root-on-fire.com/wp-content/plugins/wp-table-reloaded/css/plugin.css?ver=1.9.4");
+@import url("http://www.root-on-fire.com/wp-content/plugins/wp-table-reloaded/css/tablesorter.css?ver=1.9.4");
+.wp-table-reloaded {
+	background-color:#CDCDCD;
+	margin:10px 0px 15px 0px;
+	font-size:8pt;
+	width:100%;
+	text-align:left;
+}
+.wp-table-reloaded th {
+	background-color:#E6EEEE;
+	border:1px solid #FFFFFF;
+	padding:4px;
+}
+.wp-table-reloaded td {
+	color:#3D3D3D;
+	padding:4px;
+	background-color:#FFFFFF;
+	vertical-align:top;
+}
+.wp-table-reloaded .even td {
+	background-color:#FFFFFF;
+}
+.wp-table-reloaded .odd td{
+	background-color:#F0F0F6;
+}
+.wp-table-reloaded .header {
+	background-image:url(http://www.root-on-fire.com/wp-content/plugins/wp-table-reloaded/img/bg.gif);
+	background-repeat:no-repeat;
+	background-position:center right;
+	cursor:pointer;
+}
+.wp-table-reloaded .headerSortUp {
+	background-color:#8DBDD8;
+	background-image:url(http://www.root-on-fire.com/wp-content/plugins/wp-table-reloaded/img/asc.gif);
+}
+
+.wp-table-reloaded .headerSortDown {
+	background-color:#8DBDD8;
+	background-image:url(http://www.root-on-fire.com/wp-content/plugins/wp-table-reloaded/img/desc.gif);
+}
+/* ]]> */
+</style><style type="text/css" id="custom-background-css">
+body.custom-background { background-image: url('http://www.root-on-fire.com/wp-content/uploads/2011/07/dark-bg-texture-062.jpg'); background-repeat: repeat; background-position: top left; background-attachment: scroll; }
+</style>
+<style type="text/css" id="syntaxhighlighteranchor"></style>
+</head>
+
+<body class="single single-post postid-1701 single-format-standard custom-background two-column content-sidebar">
+	<header id="header">
+		<div id="branding" class="clearfix">
+			<hgroup id="site-title">
+									<h1><a href="http://www.root-on-fire.com/" title="ROOT ON FIRE">ROOT ON FIRE</a></h1>
+					<h2 id="site-description">Security, Software, Tools, Technik…</h2>
+							</hgroup><!-- end site-title -->
+			
+			<nav id="main-nav" class="clearfix">
+				<div class="menu"><ul><li><a href="http://www.root-on-fire.com/" title="Home">Home</a></li><li class="page_item page-item-577"><a href="http://www.root-on-fire.com/web-proxy-liste/">Web-Proxy Liste</a></li><li class="page_item page-item-1048"><a href="http://www.root-on-fire.com/nmap/">Nmap</a></li><li class="page_item page-item-5"><a href="http://www.root-on-fire.com/impressum/">Impressum</a></li><li class="page_item page-item-53"><a href="http://www.root-on-fire.com/kontakt/">Kontakt</a></li></ul></div>
+			</nav><!-- end main-nav -->
+			
+		</div><!-- end branding -->
+	</header><!-- end header -->
+			
+	<div id="page" class="clearfix">
+<div id="main" class="clearfix">
+	<div id="content">
+	
+			
+<article id="post-1701" class="post-1701 post type-post status-publish format-standard hentry category-linux category-security tag-lighttpd">
+<div class="entry-wrap">
+	<div class="post-type">
+					<a href="http://www.root-on-fire.com/2010/06/17/lighttpd-howto-passwort-geschutze-verzeichnisse/" class="post-format"><img src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/format-standard.png" alt="permalink" title="Permalink"></a>
+				<p class="post-comments"><a href="http://www.root-on-fire.com/2010/06/17/lighttpd-howto-passwort-geschutze-verzeichnisse/#comments" class="comments-link" title="Kommentiere Lighttpd – HowTo: Passwort geschütze Verzeichnisse">2</a></p>
+	</div><!--end post-type	-->
+	
+		<header class="entry-header">			
+			<h1 class="entry-title"><a href="http://www.root-on-fire.com/2010/06/17/lighttpd-howto-passwort-geschutze-verzeichnisse/" title="Permalink zu Lighttpd – HowTo: Passwort geschütze Verzeichnisse" rel="bookmark">Lighttpd – HowTo: Passwort geschütze Verzeichnisse</a></h1>
+		</header><!--end entry-header -->
+		
+		<div class="entry-content">
+						<p><a href="http://www.lighttpd.net/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.lighttpd.net/']);" target="_blank" class="liimagelink"><img src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/lighttpd.png" alt="" title="lighttpd" class="alignright size-full wp-image-1716" height="120" width="126"></a>Lighttpd
+ unterstützt verschiedene Authentifizierungsmethoden, bei diesem HowTo 
+werde ich auf die einfachste eingehen. Dabei werden Benutzername und 
+Passwort als Klartext gespeichert. Es ist auf alle Fälle ratsam, die 
+Verbindung mit SSL zu verschlüsseln, da sonst das Passwort sehr einfach 
+mitgelesen werden kann.</p>
+<p><u>I. Modul aktivieren</u><br>
+In der Konfigdatei <strong>/etc/lighttpd/lighttpd.conf</strong> muss zunächst das Modul <a href="http://redmine.lighttpd.net/projects/lighttpd/wiki/Docs:ModAuth" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','']);" target="_blank" class="liexternal">mod_auth</a> aktiviert werden.</p>
+<div class="codecolorer-container text default batch" style="overflow:auto;white-space:nowrap;width:99%;"><div class="text codecolorer">server.modules &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;= (<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "mod_access",<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "mod_alias",<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "mod_accesslog",<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "mod_compress",<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "mod_auth",<br>
+)</div></div>
+<p><u>II. Authentifizierungs Backend und Logging definieren</u><br>
+Folgende Zeilen müssen am Ende der <strong>/etc/lighttpd/lighttpd.conf</strong> stehen.</p>
+<div class="codecolorer-container text default batch" style="overflow:auto;white-space:nowrap;width:99%;"><div class="text codecolorer">auth.debug = 2<br>
+auth.backend = "plain"<br>
+auth.backend.plain.userfile = "/home/root-on-fire/pass"</div></div>
+<p><u>Erklärung:</u></p>
+<ul>
+<li> <strong>auth.debug = 2:</strong> Debug Level 2 loggt alle (gültige &amp; ungültige) Login Versuche mit (/var/log/lighttpd/access.log &amp; error.log)</li>
+<li> <strong>auth.backend = “plain”:</strong>Definiert das Authentifizierungsbackend = Plaintext</li>
+<li> <strong>auth.backend.plain.userfile = “/home/root-on-fire/pass” :</strong>Pfad zur Passwortdatei</li>
+</ul>
+<p><u>III. Passwort geschütztes Verzeichniss definieren</u><br>
+In diesem Beispiel wird die Authentifizierung für den Unterordner <strong>dokumente</strong>
+ konfiguriert. Wenn man nichts zwischen die beiden Anführungszeichen 
+schreibt, ist die komplette Domain bzw. Webseite mit einer 
+Passwortabfrage geschützt.</p>
+<div class="codecolorer-container text default batch" style="overflow:auto;white-space:nowrap;width:99%;"><div class="text codecolorer">auth.require = ( "/dokumente/" =&gt;<br>
+(<br>
+"method" =&gt; "basic",<br>
+"realm" =&gt; "Password protected area",<br>
+"require" =&gt; "user=root-on-fire"<br>
+)<br>
+)</div></div>
+<p>Mit <strong>“require” =&gt; “user=root-on-fire”</strong> wird definiert, dass sich nur der Benutzer<strong> root-on-fire</strong> einloggen darf.<br>
+<strong>“realm” =&gt; “Password protected area”</strong> wird bei der Passwortabfrage ausgegeben, siehe unten.</p>
+<p><u>IV. Benutzer und Passwort definieren</u></p>
+<p>Der Benutzer unter dem Lighttpd läuft (bei debian standardmäßig <strong>www-data</strong>) muss Leseberechtigung auf das Passwortfile haben:</p>
+<div class="codecolorer-container text default batch" style="overflow:auto;white-space:nowrap;width:99%;"><div class="text codecolorer">r-o-f:# chown www-data.www-data /home/root-on-fire/pass</div></div>
+<p>Die Syntax ist einfach: Benutzername:Passwort, z.B.:</p>
+<div class="codecolorer-container text default batch" style="overflow:auto;white-space:nowrap;width:99%;"><div class="text codecolorer">root-on-fire:876543210</div></div>
+<p><u>V. Konfiguration überprüfen</u></p>
+<p><img src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/lighttpd-auth.png" alt="" title="lighttpd-auth" class="aligncenter size-full wp-image-1717" height="161" width="600"></p>
+<p>Lighttpd Homepage: <a href="http://www.lighttpd.net/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.lighttpd.net/']);" target="_blank" class="liexternal">www.lighttpd.net</a><br>
+Lighttpd Doku: <a href="http://redmine.lighttpd.net/wiki/lighttpd" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://redmine.lighttpd.net/wiki/lighttpd']);" target="_blank" class="liexternal">www.lighttpd.net</a></p>
+<div class="twoclick_social_bookmarks_post_1701 social_share_privacy clearfix 1.6.1 locale-de_DE sprite-de_DE"><ul class="social_share_privacy_area_1701"><li class="twoclick-facebook"><div class="twoclick-button-container help_info"><span class="info"></span><span class="switch off">nicht mit Facebook verbunden</span><div class="fb_recommend_btn dummy_btn"><span class="fb_recommend_dummy twoclick-network">&nbsp;</span></div></div></li></ul></div><div class="twoclick-js"><script type="text/javascript">/* <![CDATA[ */
+jQuery(document).ready(function($){if($('.twoclick_social_bookmarks_post_1701')){$('.twoclick_social_bookmarks_post_1701').socialSharePrivacy({"services":{"facebook":{"status":"on","txt_info":"","perma_option":"off","action":"recommend","language":"de_DE"},"twitter":{"reply_to":"root_on_fire","tweet_text":"Lighttpd%20%E2%80%93%20HowTo%3A%20Passwort%20gesch%C3%BCtze%20Verzeichnisse","status":"on","txt_info":"","perma_option":"off","language":"de","referrer_track":""},"gplus":{"status":"on","txt_info":"","perma_option":"off","referrer_track":""}},"txt_help":"","settings_perma":"","info_link":"","uri":"http:\/\/www.root-on-fire.com\/2010\/06\/17\/lighttpd-howto-passwort-geschutze-verzeichnisse\/","post_id":1701,"post_title_referrer_track":"Lighttpd+%26%238211%3B+HowTo%3A+Passwort+gesch%C3%BCtze+Verzeichnisse","display_infobox":"on"});}});
+/* ]]&gt; */</script></div>					</div><!-- end entry-content -->
+	
+				
+				<footer class="entry-meta">
+						
+			<a href="http://www.root-on-fire.com/2010/06/17/lighttpd-howto-passwort-geschutze-verzeichnisse/" class="post-date">17. Juni 2010</a>
+			<p><span class="cat-links"><span class="cat-links-title">Kategorien </span><a href="http://www.root-on-fire.com/category/linux/" title="Alle Beiträge in Linux ansehen" rel="category tag">Linux</a>, <a href="http://www.root-on-fire.com/category/security/" title="Alle Beiträge in Security ansehen" rel="category tag">Security</a></span>
+			<span class="tag-links"><span class="tag-links-title">Schlagwörter </span><a href="http://www.root-on-fire.com/tag/lighttpd/" rel="tag">lighttpd</a></span></p>
+					</footer><!-- end entry-meta -->
+		
+	</div><!--end entry-wrap-->
+</article><!-- end post-1701 -->		
+<div id="comments">
+
+		<h3 id="comments-title">2 Kommentare</h3>	
+			<ol class="commentlist">
+					<li class="post pingback">
+		<p>Pingback: <a href="http://topsy.com/www.root-on-fire.com/2010/06/17/lighttpd-howto-passwort-geschutze-verzeichnisse/?utm_source=pingback&amp;utm_campaign=L2" onclick="javascript:_gaq.push(['_trackEvent','outbound-commentauthor','http://topsy.com/www.root-on-fire.com/2010/06/17/lighttpd-howto-passwort-geschutze-verzeichnisse/?utm_source=pingback&amp;utm_campaign=L2']);" rel="external " class="url">Tweets that mention Lighttpd - HowTo: Passwort geschütze Verzeichnisse | ROOT ON FIRE -- Topsy.com</a></p>
+	</li><!-- #comment-## -->
+	<li class="post pingback">
+		<p>Pingback: <a href="http://www.root-on-fire.com/2010/06/20/eigener-webproxy-mit-phproxy-und-lighttpd/" rel="external " class="url">Eigener WebProxy mit PHProxy und Lighttpd | ROOT ON FIRE</a></p>
+	</li><!-- #comment-## -->
+			</ol>
+		
+	
+									
+</div><!-- end comments -->			
+		<nav id="nav-below">
+			<div class="nav-next"><a href="http://www.root-on-fire.com/2010/06/18/https-everywhere-automatischer-ssl-aufruf/" rel="next">Nächster Artikel →</a></div>
+			<div class="nav-previous"><a href="http://www.root-on-fire.com/2010/06/16/insecure-magazine-%e2%80%93-ausgabe-26-veroffentlicht/" rel="prev">←  Vorheriger Artikel</a></div>
+		</nav><!-- #nav-below -->
+	</div><!--end content-->
+	
+
+
+	<div id="secondary" class="widget-area" role="complementary">
+		<aside id="text-6" class="widget widget_text">			<div class="textwidget"><center><a href="https://plus.google.com/u/0/104979755426317564322/posts" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://plus.google.com/u/0/104979755426317564322/posts']);" target="_blank"><img src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/google.png" alt="google" title="google" class="alignnone size-full wp-image-2841" height="57" width="60"></a> <a href="http://twitter.com/root_on_fire" onclick="javascript:_gaq.push(['_trackEvent','outbound-widget','http://twitter.com/root_on_fire']);" target="_blank"><img src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/twitter.png" alt="Twitter" title="Twitter" class="alignnone size-full wp-image-2843" height="59" width="60"></a> <a href="http://www.root-on-fire.com/feed/" target="_blank"><img src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/feedburner.png" alt="feedburner" title="feedburner" class="alignnone size-full wp-image-2840" height="59" width="60"></a> 
+<a href="http://www.root-on-fire.com/kontakt/"><img src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/mail.png" alt="Kontakt" title="Kontakt" class="alignnone size-full wp-image-2842" height="59" width="60"></a></center></div>
+		</aside><aside id="text-5" class="widget widget_text">			<div class="textwidget"><a href="http://www.root-on-fire.com/category/linux/"><img src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/linux.jpg" alt="Linux" title="Linux" class="aligncenter size-full wp-image-2834" height="50" width="270"></a>
+
+<a href="http://www.root-on-fire.com/tag/security/"><img src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/security.jpg" alt="Security" title="Security" class="aligncenter size-full wp-image-2832" height="50" width="270"></a>
+
+<a href="http://www.root-on-fire.com/tag/tools/"><img src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/tools.jpg" alt="Tools" title="Tools" class="aligncenter size-full wp-image-2838" height="50" width="270"></a>
+
+<a href="http://www.root-on-fire.com/tag/nmap/"><img src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/nmap.jpg" alt="Nmap" title="Nmap" class="aligncenter size-full wp-image-2837" height="50" width="270"></a>
+
+<a href="http://www.root-on-fire.com/tag/news/"><img src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/news.jpg" alt="News" title="News" class="aligncenter size-full wp-image-2836" height="50" width="270"></a>
+
+<a href="http://www.root-on-fire.com/category/allgemein/"><img src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/sonstiges.jpg" alt="Sonstiges" title="Sonstiges" class="aligncenter size-full wp-image-2835" height="50" width="270"></a></div>
+		</aside><aside id="recent-comments-3" class="widget widget_recent_comments"><h3 class="widget-title">Letzte Kommentare</h3><ul id="recentcomments"><li class="recentcomments"><a href="http://www.list4proxy.de/" onclick="javascript:_gaq.push(['_trackEvent','outbound-commentauthor','http://www.list4proxy.de']);" rel="external " class="url">Christopher Keller</a> bei <a href="http://www.root-on-fire.com/web-proxy-liste/comment-page-2/#comment-144176">Web-Proxy Liste</a></li><li class="recentcomments"><a href="http://www.webproxy.yt/" onclick="javascript:_gaq.push(['_trackEvent','outbound-commentauthor','http://www.webproxy.yt']);" rel="external " class="url">Christopher Keller</a> bei <a href="http://www.root-on-fire.com/web-proxy-liste/comment-page-2/#comment-142168">Web-Proxy Liste</a></li><li class="recentcomments"><a href="http://summersprodukteblog.blogspot.com/2013/05/pantene-pro-v-im-test.html" onclick="javascript:_gaq.push(['_trackEvent','outbound-commentauthor','http://summersprodukteblog.blogspot.com/2013/05/pantene-pro-v-im-test.html']);" rel="external " class="url">Gwen</a> bei <a href="http://www.root-on-fire.com/web-proxy-liste/comment-page-2/#comment-140251">Web-Proxy Liste</a></li><li class="recentcomments"><a href="http://youtube.com/watch?v=b8Oxc49plzo" onclick="javascript:_gaq.push(['_trackEvent','outbound-commentauthor','http://youtube.com/watch?v=b8Oxc49plzo']);" rel="external " class="url">Protect Your IP With Hide My Ass</a> bei <a href="http://www.root-on-fire.com/nmap/comment-page-1/#comment-138313">Nmap</a></li><li class="recentcomments"><a href="http://www.xmedial.de/" onclick="javascript:_gaq.push(['_trackEvent','outbound-commentauthor','http://www.xmedial.de']);" rel="external " class="url">Rene</a> bei <a href="http://www.root-on-fire.com/web-proxy-liste/comment-page-2/#comment-135575">Web-Proxy Liste</a></li></ul></aside><aside id="linkcat-2" class="widget widget_links"><h3 class="widget-title">Blogroll</h3>
+	<ul class="xoxo blogroll">
+<li><a href="http://www.bergercity.de/" target="_blank" onclick="javascript:_gaq.push(['_trackEvent','outbound-blogroll','http://www.bergercity.de/']);">/var/bergercity/</a></li>
+<li><a href="http://adminstories.de/" target="_blank" onclick="javascript:_gaq.push(['_trackEvent','outbound-blogroll','http://adminstories.de/']);">adminstories</a></li>
+<li><a href="http://blog.encodingit.ch/" target="_blank" onclick="javascript:_gaq.push(['_trackEvent','outbound-blogroll','http://blog.encodingit.ch/']);">Bits, Bytes and my 5 cents</a></li>
+<li><a href="http://hoohead.hoohost.org/" target="_blank" onclick="javascript:_gaq.push(['_trackEvent','outbound-blogroll','http://hoohead.hoohost.org/']);">hoos Area</a></li>
+<li><a href="http://linuxundich.de/" title="http://linuxundich.de/" target="_blank" onclick="javascript:_gaq.push(['_trackEvent','outbound-blogroll','http://linuxundich.de/']);">Linux und Ich</a></li>
+<li><a href="http://www.sysadminslife.com/" target="_blank" onclick="javascript:_gaq.push(['_trackEvent','outbound-blogroll','http://www.sysadminslife.com/']);">SYSADMIN’S LIFE</a></li>
+<li><a href="http://www.tobbis-blog.de/" target="_blank" onclick="javascript:_gaq.push(['_trackEvent','outbound-blogroll','http://www.tobbis-blog.de/']);">Tobbis Blog</a></li>
+<li><a href="http://edge0815.wordpress.com/" target="_blank" onclick="javascript:_gaq.push(['_trackEvent','outbound-blogroll','http://edge0815.wordpress.com/']);">YAFIB</a></li>
+
+	</ul>
+</aside>
+	</div><!-- end secondary -->
+
+ 
+	</div><!--end main-->
+	<div class="clear"></div>
+
+	<footer id="colophon">
+			
+		<div id="site-generator">	
+			© 2011 ROOT ON FIRE | Verantwortlich: Moritz TANZER		</div><!-- end site generator -->
+		
+		<a href="#header" class="top-btn">Top</a>
+	</footer><!-- end colophon -->
+</div><!--end page-->
+
+<script type="text/javascript" src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/social_bookmarks-min.js"></script>
+<script gapi_processed="true" type="text/javascript" src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/plusone.js"></script>
+<script type="text/javascript" src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/jquery.js"></script>
+<script type="text/javascript" src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/jquery_004.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var stbUserOptions = {"mode":"css","cssOptions":{"roundedCorners":true,"mbottom":10,"imgHide":"http:\/\/www.root-on-fire.com\/wp-content\/plugins\/wp-special-textboxes\/images\/hide.png","imgShow":"http:\/\/www.root-on-fire.com\/wp-content\/plugins\/wp-special-textboxes\/images\/show.png","strHide":"Hide","strShow":"Show"}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/wstb.js"></script>
+<script type="text/javascript" src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/jquery_002.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var _wpcf7 = {"loaderUrl":"http:\/\/www.root-on-fire.com\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","sending":"Senden ..."};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/scripts.js"></script>
+<script type="text/javascript" src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/custom.js"></script>
+<!--stats_footer_test--><script src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/e-201342.js" type="text/javascript"></script>
+<script type="text/javascript">
+st_go({blog:'11592797',v:'ext',post:'1701'});
+var load_cmc = function(){linktracker_init(11592797,1701,2);};
+if ( typeof addLoadEvent != 'undefined' ) addLoadEvent(load_cmc);
+else load_cmc();
+</script><img id="wpstats" src="Lighttpd%20-%20HowTo%20%20Passwort%20gesch%C3%BCtze%20Verzeichnisse%20_%20ROOT%20ON%20FIRE-Dateien/g.gif" alt="">
+
+<div style="display: none;" id="stimuli_overlay"></div><div style="display: none;" id="stimuli_lightbox"><div id="stimuli_outerImageContainer"></div></div></body></html>

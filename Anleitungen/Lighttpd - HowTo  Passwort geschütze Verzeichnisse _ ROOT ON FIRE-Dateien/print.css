@@ -1,0 +1,14 @@
+body{background:#fff url(none) !important;font-family:Arial, sans-serif;font-size:10pt;width:100%;text-align:left;font-weight:400;line-height:1.2;margin:0;}
+#content{margin-left:0;float:none;width:auto;}
+a{font-weight:700;color:#000 !important;text-decoration:underline;}
+h1,h2,h3,h4,h5,h6{page-break-after:avoid;page-break-inside:avoid;font-weight:700;}
+h2#site-description{font-size:10pt;font-style:italic;}
+blockquote,table,pre{page-break-inside:avoid;}
+ul,ol,dl{page-break-before:avoid;}
+img.aligncentered{display:block;margin-left:auto;margin-right:auto;}
+img.alignright{display:inline;margin:0 0 2px 7px;padding:4px;}
+img.alignleft{display:inline;margin:0 7px 2px 0;padding:4px;}
+.right{float:right;}
+.left{float:left;}
+img{page-break-inside:avoid;page-break-after:avoid;}
+#secondary,#content .post-type,#footer{display:none;}

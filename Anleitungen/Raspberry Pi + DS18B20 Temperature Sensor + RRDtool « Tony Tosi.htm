@@ -1,0 +1,1003 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0087)http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head profile="http://gmpg.org/xfn/11"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi</title>
+<link rel="shortcut icon" href="http://blog.turningdigital.com/wp-content/themes/lightword/favicon.ico">
+<link rel="pingback" href="http://blog.turningdigital.com/xmlrpc.php">
+
+
+<link rel="alternate" type="application/rss+xml" title="Tony Tosi » Feed" href="http://blog.turningdigital.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Tony Tosi » Comments Feed" href="http://blog.turningdigital.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Tony Tosi » Raspberry Pi + DS18B20 Temperature Sensor + RRDtool Comments Feed" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/feed/">
+<link rel="stylesheet" id="lightword_stylesheet-css" href="./Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="lightword_stylesheet_wider-css" href="./Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi_files/wider.css" type="text/css" media="all">
+<script type="text/javascript" src="./Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi_files/comment-reply.min.js"></script>
+<script type="text/javascript" src="./Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi_files/jquery.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.turningdigital.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.turningdigital.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Hardware &amp; Software PWM on Raspberry Pi with wiringPi" href="http://blog.turningdigital.com/2012/09/hardware-software-pwm-on-raspberrypi-with-wiringpi/">
+<link rel="next" title="Differential Drive Robot with a Raspberry Pi and a PIC16F88 – The Software" href="http://blog.turningdigital.com/2012/10/a-differential-drive-robot-with-a-raspberry-pi-and-pic16f88/">
+<link rel="canonical" href="./Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi_files/Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi.htm">
+<link rel="shortlink" href="http://blog.turningdigital.com/?p=178">
+<style type="text/css">
+#header{background:transparent url(http://blog.turningdigital.com/wp-content/themes/lightword/images/wider/content_top_no_rss.png) no-repeat; } #content-body,x:-moz-any-link{float:left;margin-right:28px;}#content-body, x:-moz-any-link, x:default{float:none;margin-right:25px;}
+</style>
+<!--[if IE 6]><style type="text/css">#header{background-image: none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://blog.turningdigital.com/wp-content/themes/lightword/images/wider/content_top_no_rss.png',sizingMethod='scale'); }#footer{background:transparent url(http://blog.turningdigital.com/wp-content/themes/lightword/images/wider/content_bottom.gif) no-repeat;height:8px;}.comm_date{background-image: none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://blog.turningdigital.com/wp-content/themes/lightword/images/date_comm_box.png',sizingMethod='scale'); }</style><![endif]-->
+<script type="text/javascript">
+//<![CDATA[
+	var screen_res = ""; 
+	function writeCookie(name,value,hours) {
+		var the_cookie = name+"="+escape(value)+"; expires=";
+		var expires = "";
+		hours=hours+0; //convert to number
+		if (hours > 0) { //0==expires on browser close
+			var cdate = new Date();
+			cdate.setTime(cdate.getTime()+(hours*60*60*1000));
+			expires = expires+cdate.toGMTString();
+		} 
+		document.cookie = the_cookie+expires+"; path=/; domain=";
+	}
+	screen_res = screen.width+" x "+screen.height;
+	if (screen_res==" x ") screen_res = window.screen.width+" x "+window.screen.height;
+	if (screen_res==" x ") screen_res = screen.availWidth+" x "+screen.availHeight;
+	if (screen_res!=" x ") { 
+		writeCookie("wassup_screen_res",screen_res,"48"); //keep 2 days
+	} else {
+		screen_res = "";
+	}
+//]]>
+</script>
+<link rel="stylesheet" type="text/css" href="./Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi_files/shCore.css"><link rel="stylesheet" type="text/css" href="./Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi_files/shThemeDefault.css"><style id="syntaxhighlighteranchor"></style>
+</head>
+
+<body class="single single-post postid-178 single-format-standard">
+<div id="wrapper">
+
+<div id="top_cufon"><h1 id="logo"><a name="top" title="Tony Tosi" href="http://blog.turningdigital.com/">Tony Tosi</a> <small></small></h1></div>
+
+<div id="header">
+
+<div id="top_bar">
+<div class="center_menu">
+<ul id="front_menu" style="z-index: 50;">
+    <li><a class="" title="Home" href="http://blog.turningdigital.com/"><span>Home</span></a></li>
+<div class="menu"></div>
+</ul>
+</div>
+<form method="get" id="searchform" action="http://blog.turningdigital.com/"> <input type="text" value="" name="s" id="s"> <input type="submit" id="go" value="" alt="Search" title="Search"></form>
+</div>
+
+</div>
+<div id="content"><div id="content-body">
+<div class="post-178 post type-post status-publish format-standard hentry category-linux category-perl category-python category-raspberry-pi" id="post-178">
+<div class="comm_date"><span class="data"><span class="j">20</span>Sep/12</span><span class="nr_comm"><a class="nr_comm_spot" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comments">66</a></span></div>
+<h2><a title="Raspberry Pi + DS18B20 Temperature Sensor + RRDtool" href="./Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi_files/Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi.htm" rel="bookmark">Raspberry Pi + DS18B20 Temperature Sensor + RRDtool</a></h2><i>Published September 20, 2012</i>
+<img width="49" height="200" src="./Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi_files/ds18b20.png" class="alignleft wp-post-image" alt="ds18b20"><p>I ordered a sample <a href="http://www.maximintegrated.com/datasheet/index.mvp/id/2812" target="_blank"> DS18B20</a> temperature sensor from Maxim that I coupled with my Raspberry Pi and wanted to do something a little more interesting than displaying the temperature from the console. I decided to use <a href="http://oss.oetiker.ch/rrdtool/" target="_blank">RRDtool</a> to graph the&nbsp;temperature&nbsp;reading over time and push the graphs to my linux VPS so they could be easily viewed from a browser. What follows is rough outline of how I accomplished that and by no means a&nbsp;comprehensive&nbsp;step-by-step guide.</p>
+<p>Here's a link to the generated graphs. Note, I use my RPi for other things besides reading temperatures so there's a good chance it will have large gaps in the readings: <strike>http://turningdigital.com/petratemp.php</strike> <i><small>(the test site has been temporarily taken offline)</small></i></p>
+<p><strong>Raspberry Pi:</strong><br>
+My RPi runs <a href="http://learn.adafruit.com/adafruit-raspberry-pi-educational-linux-distro/occidentalis-v0-dot-2" target="_new">Occidentalis v0.2</a> which is an excellent distro for <img src="./Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi_files/ds18b20.png" align="right" style="margin-left: 15px;"> people who like to tinker on the hardware side of things. It has a lot of cool modules already compiled into the kernel, including the required modules that make interfacing with the temperature sensor a breeze.</p>
+<p><strong>Hardware:</strong><br>
+The hardware side is very straightforward to setup.</p>
+<ul style="z-index: 40;">
+<li>Connect pin 1 (GND) on the 18B20 to pin 6 (GND) on the RPi.</li>
+<li>Connect pin 2 (DQ) on the 18B20 to pin 7 (GPIO4) on the RPi.</li>
+<li>Connect pin 3 (V<sub>DD</sub>) on the 18B20 to pin 1 (3V3) on the RPi.</li>
+<li>Finally, put a 4k7 resistor between Pins 2 and 3 on the 18B20.
+</li></ul>
+<p>It's a good idea to test the hardware setup before implementing all of the software modules. Ensuring the hardware is working correctly will narrow down the cause of any issues when you run the software pieces outlined below. Run the following commands to setup the the required kernel modules and take your first temperature reading:</p>
+<div><div id="highlighter_51683" class="syntaxhighlighter  bash"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="bash functions">sudo</code> <code class="bash plain">modprobe w1-gpio</code></div><div class="line number2 index1 alt1"><code class="bash functions">sudo</code> <code class="bash plain">modprobe w1-therm</code></div><div class="line number3 index2 alt2"><code class="bash functions">cat</code> <code class="bash plain">/sys/bus/w1/devices/28-</code><code class="bash plain">*</code><code class="bash plain">/w1_slave</code></div></div></td></tr></tbody></table></div></div>
+<p>You should see something that resembles the output below:</p>
+<div id="attachment_596" class="wp-caption alignnone" style="width: 510px"><a href="./Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi_files/ds18b20_output.png"><img src="./Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi_files/ds18b20_output.png" alt="Expected output from running the cat /sys/bus/w1/devices/28-*/w1_slave" width="500" height="71"></a><p class="wp-caption-text">Expected output from running the cat /sys/bus/w1/devices/28-*/w1_slave</p></div>
+<p>If you don't get the desired output, check your hardware setup and try again. Note, you only need to load the kernel modules once.</p>
+<p><strong>Software:</strong><br>
+I implemented the software tier in several modules using a variety of scripting languages (Perl, shell&nbsp;scripting, Python and PHP). The following steps setup the components required for the scripts below:</p>
+<ul style="z-index: 30;">
+<li>Install libwww-perl (this module is used to grab the outside temperature):
+<div><div id="highlighter_351625" class="syntaxhighlighter  bash"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="bash functions">sudo</code> <code class="bash plain">apt-get </code><code class="bash functions">install</code> <code class="bash plain">libwww-perl</code></div></div></td></tr></tbody></table></div></div>
+</li>
+<li style="line-height: 19px;">Install <a href="https://github.com/paramiko/paramiko" target="_new">paramiko</a> which is a Python SSH module that includes support for SFTP. This is only required if you wish to SFTP your graphs to another server that supports SFTP. If you decide to use a different method to transfer your graphs (like FTP or not transfer them off your RPi at all), you'll need to modify the ftp_graphs.py script.
+<div><div id="highlighter_493364" class="syntaxhighlighter  bash"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="bash functions">sudo</code> <code class="bash plain">apt-get </code><code class="bash functions">install</code> <code class="bash plain">python-paramiko</code></div></div></td></tr></tbody></table></div></div>
+</li>
+<li>Install <a href="http://oss.oetiker.ch/rrdtool/" target="_new">rrdtool</a>:
+<div><div id="highlighter_14082" class="syntaxhighlighter  bash"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="bash functions">sudo</code> <code class="bash plain">apt-get </code><code class="bash functions">install</code> <code class="bash plain">rrdtool</code></div></div></td></tr></tbody></table></div></div>
+</li>
+</ul>
+<p><b>create_db.sh:</b> The first script sets up (creates) the round robin database. This only needs be run once.</p>
+<div><div id="highlighter_73770" class="syntaxhighlighter  bash"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="bash preprocessor bold">#!/bin/bash</code></div><div class="line number2 index1 alt1"><code class="bash plain">rrdtool create hometemp.rrd --start N --step 300 \</code></div><div class="line number3 index2 alt2"><code class="bash plain">DS:temp:GAUGE:600:U:U \</code></div><div class="line number4 index3 alt1"><code class="bash plain">DS:outtemp:GAUGE:600:U:U \</code></div><div class="line number5 index4 alt2"><code class="bash plain">RRA:AVERAGE:0.5:1:12 \</code></div><div class="line number6 index5 alt1"><code class="bash plain">RRA:AVERAGE:0.5:1:288 \</code></div><div class="line number7 index6 alt2"><code class="bash plain">RRA:AVERAGE:0.5:12:168 \</code></div><div class="line number8 index7 alt1"><code class="bash plain">RRA:AVERAGE:0.5:12:720 \</code></div><div class="line number9 index8 alt2"><code class="bash plain">RRA:AVERAGE:0.5:288:365</code></div></div></td></tr></tbody></table></div></div>
+<p><b>create_graphs.sh:</b> This script creates the daily, weekly, monthly, and yearly graph based on the current data in the rrdb. It's executed hourly by the ftp_graphs.py script below. <b>[Update 12/12/2012 now easier to switch between Celsius and Fahrenheit by setting the TEMP_SCALE variable to "C" or "F"]</b></p>
+<div><div id="highlighter_211113" class="syntaxhighlighter  bash"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div><div class="line number30 index29 alt1">30</div><div class="line number31 index30 alt2">31</div><div class="line number32 index31 alt1">32</div><div class="line number33 index32 alt2">33</div><div class="line number34 index33 alt1">34</div><div class="line number35 index34 alt2">35</div><div class="line number36 index35 alt1">36</div><div class="line number37 index36 alt2">37</div><div class="line number38 index37 alt1">38</div><div class="line number39 index38 alt2">39</div><div class="line number40 index39 alt1">40</div><div class="line number41 index40 alt2">41</div><div class="line number42 index41 alt1">42</div><div class="line number43 index42 alt2">43</div><div class="line number44 index43 alt1">44</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="bash preprocessor bold">#!/bin/bash</code></div><div class="line number2 index1 alt1"><code class="bash plain">DIR=</code><code class="bash string">"/path/to/your/rrd_database/"</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="bash comments">#set to C if using Celsius</code></div><div class="line number5 index4 alt2"><code class="bash plain">TEMP_SCALE=</code><code class="bash string">"F"</code></div><div class="line number6 index5 alt1">&nbsp;</div><div class="line number7 index6 alt2"><code class="bash comments">#define the desired colors for the graphs</code></div><div class="line number8 index7 alt1"><code class="bash plain">INTEMP_COLOR=</code><code class="bash string">"#CC0000"</code></div><div class="line number9 index8 alt2"><code class="bash plain">OUTTEMP_COLOR=</code><code class="bash string">"#0000FF"</code></div><div class="line number10 index9 alt1">&nbsp;</div><div class="line number11 index10 alt2"><code class="bash comments">#hourly</code></div><div class="line number12 index11 alt1"><code class="bash plain">rrdtool graph $DIR</code><code class="bash plain">/temp_hourly</code><code class="bash plain">.png --start -4h \</code></div><div class="line number13 index12 alt2"><code class="bash plain">DEF:temp=$DIR</code><code class="bash plain">/hometemp</code><code class="bash plain">.rrd:temp:AVERAGE \</code></div><div class="line number14 index13 alt1"><code class="bash plain">AREA:temp$INTEMP_COLOR:</code><code class="bash string">"Inside Temperature [deg $TEMP_SCALE]"</code> <code class="bash plain">\</code></div><div class="line number15 index14 alt2"><code class="bash plain">DEF:outtemp=$DIR</code><code class="bash plain">/hometemp</code><code class="bash plain">.rrd:outtemp:AVERAGE \</code></div><div class="line number16 index15 alt1"><code class="bash plain">LINE1:outtemp$OUTTEMP_COLOR:</code><code class="bash string">"Outside Temperature [deg $TEMP_SCALE]"</code></div><div class="line number17 index16 alt2">&nbsp;</div><div class="line number18 index17 alt1"><code class="bash comments">#daily</code></div><div class="line number19 index18 alt2"><code class="bash plain">rrdtool graph $DIR</code><code class="bash plain">/temp_daily</code><code class="bash plain">.png --start -1d \</code></div><div class="line number20 index19 alt1"><code class="bash plain">DEF:temp=$DIR</code><code class="bash plain">/hometemp</code><code class="bash plain">.rrd:temp:AVERAGE \</code></div><div class="line number21 index20 alt2"><code class="bash plain">AREA:temp$INTEMP_COLOR:</code><code class="bash string">"Inside Temperature [deg $TEMP_SCALE]"</code> <code class="bash plain">\</code></div><div class="line number22 index21 alt1"><code class="bash plain">DEF:outtemp=$DIR</code><code class="bash plain">/hometemp</code><code class="bash plain">.rrd:outtemp:AVERAGE \</code></div><div class="line number23 index22 alt2"><code class="bash plain">LINE1:outtemp$OUTTEMP_COLOR:</code><code class="bash string">"Outside Temperature [deg $TEMP_SCALE]"</code></div><div class="line number24 index23 alt1">&nbsp;</div><div class="line number25 index24 alt2"><code class="bash comments">#weekly</code></div><div class="line number26 index25 alt1"><code class="bash plain">rrdtool graph $DIR</code><code class="bash plain">/temp_weekly</code><code class="bash plain">.png --start -1w \</code></div><div class="line number27 index26 alt2"><code class="bash plain">DEF:temp=$DIR</code><code class="bash plain">/hometemp</code><code class="bash plain">.rrd:temp:AVERAGE \</code></div><div class="line number28 index27 alt1"><code class="bash plain">DEF:outtemp=$DIR</code><code class="bash plain">/hometemp</code><code class="bash plain">.rrd:outtemp:AVERAGE \</code></div><div class="line number29 index28 alt2"><code class="bash plain">AREA:temp$INTEMP_COLOR:</code><code class="bash string">"Inside Temperature [deg $TEMP_SCALE]"</code> <code class="bash plain">\</code></div><div class="line number30 index29 alt1"><code class="bash plain">LINE1:outtemp$OUTTEMP_COLOR:</code><code class="bash string">"Outside Temperature [deg $TEMP_SCALE]"</code></div><div class="line number31 index30 alt2">&nbsp;</div><div class="line number32 index31 alt1"><code class="bash comments">#monthly</code></div><div class="line number33 index32 alt2"><code class="bash plain">rrdtool graph $DIR</code><code class="bash plain">/temp_monthly</code><code class="bash plain">.png --start -1m \</code></div><div class="line number34 index33 alt1"><code class="bash plain">DEF:temp=$DIR</code><code class="bash plain">/hometemp</code><code class="bash plain">.rrd:temp:AVERAGE \</code></div><div class="line number35 index34 alt2"><code class="bash plain">DEF:outtemp=$DIR</code><code class="bash plain">/hometemp</code><code class="bash plain">.rrd:outtemp:AVERAGE \</code></div><div class="line number36 index35 alt1"><code class="bash plain">AREA:temp$INTEMP_COLOR:</code><code class="bash string">"Inside Temperature [deg $TEMP_SCALE]"</code> <code class="bash plain">\</code></div><div class="line number37 index36 alt2"><code class="bash plain">LINE1:outtemp$OUTTEMP_COLOR:</code><code class="bash string">"Outside Temperature [deg $TEMP_SCALE]"</code></div><div class="line number38 index37 alt1">&nbsp;</div><div class="line number39 index38 alt2"><code class="bash comments">#yearly</code></div><div class="line number40 index39 alt1"><code class="bash plain">rrdtool graph $DIR</code><code class="bash plain">/temp_yearly</code><code class="bash plain">.png --start -1y \</code></div><div class="line number41 index40 alt2"><code class="bash plain">DEF:temp=$DIR</code><code class="bash plain">/hometemp</code><code class="bash plain">.rrd:temp:AVERAGE \</code></div><div class="line number42 index41 alt1"><code class="bash plain">DEF:outtemp=$DIR</code><code class="bash plain">/hometemp</code><code class="bash plain">.rrd:outtemp:AVERAGE \</code></div><div class="line number43 index42 alt2"><code class="bash plain">AREA:temp$INTEMP_COLOR:</code><code class="bash string">"Inside Temperature [deg $TEMP_SCALE]"</code> <code class="bash plain">\</code></div><div class="line number44 index43 alt1"><code class="bash plain">LINE1:outtemp$OUTTEMP_COLOR:</code><code class="bash string">"Outside Temperature [deg $TEMP_SCALE]"</code></div></div></td></tr></tbody></table></div></div>
+<p><b>get_temp.pl:</b> This script sets up the GPIO and therm modules (if needed), queries the DS18B20 for the inside temperature, grabs a <a href="http://en.wikipedia.org/wiki/METAR" target="_blank">metar</a> report to get the outside temperature and writes the collected data to the the rrdb. Since the database was created with a 5 minute interval, I run it every 5 minutes via a cron job on my Raspberry Pi.<br>
+Note: The script currently uses a metar report from Dane County Regional Airport (located in Madison, Wisconsin, USA) to get the outside temperature. To find a metar station nearest you, use this list of stations <a href="http://weather.rap.ucar.edu/surface/stations.txt" target="_blank">http://weather.rap.ucar.edu/surface/stations.txt</a> and replace the ICAO code KMSN with the ICAO code of the station you would like to use at end of the $metar_url vairable.<br>
+<b>[Update 10/11/2012 to include sanity checks in the while statement to avoid an infinite loop]</b><br>
+<b>[Update 12/12/2012 now easier to switch between Celsius and Fahrenheit. To use Celsius, set $is_celsius to 1]</b></p>
+<div><div id="highlighter_921206" class="syntaxhighlighter  perl"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div><div class="line number30 index29 alt1">30</div><div class="line number31 index30 alt2">31</div><div class="line number32 index31 alt1">32</div><div class="line number33 index32 alt2">33</div><div class="line number34 index33 alt1">34</div><div class="line number35 index34 alt2">35</div><div class="line number36 index35 alt1">36</div><div class="line number37 index36 alt2">37</div><div class="line number38 index37 alt1">38</div><div class="line number39 index38 alt2">39</div><div class="line number40 index39 alt1">40</div><div class="line number41 index40 alt2">41</div><div class="line number42 index41 alt1">42</div><div class="line number43 index42 alt2">43</div><div class="line number44 index43 alt1">44</div><div class="line number45 index44 alt2">45</div><div class="line number46 index45 alt1">46</div><div class="line number47 index46 alt2">47</div><div class="line number48 index47 alt1">48</div><div class="line number49 index48 alt2">49</div><div class="line number50 index49 alt1">50</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="perl preprocessor">#!/usr/bin/perl</code></div><div class="line number2 index1 alt1"><code class="perl keyword">use</code> <code class="perl plain">LWP::UserAgent;</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="perl keyword">my</code> <code class="perl variable">$dir</code> <code class="perl plain">= </code><code class="perl string">'/path/to/your/temperature/scripts'</code><code class="perl plain">;</code></div><div class="line number5 index4 alt2"><code class="perl keyword">my</code> <code class="perl variable">$metar_url</code> <code class="perl plain">= </code><code class="perl string">'<a href="http://weather.noaa.gov/pub/data/observations/metar/stations/KMSN.TXT">http://weather.noaa.gov/pub/data/observations/metar/stations/KMSN.TXT</a>'</code><code class="perl plain">;</code></div><div class="line number6 index5 alt1"><code class="perl keyword">my</code> <code class="perl variable">$is_celsius</code> <code class="perl plain">= 0; </code><code class="perl comments">#set to 1 if using Celsius</code></div><div class="line number7 index6 alt2">&nbsp;</div><div class="line number8 index7 alt1"><code class="perl keyword">my</code> <code class="perl variable">$ua</code> <code class="perl plain">= new LWP::UserAgent;</code></div><div class="line number9 index8 alt2"><code class="perl variable">$ua</code><code class="perl plain">-&gt;timeout(120);</code></div><div class="line number10 index9 alt1"><code class="perl keyword">my</code> <code class="perl variable">$request</code> <code class="perl plain">= new HTTP::Request(</code><code class="perl string">'GET'</code><code class="perl plain">, </code><code class="perl variable">$metar_url</code><code class="perl plain">);</code></div><div class="line number11 index10 alt2"><code class="perl keyword">my</code> <code class="perl variable">$response</code> <code class="perl plain">= </code><code class="perl variable">$ua</code><code class="perl plain">-&gt;request(</code><code class="perl variable">$request</code><code class="perl plain">);</code></div><div class="line number12 index11 alt1"><code class="perl keyword">my</code> <code class="perl variable">$metar</code><code class="perl plain">= </code><code class="perl variable">$response</code><code class="perl plain">-&gt;content();</code></div><div class="line number13 index12 alt2">&nbsp;</div><div class="line number14 index13 alt1"><code class="perl variable">$metar</code> <code class="perl plain">=~ /([\s|M])(\d{2})\//g;</code></div><div class="line number15 index14 alt2"><code class="perl variable">$outtemp</code> <code class="perl plain">= (</code><code class="perl variable">$1</code> <code class="perl plain">eq </code><code class="perl string">'M'</code><code class="perl plain">) ? </code><code class="perl variable">$2</code> <code class="perl plain">* -1 : </code><code class="perl variable">$2</code><code class="perl plain">; </code><code class="perl comments">#'M' in a METAR report signifies below 0 temps</code></div><div class="line number16 index15 alt1"><code class="perl variable">$outtemp</code> <code class="perl plain">= (</code><code class="perl variable">$is_celsius</code><code class="perl plain">) ? </code><code class="perl variable">$outtemp</code> <code class="perl plain">+ 0 : (</code><code class="perl variable">$outtemp</code> <code class="perl plain">* 9/5) + 32;</code></div><div class="line number17 index16 alt2">&nbsp;</div><div class="line number18 index17 alt1"><code class="perl variable">$modules</code> <code class="perl plain">= `cat /proc/modules`;</code></div><div class="line number19 index18 alt2"><code class="perl keyword">if</code> <code class="perl plain">(</code><code class="perl variable">$modules</code> <code class="perl plain">=~ /w1_therm/ &amp;&amp; </code><code class="perl variable">$modules</code> <code class="perl plain">=~ /w1_gpio/)</code></div><div class="line number20 index19 alt1"><code class="perl plain">{</code></div><div class="line number21 index20 alt2"><code class="perl spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="perl comments">#modules installed</code></div><div class="line number22 index21 alt1"><code class="perl plain">}</code></div><div class="line number23 index22 alt2"><code class="perl keyword">else</code></div><div class="line number24 index23 alt1"><code class="perl plain">{</code></div><div class="line number25 index24 alt2"><code class="perl spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="perl variable">$gpio</code> <code class="perl plain">= `sudo modprobe w1-gpio`;</code></div><div class="line number26 index25 alt1"><code class="perl spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="perl variable">$therm</code> <code class="perl plain">= `sudo modprobe w1-therm`;</code></div><div class="line number27 index26 alt2"><code class="perl plain">}</code></div><div class="line number28 index27 alt1">&nbsp;</div><div class="line number29 index28 alt2"><code class="perl variable">$output</code> <code class="perl plain">= </code><code class="perl string">""</code><code class="perl plain">;</code></div><div class="line number30 index29 alt1"><code class="perl variable">$attempts</code> <code class="perl plain">= 0;</code></div><div class="line number31 index30 alt2"><code class="perl keyword">while</code> <code class="perl plain">(</code><code class="perl variable">$output</code> <code class="perl plain">!~ /YES/g &amp;&amp; </code><code class="perl variable">$attempts</code> <code class="perl plain">&lt; 5)</code></div><div class="line number32 index31 alt1"><code class="perl plain">{</code></div><div class="line number33 index32 alt2"><code class="perl spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="perl variable">$output</code> <code class="perl plain">= `sudo cat /sys/bus/w1/devices/28-*/w1_slave 2&gt;&amp;1`;</code></div><div class="line number34 index33 alt1"><code class="perl spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="perl keyword">if</code><code class="perl plain">(</code><code class="perl variable">$output</code> <code class="perl plain">=~ /No such file or directory/)</code></div><div class="line number35 index34 alt2"><code class="perl spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="perl plain">{</code></div><div class="line number36 index35 alt1"><code class="perl spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="perl functions">print</code> <code class="perl string">"Could not find DS18B20\n"</code><code class="perl plain">;</code></div><div class="line number37 index36 alt2"><code class="perl spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="perl keyword">last</code><code class="perl plain">;</code></div><div class="line number38 index37 alt1"><code class="perl spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="perl plain">}</code></div><div class="line number39 index38 alt2"><code class="perl spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="perl keyword">elsif</code><code class="perl plain">(</code><code class="perl variable">$output</code> <code class="perl plain">!~ /NO/g)</code></div><div class="line number40 index39 alt1"><code class="perl spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="perl plain">{</code></div><div class="line number41 index40 alt2"><code class="perl spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="perl variable">$output</code> <code class="perl plain">=~ /t=(\d+)/i;</code></div><div class="line number42 index41 alt1"><code class="perl spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="perl variable">$temp</code> <code class="perl plain">= (</code><code class="perl variable">$is_celsius</code><code class="perl plain">) ? (</code><code class="perl variable">$1</code> <code class="perl plain">/ 1000) : (</code><code class="perl variable">$1</code> <code class="perl plain">/ 1000) * 9/5 + 32;</code></div><div class="line number43 index42 alt2"><code class="perl spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="perl variable">$rrd</code> <code class="perl plain">= `/usr/bin/rrdtool update </code><code class="perl variable">$dir</code><code class="perl plain">/hometemp.rrd N:</code><code class="perl variable">$temp</code><code class="perl plain">:</code><code class="perl variable">$outtemp</code><code class="perl plain">`;</code></div><div class="line number44 index43 alt1"><code class="perl spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="perl plain">}</code></div><div class="line number45 index44 alt2">&nbsp;</div><div class="line number46 index45 alt1"><code class="perl spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="perl variable">$attempts</code><code class="perl plain">++;</code></div><div class="line number47 index46 alt2"><code class="perl plain">}</code></div><div class="line number48 index47 alt1">&nbsp;</div><div class="line number49 index48 alt2"><code class="perl comments">#print "Inside temp: $temp\n";</code></div><div class="line number50 index49 alt1"><code class="perl comments">#print "Outside temp: $outtemp\n";</code></div></div></td></tr></tbody></table></div></div>
+<p><b>ftp_graphs.py:</b> This runs create_graphs.sh and SFTPs the graphs to my web server which is hosted on a VPS. I run this script hourly via a cron job that's executed on the Raspberry Pi.</p>
+<div><div id="highlighter_392806" class="syntaxhighlighter  python"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="python comments">#!/usr/bin/python</code></div><div class="line number2 index1 alt1"><code class="python keyword">import</code> <code class="python plain">paramiko</code></div><div class="line number3 index2 alt2"><code class="python keyword">from</code> <code class="python plain">commands </code><code class="python keyword">import</code> <code class="python plain">getstatusoutput</code></div><div class="line number4 index3 alt1">&nbsp;</div><div class="line number5 index4 alt2"><code class="python functions">DIR</code> <code class="python keyword">=</code> <code class="python string">'/path/to/your/temperature/scripts'</code></div><div class="line number6 index5 alt1">&nbsp;</div><div class="line number7 index6 alt2"><code class="python comments">#generate graphs</code></div><div class="line number8 index7 alt1"><code class="python plain">getstatusoutput(</code><code class="python functions">DIR</code> <code class="python keyword">+</code> <code class="python string">'/create_graph.sh'</code><code class="python plain">)</code></div><div class="line number9 index8 alt2">&nbsp;</div><div class="line number10 index9 alt1"><code class="python plain">ssh </code><code class="python keyword">=</code> <code class="python plain">paramiko.SSHClient()</code></div><div class="line number11 index10 alt2"><code class="python plain">ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())</code></div><div class="line number12 index11 alt1"><code class="python plain">ssh.connect(</code><code class="python string">'your_sftp_server'</code><code class="python plain">, port</code><code class="python keyword">=</code><code class="python plain">your_sftp_port, username</code><code class="python keyword">=</code><code class="python string">'your_username'</code><code class="python plain">, password</code><code class="python keyword">=</code><code class="python string">'your_password'</code><code class="python plain">)</code></div><div class="line number13 index12 alt2">&nbsp;</div><div class="line number14 index13 alt1"><code class="python plain">sftp </code><code class="python keyword">=</code> <code class="python plain">ssh.open_sftp();</code></div><div class="line number15 index14 alt2"><code class="python plain">sftp.put(</code><code class="python functions">DIR</code> <code class="python keyword">+</code> <code class="python string">'/temp_hourly.png'</code><code class="python plain">, </code><code class="python string">'rpi_temp/temp_hourly.png'</code><code class="python plain">)</code></div><div class="line number16 index15 alt1"><code class="python plain">sftp.put(</code><code class="python functions">DIR</code> <code class="python keyword">+</code> <code class="python string">'/temp_daily.png'</code><code class="python plain">, </code><code class="python string">'rpi_temp/temp_daily.png'</code><code class="python plain">)</code></div><div class="line number17 index16 alt2"><code class="python plain">sftp.put(</code><code class="python functions">DIR</code> <code class="python keyword">+</code> <code class="python string">'/temp_weekly.png'</code><code class="python plain">, </code><code class="python string">'rpi_temp/temp_weekly.png'</code><code class="python plain">)</code></div><div class="line number18 index17 alt1"><code class="python plain">sftp.put(</code><code class="python functions">DIR</code> <code class="python keyword">+</code> <code class="python string">'/temp_monthly.png'</code><code class="python plain">, </code><code class="python string">'rpi_temp/temp_monthly.png'</code><code class="python plain">)</code></div><div class="line number19 index18 alt2"><code class="python plain">sftp.put(</code><code class="python functions">DIR</code> <code class="python keyword">+</code> <code class="python string">'/temp_yearly.png'</code><code class="python plain">, </code><code class="python string">'rpi_temp/temp_yearly.png'</code><code class="python plain">)</code></div><div class="line number20 index19 alt1"><code class="python plain">sftp.close()</code></div></div></td></tr></tbody></table></div></div>
+<p><b>temperature.php:</b> The HTML lives on the web server and simply displays the graphs. The only reason for the PHP is to grab the last modified date of one of the images and display it on the page.</p>
+<div><div id="highlighter_863146" class="syntaxhighlighter  xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div><div class="line number30 index29 alt1">30</div><div class="line number31 index30 alt2">31</div><div class="line number32 index31 alt1">32</div><div class="line number33 index32 alt2">33</div><div class="line number34 index33 alt1">34</div><div class="line number35 index34 alt2">35</div><div class="line number36 index35 alt1">36</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">&lt;? $lastmod = date("F d, Y g:i A", filemtime("temp_daily.png")); ?&gt;</code></div><div class="line number2 index1 alt1"><code class="xml plain">&lt;</code><code class="xml keyword">html</code><code class="xml plain">&gt;</code></div><div class="line number3 index2 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">head</code><code class="xml plain">&gt;</code></div><div class="line number4 index3 alt1"><code class="xml spaces">&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">meta</code> <code class="xml color1">http-equiv</code><code class="xml plain">=</code><code class="xml string">"cache-control"</code> <code class="xml color1">content</code><code class="xml plain">=</code><code class="xml string">"no-cache"</code><code class="xml plain">&gt;</code></div><div class="line number5 index4 alt2"><code class="xml spaces">&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">meta</code> <code class="xml color1">http-equiv</code><code class="xml plain">=</code><code class="xml string">"refresh"</code> <code class="xml color1">content</code><code class="xml plain">=</code><code class="xml string">"3600"</code> <code class="xml plain">&gt;</code></div><div class="line number6 index5 alt1"><code class="xml spaces">&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">title</code><code class="xml plain">&gt;RPi Temperature&lt;/</code><code class="xml keyword">title</code><code class="xml plain">&gt;</code></div><div class="line number7 index6 alt2"><code class="xml spaces">&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">style</code><code class="xml plain">&gt;</code></div><div class="line number8 index7 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">BODY </code></div><div class="line number9 index8 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">{ </code></div><div class="line number10 index9 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">font-family: arial; </code></div><div class="line number11 index10 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">font-size: 10pt;</code></div><div class="line number12 index11 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">background-repeat: no-repeat; background-position: center center; </code></div><div class="line number13 index12 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">}</code></div><div class="line number14 index13 alt1">&nbsp;</div><div class="line number15 index14 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">H2, H3 { margin-bottom: 0; }</code></div><div class="line number16 index15 alt1"><code class="xml spaces">&nbsp;&nbsp;</code><code class="xml plain">&lt;/</code><code class="xml keyword">style</code><code class="xml plain">&gt;</code></div><div class="line number17 index16 alt2"><code class="xml plain">&lt;/</code><code class="xml keyword">head</code><code class="xml plain">&gt;</code></div><div class="line number18 index17 alt1"><code class="xml plain">&lt;</code><code class="xml keyword">body</code><code class="xml plain">&gt;</code></div><div class="line number19 index18 alt2"><code class="xml spaces">&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">div</code> <code class="xml color1">style</code><code class="xml plain">=</code><code class="xml string">"width: 800px; margin-left: 100px;"</code> <code class="xml plain">&gt;</code></div><div class="line number20 index19 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">h2</code><code class="xml plain">&gt;RPi Temperature Inside &amp; Outside&lt;/</code><code class="xml keyword">h2</code><code class="xml plain">&gt;</code></div><div class="line number21 index20 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">i</code><code class="xml plain">&gt;Last Modified: &lt;?=$lastmod?&gt;&lt;/</code><code class="xml keyword">i</code><code class="xml plain">&gt;</code></div><div class="line number22 index21 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number23 index22 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">h3</code><code class="xml plain">&gt;Daily&lt;/</code><code class="xml keyword">h3</code><code class="xml plain">&gt;</code></div><div class="line number24 index23 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">img</code> <code class="xml color1">src</code><code class="xml plain">=</code><code class="xml string">"temp_daily.png"</code> <code class="xml plain">/&gt;</code></div><div class="line number25 index24 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number26 index25 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">h3</code><code class="xml plain">&gt;Weekly&lt;/</code><code class="xml keyword">h3</code><code class="xml plain">&gt;</code></div><div class="line number27 index26 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">img</code> <code class="xml color1">src</code><code class="xml plain">=</code><code class="xml string">"temp_weekly.png"</code> <code class="xml plain">/&gt;</code></div><div class="line number28 index27 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number29 index28 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">h3</code><code class="xml plain">&gt;Monthly&lt;/</code><code class="xml keyword">h3</code><code class="xml plain">&gt;</code></div><div class="line number30 index29 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">img</code> <code class="xml color1">src</code><code class="xml plain">=</code><code class="xml string">"temp_monthly.png"</code> <code class="xml plain">/&gt;</code></div><div class="line number31 index30 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number32 index31 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">h3</code><code class="xml plain">&gt;Yearly&lt;/</code><code class="xml keyword">h3</code><code class="xml plain">&gt;</code></div><div class="line number33 index32 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">img</code> <code class="xml color1">src</code><code class="xml plain">=</code><code class="xml string">"temp_yearly.png"</code> <code class="xml plain">/&gt;</code></div><div class="line number34 index33 alt1"><code class="xml spaces">&nbsp;&nbsp;</code><code class="xml plain">&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div><div class="line number35 index34 alt2"><code class="xml plain">&lt;/</code><code class="xml keyword">body</code><code class="xml plain">&gt;</code></div><div class="line number36 index35 alt1"><code class="xml plain">&lt;/</code><code class="xml keyword">html</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+
+
+
+<div class="cat_tags clear">
+<span class="category">Filed under: <a href="http://blog.turningdigital.com/category/linux/" title="View all posts in Linux" rel="category tag">Linux</a>, <a href="http://blog.turningdigital.com/category/perl/" title="View all posts in Perl" rel="category tag">Perl</a>, <a href="http://blog.turningdigital.com/category/python/" title="View all posts in Python" rel="category tag">Python</a>, <a href="http://blog.turningdigital.com/category/raspberry-pi/" title="View all posts in Raspberry Pi" rel="category tag">Raspberry Pi</a></span>
+<span class="continue"><a class="nr_comm_spot" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#respond">Leave a comment</a></span><div class="clear"></div>
+</div>
+<div class="cat_tags_close"></div>
+
+</div>
+
+<div id="tabsContainer">
+<a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#" class="tabs selected" rel="tab-content0"><span>Comments (66)</span></a>
+<a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#" class="tabs" rel="tab-content1"><span>Trackbacks (2)</span></a>
+<span class="subscribe_comments"><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/feed/">( subscribe to comments on this post )</a></span>
+<div class="clear_tab"></div>
+<div class="tab-content selected" id="tab-content0">
+<a name="comments"></a>
+
+<div id="comentarii">
+<ol class="commentlist">
+<li class="comment even thread-even depth-1" id="li-comment-21"><div id="comment-21">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Joe Crowdus</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-21" title="">October 9th, 2012 - 20:36</a></div><div class="clear"></div></div>
+<p>Would you be interested in doing an extensive detailed how to on this? I really am wanting to do this for my own home and also for some server rooms at work! Maybe even with multiple sensors. Thanks for the insight.</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=21#respond" onclick="return addComment.moveForm(&quot;comment-21&quot;, &quot;21&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: 20;">
+<li class="comment byuser comment-author-ttosi bypostauthor odd alt depth-2" id="li-comment-22"><div id="comment-22">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author"><a href="http://turningdigital.com/" rel="external nofollow" class="url">Tony Tosi</a></strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-22" title="">October 10th, 2012 - 06:40</a></div><div class="clear"></div></div>
+<p>Sure, I'd be happy to write up more detailed how-to guide. I should have something posted by the end of the week.</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=22#respond" onclick="return addComment.moveForm(&quot;comment-22&quot;, &quot;22&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: 10;">
+<li class="comment even depth-3" id="li-comment-23"><div id="comment-23">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Anonymous</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-23" title="">October 10th, 2012 - 23:10</a></div><div class="clear"></div></div>
+<p>Thank you so much! I have it all kinda working now. I can't get the crontab to run the scripts at the intervals. Then again I can't get the perl script to run on its own. Probably due to the fact of me being a noob to alot of this. But instead of the FTP up to a site I'm copying it to a local web server on the pi and hosting the page straight from it.</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=23#respond" onclick="return addComment.moveForm(&quot;comment-23&quot;, &quot;23&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-24"><div id="comment-24">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Joe Crowdus</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-24" title="">October 10th, 2012 - 23:14</a></div><div class="clear"></div></div>
+<p>I have it all together and kinda running. I just can't get cron to run the scripts. I actually can't get the perl script to run on its own, but that's probably because I'm such a noob at most of this. I modified it a little bit and instead of the FTP to another site I just move the files to the local page I'm hosting on the pi. Thank you for putting this together and sharing it with the world!</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=24#respond" onclick="return addComment.moveForm(&quot;comment-24&quot;, &quot;24&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: 0;">
+<li class="comment even depth-2" id="li-comment-25"><div id="comment-25">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Tony</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-25" title="">October 11th, 2012 - 08:20</a></div><div class="clear"></div></div>
+<p>Hi Joe,<br>
+Glad to hear that you got it (mostly) working! Getting cron to run tasks can sometimes be tricky. I edit my cron jobs using the crontab -e command (crontab -l will list your currently installed cron jobs). The cron job I use to run get_temp.pl very 5 minutes looks like this: </p>
+<p>     */5 * * * * /path/to/get_temp.pl</p>
+<p>For the script I use to FTP the graphs (or, in your case, move the files locally on your RPi) every hour looks like this: </p>
+<p>     00 * * * * /path/to/ftp_graphs.py</p>
+<p>Also be sure that you issue these commands: chmod 755 get_temp.pl and chmod 755 ftp_graphs.py. This will mark them as executable and will allow cron (or you) to run them directly.</p>
+<p>What error, if any, are you getting when you try to execute get_temp.pl? One thing I didn't mention in the post was that you'll need to install the libwww-perl module with this command: sudo apt-get install libwww-perl. If it still doesn't work after that, let me know what error you're seeing and I'll be more than happy to help.</p>
+<p>Also, I updated the get_temp.pl script to include some checking in the "while" loop at the end. Without the additional checks the script could get caught up in an infinite loop and that wouldn't be good! It now will exit gracefully if the DS18B20 isn't found or, if after 5 attempts, the sensor doesn't return a reading that passes the checksum.</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=25#respond" onclick="return addComment.moveForm(&quot;comment-25&quot;, &quot;25&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+</li>
+</ul>
+</li>
+<li class="comment odd alt thread-even depth-1" id="li-comment-26"><div id="comment-26">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Joe Crowdus</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-26" title="">October 11th, 2012 - 21:56</a></div><div class="clear"></div></div>
+<p>I believe I have it working now! The only problem I really was having was permission issues, and as for the perl not wanting to run that was fixed with the libwww-perl module. So now I am going to bed and we will see in the morning what we have! Thank you again!</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=26#respond" onclick="return addComment.moveForm(&quot;comment-26&quot;, &quot;26&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -10;">
+<li class="comment byuser comment-author-ttosi bypostauthor even depth-2" id="li-comment-27"><div id="comment-27">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author"><a href="http://turningdigital.com/" rel="external nofollow" class="url">Tony Tosi</a></strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-27" title="">October 12th, 2012 - 06:48</a></div><div class="clear"></div></div>
+<p>That's great news! You are welcome, I'm really glad I could help.</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=27#respond" onclick="return addComment.moveForm(&quot;comment-27&quot;, &quot;27&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+</li>
+</ul>
+</li>
+<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-92"><div id="comment-92">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Raphael</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-92" title="">November 10th, 2012 - 17:09</a></div><div class="clear"></div></div>
+<p>Hello, thanks for sharing ! very interesting !</p>
+<p>What modifications should I do to get the temperature in celsius ?</p>
+<p>Many thanks !</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=92#respond" onclick="return addComment.moveForm(&quot;comment-92&quot;, &quot;92&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -20;">
+<li class="comment byuser comment-author-ttosi bypostauthor even depth-2" id="li-comment-99"><div id="comment-99">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author"><a href="http://turningdigital.com/" rel="external nofollow" class="url">Tony Tosi</a></strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-99" title="">November 12th, 2012 - 08:08</a></div><div class="clear"></div></div>
+<p>Hi Raphael,</p>
+<p>For celsius, change line 40 in the get_temp.pl perl script from:</p>
+<p>$temp = ($1 / 1000) * 9/5 + 32;</p>
+<p>to </p>
+<p>$temp = ($1 / 1000);</p>
+<p>Cheers!</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=99#respond" onclick="return addComment.moveForm(&quot;comment-99&quot;, &quot;99&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -30;">
+<li class="comment odd alt depth-3" id="li-comment-101"><div id="comment-101">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">bender</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-101" title="">November 12th, 2012 - 09:29</a></div><div class="clear"></div></div>
+<p>You'd probably want to update the labels on the results page to be C instead of F.  It looks like you're doing this primarily as images, and for yourself, but it might be useful/somewhat good practice to add in a way to switch which units the display is in for the visitor.</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=101#respond" onclick="return addComment.moveForm(&quot;comment-101&quot;, &quot;101&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -40;">
+<li class="comment byuser comment-author-ttosi bypostauthor even depth-4" id="li-comment-102"><div id="comment-102">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author"><a href="http://turningdigital.com/" rel="external nofollow" class="url">Tony Tosi</a></strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-102" title="">November 12th, 2012 - 10:30</a></div><div class="clear"></div></div>
+<p>Good catch, bender. Raphael, you'll want to also modify the create_graphs.sh script to show that the readings were done in celsius. Just replace all of the [deg F] with [deg C].</p>
+<p>The suggestion to allow users to switch between celsius and fahrenheit is a good one but the images, as you saw, are static. To achieve this, you'd need to generate a second rrd database to hold the celsius results, modify the perl script to output both celsius and fahrenheit (which would probably be best implemented by passing in a cli option so that one script is used for two cron jobs) and then upload the two sets of graphs. Lastly, temperature.html would need to be modified to handle switching between the celsius and fahrenheit images.</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=102#respond" onclick="return addComment.moveForm(&quot;comment-102&quot;, &quot;102&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -50;">
+<li class="comment odd alt depth-5" id="li-comment-103"><div id="comment-103">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Raphael</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-103" title="">November 12th, 2012 - 12:38</a></div><div class="clear"></div></div>
+<p>Thnaks a lot for your answers. I'll dig into that !</p>
+<div class="reply"></div>
+</div><div class="clear"></div></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="comment even thread-even depth-1" id="li-comment-175"><div id="comment-175">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Jetiman</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-175" title="">November 21st, 2012 - 02:50</a></div><div class="clear"></div></div>
+<p>I have Last "Modified: January 01, 1970 1:00 AM" </p>
+<p>Why? in other php is $ date = date ("d.m.Y"); ok</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=175#respond" onclick="return addComment.moveForm(&quot;comment-175&quot;, &quot;175&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -60;">
+<li class="comment byuser comment-author-ttosi bypostauthor odd alt depth-2" id="li-comment-176"><div id="comment-176">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author"><a href="http://turningdigital.com/" rel="external nofollow" class="url">Tony Tosi</a></strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-176" title="">November 21st, 2012 - 07:52</a></div><div class="clear"></div></div>
+<p>Hi Jetiman,</p>
+<p>I'm not sure why your date is showing January 01, 1970 but you did catch an error I had in my code. I was using fileatime (which retrieves the last access date) what I really want to see is when the file was last modified (uploaded to the server) which fileatime retrievs. Line two should be: </p>
+<p>$lastmod = date("F d, Y g:i A", filemtime("temp_daily.png"));</p>
+<p>I've updated the code in above to reflect this change.</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=176#respond" onclick="return addComment.moveForm(&quot;comment-176&quot;, &quot;176&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+</li>
+</ul>
+</li>
+<li class="comment even thread-odd thread-alt depth-1" id="li-comment-178"><div id="comment-178">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Jetiman</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-178" title="">November 21st, 2012 - 09:47</a></div><div class="clear"></div></div>
+<p>Ahh for German filemtime, not fileatime</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=178#respond" onclick="return addComment.moveForm(&quot;comment-178&quot;, &quot;178&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -70;">
+<li class="comment odd alt depth-2" id="li-comment-179"><div id="comment-179">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Jetiman</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-179" title="">November 21st, 2012 - 09:51</a></div><div class="clear"></div></div>
+<p>Can I get outside for a DS18B20? if so, what should I do</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=179#respond" onclick="return addComment.moveForm(&quot;comment-179&quot;, &quot;179&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -80;">
+<li class="comment byuser comment-author-ttosi bypostauthor even depth-3" id="li-comment-189"><div id="comment-189">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author"><a href="http://turningdigital.com/" rel="external nofollow" class="url">Tony Tosi</a></strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-189" title="">November 21st, 2012 - 12:50</a></div><div class="clear"></div></div>
+<p>Are looking to read the temperature outside from a second DS18B20 sensor? It's possible since the DS18B20 is a I2C device  (<a href="http://en.wikipedia.org/wiki/I%C2%B2C" rel="nofollow">http://en.wikipedia.org/wiki/I%C2%B2C</a>) which allows communication with multiple devices attached to the same bus. You'd need to make significant modifications to the almost all of the scripts above to achieve this.</p>
+<p>It is almost always as accurate to get the temperature by reading the closest metar report (which is usually the closet airport to your location). The notes above get_temp.pl describe how to do this.</p>
+<p>I hope that helps.</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=189#respond" onclick="return addComment.moveForm(&quot;comment-189&quot;, &quot;189&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+</li>
+<li class="comment odd alt depth-3" id="li-comment-1204"><div id="comment-1204">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Kyle</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1204" title="">February 16th, 2013 - 02:13</a></div><div class="clear"></div></div>
+<p>I've got six DS18B20's running right now collecting data every minute for 5 rooms + outside.  The changes to the scripts were fairly minimal.  Basically I modified them to use database and sensor id's passed from the command line and deleted the METAR stuff since I'm reading an outside sensor.  Also, since I'm running the web server on my Pi, I modified the php file to display the value for the last temperature reading and to only create the graphs when the web page is called.</p>
+<p>Any interest and I could post my files here.</p>
+<p>Kyle</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1204#respond" onclick="return addComment.moveForm(&quot;comment-1204&quot;, &quot;1204&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -90;">
+<li class="comment even depth-4" id="li-comment-1205"><div id="comment-1205">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Kyle</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1205" title="">February 16th, 2013 - 02:19</a></div><div class="clear"></div></div>
+<p>Forgot to mention.  My house is wired with cat5e in every room.  I used that wiring to run the temp sensors in the rooms where the cat5e wasn't being used for ethernet.  I built the sensor into an RJ45 plug and then just plug them in and hook the Pi GPIO up to the ethernet cabling.</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1205#respond" onclick="return addComment.moveForm(&quot;comment-1205&quot;, &quot;1205&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -100;">
+<li class="comment odd alt depth-5" id="li-comment-1223"><div id="comment-1223">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">mirogster</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1223" title="">February 18th, 2013 - 09:36</a></div><div class="clear"></div></div>
+<p>Kyle. Would you be so kind and point me in right direction. I'd like to achieve similar goal. Having at least 5 sensors (DS18B20's), how to connect them together (via bus) and to the Pi.<br>
+Oh, and I like to mention, I'm totaly noob in Pi and electronics btw <img src="./Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi_files/icon_sad.gif" alt=":(" class="wp-smiley"><br>
+Thanks in advance for any answer!</p>
+<div class="reply"></div>
+</div><div class="clear"></div></div>
+</li>
+<li class="comment even depth-5" id="li-comment-1237"><div id="comment-1237">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Kyle</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1237" title="">February 22nd, 2013 - 02:27</a></div><div class="clear"></div></div>
+<p>mirogster,</p>
+<p>Hey I'm a noob too.</p>
+<p>One of the beautiful things about the DS18B20 is that it has a unique 'serial' number, so you can put as many of them on a single pin as you'd like provided they can all be powered.  I'm reading all six of mine off GPIO4 (P1-7) using a butchered cell phone charger (5V) to supply power and jumping the common ground off the pi board (P1-6)  to the ground on the cell charger.  So I have hundreds of feet of cat5e cable connecting all the the sensors to that one pin and the cell charger using only 3 wires from the 8 in the cable - a waist I know, but the wires were already in the walls when I bought the place.  So to be painfully clear, I have all the sensors connected to the cat5e blue wire on Vdd, cat5e white-blue on DQ, and cat5e white-green on GND.  Then the blue wire is connected to +5V on the cell charger, white-blue is connected to GPIO4 (P1-7), and white-green is connected to ground on the Pi (P1-6) as well as ground on the cell charger.  Then all the ethernet cables from each room and outside are connected in my garage color-for-color.</p>
+<p>I modified the get_temp.pl in the following ways (original line first, my mod 2nd):</p>
+<p>$output = `sudo cat /sys/bus/w1/devices/28-*/w1_slave 2&gt;&amp;1`;<br>
+$output = `sudo cat /sys/bus/w1/devices/$ARGV[1]/w1_slave 2&gt;&amp;1`;</p>
+<p>$rrd = `/usr/bin/rrdtool update $dir/hometemp.rrd N:$temp:$outtemp`;<br>
+$rrd = `/usr/bin/rrdtool update $dir/$ARGV[0]_temps.rrd N:$temp`;</p>
+<p>These changes then allow me call the script and pass (as arguments on the command line) the database I want to modify ($ARGV[0]) and the sensor 'serial' that is associated with that database ($ARGV[1]).  I have a database for each room and outside.  The command looks like this:</p>
+<p>get_temp.pl outside 28-00000490a86d</p>
+<p>The create_graphs.sh script can be modified similarly but since its a shell script and not perl, the first command line argument is $1 and not ARGV[0].</p>
+<p>Hope this helps!</p>
+<p>Kyle</p>
+<div class="reply"></div>
+</div><div class="clear"></div></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="comment byuser comment-author-ttosi bypostauthor odd alt depth-2" id="li-comment-188"><div id="comment-188">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author"><a href="http://turningdigital.com/" rel="external nofollow" class="url">Tony Tosi</a></strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-188" title="">November 21st, 2012 - 10:55</a></div><div class="clear"></div></div>
+<p>Every locale should use filemtime. Using the original code will display the file accessed time which won't produce the desired output.</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=188#respond" onclick="return addComment.moveForm(&quot;comment-188&quot;, &quot;188&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+</li>
+</ul>
+</li>
+<li class="comment even thread-even depth-1" id="li-comment-215"><div id="comment-215">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Jetiman</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-215" title="">November 24th, 2012 - 03:19</a></div><div class="clear"></div></div>
+<p>I have 6 sensors, which sensor it uses?</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=215#respond" onclick="return addComment.moveForm(&quot;comment-215&quot;, &quot;215&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -110;">
+<li class="comment byuser comment-author-ttosi bypostauthor odd alt depth-2" id="li-comment-218"><div id="comment-218">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author"><a href="http://turningdigital.com/" rel="external nofollow" class="url">Tony Tosi</a></strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-218" title="">November 24th, 2012 - 14:57</a></div><div class="clear"></div></div>
+<p>I'm not sure what you mean? Do you want to use your RPi to read from 6 different temperature sensors? If that's so, the details of how to do that is outside the scope of this post, although it's definitely possible!</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=218#respond" onclick="return addComment.moveForm(&quot;comment-218&quot;, &quot;218&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+</li>
+</ul>
+</li>
+<li class="comment even thread-odd thread-alt depth-1" id="li-comment-363"><div id="comment-363">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">jukka</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-363" title="">December 11th, 2012 - 16:31</a></div><div class="clear"></div></div>
+<p>Hi. Having problem with metar data. For example;<br>
+2012/12/11 18:50<br>
+EFOU 111850Z AUTO 07004KT 030V110 CAVOK M08/M09 Q1026 1239//43<br>
+Causes the outtemp to be null;<br>
+Inside temp: 23.687<br>
+Outside temp:<br>
+jukka.<br>
+&nbsp;<br>
+&nbsp;</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=363#respond" onclick="return addComment.moveForm(&quot;comment-363&quot;, &quot;363&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -120;">
+<li class="comment byuser comment-author-ttosi bypostauthor odd alt depth-2" id="li-comment-374"><div id="comment-374">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author"><a href="http://turningdigital.com/" rel="external nofollow" class="url">Tony Tosi</a></strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-374" title="">December 12th, 2012 - 12:02</a></div><div class="clear"></div></div>
+<p>Great catch jukka, thank you. I wrote get_temp.pl in the fall and failed to take into consideration below zero temperatures, which, in a METAR report, is signified by an M in front of the&nbsp;temperature reading. I've updated the regular expression to take that into account.&nbsp;</p>
+<p>Also, I decided&nbsp;to not be an&nbsp;ignorant&nbsp;American and make it easier to switch between&nbsp;Celsius and Fahrenheit. In create_graphs.sh, add line 5, set TEMP_SCALE to "C" and change [deg F] to [deg $TEMP_SCALE]. In get_temp.pl, add line 6, make the modifications/additions to lines 14-16, and make the change to line 41. Finally set $is_celsius&nbsp;equal&nbsp;to 1.</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=374#respond" onclick="return addComment.moveForm(&quot;comment-374&quot;, &quot;374&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -130;">
+<li class="comment even depth-3" id="li-comment-387"><div id="comment-387">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">jukka</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-387" title="">December 13th, 2012 - 08:57</a></div><div class="clear"></div></div>
+<p>Hi Tony. Thanks for your prompt answer. Fried of mine already helped me with this one. I'll test your solution soon also. My script;<br>
+my $request = new HTTP::Request('GET', $metar_url);<br>
+my $response = $ua-&gt;request($request);<br>
+my $content = $response-&gt;content();</p>
+<p># look for Mnn/Mnn starting for 2nd row (M optional) and replace M with -<br>
+$content =~ /\n.*\s([M0-9]+)\/([M0-9].+)\s/;<br>
+$outtemp =&nbsp; $1;<br>
+$outtemp =~ s/M/-/;<br>
+BR, Jukka.</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=387#respond" onclick="return addComment.moveForm(&quot;comment-387&quot;, &quot;387&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -140;">
+<li class="comment byuser comment-author-ttosi bypostauthor odd alt depth-4" id="li-comment-388"><div id="comment-388">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author"><a href="http://turningdigital.com/" rel="external nofollow" class="url">Tony Tosi</a></strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-388" title="">December 13th, 2012 - 09:03</a></div><div class="clear"></div></div>
+<p>That looks like it'll work as well! Don't forget to multiply the $outtemp result by -1 if there's an M in front of the temperature.&nbsp;</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=388#respond" onclick="return addComment.moveForm(&quot;comment-388&quot;, &quot;388&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -150;">
+<li class="comment byuser comment-author-ttosi bypostauthor even depth-5" id="li-comment-396"><div id="comment-396">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author"><a href="http://turningdigital.com/" rel="external nofollow" class="url">Tony Tosi</a></strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-396" title="">December 13th, 2012 - 20:18</a></div><div class="clear"></div></div>
+<p>I just took a look at your code snippet again and I hadn't noticed that you're replacing the 'M' with a '-', so please disregard my comment above. When I originally looked at it I thought you were replacing the M with an empty string. Happy below zero&nbsp;temperature&nbsp;reading! <img src="./Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi_files/icon_smile.gif" alt=":-)" class="wp-smiley"> </p>
+<div class="reply"></div>
+</div><div class="clear"></div></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="comment odd alt thread-even depth-1" id="li-comment-417"><div id="comment-417">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">jukka</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-417" title="">December 16th, 2012 - 01:22</a></div><div class="clear"></div></div>
+<p>This morning according to my script we had 120C outside.. I checked metar;<br>
+2012/12/16 06:50<br>
+EFOU 160650Z AUTO 16014KT 9999 -SN BKN018/// BKN089/// M09/M11 Q1023 120/0086</p>
+<p>So my script did not work. I changed to your script and it worked. Could you explain shortly what '<br>
+$metar =~ /([\s|M])(\d{2})\//g;<br>
+$outtemp = ($1 eq 'M') ? $2 * -1 : $2; #'M' in a METAR report signifies below 0 temps<br>
+'<br>
+Does. </p>
+<p>Thank you, Jukka.</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=417#respond" onclick="return addComment.moveForm(&quot;comment-417&quot;, &quot;417&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -160;">
+<li class="comment byuser comment-author-ttosi bypostauthor even depth-2" id="li-comment-431"><div id="comment-431">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author"><a href="http://turningdigital.com/" rel="external nofollow" class="url">Tony Tosi</a></strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-431" title="">December 17th, 2012 - 09:15</a></div><div class="clear"></div></div>
+<p>Sure. I'd read the regular expression like this: find some white space, '\s', OR find an 'M' (the '|' means or) and because the '[\s|M]' is surrounded by&nbsp;parentheses remember it for later by putting the match into $1 (this is called back&nbsp;referencing). Next, find some digits, '\d', &nbsp;that's two numbers '{2}' long and those two numbers must have a &nbsp;'/' after them (the '/' is a special character so it must be escaped with a backslash which is why it looks like this, '\/'). And, again, because the '\d{2}' is inside parentheses, save that match into $2. The 'g' simply means to search the string globally and find all matches (it probably isn't even necessary for this expression).</p>
+<p>The second line uses a ternary operator (the '?' and the ':') which is a shorthand for an if..then..else statement. &nbsp;It could be written the same this way:</p>
+<p>if( $1 eq 'M')<br>
+{<br>
+&nbsp; &nbsp; $outtemp = $2 * -1 &nbsp;&lt;-- $2 is the temperature<br>
+}<br>
+else<br>
+{<br>
+&nbsp; &nbsp; $outtemp = $2<br>
+}</p>
+<p>I'd be happy to answer any others questions you have.</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=431#respond" onclick="return addComment.moveForm(&quot;comment-431&quot;, &quot;431&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+</li>
+</ul>
+</li>
+<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-647"><div id="comment-647">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">matrix1900</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-647" title="">December 30th, 2012 - 07:21</a></div><div class="clear"></div></div>
+<p>hi Tony,</p>
+<p>i want to implement your example.  to open the temperature.php and see the actual diagram. but i am a absolut beginner and i am not sure on which location which script/file i have to set. can you give me a manual how to handle with wich file and path?</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=647#respond" onclick="return addComment.moveForm(&quot;comment-647&quot;, &quot;647&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -170;">
+<li class="comment byuser comment-author-ttosi bypostauthor even depth-2" id="li-comment-680"><div id="comment-680">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author"><a href="http://turningdigital.com/" rel="external nofollow" class="url">Tony Tosi</a></strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-680" title="">December 31st, 2012 - 09:49</a></div><div class="clear"></div></div>
+<p>Hi,<br>
+I'm not entirely sure what you're specifically asking. Were you able run the scripts to successfully create the images (temp_hourly.png, etc..)? If you do have the images created. you should just be able to copy them to your PC and view them directly from there. If you want to be able to view them from a website, you'll need a web server (like apache or nginx).</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=680#respond" onclick="return addComment.moveForm(&quot;comment-680&quot;, &quot;680&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+</li>
+</ul>
+</li>
+<li class="comment odd alt thread-even depth-1" id="li-comment-962"><div id="comment-962">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Tasos</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-962" title="">January 12th, 2013 - 14:36</a></div><div class="clear"></div></div>
+<p>Hi Tony,<br>
+Very nice tutorial !<br>
+I am a very new to all this stuff! But I learn Fast <img src="./Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi_files/icon_biggrin.gif" alt=":D" class="wp-smiley"><br>
+I am doing similar project to yours! But I don't have a VPS. I have done my PI as a web server . So instead of sent them to a server can I make these values available on my web site(RPI)?</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=962#respond" onclick="return addComment.moveForm(&quot;comment-962&quot;, &quot;962&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -180;">
+<li class="comment even depth-2" id="li-comment-963"><div id="comment-963">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Tasos</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-963" title="">January 12th, 2013 - 15:57</a></div><div class="clear"></div></div>
+<p>Also what is your code inside the crontab file?? Thanks <img src="./Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=963#respond" onclick="return addComment.moveForm(&quot;comment-963&quot;, &quot;963&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+</li>
+</ul>
+</li>
+<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-970"><div id="comment-970">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Cooler</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-970" title="">January 13th, 2013 - 18:04</a></div><div class="clear"></div></div>
+<p>Hello!<br>
+I am using ds1820 as an outdoor temperature meter.<br>
+Your regular expression ($output =~ /t=(\d+)/i;) will not work with temperatures below zero.</p>
+<p>It took me some time to understand, why i have zero in output, because i dont know perl)</p>
+<p>However, thanks for great manual!</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=970#respond" onclick="return addComment.moveForm(&quot;comment-970&quot;, &quot;970&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -190;">
+<li class="comment even depth-2" id="li-comment-1203"><div id="comment-1203">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Kyle</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1203" title="">February 16th, 2013 - 01:44</a></div><div class="clear"></div></div>
+<p>I think this will fix the issue with temps below zero.</p>
+<p>change:<br>
+$output =~ /t=(\d+)/i;</p>
+<p>to:<br>
+$output =~ /t=\-?(\d+)/i;</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1203#respond" onclick="return addComment.moveForm(&quot;comment-1203&quot;, &quot;1203&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -200;">
+<li class="comment odd alt depth-3" id="li-comment-1210"><div id="comment-1210">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Kyle</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1210" title="">February 16th, 2013 - 10:23</a></div><div class="clear"></div></div>
+<p>Typo in above, needs to be:</p>
+<p>$output =~ /t=(\-?\d+)/i</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1210#respond" onclick="return addComment.moveForm(&quot;comment-1210&quot;, &quot;1210&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="comment even thread-even depth-1" id="li-comment-1078"><div id="comment-1078">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Jim</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1078" title="">January 25th, 2013 - 08:32</a></div><div class="clear"></div></div>
+<p>I seem to have a problem where the driver is not waiting long enough to get the conversion from the DS18B20.  I verified with some code I wrote for an arduino using the same DS18B20 chips...if I set the wait delay to 500 mS I get 85 C as the temperature reading every time.  If I increase the delay to 1000 mS I get the correct temp reading every time.  I have tried this with 2 different DS18B20 chips with the same results.  the spec sheet claims that conversion may take as long as 750 mS.  Anyone else have this issue?  ...going to see if i can dig into the driver...</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1078#respond" onclick="return addComment.moveForm(&quot;comment-1078&quot;, &quot;1078&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -210;">
+<li class="comment odd alt depth-2" id="li-comment-1080"><div id="comment-1080">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Jim</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1080" title="">January 25th, 2013 - 10:20</a></div><div class="clear"></div></div>
+<p>Hmm...found a 3rd DS18B20 and this one works just fine.  2 bad ones?  ...or at least slow?  All's well now, I guess.  I'll order up a few more to check...</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1080#respond" onclick="return addComment.moveForm(&quot;comment-1080&quot;, &quot;1080&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -220;">
+<li class="comment even depth-3" id="li-comment-1101"><div id="comment-1101">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Andre</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1101" title="">January 27th, 2013 - 06:41</a></div><div class="clear"></div></div>
+<p>Hi Jim,</p>
+<p>ive got the same problem here on my second Raspi. On my first Raspi reading /sys/bus.. works fine, but on the 512MB version i got 85 C too. Have you found a way to change the driver to 1000ms?</p>
+<p>regards,<br>
+Andre</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1101#respond" onclick="return addComment.moveForm(&quot;comment-1101&quot;, &quot;1101&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -230;">
+<li class="comment odd alt depth-4" id="li-comment-1391"><div id="comment-1391">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Michael</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1391" title="">March 26th, 2013 - 02:06</a></div><div class="clear"></div></div>
+<p>I have the same issue. Some days it works, but the last three days i always get 85 degree. How can i change the delay to 1000ms ?</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1391#respond" onclick="return addComment.moveForm(&quot;comment-1391&quot;, &quot;1391&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="comment even thread-odd thread-alt depth-1" id="li-comment-1081"><div id="comment-1081">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Rich</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1081" title="">January 25th, 2013 - 16:40</a></div><div class="clear"></div></div>
+<p>Interesting project and writeup!</p>
+<p>I am getting this error when running the create graphs script.  </p>
+<p>create_graphs.sh: 5: create_graphs.sh: TEMP_SCALE: not found</p>
+<p>What does TEMP_SCALE refer to?</p>
+<p>Thanks</p>
+<p>Rich</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1081#respond" onclick="return addComment.moveForm(&quot;comment-1081&quot;, &quot;1081&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -240;">
+<li class="comment odd alt depth-2" id="li-comment-1143"><div id="comment-1143">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Rich</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1143" title="">January 30th, 2013 - 17:52</a></div><div class="clear"></div></div>
+<p>Ahh, removing the spaces around the "=" in TEMP_SCALE = "F" fixed it.</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1143#respond" onclick="return addComment.moveForm(&quot;comment-1143&quot;, &quot;1143&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -250;">
+<li class="comment even depth-3" id="li-comment-1409"><div id="comment-1409">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Lojden</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1409" title="">April 20th, 2013 - 10:30</a></div><div class="clear"></div></div>
+<p>I tried to remove the spaces and then i got ./create_graph.sh: line 5: =: command not found</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1409#respond" onclick="return addComment.moveForm(&quot;comment-1409&quot;, &quot;1409&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -260;">
+<li class="comment odd alt depth-4" id="li-comment-1410"><div id="comment-1410">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Lojden</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1410" title="">April 20th, 2013 - 10:31</a></div><div class="clear"></div></div>
+<p>./create_graph.sh: line 5: TEMP_SCALE: command not found</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1410#respond" onclick="return addComment.moveForm(&quot;comment-1410&quot;, &quot;1410&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -270;">
+<li class="comment even depth-5" id="li-comment-1411"><div id="comment-1411">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Lojden</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1411" title="">April 20th, 2013 - 10:34</a></div><div class="clear"></div></div>
+<p>And  Inside Temperature gives only [deg ], not actual temperature</p>
+<div class="reply"></div>
+</div><div class="clear"></div></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="comment odd alt thread-even depth-1" id="li-comment-1202"><div id="comment-1202">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">thebang2</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1202" title="">February 15th, 2013 - 09:23</a></div><div class="clear"></div></div>
+<p>Thanks for this great work! Without knowing anything about Perl I was able to rewrite your code to use two different sensors for inside / outside. <img src="./Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1202#respond" onclick="return addComment.moveForm(&quot;comment-1202&quot;, &quot;1202&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -280;">
+<li class="comment byuser comment-author-ttosi bypostauthor even depth-2" id="li-comment-1419"><div id="comment-1419">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author"><a href="http://turningdigital.com/" rel="external nofollow" class="url">Tony Tosi</a></strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1419" title="">April 23rd, 2013 - 11:38</a></div><div class="clear"></div></div>
+<p>Awesome! Thank you!</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1419#respond" onclick="return addComment.moveForm(&quot;comment-1419&quot;, &quot;1419&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+</li>
+</ul>
+</li>
+<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-1209"><div id="comment-1209">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Sandor</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1209" title="">February 16th, 2013 - 09:58</a></div><div class="clear"></div></div>
+<p>Hi,<br>
+have you considered using (or tried) the PI's internal pull-up resistor feature on pin 7? I guess there is no need to include that 4k7 resistor then.</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1209#respond" onclick="return addComment.moveForm(&quot;comment-1209&quot;, &quot;1209&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -290;">
+<li class="comment byuser comment-author-ttosi bypostauthor even depth-2" id="li-comment-1418"><div id="comment-1418">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author"><a href="http://turningdigital.com/" rel="external nofollow" class="url">Tony Tosi</a></strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1418" title="">April 23rd, 2013 - 11:38</a></div><div class="clear"></div></div>
+<p>Excellent thought. I would think that would work fine but have not tried it. Have you had success with that configuration?</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1418#respond" onclick="return addComment.moveForm(&quot;comment-1418&quot;, &quot;1418&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+</li>
+</ul>
+</li>
+<li class="comment odd alt thread-even depth-1" id="li-comment-1211"><div id="comment-1211">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">thebang2</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1211" title="">February 16th, 2013 - 16:41</a></div><div class="clear"></div></div>
+<p>@Tony Tosi:<br>
+I have rewritten the code for using two DS18B20 (inside and outside) and fixed the problem for negative degrees on Celsius. Maybe it´s interessting for you an you want to publish it here.</p>
+<p>Please feel free to contact me an my mail thebang2 at gmail dot com.</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1211#respond" onclick="return addComment.moveForm(&quot;comment-1211&quot;, &quot;1211&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -300;">
+<li class="comment byuser comment-author-ttosi bypostauthor even depth-2" id="li-comment-1417"><div id="comment-1417">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author"><a href="http://turningdigital.com/" rel="external nofollow" class="url">Tony Tosi</a></strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1417" title="">April 23rd, 2013 - 11:37</a></div><div class="clear"></div></div>
+<p>I'd love to see what you've written. I believe I already solved the issue with negative degrees but I haven't tested in a while.</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1417#respond" onclick="return addComment.moveForm(&quot;comment-1417&quot;, &quot;1417&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+</li>
+</ul>
+</li>
+<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-1309"><div id="comment-1309">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Vasco</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1309" title="">March 10th, 2013 - 03:52</a></div><div class="clear"></div></div>
+<p>hi mate!</p>
+<p>thank's for this great website! now i know how to solve my graph issue!</p>
+<p>cheers<br>
+vasco</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1309#respond" onclick="return addComment.moveForm(&quot;comment-1309&quot;, &quot;1309&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+</li>
+<li class="comment even thread-even depth-1" id="li-comment-1357"><div id="comment-1357">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Luca</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1357" title="">March 17th, 2013 - 18:32</a></div><div class="clear"></div></div>
+<p>very nice<br>
+I was doing such a thing, then I saw this.<br>
+I built the first prototype, the same as yours, now I'm running small changes<br>
+I can publish it in Italy? enclosing the link to your page, as the initial project?<br>
+thanks<br>
+Luca</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1357#respond" onclick="return addComment.moveForm(&quot;comment-1357&quot;, &quot;1357&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -310;">
+<li class="comment byuser comment-author-ttosi bypostauthor odd alt depth-2" id="li-comment-1416"><div id="comment-1416">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author"><a href="http://turningdigital.com/" rel="external nofollow" class="url">Tony Tosi</a></strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1416" title="">April 23rd, 2013 - 11:36</a></div><div class="clear"></div></div>
+<p>That's a great idea! Send me the link and I'd be happy to publish how users use this setup!</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1416#respond" onclick="return addComment.moveForm(&quot;comment-1416&quot;, &quot;1416&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+</li>
+</ul>
+</li>
+<li class="comment even thread-odd thread-alt depth-1" id="li-comment-1393"><div id="comment-1393">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Calle</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1393" title="">March 29th, 2013 - 09:51</a></div><div class="clear"></div></div>
+<p>Hi!</p>
+<p>Great tutorial!</p>
+<p>Is it possible to print out min max and average temperature to the png-files?</p>
+<p>Cheers</p>
+<p>Calle</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1393#respond" onclick="return addComment.moveForm(&quot;comment-1393&quot;, &quot;1393&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -320;">
+<li class="comment byuser comment-author-ttosi bypostauthor odd alt depth-2" id="li-comment-1415"><div id="comment-1415">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author"><a href="http://turningdigital.com/" rel="external nofollow" class="url">Tony Tosi</a></strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1415" title="">April 23rd, 2013 - 11:35</a></div><div class="clear"></div></div>
+<p>I believe so. I would look into the RRD documentation and I think it's not very difficult. You'll need to modify the create_graphs.sh file once you figure out the configuration syntax.</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1415#respond" onclick="return addComment.moveForm(&quot;comment-1415&quot;, &quot;1415&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+</li>
+</ul>
+</li>
+<li class="comment even thread-even depth-1" id="li-comment-1408"><div id="comment-1408">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Mark</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1408" title="">April 19th, 2013 - 04:23</a></div><div class="clear"></div></div>
+<p>Hi Tony</p>
+<p>Did you have any concerns with the data line of the temperature sensor driving 5V into the RPi input?  My understanding is that you don't want to exceed the 3.3V level.</p>
+<p>Regards</p>
+<p>Mark</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1408#respond" onclick="return addComment.moveForm(&quot;comment-1408&quot;, &quot;1408&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -330;">
+<li class="comment byuser comment-author-ttosi bypostauthor odd alt depth-2" id="li-comment-1413"><div id="comment-1413">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author"><a href="http://turningdigital.com/" rel="external nofollow" class="url">Tony Tosi</a></strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1413" title="">April 23rd, 2013 - 11:33</a></div><div class="clear"></div></div>
+<p>No, not with this setup. The DS18B20 works find at both 3v3 and 5v. The Vdd that I'm using is 3v3 so the the GPIO pin never see 5V.</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1413#respond" onclick="return addComment.moveForm(&quot;comment-1413&quot;, &quot;1413&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+</li>
+</ul>
+</li>
+<li class="comment even thread-odd thread-alt depth-1" id="li-comment-1412"><div id="comment-1412">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">lojden</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1412" title="">April 22nd, 2013 - 04:41</a></div><div class="clear"></div></div>
+<p>How come Inside/Outisde Temperature gives only "[deg ]", not actual temperature ?</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1412#respond" onclick="return addComment.moveForm(&quot;comment-1412&quot;, &quot;1412&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -340;">
+<li class="comment byuser comment-author-ttosi bypostauthor odd alt depth-2" id="li-comment-1414"><div id="comment-1414">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author"><a href="http://turningdigital.com/" rel="external nofollow" class="url">Tony Tosi</a></strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1414" title="">April 23rd, 2013 - 11:33</a></div><div class="clear"></div></div>
+<p>I'm going to look into this, you're not the first person to report this issue. I just need to get my RPi back to a temp sensor configuration.</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1414#respond" onclick="return addComment.moveForm(&quot;comment-1414&quot;, &quot;1414&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+</li>
+</ul>
+</li>
+<li class="comment even thread-even depth-1" id="li-comment-1456"><div id="comment-1456">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">Jetiman</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1456" title="">May 18th, 2013 - 10:44</a></div><div class="clear"></div></div>
+<p>What should I do with the graph - to negative temperatures?<br>
+Now he time 0 - 100 Will grad but also minus (-30-100 degrees)</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1456#respond" onclick="return addComment.moveForm(&quot;comment-1456&quot;, &quot;1456&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+</li>
+<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-1473"><div id="comment-1473">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author">veloziped</strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1473" title="">May 27th, 2013 - 00:17</a></div><div class="clear"></div></div>
+<p>Hi,<br>
+there is a little Bug in "create_graph.sh"</p>
+<p>#monthly<br>
+rrdtool graph $DIR/temp_monthly.png --start -1m \<br>
+DEF:temp=$DIR/hometemp.rrd:temp:AVERAGE \<br>
+DEF:outtemp=$DIR/hometemp.rrd:outtemp:AVERAGE \<br>
+AREA:temp$INTEMP_COLOR:"Inside Temperature [deg F]" \<br>
+LINE1:outtemp$OUTTEMP_COLOR:"Outside Temperature [deg F]" &lt;= should be "$TEMP_SCALE"<br>
+                                                                                           ^^^^^ =====================</p>
+<p>Otherwise you have 3 Graphs with "[deg C]" and one with "[deg F]" as Label (the Values are still correct)</p>
+<p>Nevertheless, awsome work!</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1473#respond" onclick="return addComment.moveForm(&quot;comment-1473&quot;, &quot;1473&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+<ul class="children" style="z-index: -350;">
+<li class="comment byuser comment-author-ttosi bypostauthor even depth-2" id="li-comment-1476"><div id="comment-1476">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author"><a href="http://turningdigital.com/" rel="external nofollow" class="url">Tony Tosi</a></strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1476" title="">May 29th, 2013 - 08:28</a></div><div class="clear"></div></div>
+<p>Great catch. I will update the script as soon as I am able.</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1476#respond" onclick="return addComment.moveForm(&quot;comment-1476&quot;, &quot;1476&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+</li>
+</ul>
+</li>
+<li class="comment odd alt thread-even depth-1" id="li-comment-1530"><div id="comment-1530">
+<div class="comment_content"><div class="comment-meta commentmetadata"><div class="alignleft avatar"></div>
+<div class="alignleft" style="padding-top:5px;"><strong class="comment_author"><a href="http://shawneeshapiro@mailnesia.com/" rel="external nofollow" class="url">Micaela</a></strong><br><a href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#comment-1530" title="">June 6th, 2013 - 18:12</a></div><div class="clear"></div></div>
+<p>Hiya very cool website!! Man .. Beautiful .. Wonderful .. I will bookmark your blog and take the feeds also? I am satisfied to find a lot of useful information right here within the publish, we need develop more techniques in this regard, thank you for sharing. . . . . .</p>
+<div class="reply"><a class="comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/?replytocom=1530#respond" onclick="return addComment.moveForm(&quot;comment-1530&quot;, &quot;1530&quot;, &quot;respond&quot;, &quot;178&quot;)">( REPLY )</a></div>
+</div><div class="clear"></div></div>
+</li>
+</ol>
+
+</div>
+
+
+ 
+<br>
+
+								<div id="respond">
+				<h3 id="reply-title">Leave a comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="http://blog.turningdigital.com/wp-comments-post.php" method="post" id="commentform">
+																										<p class="comment-form-author"><input id="author" name="author" type="text" value="" size="30"><label for="author">Name</label></p>
+<p class="comment-form-email"><input id="email" name="email" type="text" value="" size="30"><label for="email">Email</label></p>
+<p class="comment-form-url"><input id="url" name="url" type="text" value="" size="30"><label for="url">Website</label></p>
+												<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>												<p class="form-submit">
+							<input name="submit" type="submit" id="submit" value="Submit">
+							<input type="hidden" name="comment_post_ID" value="178" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="6ebc8828fe"></p>					</form>
+							</div><!-- #respond -->
+						
+
+</div>
+
+<div class="tab-content" id="tab-content1">
+<div class="trackbacks"><a href="http://www.onemanarmy.biz/hardware-play-raspberry-pi.php" rel="external nofollow" class="url">New Hardware to play with - raspberry Pi :-)</a></div>
+<div class="trackbacks"><a href="http://square-the-circle.com/2013/05/16/cool-raspberry-pi/" rel="external nofollow" class="url">Cool Raspberry Pi | Circle and Square</a></div>
+</div>
+</div>
+<div class="next_previous_links">
+<span class="alignleft"><a href="http://blog.turningdigital.com/2012/10/a-differential-drive-robot-with-a-raspberry-pi-and-pic16f88/" rel="next">Differential Drive Robot with a Raspberry Pi and a PIC16F88 – The Software</a> »</span>
+<span class="alignright">« <a href="http://blog.turningdigital.com/2012/09/hardware-software-pwm-on-raspberrypi-with-wiringpi/" rel="prev">Hardware &amp; Software PWM on Raspberry Pi with wiringPi</a></span>
+<div class="clear"></div>
+
+</div>
+</div>
+<div class="content-sidebar">
+				<h3>Recent Posts</h3>		<ul style="z-index: -360;">
+					<li>
+				<a href="http://blog.turningdigital.com/2012/11/somafm-listener-count-graphed-using-rrdtool/" title="SomaFM Listener Count Graphed Using RRDTool">SomaFM Listener Count Graphed Using RRDTool</a>
+						</li>
+					<li>
+				<a href="http://blog.turningdigital.com/2012/10/a-fancier-interface-for-my-differential-drive-robot/" title="A Fancier User Interface for My Differential Drive Robot">A Fancier User Interface for My Differential Drive Robot</a>
+						</li>
+					<li>
+				<a href="http://blog.turningdigital.com/2012/10/raspberry-pi-operating-under-battery-power/" title="Raspberry Pi Operating Under Battery Power">Raspberry Pi Operating Under Battery Power</a>
+						</li>
+					<li>
+				<a href="http://blog.turningdigital.com/2012/10/a-differential-drive-robot-with-a-raspberry-pi-and-pic16f88/" title="Differential Drive Robot with a Raspberry Pi and a PIC16F88 – The Software">Differential Drive Robot with a Raspberry Pi and a PIC16F88 – The Software</a>
+						</li>
+					<li>
+				<a href="./Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi_files/Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi.htm" title="Raspberry Pi + DS18B20 Temperature Sensor + RRDtool">Raspberry Pi + DS18B20 Temperature Sensor + RRDtool</a>
+						</li>
+					<li>
+				<a href="http://blog.turningdigital.com/2012/09/hardware-software-pwm-on-raspberrypi-with-wiringpi/" title="Hardware &amp; Software PWM on Raspberry Pi with wiringPi">Hardware &amp; Software PWM on Raspberry Pi with wiringPi</a>
+						</li>
+					<li>
+				<a href="http://blog.turningdigital.com/2012/09/pic16f88-project-1-stoplights-flash-leds/" title="PIC16F88 Project: Stoplights (Flash LEDs)">PIC16F88 Project: Stoplights (Flash LEDs)</a>
+						</li>
+					<li>
+				<a href="http://blog.turningdigital.com/2012/09/ultimate-cheap-raspberry-pi-case/" title="Ultimate Cheap Raspberry Pi Case">Ultimate Cheap Raspberry Pi Case</a>
+						</li>
+					<li>
+				<a href="http://blog.turningdigital.com/2012/09/get-ip-address-of-raspberry-pi-operating-headlessly/" title="Automatically Get IP Address of Raspberry Pi Operating Headlessly">Automatically Get IP Address of Raspberry Pi Operating Headlessly</a>
+						</li>
+				</ul>
+		<h3>Categories</h3>		<ul style="z-index: -370;">
+	<li class="cat-item cat-item-13"><a href="http://blog.turningdigital.com/category/c-2/" title="View all posts filed under c">c</a> (2)
+</li>
+	<li class="cat-item cat-item-9"><a href="http://blog.turningdigital.com/category/linux/" title="View all posts filed under Linux">Linux</a> (3)
+</li>
+	<li class="cat-item cat-item-17"><a href="http://blog.turningdigital.com/category/mono/" title="View all posts filed under Mono">Mono</a> (1)
+</li>
+	<li class="cat-item cat-item-16"><a href="http://blog.turningdigital.com/category/node-js/" title="View all posts filed under Node.js">Node.js</a> (1)
+</li>
+	<li class="cat-item cat-item-14"><a href="http://blog.turningdigital.com/category/perl/" title="View all posts filed under Perl">Perl</a> (1)
+</li>
+	<li class="cat-item cat-item-10"><a href="http://blog.turningdigital.com/category/pic-micro/" title="View all posts filed under PIC Micro">PIC Micro</a> (2)
+</li>
+	<li class="cat-item cat-item-11"><a href="http://blog.turningdigital.com/category/projects/" title="View all posts filed under Projects">Projects</a> (1)
+</li>
+	<li class="cat-item cat-item-8"><a href="http://blog.turningdigital.com/category/python/" title="View all posts filed under Python">Python</a> (2)
+</li>
+	<li class="cat-item cat-item-7"><a href="http://blog.turningdigital.com/category/raspberry-pi/" title="View all posts filed under Raspberry Pi">Raspberry Pi</a> (7)
+</li>
+		</ul>
+<h3>Calendar</h3><div id="calendar_wrap"><table id="wp-calendar">
+	<caption>September 2012</caption>
+	<thead>
+	<tr>
+		<th scope="col" title="Monday">M</th>
+		<th scope="col" title="Tuesday">T</th>
+		<th scope="col" title="Wednesday">W</th>
+		<th scope="col" title="Thursday">T</th>
+		<th scope="col" title="Friday">F</th>
+		<th scope="col" title="Saturday">S</th>
+		<th scope="col" title="Sunday">S</th>
+	</tr>
+	</thead>
+
+	<tfoot>
+	<tr>
+		<td colspan="3" id="prev" class="pad">&nbsp;</td>
+		<td class="pad">&nbsp;</td>
+		<td colspan="3" id="next"><a href="http://blog.turningdigital.com/2012/10/" title="View posts for October 2012">Oct »</a></td>
+	</tr>
+	</tfoot>
+
+	<tbody>
+	<tr>
+		<td colspan="5" class="pad">&nbsp;</td><td>1</td><td>2</td>
+	</tr>
+	<tr>
+		<td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td>
+	</tr>
+	<tr>
+		<td>10</td><td><a href="http://blog.turningdigital.com/2012/09/11/" title="Automatically Get IP Address of Raspberry Pi Operating Headlessly
+Ultimate Cheap Raspberry Pi Case">11</a></td><td><a href="http://blog.turningdigital.com/2012/09/12/" title="PIC16F88 Project: Stoplights (Flash LEDs)">12</a></td><td>13</td><td><a href="http://blog.turningdigital.com/2012/09/14/" title="Hardware &amp; Software PWM on Raspberry Pi with wiringPi">14</a></td><td>15</td><td>16</td>
+	</tr>
+	<tr>
+		<td>17</td><td>18</td><td>19</td><td><a href="http://blog.turningdigital.com/2012/09/20/" title="Raspberry Pi + DS18B20 Temperature Sensor + RRDtool">20</a></td><td>21</td><td>22</td><td>23</td>
+	</tr>
+	<tr>
+		<td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td>
+	</tr>
+	</tbody>
+	</table></div></div><div class="clear"></div>
+</div>
+<div id="footer">
+<span class="text">
+Copyright © 2013 <a href="http://blog.turningdigital.com/">Tony Tosi</a> · Powered by <a href="http://www.wordpress.org/" title="WordPress" target="_blank">WordPress</a> <br><a href="http://www.lightword-design.com/" target="_blank" title="Lightword Theme">Lightword Theme</a> by Andrei Luca
+<a title="Go to top" class="top" href="http://blog.turningdigital.com/2012/09/raspberry-pi-ds18b20-temperature-sensor-rrdtool/#top">Go to top ↑</a>
+</span>
+</div>
+<script type="text/javascript" src="./Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi_files/menu.js"></script>
+</div>
+
+<!--[if IE]>
+<script language=javascript>
+//<![CDATA[
+	if (screen_res=="") {
+		screen_res = screen.width + " x " + screen.height;
+	}
+	if (screen_res!=" x ") {
+		var cdate = new Date();
+		cdate.setTime(cdate.getTime()+(48*60*60*1000));
+		var cexpires = cdate.toGMTString();
+		//var the_cookie = "wassup_screen_res="+escape(screen_res)+"; expires="+cexpires;
+		document.cookie = "wassup_screen_res=" + escape(screen_res)+ "; path=/; domain=" + document.domain;
+
+	}
+//]]>
+</script>
+<![endif]--><!--
+<p class="small"> WassUp 1.8.3.1 timestamp: 2013-06-10 09:24:29AM UTC (03:24AM)<br />
+If above timestamp is not current time, this page is cached.</p> -->
+<script type="text/javascript" src="./Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi_files/tabs.js"></script>
+<script type="text/javascript">jQuery(document).ready(function(){jQuery('tabs').lightword_tabs({linkClass : 'tabs',containerClass : 'tab-content',linkSelectedClass : 'selected',containerSelectedClass : 'selected',onComplete : function(){}});});</script>
+<script type="text/javascript" src="./Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi_files/shCore.js"></script>
+<script type="text/javascript" src="./Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi_files/shBrushBash.js"></script>
+<script type="text/javascript" src="./Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi_files/shBrushPerl.js"></script>
+<script type="text/javascript" src="./Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi_files/shBrushPython.js"></script>
+<script type="text/javascript" src="./Raspberry Pi + DS18B20 Temperature Sensor + RRDtool « Tony Tosi_files/shBrushXml.js"></script>
+<script type="text/javascript">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "http://blog.turningdigital.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.83c";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "http://blog.turningdigital.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.83c";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['tab-size'] = 2;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.defaults['wrap-lines'] = false;
+	SyntaxHighlighter.all();
+</script>
+
+</body></html>

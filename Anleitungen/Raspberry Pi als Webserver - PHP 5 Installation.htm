@@ -1,0 +1,2403 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- start: showthread -->
+<html xml:lang="de" xmlns="http://www.w3.org/1999/xhtml" lang="de"><head>
+<title>Raspberry Pi als Webserver - PHP 5 Installation</title>
+<!-- start: headerinclude -->
+<link rel="alternate" type="application/rss+xml" title="Letzte Themen (RSS 2.0)" href="http://www.forum-raspberrypi.de/syndication.php">
+<link rel="alternate" type="application/atom+xml" title="Letzte Themen (Atom 1.0)" href="http://www.forum-raspberrypi.de/syndication.php?type=atom1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta name="Content-Language" content="de">
+<script type="text/javascript" src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/prototype.js"></script>
+<script type="text/javascript" src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/general.js"></script>
+<script type="text/javascript" src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/popup_menu.js"></script>
+<link type="text/css" rel="stylesheet" href="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/global.css">
+<link type="text/css" rel="stylesheet" href="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/css3.css">
+<link type="text/css" rel="stylesheet" href="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/css.css">
+<link type="text/css" rel="stylesheet" href="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star_ratings.css">
+<link type="text/css" rel="stylesheet" href="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/showthread.css">
+<link type="text/css" rel="stylesheet" href="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/lightbox.css">
+
+<script type="text/javascript">
+<!--
+	var cookieDomain = ".forum-raspberrypi.de";
+	var cookiePath = "/";
+	var cookiePrefix = "";
+	var deleteevent_confirm = "Möchtest Du dieses Ereignis wirklich löschen?";
+	var removeattach_confirm = "Möchtest du die ausgewählten Anhänge wirklich löschen?";
+	var loading_text = 'Lade.<br />Bitte warten...';
+	var saving_changes = 'Änderungen werden gespeichert ...';
+	var use_xmlhttprequest = "1";
+	var my_post_key = "58f52f39868bbff03d0cd984e4ebd8dd";
+	var imagepath = "images/raspi";
+// -->
+</script>
+
+<meta name="description" content="Deutsches inoffizielles Forum für Raspberry Pi Besitzer">
+<meta name="keywords" content="Forum, Raspberry Pi, Projekte,  Linux, deutsch">
+<meta name="robots" content="index, follow">
+<meta name="language" content="German, de, deutsch">
+<meta name="author" content="www.forum-raspberrypi.de">
+<meta name="publisher" content="www.forum-raspberrypi.de">
+<meta name="copyright" content="www.forum-raspberrypi.de">
+<meta name="page-topic" content="Deutsches Raspberry Pi Forum">
+<meta name="page-type" content="Computer und Hardware">
+<meta name="audience" content="alle">
+<meta name="google-site-verification" content="I5m7u9JHXYg31oCjMfWcakz8bt3Z_9G-ctpppQBB9pU">
+
+
+<script language="javascript" type="text/javascript" src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/myadvertisements.js"></script>
+
+
+<script language="JavaScript">
+function startCountdown() {
+document.write("<span id='countdown'></span>");
+var countdownDate = new Date("4/12/2013 00:00 AM");//input desired date here
+var currentDate = new Date();
+var dateDifference = new Date(countdownDate-currentDate);
+var seconds = dateDifference.valueOf()/1000;
+CountBack(seconds);
+}
+function CountBack(seconds) {
+var DisplayFormat = "DAYS Tagen, HOURS Stunden, MINS Minuten, SECS Sekunden.";
+   DisplayFormat = DisplayFormat.replace("DAYS", (Math.floor(seconds/86400))%100000);
+   DisplayFormat = DisplayFormat.replace("HOURS", (Math.floor(seconds/3600))%24);
+   DisplayFormat = DisplayFormat.replace("MINS", (Math.floor(seconds/60))%60);
+   DisplayFormat = DisplayFormat.replace("SECS", (Math.floor(seconds))%60);
+   document.getElementById("countdown").innerHTML = DisplayFormat;
+setTimeout("CountBack("+(seconds-1)+")", 1000);
+}
+
+
+  $(function() {
+    if ($.browser.msie && $.browser.version.substr(0,1)<7)
+    {
+      $('.tooltip').mouseover(function(){
+            $(this).children('span').show();
+          }).mouseout(function(){
+            $(this).children('span').hide();
+          })
+    }
+  });
+</script>
+<!-- end: headerinclude -->
+<script type="text/javascript">
+<!--
+	var quickdelete_confirm = "Möchtest du diesen Beitrag wirklich löschen?";
+// -->
+</script>
+<script type="text/javascript" src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/thread.js"></script>
+<script type="text/javascript" src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/scriptaculous.js"></script><script type="text/javascript" src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/effects.js"></script><script type="text/javascript" src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/builder.js"></script>
+<script type="text/javascript" src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/lightbox.js"></script>
+<script type="text/javascript" src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/thankyoulike.js"></script>
+<script type="text/javascript">
+<!--
+	var tylEnabled = "1";
+	var tylCollapsible = "0";
+	var tylUser = "0";
+-->
+</script>
+<script type="text/javascript" src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/itsmybirthday.js"></script>
+<script type="text/javascript">
+<!--
+	var imb_wishesEnabled = "0";
+	var imb_wishesRemovable = "1";
+-->
+</script>
+<script type="text/javascript" src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/codeselect.js"></script><link rel="search" type="application/opensearchdescription+xml" title="Deutsches Raspberry Pi Forum | Die RPi Community" href="http://www.forum-raspberrypi.de/search.php?action=opensearch">
+        <!-- twitter app card start-->
+        <!-- https://dev.twitter.com/docs/cards/types/app-card -->
+        <meta name="twitter:card" content="app">
+    
+        <meta name="twitter:app:id:iphone" content="307880732">
+        <meta name="twitter:app:url:iphone" content="tapatalk://">
+        <meta name="twitter:app:id:ipad" content="307880732">
+        <meta name="twitter:app:url:ipad" content="tapatalk://">
+        
+        <meta name="twitter:app:id:googleplay" content="com.quoord.tapatalkpro.activity">
+        <meta name="twitter:app:url:googleplay" content="tapatalk://www.forum-raspberrypi.de/?location=topic&amp;tid=101">
+        
+    <!-- twitter app card -->
+    
+    <!-- Tapatalk Banner head start -->
+    <link href="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/appbanner.css" rel="stylesheet" type="text/css" media="screen">
+    <script type="text/javascript">
+        var is_mobile_skin     = 0;
+        var app_ios_id         = "307880732";
+        var app_android_id     = "com.quoord.tapatalkpro.activity";
+        var app_kindle_url     = "";
+        var app_banner_message = "Follow {your_forum_name} <br /> with {app_name} for [os_platform]";
+        var app_forum_name     = "Raspberry Pi Forum";
+        var app_location_url   = "tapatalk://www.forum-raspberrypi.de/?location=topic&amp;tid=101";
+        var functionCallAfterWindowLoad = 0
+    </script>
+    <script src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/appbanner.js" type="text/javascript"></script>
+    <!-- Tapatalk Banner head end-->
+
+<meta name="description" content="Im folgendem Tutorial zeige ich euch wie ihr PHP 5 auf eurem Raspberry Pi installiert. Raspberry Pi als Webserver Tutorials: 1. SSH Zugang auf dem Raspberry Pi einrichten 2. Raspberry Pi als Webserver">
+<link rel="canonical" href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-php-5-installation">
+</head>
+<body>
+ 
+    <!-- Tapatalk smart banner body start --> 
+<script type="text/javascript">tapatalkDetect()</script><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/i.gif" style="display:none;" border="0">
+ 
+    <!-- Tapatalk smart banner body end --> 
+	<!-- start: header -->
+<div id="container">
+		<a name="top" id="top"></a>
+		<div id="header">
+			<div id="logo">
+				<div class="wrapper">
+					<a class="name" align="middle" href="http://www.forum-raspberrypi.de/"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/logo.png" alt="Deutsches Raspberry Pi Forum | Die RPi Community" title="Deutsches Raspberry Pi Forum | Die RPi Community">
+&nbsp;&nbsp;Raspberry Pi Forum</a>
+
+
+<span style="float:right; margin-top:8px;">
+<form method="post" action="search.php">
+<input name="action" value="do_search" type="hidden">
+<input class="radio" name="postthread" value="1" checked="checked" type="hidden">
+<input name="showresults" value="threads" checked="checked" type="hidden">
+<input id="search" class="searchbox" onfocus="this.value=''" size="10" value="Suchbegriff(e)" name="keywords" type="text">
+</form>
+<span id="erweiterte_suche"> <a href="http://www.forum-raspberrypi.de/search.php">» Erweiterte Suche</a></span>
+</span>
+
+				</div>
+			</div>
+			<div id="panel">
+				<div class="upper"><!-- This div(class="upper") is closed in the header_welcomeblock_member and header_welcomeblock_guest templates -->
+					<div class="wrapper">
+						<ul class="menu top_links">
+							<li><a href="http://www.forum-raspberrypi.de/search.php" class="search">Suche</a></li>
+							<li><a href="http://www.forum-raspberrypi.de/memberlist.php" class="memberlist">Mitglieder</a></li>
+                                                        <li><a href="http://www.forum-raspberrypi.de/page-mitglieder-landkarte" class="map">Usermap</a></li>
+                                                        <li><a href="http://www.forum-raspberrypi.de/page-shop" class="shopcart">Zubehör Shop</a></li>
+                                                        <li><a href="http://www.forum-raspberrypi.de/mydownloads.php" class="mydownloads">Downloads</a></li>
+                                                        <li><a href="http://www.forum-raspberrypi.de/page-teamspeak" class="teamspeak">TeamSpeak</a></li>
+                                                        <li><a href="http://www.forum-raspberrypi.de/page-irc" class="irc">IRC-Channel</a></li>
+                                                        
+                                                        
+						</ul>
+						<!-- start: header_welcomeblock_guest -->
+<script type="text/javascript">
+<!--
+	lang.username = "Benutzername";
+	lang.password = "Passwort";
+	lang.login = "Login";
+	lang.lost_password = "<a href=\"http://www.forum-raspberrypi.de/member.php?action=lostpw\" class=\"lost_password\">Passwort vergessen?<\/a>";
+	lang.register_url = "<a href=\"http://www.forum-raspberrypi.de/member.php?action=register\" class=\"register\">Registrieren<\/a>";
+	lang.remember_me = "Merken";
+// -->
+</script>
+<!-- Continuation of div(class="upper") as opened in the header template -->
+	<span class="welcome" id="quick_login">Hallo, Gast! <a href="http://www.forum-raspberrypi.de/member.php?action=login" onclick="MyBB.quickLogin(); return false;" class="login">Anmelden</a> <a href="http://www.forum-raspberrypi.de/member.php?action=register" class="register">Registrieren</a></span>
+	</div>
+</div>
+<!-- end: header_welcomeblock_guest -->
+			</div>
+		</div>
+		<div id="content">
+<div class="wrapper">
+<a href="http://www.forum-raspberrypi.de/page-moderator-werden"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/wwu_half_size.jpg" alt="Moderator werden"></a>
+&nbsp;
+				
+				
+				
+				
+				<!-- start: nav -->
+
+<div class="navigation">
+<!-- start: nav_bit -->
+<a href="http://www.forum-raspberrypi.de/index.php">Deutsches Raspberry Pi Forum | Die RPi Community</a><!-- start: nav_sep -->
+›
+<!-- end: nav_sep -->
+<!-- end: nav_bit --><!-- start: nav_bit -->
+<a href="http://www.forum-raspberrypi.de/Forum-verschiedenes">Verschiedenes</a><!-- start: nav_sep -->
+›
+<!-- end: nav_sep -->
+<!-- end: nav_bit --><!-- start: nav_bit -->
+<a href="http://www.forum-raspberrypi.de/Forum-tutorials-anleitungen?page=2">Tutorials &amp; Anleitungen</a> <img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/arrow_down.gif" alt="v" title="" class="pagination_breadcrumb_link" id="breadcrumb_multipage"><!-- start: multipage_breadcrumb -->
+<div id="breadcrumb_multipage_popup" class="pagination pagination_breadcrumb" style="display: none;">
+<!-- start: multipage_prevpage -->
+<a href="http://www.forum-raspberrypi.de/forumdisplay.php?fid=50" class="pagination_previous">« Zurück</a>
+<!-- end: multipage_prevpage --><!-- start: multipage_page -->
+<a href="http://www.forum-raspberrypi.de/forumdisplay.php?fid=50" class="pagination_page">1</a>
+<!-- end: multipage_page --><!-- start: multipage_page_link_current -->
+ <a href="http://www.forum-raspberrypi.de/forumdisplay.php?fid=50&amp;page=2" class="pagination_current">2</a>
+<!-- end: multipage_page_link_current --><!-- start: multipage_page -->
+<a href="http://www.forum-raspberrypi.de/forumdisplay.php?fid=50&amp;page=3" class="pagination_page">3</a>
+<!-- end: multipage_page --><!-- start: multipage_page -->
+<a href="http://www.forum-raspberrypi.de/forumdisplay.php?fid=50&amp;page=4" class="pagination_page">4</a>
+<!-- end: multipage_page --><!-- start: multipage_page -->
+<a href="http://www.forum-raspberrypi.de/forumdisplay.php?fid=50&amp;page=5" class="pagination_page">5</a>
+<!-- end: multipage_page --><!-- start: multipage_end -->
+ <a href="http://www.forum-raspberrypi.de/forumdisplay.php?fid=50&amp;page=6" class="pagination_last">6</a>
+<!-- end: multipage_end --><!-- start: multipage_nextpage -->
+<a href="http://www.forum-raspberrypi.de/forumdisplay.php?fid=50&amp;page=3" class="pagination_next">Weiter »</a>
+<!-- end: multipage_nextpage -->
+</div>
+<script type="text/javascript">
+// <!--
+	if(use_xmlhttprequest == "1")
+	{
+		new PopupMenu("breadcrumb_multipage");
+	}
+// -->
+</script>
+<!-- end: multipage_breadcrumb -->
+<!-- end: nav_bit --><!-- start: nav_sep_active -->
+<br><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/nav_bit.gif" alt="">
+<!-- end: nav_sep_active --><!-- start: nav_bit_active -->
+<span class="active">[Tutorial]&nbsp;Raspberry Pi als Webserver - PHP 5 Installation</span>
+<!-- end: nav_bit_active -->
+</div>
+<!-- end: nav -->
+			<div class="board_message"><b>Serverumzug</b><br>
+Derzeit kann es zu längeren Ladezeiten/Teilausfällen des Forums kommen.  
+Aus diesen Grund wird das Forum in der Woche ab dem 21. Oktober auf einen leistungsstärkeren Server umziehen. 
+Das Forum wird vorher geschlossen. Bitte achtet auf die entsprechenden Meldungen.</div>
+
+
+				
+<!-- end: header -->
+	
+	<div class="float_left">
+		<!-- start: multipage -->
+<div class="pagination">
+<span class="pages">Seiten (2):</span>
+<!-- start: multipage_page_current -->
+ <span class="pagination_current">1</span>
+<!-- end: multipage_page_current --><!-- start: multipage_page -->
+<a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-php-5-installation?page=2" class="pagination_page">2</a>
+<!-- end: multipage_page --><!-- start: multipage_nextpage -->
+<a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-php-5-installation?page=2" class="pagination_next">Weiter »</a>
+<!-- end: multipage_nextpage -->
+</div>
+<!-- end: multipage -->
+
+	</div>
+	<div class="float_right">
+		<!-- start: showthread_newreply -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=101"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/newreply.gif" alt="Antwort schreiben" title="Antwort schreiben"></a>&nbsp;
+<!-- end: showthread_newreply -->
+	</div>
+	<!-- start: showthread_ratethread -->
+<div style="margin-top: 6px; padding-right: 10px;" class="float_right">
+		<script type="text/javascript" src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/rating.js"></script>
+		<div id="success_rating_101" style="float: left; padding-top: 2px; padding-right: 10px;">&nbsp;</div>
+		<strong style="float: left; padding-right: 10px;">Themabewertung:</strong>
+		<div class="inline_rating">
+			<ul class="star_rating star_rating_notrated" id="rating_thread_101">
+				<li style="width: 100%" class="current_rating" id="current_rating_101">2 Bewertungen - 5 im Durchschnitt</li>
+				<li><a class="one_star" title="1 Stern von 5" href="http://www.forum-raspberrypi.de/ratethread.php?tid=101&amp;rating=1&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd">1</a></li>
+				<li><a class="two_stars" title="2 Stern von 5" href="http://www.forum-raspberrypi.de/ratethread.php?tid=101&amp;rating=2&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd">2</a></li>
+				<li><a class="three_stars" title="3 Stern von 5" href="http://www.forum-raspberrypi.de/ratethread.php?tid=101&amp;rating=3&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd">3</a></li>
+				<li><a class="four_stars" title="4 Stern von 5" href="http://www.forum-raspberrypi.de/ratethread.php?tid=101&amp;rating=4&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd">4</a></li>
+				<li><a class="five_stars" title="5 Stern von 5" href="http://www.forum-raspberrypi.de/ratethread.php?tid=101&amp;rating=5&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd">5</a></li>
+			</ul>
+		</div>
+</div>
+<!-- end: showthread_ratethread -->
+	<table class="tborder" style="clear: both; border-bottom-width: 0;" border="0" cellpadding="5" cellspacing="0">
+		<tbody><tr>
+			<td class="thead" colspan="2">
+				<div style="float: right;">
+					<span class="smalltext"><strong><a href="http://www.forum-raspberrypi.de/showthread.php?mode=threaded&amp;tid=101&amp;pid=233#pid233">Baumstrukturmodus</a> | <a href="http://www.forum-raspberrypi.de/showthread.php?mode=linear&amp;tid=101&amp;pid=233#pid233">Linearer Modus</a></strong></span>
+				</div>
+				<div>
+					 <strong>[Tutorial]&nbsp;Raspberry Pi als Webserver - PHP 5 Installation</strong>
+				</div>
+			</td>
+		</tr>
+		
+	</tbody></table>
+	<div id="posts">
+		<!-- start: postbit -->
+
+<a name="pid233" id="pid233"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_233" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					24.06.2012, 18:50 <span id="edited_by_233"><!-- start: postbit_editedby -->
+<span class="smalltext">(Dieser Beitrag wurde zuletzt bearbeitet: 11.10.2013 22:20 von <a href="http://www.forum-raspberrypi.de/User-ps915">ps915</a>.)</span>
+
+
+<!-- end: postbit_editedby --></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-php-5-installation?pid=233#pid233">#1</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-ps915"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/av-48078.gif" alt="" height="70" width="54"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-ps915"><span style="color: green;"><strong><em>ps915</em></strong></span></a></span></strong> <!-- start: postbit_offline -->
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/buddy_offline.gif" title="Offline" alt="Offline">
+<!-- end: postbit_offline --><br>
+							<span class="smalltext">
+								Administrator<br>
+								<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <!-- start: postbit_groupimage -->
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/administrator.png" alt="Administrators" title="Administrators">
+<!-- end: postbit_groupimage --><br>
+                                                                Anzahl:<b>2</b> RPis - Modell:<b>Modell B (256 MB RAM)</b> - Betriebssystem:<b>Raspbian
+Raspbmc</b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 863<br>
+Registriert seit: Apr 2012
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=5"><strong class="reputation_positive">14</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 166
+<br>
+Gefällt mir erhalten: 217 in 87 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>Raspberry Pi als Webserver - PHP 5 Installation </strong></span>
+<div class="post_body postmsg" id="pid_233">Im folgendem Tutorial zeige ich euch wie ihr PHP 5 auf eurem Raspberry Pi installiert.<br>
+<br>
+<span style="font-weight: bold;">Raspberry Pi als Webserver Tutorials:</span><br>
+<span style="font-weight: bold;">1.</span> <a href="http://www.forum-raspberrypi.de/Thread-tutorial-ssh-zugang-auf-dem-raspberry-pi-einrichten" target="_blank">SSH Zugang auf dem Raspberry Pi einrichten</a> <br>
+<span style="font-weight: bold;">2. </span><a href="http://www.forum-raspberrypi.de/Thread-raspberry-pi-als-webserver-apache-2-installation" target="_blank">Raspberry Pi als Webserver - Apache 2 Installation</a> <br>
+<span style="font-weight: bold;">3. <a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-php-5-installation" target="_blank">Raspberry Pi als Webserver - PHP 5 Installation</a> </span><br>
+<span style="font-weight: bold;">4.</span> <a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-mysql-installation" target="_blank">Raspberry Pi als Webserver - MySQL Installation</a> <br>
+<span style="font-weight: bold;">5.</span> <a href="http://www.forum-raspberrypi.de/Thread-raspberry-pi-als-webserver-phpmyadmin-installation" target="_blank">Raspberry Pi als Webserver - phpMyAdmin Installation</a> <br>
+<span style="font-weight: bold;">6.</span> <a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-ftp-server-proftpd-installation" target="_blank">Raspberry Pi als Webserver - FTP-Server Installation</a> <br>
+<br>
+<span style="font-weight: bold;">1. Root Rechte holen</span><br>
+<!-- start: postbit_attachments_thumbnails_thumbnail -->
+<a rel="lightbox[post_233]" href="http://www.forum-raspberrypi.de/attachment.php?aid=55" target="_blank"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/attachment_002.png" class="attachment" alt=""></a>&nbsp;&nbsp;&nbsp;
+<!-- end: postbit_attachments_thumbnails_thumbnail --><br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('525e37f2eb059')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="525e37f2eb059">sudo bash</code></div></div>
+<br>
+<span style="font-weight: bold;">2. PHP 5 installieren</span><br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('525e37f2ed71d')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="525e37f2ed71d">sudo apt-get install php5</code></div></div>
+<!-- start: postbit_attachments_thumbnails_thumbnail -->
+<a rel="lightbox[post_233]" href="http://www.forum-raspberrypi.de/attachment.php?aid=56" target="_blank"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/attachment_003.png" class="attachment" alt=""></a>&nbsp;&nbsp;&nbsp;
+<!-- end: postbit_attachments_thumbnails_thumbnail --><br>
+<br>
+<span style="font-weight: bold;">3. Optionale Pakete </span><br>
+Es gibt optionale Pakete die normalerweise auf jedem Webserver 
+installiert sein sollten. Für die erfolgreiche Installation sind diese 
+aber nicht notwendig.<br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('525e37f2efe2c')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="525e37f2efe2c">sudo apt-get 
+install libapache2-mod-php5 libapache2-mod-perl2 php5 php5-cli 
+php5-common php5-curl php5-dev php5-gd php5-imap php5-ldap php5-mhash 
+php5-mysql php5-odbc php-pear php-apc</code></div></div>
+<br>
+<span style="font-weight: bold;">4. Installation testen</span><br>
+Nun testen wir die Installation indem wir uns die phpinfo anzeigen 
+lassen. Dazu erstellen wir einen Datei auf dem Server wie folgt.<br>
+<br>
+Als erstes wechseln wir in das Verzeichnis (/var/www)<br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('525e37f2f2540')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="525e37f2f2540">cd /var/www</code></div></div>
+<br>
+Nun erstellen wir die Datei phpinfo.php <br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('525e37f300a17')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="525e37f300a17">sudo nano phpinfo.php</code></div></div>
+<br>
+Mit dem Nano Editor schreiben wir nun folgenden Text in die Datei <br>
+<div class="codeblock phpcodeblock"><div class="title">PHP-Code: <small><a href="javascript:" onclick="SelectAll('525e37f303124')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body"><div dir="ltr"><code id="525e37f303124"><span style="color: #0000BB">&lt;?php<br>phpinfo</span><span style="color: #007700">();<br></span><span style="color: #0000BB">?&gt;</span></code></div></div></div>
+<span style="font-weight: bold;">Tipp Zu Nano:</span><br>
+Um den Editor zu verlassen und Datei speichern, ist die Tastenkombination <span style="font-weight: bold;">Strg + X</span> zu drücken. <br>
+Sollen die Änderungen zwischendurch gespeichert der Editor aber noch nicht verlassen werden, ist <span style="font-weight: bold;">Strg + O</span> zu drücken.<br>
+<!-- start: postbit_attachments_thumbnails_thumbnail -->
+<a rel="lightbox[post_233]" href="http://www.forum-raspberrypi.de/attachment.php?aid=57" target="_blank"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/attachment_004.png" class="attachment" alt=""></a>&nbsp;&nbsp;&nbsp;
+<!-- end: postbit_attachments_thumbnails_thumbnail --><br>
+<br>
+Nun gebt ihr in eurem Browser die IP Adresse + phpinfo.php (<a href="http://www.forum-raspberrypi.de/Thread-tutorial-ssh-zugang-auf-dem-raspberry-pi-einrichten" target="_blank">Wo finde ich die IP-Adresse? Siehe Punk 3</a>) eures Raspberry Pi ein (192.168.0.XXX/phpinfo.php). Folgendes solltet ihr sehen:<br>
+<!-- start: postbit_attachments_thumbnails_thumbnail -->
+<a rel="lightbox[post_233]" href="http://www.forum-raspberrypi.de/attachment.php?aid=58" target="_blank"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/attachment.png" class="attachment" alt=""></a>&nbsp;&nbsp;&nbsp;
+<!-- end: postbit_attachments_thumbnails_thumbnail --><br>
+<br>
+Somit ist PHP erfolgreich auf eurem Raspberry Pi installiert!<br>
+<br>
+<div style="text-align: center;"><span style="font-weight: bold;"><span style="font-size: medium;">Wenn du Fragen und/oder Verbesserungsvorschläge hast, zögere nicht diese unter diesem Beitrag zu stellen.</span></span><br>
+<span style="font-weight: bold;"><span style="font-size: medium;">Über ein kurzes <span style="text-decoration: underline;">Feedback</span>, ob es geklappt hat würde ich mich auch sehr freuen!</span></span><br>
+<br>
+<br>
+</div></div>
+			
+
+				<!-- start: postbit_signature -->
+<hr align="left" size="1" width="25%">
+<div style="text-align: center;"><a href="http://goo.gl/6TnYtZ" target="_blank"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/dftt.gif" alt="[Bild: dftt.gif]" border="0"><br>
+</a>Bitte <span style="font-weight: bold;"><a href="http://goo.gl/6TnYtZ" target="_blank">nicht füttern</a></span>, sondern einfach<br>
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/dontfeed.gif" alt="[Bild: dontfeed.gif]" border="0"><br>
+</div>
+<!-- end: postbit_signature -->
+				<div class="post_meta" id="post_meta_233">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_www -->
+<a href="http://www.forum-raspberrypi.de/" target="_blank"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_www.gif" alt="Webseite des Benutzers besuchen" title="Webseite des Benutzers besuchen"></a>
+<!-- end: postbit_www --><!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=5"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_233"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=233&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(233, 101);" title="Like Post" id="tyl_a233"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i233" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=101&amp;replyto=233"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="" id="tyl_233">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_233" style=""><strong>Den folgenden 4 Mitgliedern gefällt ps915's Beitrag:</strong></span><span id="tyl_title_collapsed_233" style="display: none;"></span><br>
+				<span id="tyl_data_233" style=""><span class="smalltext"></span><a href="http://www.forum-raspberrypi.de/User-idrisdilki" class="smalltext">idrisdilki</a><span class="smalltext"></span><span class="smalltext">, </span><a href="http://www.forum-raspberrypi.de/User-ghoethe" class="smalltext">ghoethe</a><span class="smalltext"></span><span class="smalltext">, </span><a href="http://www.forum-raspberrypi.de/User-cocouna" class="smalltext">cocouna</a><span class="smalltext"></span><span class="smalltext">, </span><a href="http://www.forum-raspberrypi.de/User-splattersid" class="smalltext">SplatterSid</a><span class="smalltext"></span></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_233">
+			
+		</tr>
+	</tbody>
+</table><div onclick="MyAdvertisements.do_click(7);"><div style="margin:5px;" align="left">	
+<b>
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/tick-circle-frame.png" alt="Thema als erledigt markieren" title="Thema als erledigt markieren">
+ Wenn dein Problem oder deine Frage geklärt worden ist markiere bitte 
+dein Thema als "erledigt" indem du auf den "Erledigt" Button oben rechts
+ neben dem "Antworten" Button klickst. Vielen Dank!
+</b>
+</div>
+<table class="tborder" style="margin-bottom: 5px; " border="0" cellpadding="5" cellspacing="0">
+<tbody>
+		<tr>
+			<td class="trow2 post_content ">
+			<div align="center">
+				<a href="http://www.forum-raspberrypi.de/page-shop">
+				<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/shop.jpg" alt="Raspberry Pi Shop" title="Raspberry Pi Shop">
+				</a>
+			</div>
+			</td>
+		</tr>
+</tbody>
+</table></div>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid1751" id="pid1751"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_1751" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					23.10.2012, 09:55 <span id="edited_by_1751"></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-php-5-installation?pid=1751#pid1751">#2</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-klecks"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/avatar_62.jpg" alt="" height="70" width="70"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-klecks">klecks</a></span></strong> <!-- start: postbit_offline -->
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/buddy_offline.gif" title="Offline" alt="Offline">
+<!-- end: postbit_offline --><br>
+							<span class="smalltext">
+								inaktiv<br>
+								<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <!-- start: postbit_groupimage -->
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/member.png" alt="Registered" title="Registered">
+<!-- end: postbit_groupimage --><br>
+                                                                Anzahl:<b>3</b> RPis - Modell:<b>Modell B (256 MB RAM)
+Modell B (512 MB RAM)</b> - Betriebssystem:<b>Andere</b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 372<br>
+Registriert seit: Jul 2012
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=62"><strong class="reputation_positive">6</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 0
+<br>
+Gefällt mir erhalten: 6 in 5 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>RE: Raspberry Pi als Webserver - PHP 5 Installation </strong></span>
+<div class="post_body postmsg" id="pid_1751">zusätzlich sollte noch php-apc installiert werden ..<br>
+<br>
+<blockquote><cite>Zitat:</cite>APC (Alternative PHP Cache) ist eine 
+Erweiterung für php, die php Code extrem beschleunigen kann indem, 
+kompilierte Versionen der Scripte zwischengespeichert und optimiert 
+werden. </blockquote>
+<br>
+<div class="codeblock">
+<div class="title">Code: <small><a href="javascript:" onclick="SelectAll('525e37f30cd5c')" class="select_all">Alles markieren</a></small><br>
+</div><div class="body" dir="ltr"><code id="525e37f30cd5c">sudo apt-get install php-pear php-apc</code></div></div>
+</div>
+			
+
+				<!-- start: postbit_signature -->
+<hr align="left" size="1" width="25%">
+I sometimes feel that I have nothing to say and I want to communicate this.
+<!-- end: postbit_signature -->
+				<div class="post_meta" id="post_meta_1751">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=62"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_1751"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=1751&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(1751, 101);" title="Like Post" id="tyl_a1751"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i1751" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=101&amp;replyto=1751"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="" id="tyl_1751">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_1751" style=""><strong>Den folgenden 1 Mitglied gefällt klecks's Beitrag:</strong></span><span id="tyl_title_collapsed_1751" style="display: none;"></span><br>
+				<span id="tyl_data_1751" style=""><span class="smalltext"></span><a href="http://www.forum-raspberrypi.de/User-ps915" class="smalltext"><span style="color: green;"><strong><em>ps915</em></strong></span></a><span class="smalltext"></span></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_1751">
+			
+		</tr>
+	</tbody>
+</table>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid3160" id="pid3160"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_3160" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					22.12.2012, 14:39 <span id="edited_by_3160"></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-php-5-installation?pid=3160#pid3160">#3</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-l-production"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/invalid_url.gif" alt="" height="70" width="70"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-l-production">l-production</a></span></strong> <!-- start: postbit_offline -->
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/buddy_offline.gif" title="Offline" alt="Offline">
+<!-- end: postbit_offline --><br>
+							<span class="smalltext">
+								Newbie<br>
+								<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <!-- start: postbit_groupimage -->
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/member.png" alt="Registered" title="Registered">
+<!-- end: postbit_groupimage --><br>
+                                                                Anzahl:<b>1</b> RPis - Modell:<b>Modell B (512 MB RAM)</b> - Betriebssystem:<b>Raspbian</b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 1<br>
+Registriert seit: Dec 2012
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=906"><strong class="reputation_neutral">0</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 0
+<br>
+Gefällt mir erhalten: 1 in 1 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>RE: Raspberry Pi als Webserver - PHP 5 Installation </strong></span>
+<div class="post_body postmsg" id="pid_3160">Moin Moin,<br>
+<br>
+wollte einfach mal ein dickes Lob aussprechen für die Webserver 
+Tutorials. Bis vor 5 Tagen mein Raspi kam, hatte ich absolut null Ahnung
+ von Linux. Aber hab jetzt die letzten Tage u.a. mal die Tuts 
+durchgearbeitet und siehe da, alles läuft (fast) sofort problemlos.<br>
+<br>
+Vielen Dank<br>
+<br>
+Grüße l-production</div>
+			
+
+				
+				<div class="post_meta" id="post_meta_3160">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=906"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_3160"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=3160&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(3160, 101);" title="Like Post" id="tyl_a3160"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i3160" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=101&amp;replyto=3160"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="" id="tyl_3160">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_3160" style=""><strong>Den folgenden 1 Mitglied gefällt l-production's Beitrag:</strong></span><span id="tyl_title_collapsed_3160" style="display: none;"></span><br>
+				<span id="tyl_data_3160" style=""><span class="smalltext"></span><a href="http://www.forum-raspberrypi.de/User-ps915" class="smalltext"><span style="color: green;"><strong><em>ps915</em></strong></span></a><span class="smalltext"></span></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_3160">
+			
+		</tr>
+	</tbody>
+</table>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid3162" id="pid3162"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_3162" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					22.12.2012, 15:21 <span id="edited_by_3162"></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-php-5-installation?pid=3162#pid3162">#4</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-ps915"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/av-48078.gif" alt="" height="70" width="54"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-ps915"><span style="color: green;"><strong><em>ps915</em></strong></span></a></span></strong> <!-- start: postbit_offline -->
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/buddy_offline.gif" title="Offline" alt="Offline">
+<!-- end: postbit_offline --><br>
+							<span class="smalltext">
+								Administrator<br>
+								<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <!-- start: postbit_groupimage -->
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/administrator.png" alt="Administrators" title="Administrators">
+<!-- end: postbit_groupimage --><br>
+                                                                Anzahl:<b>2</b> RPis - Modell:<b>Modell B (256 MB RAM)</b> - Betriebssystem:<b>Raspbian
+Raspbmc</b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 863<br>
+Registriert seit: Apr 2012
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=5"><strong class="reputation_positive">14</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 166
+<br>
+Gefällt mir erhalten: 217 in 87 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>AW: RE: Raspberry Pi als Webserver - PHP 5 Installation </strong></span>
+<div class="post_body postmsg" id="pid_3162"><blockquote><cite><span> (22.12.2012 14:39)</span>l-production schrieb: <a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-php-5-installation?pid=3160#pid3160" class="quick_jump">&nbsp;</a></cite>Aber hab jetzt die letzten Tage u.a. mal die Tuts durchgearbeitet und siehe da, alles läuft (fast) sofort.</blockquote>
+Wo gab es denn noch Schwierigkeiten?</div>
+			
+
+				<!-- start: postbit_signature -->
+<hr align="left" size="1" width="25%">
+<div style="text-align: center;"><a href="http://goo.gl/6TnYtZ" target="_blank"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/dftt.gif" alt="[Bild: dftt.gif]" border="0"><br>
+</a>Bitte <span style="font-weight: bold;"><a href="http://goo.gl/6TnYtZ" target="_blank">nicht füttern</a></span>, sondern einfach<br>
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/dontfeed.gif" alt="[Bild: dontfeed.gif]" border="0"><br>
+</div>
+<!-- end: postbit_signature -->
+				<div class="post_meta" id="post_meta_3162">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_www -->
+<a href="http://www.forum-raspberrypi.de/" target="_blank"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_www.gif" alt="Webseite des Benutzers besuchen" title="Webseite des Benutzers besuchen"></a>
+<!-- end: postbit_www --><!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=5"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_3162"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=3162&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(3162, 101);" title="Like Post" id="tyl_a3162"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i3162" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=101&amp;replyto=3162"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="display: none;" id="tyl_3162">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_3162" style=""></span><span id="tyl_title_collapsed_3162" style="display: none;"></span><br>
+				<span id="tyl_data_3162" style=""></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_3162">
+			
+		</tr>
+	</tbody>
+</table>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid3292" id="pid3292"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_3292" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					26.12.2012, 19:21 <span id="edited_by_3292"></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-php-5-installation?pid=3292#pid3292">#5</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-phi2xr"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/invalid_url.gif" alt="" height="70" width="70"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-phi2xr">PHi2Xr</a></span></strong> <!-- start: postbit_offline -->
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/buddy_offline.gif" title="Offline" alt="Offline">
+<!-- end: postbit_offline --><br>
+							<span class="smalltext">
+								Newbie<br>
+								<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <!-- start: postbit_groupimage -->
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/member.png" alt="Registered" title="Registered">
+<!-- end: postbit_groupimage --><br>
+                                                                Anzahl:<b>1</b> RPis - Modell:<b>Modell B (512 MB RAM)</b> - Betriebssystem:<b>Raspbian</b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 3<br>
+Registriert seit: Dec 2012
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=962"><strong class="reputation_neutral">0</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 1
+<br>
+Gefällt mir erhalten: 1 in 1 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/information.gif" alt="Information" style="vertical-align: middle;">&nbsp;RE: Raspberry Pi als Webserver - PHP 5 Installation </strong></span>
+<div class="post_body postmsg" id="pid_3292">Danke für Deine Tutorials ps915. Sie sind eine große Hilfe.<br>
+<br>
+Hinweis zu Punkt 3, optionale Pakete:<br>
+Bei der Auswahl der Pakete, die Du angibst, bricht der Vorgang ab. 
+"php5-domxml" kann nicht gefunden werden. Nach kurzer Recherche habe ich
+ erfahren, dass dieses Paket wohl bereits standardmäßig enthalten ist. 
+Du kannst es als rausnehmen.</div>
+			
+
+				
+				<div class="post_meta" id="post_meta_3292">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=962"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_3292"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=3292&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(3292, 101);" title="Like Post" id="tyl_a3292"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i3292" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=101&amp;replyto=3292"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="" id="tyl_3292">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_3292" style=""><strong>Den folgenden 1 Mitglied gefällt PHi2Xr's Beitrag:</strong></span><span id="tyl_title_collapsed_3292" style="display: none;"></span><br>
+				<span id="tyl_data_3292" style=""><span class="smalltext"></span><a href="http://www.forum-raspberrypi.de/User-ps915" class="smalltext"><span style="color: green;"><strong><em>ps915</em></strong></span></a><span class="smalltext"></span></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_3292">
+			
+		</tr>
+	</tbody>
+</table>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid3467" id="pid3467"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_3467" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					31.12.2012, 14:28 <span id="edited_by_3467"></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-php-5-installation?pid=3467#pid3467">#6</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-bdg"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/invalid_url.gif" alt="" height="70" width="70"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-bdg">BDG</a></span></strong> <!-- start: postbit_offline -->
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/buddy_offline.gif" title="Offline" alt="Offline">
+<!-- end: postbit_offline --><br>
+							<span class="smalltext">
+								Berater<br>
+								<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <br>
+                                                                Anzahl:<b></b> RPis - Modell:<b></b> - Betriebssystem:<b></b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 149<br>
+Registriert seit: Aug 2012
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=189"><strong class="reputation_neutral">0</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 26
+<br>
+Gefällt mir erhalten: 3 in 3 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>RE: Raspberry Pi als Webserver - PHP 5 Installation </strong></span>
+<div class="post_body postmsg" id="pid_3467">bei "sudo restart" sagt er command not found <img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/icon_nosmile.gif" style="vertical-align: middle;" alt="Icon_nosmile" title="Icon_nosmile" border="0"></div>
+			
+
+				
+				<div class="post_meta" id="post_meta_3467">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=189"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_3467"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=3467&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(3467, 101);" title="Like Post" id="tyl_a3467"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i3467" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=101&amp;replyto=3467"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="display: none;" id="tyl_3467">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_3467" style=""></span><span id="tyl_title_collapsed_3467" style="display: none;"></span><br>
+				<span id="tyl_data_3467" style=""></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_3467">
+			
+		</tr>
+	</tbody>
+</table>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid3470" id="pid3470"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_3470" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					31.12.2012, 14:57 <span id="edited_by_3470"></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-php-5-installation?pid=3470#pid3470">#7</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-reedsolomon"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/invalid_url.gif" alt="" height="70" width="70"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-reedsolomon">reedsolomon</a></span></strong> <!-- start: postbit_offline -->
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/buddy_offline.gif" title="Offline" alt="Offline">
+<!-- end: postbit_offline --><br>
+							<span class="smalltext">
+								Newbie<br>
+								<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <!-- start: postbit_groupimage -->
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/member.png" alt="Registered" title="Registered">
+<!-- end: postbit_groupimage --><br>
+                                                                Anzahl:<b>1</b> RPis - Modell:<b>Modell B (256 MB RAM)</b> - Betriebssystem:<b></b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 1<br>
+Registriert seit: Dec 2012
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=913"><strong class="reputation_neutral">0</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 0
+<br>
+Gefällt mir erhalten: 1 in 1 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>Raspberry Pi als Webserver - PHP 5 Installation </strong></span>
+<div class="post_body postmsg" id="pid_3470">sudo reboot sollte funktionieren.</div>
+			
+
+				
+				<div class="post_meta" id="post_meta_3470">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=913"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_3470"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=3470&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(3470, 101);" title="Like Post" id="tyl_a3470"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i3470" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=101&amp;replyto=3470"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="" id="tyl_3470">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_3470" style=""><strong>Den folgenden 1 Mitglied gefällt reedsolomon's Beitrag:</strong></span><span id="tyl_title_collapsed_3470" style="display: none;"></span><br>
+				<span id="tyl_data_3470" style=""><span class="smalltext"></span><a href="http://www.forum-raspberrypi.de/User-ps915" class="smalltext"><span style="color: green;"><strong><em>ps915</em></strong></span></a><span class="smalltext"></span></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_3470">
+			
+		</tr>
+	</tbody>
+</table>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid3560" id="pid3560"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_3560" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					02.01.2013, 20:02 <span id="edited_by_3560"><!-- start: postbit_editedby -->
+<span class="smalltext">(Dieser Beitrag wurde zuletzt bearbeitet: 03.01.2013 21:56 von <a href="http://www.forum-raspberrypi.de/User-rgarcia">rgarcia</a>.)</span>
+
+
+<!-- end: postbit_editedby --></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-php-5-installation?pid=3560#pid3560">#8</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-rgarcia"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/invalid_url.gif" alt="" height="70" width="70"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-rgarcia">rgarcia</a></span></strong> <!-- start: postbit_offline -->
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/buddy_offline.gif" title="Offline" alt="Offline">
+<!-- end: postbit_offline --><br>
+							<span class="smalltext">
+								Newbie<br>
+								<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <!-- start: postbit_groupimage -->
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/member.png" alt="Registered" title="Registered">
+<!-- end: postbit_groupimage --><br>
+                                                                Anzahl:<b>1</b> RPis - Modell:<b>Modell B (512 MB RAM)</b> - Betriebssystem:<b></b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 3<br>
+Registriert seit: Jan 2013
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=1073"><strong class="reputation_neutral">0</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 0
+<br>
+Gefällt mir erhalten: 0 in 0 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>RE: Raspberry Pi als Webserver - PHP 5 Installation </strong></span>
+<div class="post_body postmsg" id="pid_3560">Gibt es auch eine Möglichkeit PHP 5.3.x anstatt 5.4.x zu installieren?&nbsp;<br>
+Ich habe nämlich daheim auf einem Acer Revo einen WebServer laufen, auf 
+welchem ich ein CRM betreibe, welches jedoch nicht mit PHP 5.4 
+kompatible ist. <br>
+Dieses sollte nun eigentlich auf den Raspberry Pi umziehen...<br>
+<br>
+Würde mich freuen wenn jemand einen Tipp hätte!?</div>
+			
+
+				
+				<div class="post_meta" id="post_meta_3560">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=1073"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_3560"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=3560&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(3560, 101);" title="Like Post" id="tyl_a3560"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i3560" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=101&amp;replyto=3560"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="display: none;" id="tyl_3560">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_3560" style=""></span><span id="tyl_title_collapsed_3560" style="display: none;"></span><br>
+				<span id="tyl_data_3560" style=""></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_3560">
+			
+		</tr>
+	</tbody>
+</table>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid4263" id="pid4263"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_4263" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					18.01.2013, 20:37 <span id="edited_by_4263"></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-php-5-installation?pid=4263#pid4263">#9</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-chickenjoe"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/invalid_url.gif" alt="" height="70" width="70"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-chickenjoe">chickenjoe</a></span></strong> <!-- start: postbit_offline -->
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/buddy_offline.gif" title="Offline" alt="Offline">
+<!-- end: postbit_offline --><br>
+							<span class="smalltext">
+								Newbie<br>
+								<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <!-- start: postbit_groupimage -->
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/member.png" alt="Registered" title="Registered">
+<!-- end: postbit_groupimage --><br>
+                                                                Anzahl:<b>1</b> RPis - Modell:<b>Modell B (512 MB RAM)</b> - Betriebssystem:<b></b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 2<br>
+Registriert seit: Jan 2013
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=1340"><strong class="reputation_neutral">0</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 0
+<br>
+Gefällt mir erhalten: 0 in 0 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>RE: Raspberry Pi als Webserver - PHP 5 Installation </strong></span>
+<div class="post_body postmsg" id="pid_4263">Hy,<br>
+<br>
+bei mir hat bisher alles geklappt, nur leider zeigt mein browser nicht die phpinfo an, sondern nochimmer den alten text.<br>
+<br>
+Weiß jemand was ich vielleicht falsch gemacht habe?<br>
+<br>
+Danke schonmal</div>
+			
+
+				
+				<div class="post_meta" id="post_meta_4263">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=1340"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_4263"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=4263&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(4263, 101);" title="Like Post" id="tyl_a4263"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i4263" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=101&amp;replyto=4263"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="display: none;" id="tyl_4263">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_4263" style=""></span><span id="tyl_title_collapsed_4263" style="display: none;"></span><br>
+				<span id="tyl_data_4263" style=""></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_4263">
+			
+		</tr>
+	</tbody>
+</table>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid4264" id="pid4264"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_4264" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					18.01.2013, 20:41 <span id="edited_by_4264"></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-php-5-installation?pid=4264#pid4264">#10</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-ps915"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/av-48078.gif" alt="" height="70" width="54"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-ps915"><span style="color: green;"><strong><em>ps915</em></strong></span></a></span></strong> <!-- start: postbit_offline -->
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/buddy_offline.gif" title="Offline" alt="Offline">
+<!-- end: postbit_offline --><br>
+							<span class="smalltext">
+								Administrator<br>
+								<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <!-- start: postbit_groupimage -->
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/administrator.png" alt="Administrators" title="Administrators">
+<!-- end: postbit_groupimage --><br>
+                                                                Anzahl:<b>2</b> RPis - Modell:<b>Modell B (256 MB RAM)</b> - Betriebssystem:<b>Raspbian
+Raspbmc</b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 863<br>
+Registriert seit: Apr 2012
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=5"><strong class="reputation_positive">14</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 166
+<br>
+Gefällt mir erhalten: 217 in 87 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>AW: Raspberry Pi als Webserver - PHP 5 Installation </strong></span>
+<div class="post_body postmsg" id="pid_4264">Hast du die Datei auch in var/www erstellt wie in punkt 4 beschrieben? <br>
+<br>
+Gesendet von meinem GT-I9300 mit Tapatalk 2</div>
+			
+
+				<!-- start: postbit_signature -->
+<hr align="left" size="1" width="25%">
+<div style="text-align: center;"><a href="http://goo.gl/6TnYtZ" target="_blank"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/dftt.gif" alt="[Bild: dftt.gif]" border="0"><br>
+</a>Bitte <span style="font-weight: bold;"><a href="http://goo.gl/6TnYtZ" target="_blank">nicht füttern</a></span>, sondern einfach<br>
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/dontfeed.gif" alt="[Bild: dontfeed.gif]" border="0"><br>
+</div>
+<!-- end: postbit_signature -->
+				<div class="post_meta" id="post_meta_4264">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_www -->
+<a href="http://www.forum-raspberrypi.de/" target="_blank"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_www.gif" alt="Webseite des Benutzers besuchen" title="Webseite des Benutzers besuchen"></a>
+<!-- end: postbit_www --><!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=5"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_4264"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=4264&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(4264, 101);" title="Like Post" id="tyl_a4264"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i4264" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=101&amp;replyto=4264"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="display: none;" id="tyl_4264">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_4264" style=""></span><span id="tyl_title_collapsed_4264" style="display: none;"></span><br>
+				<span id="tyl_data_4264" style=""></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_4264">
+			
+		</tr>
+	</tbody>
+</table>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid4266" id="pid4266"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_4266" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					18.01.2013, 20:46 <span id="edited_by_4266"><!-- start: postbit_editedby -->
+<span class="smalltext">(Dieser Beitrag wurde zuletzt bearbeitet: 18.01.2013 21:08 von <a href="http://www.forum-raspberrypi.de/User-chickenjoe">chickenjoe</a>.)</span>
+
+
+<!-- end: postbit_editedby --></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-php-5-installation?pid=4266#pid4266">#11</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-chickenjoe"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/invalid_url.gif" alt="" height="70" width="70"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-chickenjoe">chickenjoe</a></span></strong> <!-- start: postbit_offline -->
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/buddy_offline.gif" title="Offline" alt="Offline">
+<!-- end: postbit_offline --><br>
+							<span class="smalltext">
+								Newbie<br>
+								<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <!-- start: postbit_groupimage -->
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/member.png" alt="Registered" title="Registered">
+<!-- end: postbit_groupimage --><br>
+                                                                Anzahl:<b>1</b> RPis - Modell:<b>Modell B (512 MB RAM)</b> - Betriebssystem:<b></b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 2<br>
+Registriert seit: Jan 2013
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=1340"><strong class="reputation_neutral">0</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 0
+<br>
+Gefällt mir erhalten: 0 in 0 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>RE: Raspberry Pi als Webserver - PHP 5 Installation </strong></span>
+<div class="post_body postmsg" id="pid_4266">Jep, hab ich<br>
+<hr>
+Ich kann jetzt die Info sehen... musste im Browser "ip des 
+rpi"/phpinfo.php eingeben. War das nur meine dummheit und es ist überall
+ so? ^^</div>
+			
+
+				
+				<div class="post_meta" id="post_meta_4266">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=1340"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_4266"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=4266&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(4266, 101);" title="Like Post" id="tyl_a4266"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i4266" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=101&amp;replyto=4266"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="display: none;" id="tyl_4266">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_4266" style=""></span><span id="tyl_title_collapsed_4266" style="display: none;"></span><br>
+				<span id="tyl_data_4266" style=""></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_4266">
+			
+		</tr>
+	</tbody>
+</table><div onclick="MyAdvertisements.do_click(7);"><div style="margin:5px;" align="left">	
+<b>
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/tick-circle-frame.png" alt="Thema als erledigt markieren" title="Thema als erledigt markieren">
+ Wenn dein Problem oder deine Frage geklärt worden ist markiere bitte 
+dein Thema als "erledigt" indem du auf den "Erledigt" Button oben rechts
+ neben dem "Antworten" Button klickst. Vielen Dank!
+</b>
+</div>
+<table class="tborder" style="margin-bottom: 5px; " border="0" cellpadding="5" cellspacing="0">
+<tbody>
+		<tr>
+			<td class="trow2 post_content ">
+			<div align="center">
+				<a href="http://www.forum-raspberrypi.de/page-shop">
+				<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/shop.jpg" alt="Raspberry Pi Shop" title="Raspberry Pi Shop">
+				</a>
+			</div>
+			</td>
+		</tr>
+</tbody>
+</table></div>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid4269" id="pid4269"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_4269" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					18.01.2013, 21:26 <span id="edited_by_4269"></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-php-5-installation?pid=4269#pid4269">#12</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-orb"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/invalid_url.gif" alt="" height="70" width="70"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-orb">orb</a></span></strong> <!-- start: postbit_away -->
+<a href="http://www.forum-raspberrypi.de/User-orb" title="Abwesend"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/buddy_away.gif" alt="Abwesend" border="0"></a>
+<!-- end: postbit_away --><br>
+							<span class="smalltext">
+								bin weg<br>
+								<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <br>
+                                                                Anzahl:<b>0</b> RPis - Modell:<b>keinen</b> - Betriebssystem:<b></b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 1,815<br>
+Registriert seit: Sep 2012
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=352"><strong class="reputation_positive">18</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 6
+<br>
+Gefällt mir erhalten: 260 in 182 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>RE: Raspberry Pi als Webserver - PHP 5 Installation </strong></span>
+<div class="post_body postmsg" id="pid_4269">Das ist überall so. Wenn Du nur die IP eingibst, liefert der Server die Datei index.(htm/html/php) aus.</div>
+			
+
+				
+				<div class="post_meta" id="post_meta_4269">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=352"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_4269"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=4269&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(4269, 101);" title="Like Post" id="tyl_a4269"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i4269" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=101&amp;replyto=4269"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="display: none;" id="tyl_4269">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_4269" style=""></span><span id="tyl_title_collapsed_4269" style="display: none;"></span><br>
+				<span id="tyl_data_4269" style=""></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_4269">
+			
+		</tr>
+	</tbody>
+</table>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid4270" id="pid4270"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_4270" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					18.01.2013, 21:33 <span id="edited_by_4270"></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-php-5-installation?pid=4270#pid4270">#13</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-ps915"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/av-48078.gif" alt="" height="70" width="54"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-ps915"><span style="color: green;"><strong><em>ps915</em></strong></span></a></span></strong> <!-- start: postbit_offline -->
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/buddy_offline.gif" title="Offline" alt="Offline">
+<!-- end: postbit_offline --><br>
+							<span class="smalltext">
+								Administrator<br>
+								<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <!-- start: postbit_groupimage -->
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/administrator.png" alt="Administrators" title="Administrators">
+<!-- end: postbit_groupimage --><br>
+                                                                Anzahl:<b>2</b> RPis - Modell:<b>Modell B (256 MB RAM)</b> - Betriebssystem:<b>Raspbian
+Raspbmc</b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 863<br>
+Registriert seit: Apr 2012
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=5"><strong class="reputation_positive">14</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 166
+<br>
+Gefällt mir erhalten: 217 in 87 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>Raspberry Pi als Webserver - PHP 5 Installation </strong></span>
+<div class="post_body postmsg" id="pid_4270">Habe es im Tutorial ergänzt, da es nicht eindeutig beschrieben war. <br>
+<br>
+<br>
+Gesendet von meinem iPad mit Tapatalk HD</div>
+			
+
+				<!-- start: postbit_signature -->
+<hr align="left" size="1" width="25%">
+<div style="text-align: center;"><a href="http://goo.gl/6TnYtZ" target="_blank"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/dftt.gif" alt="[Bild: dftt.gif]" border="0"><br>
+</a>Bitte <span style="font-weight: bold;"><a href="http://goo.gl/6TnYtZ" target="_blank">nicht füttern</a></span>, sondern einfach<br>
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/dontfeed.gif" alt="[Bild: dontfeed.gif]" border="0"><br>
+</div>
+<!-- end: postbit_signature -->
+				<div class="post_meta" id="post_meta_4270">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_www -->
+<a href="http://www.forum-raspberrypi.de/" target="_blank"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_www.gif" alt="Webseite des Benutzers besuchen" title="Webseite des Benutzers besuchen"></a>
+<!-- end: postbit_www --><!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=5"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_4270"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=4270&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(4270, 101);" title="Like Post" id="tyl_a4270"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i4270" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=101&amp;replyto=4270"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="display: none;" id="tyl_4270">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_4270" style=""></span><span id="tyl_title_collapsed_4270" style="display: none;"></span><br>
+				<span id="tyl_data_4270" style=""></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_4270">
+			
+		</tr>
+	</tbody>
+</table>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid8345" id="pid8345"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_8345" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					22.03.2013, 12:21 <span id="edited_by_8345"><!-- start: postbit_editedby -->
+<span class="smalltext">(Dieser Beitrag wurde zuletzt bearbeitet: 22.03.2013 12:45 von <a href="http://www.forum-raspberrypi.de/User-maxl95">maxl95</a>.)</span>
+
+
+<!-- end: postbit_editedby --></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-php-5-installation?pid=8345#pid8345">#14</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-maxl95"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/invalid_url.gif" alt="" height="70" width="70"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-maxl95">maxl95</a></span></strong> <!-- start: postbit_offline -->
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/buddy_offline.gif" title="Offline" alt="Offline">
+<!-- end: postbit_offline --><br>
+							<span class="smalltext">
+								Newbie<br>
+								<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <br>
+                                                                Anzahl:<b>1</b> RPis - Modell:<b>Modell B (512 MB RAM)</b> - Betriebssystem:<b>Raspbian</b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 18<br>
+Registriert seit: Mar 2013
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=2147"><strong class="reputation_positive">1</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 0
+<br>
+Gefällt mir erhalten: 5 in 5 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>AW: Raspberry Pi als Webserver - PHP 5 Installation </strong></span>
+<div class="post_body postmsg" id="pid_8345">Hallo, <br>
+<br>
+Finde diese Anleitung echt super geschrieben, ein großes Lob!!!<br>
+<br>
+Apache2 läuft bei mir schon, jetzt hänge ich aber an der 
+PHP5-Installation. Hab alles nach Anleitung installiert, trotzdem 
+bekomme ich die phpinfo.php nicht angezeigt. Es wird zwar die Seite 
+geladen, aber man sieht nicht, es ist eine leere Seite. Wenn ich auf 
+Quelltext klicke, wird mir der PHP-Code aber angezeigt, er wird halt nur
+ nicht ausgeführt denke ich. <br>
+Ich hoffe jemand kann mir helfen...<br>
+<br>
+Mfg Maxl<br>
+<br>
+EDIT: Nachdem ich "apt-get install php5 libapache2-mod-php5" installiert hab ging es auf ein mal ?!</div>
+			
+
+				
+				<div class="post_meta" id="post_meta_8345">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=2147"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_8345"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=8345&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(8345, 101);" title="Like Post" id="tyl_a8345"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i8345" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=101&amp;replyto=8345"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="" id="tyl_8345">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_8345" style=""><strong>Den folgenden 1 Mitglied gefällt maxl95's Beitrag:</strong></span><span id="tyl_title_collapsed_8345" style="display: none;"></span><br>
+				<span id="tyl_data_8345" style=""><span class="smalltext"></span><a href="http://www.forum-raspberrypi.de/User-ps915" class="smalltext"><span style="color: green;"><strong><em>ps915</em></strong></span></a><span class="smalltext"></span></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_8345">
+			
+		</tr>
+	</tbody>
+</table>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid8365" id="pid8365"></a>
+<table class="tborder" style="margin-bottom: 5px; " id="post_8365" border="0" cellpadding="5" cellspacing="0">
+	<tbody>
+		<tr>
+			<td class="tcat rounded_top">
+				<div class="float_left smalltext">
+					22.03.2013, 14:30 <span id="edited_by_8365"></span>
+				</div>
+				<!-- start: postbit_posturl -->
+<div style="float: right; width: auto; vertical-align: top"><span class="smalltext"><strong>Beitrag <a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-php-5-installation?pid=8365#pid8365">#15</a></strong></span></div>
+<!-- end: postbit_posturl -->
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 ">
+				<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+					<tbody><tr>
+						<td class="post_avatar" style="padding-right: 10px;" width="1">
+							<!-- start: postbit_avatar -->
+<a href="http://www.forum-raspberrypi.de/User-boandlkramer"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/avatar_1643.jpg" alt="" height="70" width="70"></a>
+<!-- end: postbit_avatar -->						</td>
+						<td class="post_author">
+							<strong><span class="largetext"><a href="http://www.forum-raspberrypi.de/User-boandlkramer">boandlkramer</a></span></strong> <!-- start: postbit_offline -->
+<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/buddy_offline.gif" title="Offline" alt="Offline">
+<!-- end: postbit_offline --><br>
+							<span class="smalltext">
+								Raspberry Pi Senior<br>
+								<img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/star.gif" alt="*" border="0"><br>
+                                                                <br>
+                                                                Anzahl:<b>2</b> RPis - Modell:<b>Modell B (256 MB RAM)
+Modell B (512 MB RAM)</b> - Betriebssystem:<b>Raspbian
+Raspbmc</b>
+							</span>
+
+						</td>
+						<td class="smalltext post_author_info" width="200">
+							<!-- start: postbit_author_user -->
+Beiträge: 1,376<br>
+Registriert seit: Feb 2013
+<!-- start: postbit_reputation -->
+<br>Bewertung <a href="http://www.forum-raspberrypi.de/reputation.php?uid=1643"><strong class="reputation_positive">15</strong></a>
+<!-- end: postbit_reputation -->
+<br>Gefällt mir gegeben: 1
+<br>
+Gefällt mir erhalten: 173 in 157 Beiträgen
+<!-- end: postbit_author_user -->
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow2 post_content ">
+				<span class="smalltext"><strong>RE: Raspberry Pi als Webserver - PHP 5 Installation </strong></span>
+<div class="post_body postmsg" id="pid_8365">Hallo Maxl,<br>
+<br>
+<blockquote><cite>Zitat:</cite>Wenn ich auf Quelltext klicke, wird mir der PHP-Code aber angezeigt, er wird halt nur nicht ausgeführt denke ich.</blockquote>
+<br>
+Wenn eine PHP-Datei vom Webserver interpretiert wird, liefert dieser nur
+ die Ausgaben des PHP-Codes an den Browser. Den PHP-Quellcode solltest 
+du eigentlich gar nicht angezeigt bekommen. Soviel nur als Anmerkung zu 
+deinem bereits gelösten Problem ;-)<br>
+<br>
+Gruß Georg</div>
+			
+
+				
+				<div class="post_meta" id="post_meta_8365">
+				
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="trow1 post_buttons ">
+				<div class="author_buttons float_left">
+					<!-- start: postbit_www -->
+<a href="http://www.gtkdb.de/" target="_blank"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_www.gif" alt="Webseite des Benutzers besuchen" title="Webseite des Benutzers besuchen"></a>
+<!-- end: postbit_www --><!-- start: postbit_find -->
+<a href="http://www.forum-raspberrypi.de/search.php?action=finduser&amp;uid=1643"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_find.gif" alt="Alle Beiträge dieses Benutzers finden" title="Alle Beiträge dieses Benutzers finden"></a>
+<!-- end: postbit_find -->
+				</div>
+				<div class="post_management_buttons float_right"><!-- start: thankyoulike_button_add -->
+<span id="tyl_btn_8365"><a href="http://www.forum-raspberrypi.de/thankyoulike.php?action=add&amp;pid=8365&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd" onclick="return thankyoulike.add(8365, 101);" title="Like Post" id="tyl_a8365"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_l_add.gif" alt="Like Post" id="tyl_i8365" border="0"></a></span>
+<!-- end: thankyoulike_button_add --><!-- start: postbit_quote -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=101&amp;replyto=8365"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/postbit_quote.gif" alt="Diese Nachricht in einer Antwort zitieren" title="Diese Nachricht in einer Antwort zitieren"></a>
+<!-- end: postbit_quote -->
+				</div>
+			</td>
+		</tr>
+		<tr style="display: none;" id="tyl_8365">
+			<!-- start: thankyoulike -->
+			<td class="trow2 post_buttons ">
+				 
+				<span id="tyl_title_8365" style=""></span><span id="tyl_title_collapsed_8365" style="display: none;"></span><br>
+				<span id="tyl_data_8365" style=""></span>
+			</td>
+<!-- end: thankyoulike -->
+		</tr>
+		<tr style=";" id="imb_8365">
+			
+		</tr>
+	</tbody>
+</table>
+<!-- end: postbit -->
+	</div>
+	<table class="tborder" style="border-top-width: 0;" border="0" cellpadding="5" cellspacing="0">
+		<tbody><tr>
+			<td colspan="2" class="tfoot">
+				<!-- start: showthread_search -->
+	<div class="float_right">
+		<form action="search.php" method="post">
+			<input name="action" value="thread" type="hidden">
+			<input name="tid" value="101" type="hidden">
+			<input name="keywords" value="Suchbegriff(e)" onfocus="if(this.value == 'Suchbegriff(e)') { this.value = ''; }" onblur="if(this.value=='') { this.value='Suchbegriff(e)'; }" class="textbox" size="25" type="text">
+			<input class="button" value="Durchsuche Thema" type="submit">
+		</form>
+	</div>
+<!-- end: showthread_search -->
+				<div>
+					<strong>« <a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-php-5-installation?action=nextoldest">Ein Thema zurück</a> | <a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-php-5-installation?action=nextnewest">Ein Thema vor</a> »</strong>
+				</div>
+			</td>
+		</tr>
+	</tbody></table>
+	<div class="float_left">
+		<!-- start: multipage -->
+<div class="pagination">
+<span class="pages">Seiten (2):</span>
+<!-- start: multipage_page_current -->
+ <span class="pagination_current">1</span>
+<!-- end: multipage_page_current --><!-- start: multipage_page -->
+<a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-php-5-installation?page=2" class="pagination_page">2</a>
+<!-- end: multipage_page --><!-- start: multipage_nextpage -->
+<a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-php-5-installation?page=2" class="pagination_next">Weiter »</a>
+<!-- end: multipage_nextpage -->
+</div>
+<!-- end: multipage -->
+	</div>
+	<div style="padding-top: 4px;" class="float_right">
+		<!-- start: showthread_newreply -->
+<a href="http://www.forum-raspberrypi.de/newreply.php?tid=101"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/newreply.gif" alt="Antwort schreiben" title="Antwort schreiben"></a>&nbsp;
+<!-- end: showthread_newreply -->
+	</div>
+	<br style="clear: both;">
+	
+        <!-- start: showthread_sharebuttons -->
+<br>
+        <table class="tborder" border="0" cellpadding="5" cellspacing="0">
+         <thead>
+          <tr>
+           <td class="thead" colspan="8">
+            <div class="expcolimage"><img style="cursor: pointer;" src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/collapse.gif" id="ishare_img" class="expander" alt="[-]" title="[-]"></div>
+            <strong>Share/Bookmark</strong>&nbsp;<i>(<a href="javascript:MyBB.popupWindow('misc.php?action=sharebuttonspopup&amp;tid=101',%20'sharebuttons',%20360,%20350);">Show All</a>)</i>
+           </td>
+          </tr>
+         </thead>
+         <tbody style="" id="ishare_e">
+          <!-- start: showthread_sharebuttons_tr_start -->
+<tr>
+<!-- end: showthread_sharebuttons_tr_start --><!-- start: showthread_sharebuttons_button -->
+<td class="trow1" style="padding:10px;" align="center" valign="center"><a href="#" onclick="MyBB.popupWindow('http://www.facebook.com/share.php?u=http%3A%2F%2Fwww.forum-raspberrypi.de%2Fshowthread.php%3Ftid%3D101&amp;t=Raspberry+Pi+als+Webserver+-+PHP+5+Installation', 'bsharethread', 550, 310);" target=""><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/facebook_big.png" alt="Facebook" title="Facebook"></a></td>
+<!-- end: showthread_sharebuttons_button --><!-- start: showthread_sharebuttons_button -->
+<td class="trow2" style="padding:10px;" align="center" valign="center"><a href="#" onclick="MyBB.popupWindow('http://twitter.com/intent/tweet?text=Raspberry+Pi+als+Webserver+-+PHP+5+Installation&amp;url=http%3A%2F%2Fwww.forum-raspberrypi.de%2Fshowthread.php%3Ftid%3D101', 'bsharethread', 550, 300);" target=""><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/twitter_big.png" alt="Twitter" title="Twitter"></a></td>
+<!-- end: showthread_sharebuttons_button --><!-- start: showthread_sharebuttons_button -->
+<td class="trow1" style="padding:10px;" align="center" valign="center"><a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fwww.forum-raspberrypi.de%2Fshowthread.php%3Ftid%3D101&amp;title=Raspberry+Pi+als+Webserver+-+PHP+5+Installation" onclick="" target="_blank"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/linkedin_big.png" alt="Linkedin" title="Linkedin"></a></td>
+<!-- end: showthread_sharebuttons_button --><!-- start: showthread_sharebuttons_button -->
+<td class="trow2" style="padding:10px;" align="center" valign="center"><a href="http://technorati.com/faves/?add=http%3A%2F%2Fwww.forum-raspberrypi.de%2Fshowthread.php%3Ftid%3D101" onclick="" target="_blank"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/technorati_big.png" alt="Technorati" title="Technorati"></a></td>
+<!-- end: showthread_sharebuttons_button --><!-- start: showthread_sharebuttons_button -->
+<td class="trow1" style="padding:10px;" align="center" valign="center"><a href="http://digg.com/submit?phase=2&amp;url=http%3A%2F%2Fwww.forum-raspberrypi.de%2Fshowthread.php%3Ftid%3D101&amp;title=Raspberry+Pi+als+Webserver+-+PHP+5+Installation" onclick="" target="_blank"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/digg_big.png" alt="Digg" title="Digg"></a></td>
+<!-- end: showthread_sharebuttons_button --><!-- start: showthread_sharebuttons_button -->
+<td class="trow2" style="padding:10px;" align="center" valign="center"><a href="http://www.myspace.com/Modules/PostTo/Pages/?u=http%3A%2F%2Fwww.forum-raspberrypi.de%2Fshowthread.php%3Ftid%3D101&amp;t=Raspberry+Pi+als+Webserver+-+PHP+5+Installation" onclick="" target="_blank"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/myspace_big.png" alt="MySpace" title="MySpace"></a></td>
+<!-- end: showthread_sharebuttons_button --><!-- start: showthread_sharebuttons_button -->
+<td class="trow1" style="padding:10px;" align="center" valign="center"><a href="http://del.icio.us/post?url=http%3A%2F%2Fwww.forum-raspberrypi.de%2Fshowthread.php%3Ftid%3D101&amp;title=Raspberry+Pi+als+Webserver+-+PHP+5+Installation" onclick="" target="_blank"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/delicious_big.png" alt="Delicious" title="Delicious"></a></td>
+<!-- end: showthread_sharebuttons_button -->
+         </tr></tbody>
+        </table>
+<!-- end: showthread_sharebuttons -->
+	
+	<!-- start: showthread_similarthreads -->
+<br>
+<table class="tborder" border="0" cellpadding="5" cellspacing="0">
+<tbody><tr>
+<td class="thead" colspan="6" align="center"><strong>Möglicherweise verwandte Themen...</strong></td>
+</tr>
+<tr>
+<td class="tcat" colspan="2" align="center"><span class="smalltext"><strong>Thema:</strong></span></td>
+<td class="tcat" align="center"><span class="smalltext"><strong>Verfasser</strong></span></td>
+<td class="tcat" align="center"><span class="smalltext"><strong>Antworten:</strong></span></td>
+<td class="tcat" align="center"><span class="smalltext"><strong>Ansichten:</strong></span></td>
+<td class="tcat" align="center"><span class="smalltext"><strong>Letzter Beitrag</strong></span></td>
+</tr>
+<!-- start: showthread_similarthreads_bit -->
+<tr>
+	<td class="trow1" align="center" width="2%">&nbsp;</td>
+	<td class="trow1">[Tutorial]&nbsp;<a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-apache-2-installation">Raspberry Pi als Webserver - Apache 2 Installation</a></td>
+	<td class="trow1" align="center"><a href="http://www.forum-raspberrypi.de/User-ps915">ps915</a></td>
+	<td class="trow1" align="center"><a href="javascript:MyBB.whoPosted(100);">46</a></td>
+	<td class="trow1" align="center">36,397</td>
+	<td class="trow1" style="white-space: nowrap">
+		<span class="smalltext">Gestern 13:36<br>
+		<a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-apache-2-installation?action=lastpost">Letzter Beitrag</a>: <a href="http://www.forum-raspberrypi.de/User-meigrafd">meigrafd</a></span>
+	</td>
+	</tr>
+<!-- end: showthread_similarthreads_bit --><!-- start: showthread_similarthreads_bit -->
+<tr>
+	<td class="trow2" align="center" width="2%">&nbsp;</td>
+	<td class="trow2">[Tutorial]&nbsp;<a href="http://www.forum-raspberrypi.de/Thread-tutorial-webmin-1-590-auf-dem-raspberry-pi-installieren">Webmin 1.590 auf dem Raspberry Pi installieren</a></td>
+	<td class="trow2" align="center"><a href="http://www.forum-raspberrypi.de/User-ps915">ps915</a></td>
+	<td class="trow2" align="center"><a href="javascript:MyBB.whoPosted(188);">30</a></td>
+	<td class="trow2" align="center">16,898</td>
+	<td class="trow2" style="white-space: nowrap">
+		<span class="smalltext">Gestern 12:44<br>
+		<a href="http://www.forum-raspberrypi.de/Thread-tutorial-webmin-1-590-auf-dem-raspberry-pi-installieren?action=lastpost">Letzter Beitrag</a>: <a href="http://www.forum-raspberrypi.de/User-ebiby">eBiBy</a></span>
+	</td>
+	</tr>
+<!-- end: showthread_similarthreads_bit --><!-- start: showthread_similarthreads_bit -->
+<tr>
+	<td class="trow1" align="center" width="2%">&nbsp;</td>
+	<td class="trow1">[Tutorial]&nbsp;<a href="http://www.forum-raspberrypi.de/Thread-tutorial-music-player-daemon-mpd-und-mpc-auf-dem-raspberry-pi">Music Player Daemon (MPD und MPC) auf dem Raspberry Pi</a></td>
+	<td class="trow1" align="center"><a href="http://www.forum-raspberrypi.de/User-ps915">ps915</a></td>
+	<td class="trow1" align="center"><a href="javascript:MyBB.whoPosted(326);">95</a></td>
+	<td class="trow1" align="center">39,401</td>
+	<td class="trow1" style="white-space: nowrap">
+		<span class="smalltext">13.10.2013 14:11<br>
+		<a href="http://www.forum-raspberrypi.de/Thread-tutorial-music-player-daemon-mpd-und-mpc-auf-dem-raspberry-pi?action=lastpost">Letzter Beitrag</a>: <a href="http://www.forum-raspberrypi.de/User-wusa">wusa</a></span>
+	</td>
+	</tr>
+<!-- end: showthread_similarthreads_bit --><!-- start: showthread_similarthreads_bit -->
+<tr>
+	<td class="trow2" align="center" width="2%">&nbsp;</td>
+	<td class="trow2">[Tutorial]&nbsp;<a href="http://www.forum-raspberrypi.de/Thread-tutorial-telldus-tellstick-inkl-duo-am-raspberry-einrichten">Telldus Tellstick (inkl. Duo) am Raspberry einrichten</a></td>
+	<td class="trow2" align="center"><a href="http://www.forum-raspberrypi.de/User-ebiby">eBiBy</a></td>
+	<td class="trow2" align="center"><a href="javascript:MyBB.whoPosted(4650);">0</a></td>
+	<td class="trow2" align="center">124</td>
+	<td class="trow2" style="white-space: nowrap">
+		<span class="smalltext">13.10.2013 11:01<br>
+		<a href="http://www.forum-raspberrypi.de/Thread-tutorial-telldus-tellstick-inkl-duo-am-raspberry-einrichten?action=lastpost">Letzter Beitrag</a>: <a href="http://www.forum-raspberrypi.de/User-ebiby">eBiBy</a></span>
+	</td>
+	</tr>
+<!-- end: showthread_similarthreads_bit --><!-- start: showthread_similarthreads_bit -->
+<tr>
+	<td class="trow1" align="center" width="2%">&nbsp;</td>
+	<td class="trow1">[Tutorial]&nbsp;<a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-downloadserver-mit-pyload">Raspberry Pi als Downloadserver mit pyLoad</a></td>
+	<td class="trow1" align="center"><a href="http://www.forum-raspberrypi.de/User-freelancer1111">Freelancer1111</a></td>
+	<td class="trow1" align="center"><a href="javascript:MyBB.whoPosted(865);">70</a></td>
+	<td class="trow1" align="center">27,863</td>
+	<td class="trow1" style="white-space: nowrap">
+		<span class="smalltext">12.10.2013 18:54<br>
+		<a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-downloadserver-mit-pyload?action=lastpost">Letzter Beitrag</a>: <a href="http://www.forum-raspberrypi.de/User-kian">kian</a></span>
+	</td>
+	</tr>
+<!-- end: showthread_similarthreads_bit --><!-- start: showthread_similarthreads_bit -->
+<tr>
+	<td class="trow2" align="center" width="2%">&nbsp;</td>
+	<td class="trow2">[Tutorial]&nbsp;<a href="http://www.forum-raspberrypi.de/Thread-tutorial-bewegungserkennung-mit-dem-raspberry-camera-modul-und-motion">Bewegungserkennung mit dem Raspberry Camera Modul und motion</a></td>
+	<td class="trow2" align="center"><a href="http://www.forum-raspberrypi.de/User-inth3sh4dows">inth3sh4dows</a></td>
+	<td class="trow2" align="center"><a href="javascript:MyBB.whoPosted(4102);">5</a></td>
+	<td class="trow2" align="center">2,416</td>
+	<td class="trow2" style="white-space: nowrap">
+		<span class="smalltext">11.10.2013 09:15<br>
+		<a href="http://www.forum-raspberrypi.de/Thread-tutorial-bewegungserkennung-mit-dem-raspberry-camera-modul-und-motion?action=lastpost">Letzter Beitrag</a>: <a href="http://www.forum-raspberrypi.de/User-pataim">pataim</a></span>
+	</td>
+	</tr>
+<!-- end: showthread_similarthreads_bit --><!-- start: showthread_similarthreads_bit -->
+<tr>
+	<td class="trow1" align="center" width="2%">&nbsp;</td>
+	<td class="trow1">[Tutorial]&nbsp;<a href="http://www.forum-raspberrypi.de/Thread-tutorial-java-installation-von-java">[Java] Installation von Java</a></td>
+	<td class="trow1" align="center"><a href="http://www.forum-raspberrypi.de/User-turael">Turael</a></td>
+	<td class="trow1" align="center"><a href="javascript:MyBB.whoPosted(4186);">2</a></td>
+	<td class="trow1" align="center">205</td>
+	<td class="trow1" style="white-space: nowrap">
+		<span class="smalltext">11.10.2013 07:11<br>
+		<a href="http://www.forum-raspberrypi.de/Thread-tutorial-java-installation-von-java?action=lastpost">Letzter Beitrag</a>: <a href="http://www.forum-raspberrypi.de/User-turael">Turael</a></span>
+	</td>
+	</tr>
+<!-- end: showthread_similarthreads_bit --><!-- start: showthread_similarthreads_bit -->
+<tr>
+	<td class="trow2" align="center" width="2%">&nbsp;</td>
+	<td class="trow2">[Tutorial]&nbsp;<a href="http://www.forum-raspberrypi.de/Thread-tutorial-alarmanlage-magnetkontakte-auslesen-und-speichern-webserver-interface">Alarmanlage - Magnetkontakte auslesen und speichern - Webserver Interface</a></td>
+	<td class="trow2" align="center"><a href="http://www.forum-raspberrypi.de/User-ps915">ps915</a></td>
+	<td class="trow2" align="center"><a href="javascript:MyBB.whoPosted(3250);">12</a></td>
+	<td class="trow2" align="center">1,871</td>
+	<td class="trow2" style="white-space: nowrap">
+		<span class="smalltext">10.10.2013 15:03<br>
+		<a href="http://www.forum-raspberrypi.de/Thread-tutorial-alarmanlage-magnetkontakte-auslesen-und-speichern-webserver-interface?action=lastpost">Letzter Beitrag</a>: <a href="http://www.forum-raspberrypi.de/User-ps915">ps915</a></span>
+	</td>
+	</tr>
+<!-- end: showthread_similarthreads_bit --><!-- start: showthread_similarthreads_bit -->
+<tr>
+	<td class="trow1" align="center" width="2%">&nbsp;</td>
+	<td class="trow1">[Tutorial]&nbsp;<a href="http://www.forum-raspberrypi.de/Thread-tutorial-airplay-mit-dem-raspberry-pi-shairport-installation">AirPlay mit dem Raspberry Pi - Shairport Installation</a></td>
+	<td class="trow1" align="center"><a href="http://www.forum-raspberrypi.de/User-ps915">ps915</a></td>
+	<td class="trow1" align="center"><a href="javascript:MyBB.whoPosted(189);">75</a></td>
+	<td class="trow1" align="center">47,074</td>
+	<td class="trow1" style="white-space: nowrap">
+		<span class="smalltext">08.10.2013 20:44<br>
+		<a href="http://www.forum-raspberrypi.de/Thread-tutorial-airplay-mit-dem-raspberry-pi-shairport-installation?action=lastpost">Letzter Beitrag</a>: <a href="http://www.forum-raspberrypi.de/User-backslash">Backslash</a></span>
+	</td>
+	</tr>
+<!-- end: showthread_similarthreads_bit --><!-- start: showthread_similarthreads_bit -->
+<tr>
+	<td class="trow2" align="center" width="2%">&nbsp;</td>
+	<td class="trow2">[Tutorial]&nbsp;<a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-phpmyadmin-installation">Raspberry Pi als Webserver - phpMyAdmin Installation</a></td>
+	<td class="trow2" align="center"><a href="http://www.forum-raspberrypi.de/User-ps915">ps915</a></td>
+	<td class="trow2" align="center"><a href="javascript:MyBB.whoPosted(103);">40</a></td>
+	<td class="trow2" align="center">26,401</td>
+	<td class="trow2" style="white-space: nowrap">
+		<span class="smalltext">07.10.2013 09:46<br>
+		<a href="http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-phpmyadmin-installation?action=lastpost">Letzter Beitrag</a>: <a href="http://www.forum-raspberrypi.de/User-meigrafd">meigrafd</a></span>
+	</td>
+	</tr>
+<!-- end: showthread_similarthreads_bit -->
+</tbody></table>
+<!-- end: showthread_similarthreads -->
+	<br>
+	<div class="float_left">
+		<ul class="thread_tools">
+			<li class="printable"><a href="http://www.forum-raspberrypi.de/printthread.php?tid=101">Druckversion anzeigen</a></li>
+			<li class="sendthread"><a href="http://www.forum-raspberrypi.de/sendthread.php?tid=101">Thema einem Freund senden</a></li>
+			<li class="subscription_add"><a href="http://www.forum-raspberrypi.de/usercp2.php?action=addsubscription&amp;tid=101&amp;my_post_key=58f52f39868bbff03d0cd984e4ebd8dd">Thema abonnieren</a></li>
+		</ul>
+	</div>
+
+	<div class="float_right" style="text-align: right;">
+		
+		<!-- start: forumjump_advanced -->
+<form action="forumdisplay.php" method="get">
+<span class="smalltext"><strong>Gehe zu:</strong></span>
+<select name="fid" onchange="window.location=('forumdisplay.php?fid='+this.options[this.selectedIndex].value)">
+<option value="-1">Bitte wähle:</option>
+<option value="-1">--------------------</option>
+<option value="-4">Private Nachrichten</option>
+<option value="-3">Benutzer Control-Panel</option>
+<option value="-5">Wer ist online?</option>
+<option value="-2">Suche</option>
+<option value="-1">Forenstartseite</option>
+<!-- start: forumjump_bit -->
+<option value="1"> Allgemeines</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="30">-- News</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="3">-- Ankündigungen &amp; Wichtiges</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="52">-- Umfragen</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="5"> Software</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="12">-- Allgemeine Software</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="20">-- Multimedia</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="21">-- Netzwerk und Server</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="53">-- Spiele</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="40"> Programmierung</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="6">-- Programmierung</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="41">-- Web-Programmierung</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="13"> Betriebssysteme</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="39">-- Allgemeines</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="14">-- Debian &amp; Raspbian</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="45">-- Raspbmc</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="46">-- OpenELEC</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="36">-- Andere</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="8">---- Arch | ARM</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="16">---- Android</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="22"> Hardware</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="38">-- Allgemeines</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="33">-- Modell A</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="34">-- Modell B</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="62">-- Raspberry Pi Camera Module</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="54">-- WiFi, Bluetooth &amp; DVB-T,C,S</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="55">-- Tastatur/Maus &amp; Fernbedienungen</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="56">-- Soundkarten</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="26">-- USB Geräte &amp; zusätzliche Hardware</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="25">-- SD-Karten</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="24">-- Stromversorgung</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="51">-- GPIO &amp; Elektrotechnik</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="57">-- Displays</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="37">-- Gehäuse</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="10"> Verschiedenes</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="66">-- FAQ</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="50" selected="selected">-- Tutorials &amp; Anleitungen</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="7">-- Projekte</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="65">---- Crowdfunding</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="63">-- Suche und Biete</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="11">-- Offtopic</option>
+<!-- end: forumjump_bit -->
+</select>
+<!-- start: gobutton -->
+<input class="button" value="Los" type="submit">
+<!-- end: gobutton -->
+</form>
+
+<!-- end: forumjump_advanced -->
+	</div>
+	<br style="clear: both;">
+	<!-- start: showthread_usersbrowsing -->
+<br>
+<span class="smalltext">Benutzer, die gerade dieses Thema anschauen: 2 Gast/Gäste</span>
+<br>
+<!-- end: showthread_usersbrowsing -->
+	<!-- start: footer -->
+<div id="debug"></div>
+	</div>
+</div>
+<div id="footer">
+	<div class="upper">
+		<div class="wrapper">
+			
+			<ul class="menu bottom_links">
+                                <li>» <a href="http://www.forum-raspberrypi.de/page-about">Über das Forum</a></li>
+                                <li>» <a href="http://www.forum-raspberrypi.de/page-partnerseiten">Partnerseiten</a></li>
+				<li>» <a href="mailto:webmaster@forum-raspberrypi.de">Kontakt</a></li>
+				<li>» <a href="#top">Nach oben</a></li>
+				<li>» <a href="http://www.forum-raspberrypi.de/archive/index.php?thread-101.html">Archiv-Modus</a></li>
+				<li>» <a href="http://www.forum-raspberrypi.de/misc.php?action=syndication">RSS-Synchronisation</a></li>
+				<li>» <a href="http://www.forum-raspberrypi.de/misc.php?action=help" class="help">Hilfe</a></li>
+				<li>» <a href="http://raspberrypi.org/" class="help">Raspberry Pi Foundation</a></li>
+				<li>» <a href="http://www.forum-raspberrypi.de/impressum.html" class="help">Impressum</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="lower">
+		<div class="wrapper">
+			<span id="current_time"><strong>Es ist:</strong> 16.10.2013, 08:53</span>
+			<span id="copyright">
+				<!-- MyBB is free software developed and maintained by a volunteer community. 
+					It would be much appreciated by the MyBB Group if you left the full copyright and "powered by" notice intact, 
+					to show your support for MyBB.  If you choose to remove or modify the copyright below, 
+					you may be refused support on the MyBB Community Forums.
+				 
+					This is free software, support us and we'll support you. -->
+				Deutsche Übersetzung: <a href="http://www.mybboard.de/" target="_blank">MyBBoard.de</a>, Powered by <a href="http://www.mybboard.net/" target="_blank">MyBB</a>, © 2002-2013 <a href="http://www.mybboard.net/" target="_blank">MyBB Group</a>.
+				<!-- End powered by -->
+			</span>
+			<span id="theme">
+				<!-- Apart is a series of twelve simple, beautiful themes released completely free of charge.
+					You love Apart - that's why you're using it - so why prevent others from finding Apart
+					by removing this short, simple created by statement? If you make changes to this theme,
+					feel free to modify the created by statement, as long as the originial credit remains
+					intact. Furthermore, if you remove or unjustly modify this simple statement, you will
+					be refused support for the theme.
+	
+					Thanks for your consideration, and best of luck with your forum.
+					- Justin S., bellomandesign.com
+				-->
+				Theme created by <a href="http://bellomandesign.com/" target="_blank">Justin S.</a>
+				<!-- End theme created by statement -->
+Raspberry Pi is a registered trademark of the <a target="_blank" href="http://www.raspberrypi.org/">Raspberry Pi Foundation</a>
+			</span>
+		</div>
+	</div>
+</div>
+<!-- The following piece of code allows MyBB to run scheduled tasks. DO NOT REMOVE --><!-- End task image code -->
+
+</div>
+<!-- end: footer -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-30744939-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+
+<div style="display: none;" id="overlay"></div><div style="display: none;" id="lightbox"><div style="width: 250px; height: 250px;" id="outerImageContainer"><div id="imageContainer"><img id="lightboxImage"><div id="hoverNav"><a id="prevLink" href="#"></a><a id="nextLink" href="#"></a></div><div id="loading"><a id="loadingLink" href="#"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/loading.gif"></a></div></div></div><div id="imageDataContainer"><div id="imageData"><div id="imageDetails"><span id="caption"></span><span id="numberDisplay"></span></div><div id="bottomNav"><a id="bottomNavClose" href="#"><img src="Raspberry%20Pi%20als%20Webserver%20-%20PHP%205%20Installation-Dateien/closelabel.gif"></a></div></div></div></div></body></html>
+<!-- end: showthread -->

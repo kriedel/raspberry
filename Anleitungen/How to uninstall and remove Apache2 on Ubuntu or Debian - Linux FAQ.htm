@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<!-- Xmodulo uses HeatMap AdAptive v1.4.8 by heatmaptheme.com -->
+<!-- render.php -->
+<html prefix="og: http://ogp.me/ns#" lang="en-US"><!-- Beginning of <head> --><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<!-- heatmapthemead_pre_wp_head hook -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+<title>How to uninstall and remove Apache2 on Ubuntu or Debian - Linux FAQ</title>
+<link rel="profile" href="http://gmpg.org/xfn/11"><link rel="pingback" href="http://xmodulo.com/xmlrpc.php">
+<link href="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/css.css" rel="stylesheet" type="text/css"><!-- end of heatmapthemead_pre_wp_head hook -->
+<!-- wp_head()-->
+<!-- This site is optimized with the Yoast WordPress SEO plugin v1.4.18 - http://yoast.com/wordpress/seo/ -->
+<link rel="canonical" href="http://xmodulo.com/2013/02/how-to-uninstall-and-remove-apache2-on-ubuntu-debian.html">
+<link rel="author" href="http://xmodulo.com/2013/02/115769503924233918974">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to uninstall and remove Apache2 on Ubuntu or Debian - Linux FAQ">
+<meta property="og:description" content="It turns out that uninstalling Apache2 web server is not as straightforward as installing it. You will need to remove Apache2 package itself, as well as other dependent packages and its associated configurations. Here is how you remove Apache2 cleanly on Ubuntu and Debian. The first step is to stop any running instance of Apache2, […]Continue reading...">
+<meta property="og:url" content="http://xmodulo.com/2013/02/how-to-uninstall-and-remove-apache2-on-ubuntu-debian.html">
+<meta property="og:site_name" content="Xmodulo">
+<!-- / Yoast WordPress SEO plugin. -->
+
+<link rel="alternate" type="application/rss+xml" title="Xmodulo » Feed" href="http://xmodulo.com/feed">
+<link rel="alternate" type="application/rss+xml" title="Xmodulo » Comments Feed" href="http://xmodulo.com/comments/feed">
+<link rel="alternate" type="application/rss+xml" title="Xmodulo » How to uninstall and remove Apache2 on Ubuntu or Debian Comments Feed" href="http://xmodulo.com/2013/02/how-to-uninstall-and-remove-apache2-on-ubuntu-debian.html/feed">
+<link rel="stylesheet" href="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/output.css" type="text/css">
+<link rel="stylesheet" id="feedburner-email-subscription-css" href="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/widget.css" type="text/css" media="all">
+<link rel="stylesheet" id="jetpack_likes-css" href="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="ts_fab_css-css" href="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/ts-fab.css" type="text/css" media="all">
+<link rel="stylesheet" id="jetpack-widgets-css" href="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/widgets.css" type="text/css" media="all">
+<link rel="stylesheet" id="style-css" href="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/style_002.css" type="text/css" media="all">
+<link rel="stylesheet" id="sharedaddy-css" href="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/sharing.css" type="text/css" media="all">
+<script type="text/javascript" async="" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/quant.js"></script><script gapi_processed="true" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/plusone_002.js" async="" type="text/javascript"></script><script src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/ga.js" async="" type="text/javascript"></script><script async="" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/cbgapi.loaded_2"></script><script async="" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/cbgapi.loaded_1"></script><script gapi_processed="true" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/plusone_002.js" async="" type="text/javascript"></script><script async="" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/cbgapi.loaded_0"></script><script gapi_processed="true" type="text/javascript" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/plusone_002.js"></script>
+<script type="text/javascript" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/jquery_003.js"></script>
+<script type="text/javascript" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/jquery-migrate.js"></script>
+<script type="text/javascript" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/anti-spam.js"></script>
+<script type="text/javascript" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/postmessage.js"></script>
+<script type="text/javascript" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/jquery.js"></script>
+<script type="text/javascript" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/jquery_002.js"></script>
+<script type="text/javascript" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/ts-fab.js"></script>
+<script type="text/javascript" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/small-menu.js"></script>
+<script type="text/javascript" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/comment-reply.js"></script>
+<script type="text/javascript" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/corescripts.js"></script>
+<script type="text/javascript" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/scripts.js"></script>
+<script gapi_processed="true" type="text/javascript" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/plusone.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://xmodulo.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://xmodulo.com/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 3.6.1">
+<link rel="shortlink" href="http://wp.me/p2ZLjm-kt">
+
+<!--Plugin WP Missed Schedule 2013.0730.7777 Active - Tag d76ca983e4e0b1146b8511f40cd66015-->
+
+	<link rel="stylesheet" type="text/css" href="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/wp_social_toolbar.css">
+	<style type="text/css">
+#wps-toolbar-show { background:#666666 !important; }
+#wp-social-toolbar-show-box { border-color:#666666 !important; }
+#wps-toolbar-content #wps-toolbar-top #wps-close-button,.wpcs-border { background:#666666 !important; }
+#wps-toolbar-content #wps-toolbar-top #wps-twitter-status { background-color:#999999 !important; font-family:Arial, Helvetica, sans-serif; color:#ffffff; font-size:12px; background-image:url('http://xmodulo.com/wp-content/plugins/wp-social-toolbar-pro//images/icons/normal/bird/white.png'); background-repeat:no-repeat; }
+#wpsc-social-accounts,#wps-toolbar-bottom { background:#000000 !important; }
+#wpsc-social-accounts img:hover,.wpst-credit-pro:hover { background:#ffffff; }
+#wp-social-toolbar-show-box,#wps-toolbar-content #wps-toolbar-bottom #wpsc-social-accounts img,#wps-toolbar-content #wps-toolbar-bottom,.wpcs-share-icons { border-color:#666666 !important; }
+#wps-toolbar-content #wps-toolbar-top #wps-twitter-status a { color:#ffffff; }
+#wps-toolbar-bottom{ height: 40px !important; overflow:hidden !important; }
+</style>
+<!--[if IE]>
+<link rel="stylesheet" type="text/css" href="http://xmodulo.com/wp-content/plugins/wp-social-toolbar-pro/css/ie.css" />
+<![endif]-->
+		<style>
+			/* Link color */
+			a {
+				color: #1b8be0;
+			}
+		</style>
+			<style>
+			/* Max Width */
+			#heatmapthemead-leaderboard,
+			nav.main-navigation,
+			nav.secondary-navigation,
+			#heatmapthemead-branding-container,
+			.heatmapthemead-layout-both-sidebars #heatmapthemead-main,
+			.heatmapthemead-layout-primary-sidebar-content #heatmapthemead-main,
+			.heatmapthemead-layout-content-secondary-sidebar #heatmapthemead-main,
+			.heatmapthemead-layout-content #heatmapthemead-main
+			{
+				max-width: 1160px;
+			}
+		</style>
+		
+				<style>
+				#heatmapthemead-header, #heatmapthemead-footer { 
+					max-width: 1160px; 
+				} 
+			</style>
+					
+					<style>
+					/* Font Style */
+					h1,h2,h3,h4,h5,h6,
+					#heatmapthemead-header-text p#site-title,
+					#heatmapthemead-header-text p#site-description { font-family: 'Open Sans', Arial, Helvetica, sans-serif; }
+					.heatmapthemead-menu { font-family: 'Open Sans', Arial, Helvetica, sans-serif; }
+					body { font-size: 1.7em; }
+					body, button, input, select, textarea { font-family:  Arial, Helvetica, sans-serif; }
+				</style> 
+				<style type="text/css">
+			#site-title a,
+		#site-description {
+			color: #000000 !important;
+		}
+		</style>
+	<style type="text/css" id="syntaxhighlighteranchor"></style>
+<!-- End of wp_head() -->
+<!-- heatmapthemead_post_wp_head hook -->
+<!-- end of heatmapthemead_post_wp_head hook -->
+</head>
+<!-- End of <head> -->
+<body data-twttr-rendered="true" class="single single-post postid-1269 single-format-standard heatmapthemead-layout-both-sidebars  heatmapthemead-max-width-1160 heatmapthemead-long-content">
+<!-- heatmapthemead_start_body hook -->
+<!-- end of heatmapthemead_start_body hook -->
+<!-- The Header Bars -->
+<div id="heatmapthemead-header-wipe">
+<div id="heatmapthemead-header">
+<div id="heatmapthemead-header-container">
+  
+		<div id="heatmapthemead-primary-menu" class="heatmapthemead-menu">
+			<nav role="navigation" class="site-navigation main-navigation">
+				<p class="primary-small-nav-text">	
+					Sections				</p>
+				<div class="menu"><ul><li class="page_item page-item-5032"><a href="http://xmodulo.com/about">About</a></li><li class="page_item page-item-3805"><a href="http://xmodulo.com/advertise">Advertise</a></li><li class="page_item page-item-5367"><a href="http://xmodulo.com/write-us">Write for Us</a></li><li class="page_item page-item-574"><a href="http://xmodulo.com/contact">Contact</a></li></ul></div>
+			</nav>
+		</div>
+			<div id="heatmapthemead-header-branding">
+		<div id="heatmapthemead-branding-container">
+							<header id="branding" role="banner">
+							<div id="heatmapthemead-header-text">
+			<aside>
+				<p id="site-title"><a href="http://xmodulo.com/" title="Xmodulo" rel="home">Xmodulo</a></p>
+				<p id="site-description">Linux FAQs, tips and tutorials</p>
+			</aside>
+		</div>
+					</header><!-- #branding -->
+			<div id="heatmapthemead-widget-position-header" class="heatmapthemead-widget-position heatmapthemead-homeheader widget-area heatmapthemead-static-header-widget" role="complementary"><aside class="widget"><div class="heatmapthemead-social-icons"><a id="heatmapthemead-fb-social-icon" class="heatmapthemead-social-icon" href="https://www.facebook.com/xmodulo" target="_blank"><img src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/facebook_002.png" alt=""></a><a id="heatmapthemead-twitter-social-icon" class="heatmapthemead-social-icon" href="https://twitter.com/xmodulo" target="_blank"><img src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/twitter_002.png" alt=""></a><a id="heatmapthemead-googleplus-social-icon" class="heatmapthemead-social-icon" href="https://plus.google.com/113402205121279785792" target="_blank"><img src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/googleplus_002.png" alt=""></a><a id="heatmapthemead-linkedin-social-icon" class="heatmapthemead-social-icon" href="http://www.linkedin.com/in/xmodulo" target="_blank"><img src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/linkedin.png" alt=""></a><a id="heatmapthemead-rss-social-icon" class="heatmapthemead-social-icon" href="http://xmodulo.com/feed" target="_blank"><img src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/rss-feed.png" alt=""></a></div> <!--.heatmapthemead-social-icons --></aside></div> <!-- id="heatmapthemead-widget-position-header" -->
+		</div><!-- #heatmapthemead-branding-container -->
+	</div><!-- #heatmapthemead-header-branding -->		
+</div> <!-- id="heatmapthemead-header-container" -->
+</div> <!-- id="heatmapthemead-header" -->
+</div> <!-- id="heatmapthemead-header-wipe" -->
+<!-- The main part of the page (with content and sidebars) -->
+<div id="heatmapthemead-main-wipe">
+<div id="heatmapthemead-main">
+<div id="heatmapthemead-widget-position-leaderboard" class="heatmapthemead-widget-position heatmapthemead-leaderboard widget-area" role="complementary"><aside id="heatmapthemead_ad-3" class="widget heatmapthemead_ad_widget">				<div class="heatmapthemead_ad_widget"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-7245163904660683";
+/* xmodulo-navlinks */
+google_ad_slot = "3936448789";
+google_ad_width = 728;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:15px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:15px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;" frameborder="0" height="15" scrolling="no" width="728"></iframe></ins></ins></div>
+			</aside></div> <!-- id="heatmapthemead-widget-position-leaderboard" -->
+<div id="heatmapthemead-content">
+<div id="heatmapthemead-the-content" class="site-content">
+<div id="heatmapthemead-the-content-container" role="main">
+	
+	
+		<article id="post-1269" class="post-1269 post type-post status-publish format-standard hentry category-web tag-apache2">
+		
+					<header class="entry-header">
+			<h1 class="entry-title"><a href="http://xmodulo.com/2013/02/how-to-uninstall-and-remove-apache2-on-ubuntu-debian.html" title="Permalink to How to uninstall and remove Apache2 on Ubuntu or Debian" rel="bookmark">How to uninstall and remove Apache2 on Ubuntu or Debian</a></h1>
+		</header> <!-- heatmapthemead-entry-header -->
+	<div class="heatmapthemead-header-entry-meta entry-meta"><span class="heatmapthemead-post-details">Posted on <a href="http://xmodulo.com/2013/02/how-to-uninstall-and-remove-apache2-on-ubuntu-debian.html" title="12:00 pm" rel="bookmark"><time class="entry-date" datetime="2013-02-13T12:00:55+00:00">February 13, 2013</time></a><span class="byline"> by <span class="author vcard"><a class="url fn n" href="http://xmodulo.com/author/nanni" title="View all posts by Dan Nanni" rel="author">Dan Nanni</a></span></span></span>					<span class="comments-link"><a href="http://xmodulo.com/2013/02/how-to-uninstall-and-remove-apache2-on-ubuntu-debian.html#comments" title="Comment on How to uninstall and remove Apache2 on Ubuntu or Debian">2 Comments</a></span>
+								</div><!-- .heatmapthemead-entry-meta -->
+			<div class="entry-content">
+<!--Ad Injection mfunc mode ad include code--><!--mfunc include_once('/home/kimchido/public_html/wp-content/plugins/ad-injection/adshow.php') --><!--/mfunc-->
+<p>It turns out that uninstalling Apache2 web server is not as 
+straightforward as installing it.  You will need to remove Apache2 
+package itself, as well as other dependent packages and its associated 
+configurations.  Here is <strong>how you remove Apache2 cleanly on <a href="http://xmodulo.com/go/ubuntu_guide" style="" target="_blank" rel="nofollow">Ubuntu</a> and Debian</strong>.</p>
+<p>The first step is to stop any running instance of Apache2, because Apache2 will not be properly removed while it is running.</p>
+<div class="console">
+$ sudo service apache2 stop
+</div>
+<p></p>
+<!--Ad Injection mfunc mode ad code--><!--mfunc adshow_display_ad_file_v2(array('ad_random_1.txt'), array(100), array('align' => '', 'clear' => '', 'margin_top' => '10', 'margin_bottom' => '10', 'padding_top' => '', 'padding_bottom' => ''), array(), array()) -->
+
+<div style="margin-top:10px;margin-bottom:10px;"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-7245163904660683";
+/* xmodulo-post-bottom */
+google_ad_slot = "5804090714";
+google_ad_width = 336;
+google_ad_height = 280;
+//-->
+</script>
+<script type="text/javascript" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><ins id="aswift_1_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;" frameborder="0" height="280" scrolling="no" width="336"></iframe></ins></ins></div><!--/mfunc-->
+
+<p>Then uninstall Apache2 and its dependent packages.  Use <tt>purge</tt> option instead of <tt>remove</tt> with <tt>apt-get</tt>
+ command. The former option will try to remove dependent packages, as 
+well as any configuration files created by them.  In addition, use <tt>autoremove</tt> option as well, to remove any other dependencies that were installed with Apache2, but are no longer used by any other package.</p>
+<div class="console">
+$ sudo apt-get purge apache2 apache2-utils apache2.2-bin apache2-common<br>
+$ sudo apt-get autoremove
+</div>
+<p></p>
+<p>Finally, check if there is any configuration files or manual pages belonging to Apache2, which are still not removed.</p>
+<div class="console">
+$ whereis apache2
+</div>
+<pre>apache2: /etc/apache2
+</pre>
+<p>In this example, /etc/apache2 directory still exists.  Since this 
+directory (as well as any configuration files in it) is no longer 
+necessary, go ahead and remove it manually.</p>
+<div class="console">
+$ sudo rm -rf /etc/apache2
+</div>
+
+<!--Ad Injection mfunc mode ad code--><!--mfunc adshow_display_ad_file_v2(array('ad_bottom_1.txt'), array(100), array('align' => '', 'clear' => '', 'margin_top' => '', 'margin_bottom' => '', 'padding_top' => '', 'padding_bottom' => '15'), array(), array()) -->
+
+<div style="padding-bottom:15px;"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-7245163904660683";
+/* xmodulo-post-bottom */
+google_ad_slot = "5804090714";
+google_ad_width = 336;
+google_ad_height = 280;
+//-->
+</script>
+<script type="text/javascript" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><ins id="aswift_2_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){w.location.replace(h)}}" id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;" frameborder="0" height="280" scrolling="no" width="336"></iframe></ins></ins></div><!--/mfunc-->
+<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-official sd-sharing"><h3 class="sd-title">Share this FAQ:</h3><div class="sd-content"><ul><li class="share-google-plus-1"><div class="googleplus1_button"><div id="___plus_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 88px; height: 20px;"><iframe title="+Share" data-gapiattached="true" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/sharebutton.htm" name="I0_1382347821197" id="I0_1382347821197" vspace="0" tabindex="0" style="position: static; top: 0px; width: 88px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div></div></li><li class="share-facebook"><div class="like_button"><iframe src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/like.htm" style="border:none; overflow:hidden; width:96px; height:21px;" allowtransparency="true" frameborder="0" scrolling="no"></iframe></div></li><li class="share-twitter"><div class="twitter_button"><iframe allowtransparency="true" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/tweet_button.htm" style="width:101px; height:20px;" frameborder="0" scrolling="no"></iframe></div></li><li class="share-reddit"><div class="reddit_button"><iframe src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/button1.htm" frameborder="0" height="22" scrolling="no" width="120"></iframe></div></li><li class="share-end"></li></ul></div></div></div><div class="yarpp-related">
+<br><h3>Related FAQs:</h3><ul>
+<li><a href="http://xmodulo.com/2013/01/how-to-enable-mod_rewrite-in-apache2-on-debian-ubuntu.html" rel="bookmark" title="How to enable mod_rewrite in Apache2 on Debian or Ubuntu">How to enable mod_rewrite in Apache2 on Debian or Ubuntu</a></li>
+<li><a href="http://xmodulo.com/2013/01/how-to-find-which-package-binary-file-belongs-to-on-debian-ubuntu.html" rel="bookmark" title="How to find which package a binary file belongs to on Debian/Ubuntu">How to find which package a binary file belongs to on Debian/Ubuntu</a></li>
+<li><a href="http://xmodulo.com/2013/04/how-to-create-deb-debian-package-for-java-web-application.html" rel="bookmark" title="How to create .deb Debian package for Java web application">How to create .deb Debian package for Java web application</a></li>
+<li><a href="http://xmodulo.com/2012/11/how-to-install-software-packages-in-non-interactive-batch-mode.html" rel="bookmark" title="How to install software packages in non-interactive batch mode on Debian/Ubuntu">How to install software packages in non-interactive batch mode on Debian/Ubuntu</a></li>
+<li><a href="http://xmodulo.com/2013/07/how-to-check-package-dependencies-on-ubuntu-or-debian.html" rel="bookmark" title="How to check package dependencies on Ubuntu or Debian">How to check package dependencies on Ubuntu or Debian</a></li>
+</ul>
+</div>
+</div> <!-- .entry-content -->    
+    				<div class="heatmapthemead-footer-entry-meta">
+				<footer class="entry-meta">
+				
+										
+														<p class="heatmapthemead-cat-links">
+									Categories: <a href="http://xmodulo.com/category/web" title="View all posts in Web" rel="tag">Web</a>								</p>
+													
+													<p class="heatmapthemead-tag-links">
+								Tags: <a href="http://xmodulo.com/tag/apache2" rel="tag">apache2</a>							</p>
+								
+								
+				</footer><!-- #heatmapthemead-article-meta -->    
+			</div><!-- #footer-entry-meta --> 
+    	<div id="comments" class="comments-area">
+	
+	
+			<h2 id="comments-title">
+			2 thoughts on “<span>How to uninstall and remove Apache2 on Ubuntu or Debian</span>”		</h2>
+
+		
+		<ol class="commentlist">
+					<li class="comment even thread-even depth-1" id="li-comment-1890">
+			<div class="heatmapthemead-comment-article">
+				<article id="comment-1890" class="comment">
+					<footer class="comment-meta">
+						<div class="reply">
+							<a class="comment-reply-link" href="http://xmodulo.com/2013/02/how-to-uninstall-and-remove-apache2-on-ubuntu-debian.html?replytocom=1890#respond" onclick='return addComment.moveForm("comment-1890", "1890", "respond", "1269")'>Reply</a>						</div><!-- .reply -->
+						<div class="comment-author vcard">
+							<img alt="" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/e1471ecfa069235b0d3525557488299c.png" class="avatar avatar-68 photo" height="68" width="68"><span class="fn"><a href="http://www.imagepedia.net/" rel="external nofollow" class="url">JP</a></span> on <a href="http://xmodulo.com/2013/02/how-to-uninstall-and-remove-apache2-on-ubuntu-debian.html#comment-1890"><time datetime="2013-04-24T16:33:28+00:00">April 24, 2013 at 4:33 pm</time></a> <span class="says">said:</span>		
+													</div><!-- .comment-author .vcard -->
+		
+								
+					</footer>
+		
+					<div class="comment-content"><p>Thanks, very helpful to reduce the amount of RAM ( to install nginx ).</p>
+</div>
+				</article><!-- #comment-## -->
+			</div><!-- .heatmapthemead-comment-article -->
+	
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-2214">
+			<div class="heatmapthemead-comment-article">
+				<article id="comment-2214" class="comment">
+					<footer class="comment-meta">
+						<div class="reply">
+							<a class="comment-reply-link" href="http://xmodulo.com/2013/02/how-to-uninstall-and-remove-apache2-on-ubuntu-debian.html?replytocom=2214#respond" onclick='return addComment.moveForm("comment-2214", "2214", "respond", "1269")'>Reply</a>						</div><!-- .reply -->
+						<div class="comment-author vcard">
+							<img alt="" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/85727afd3b7996100c797e24130c42c6.png" class="avatar avatar-68 photo" height="68" width="68"><span class="fn">MJ</span> on <a href="http://xmodulo.com/2013/02/how-to-uninstall-and-remove-apache2-on-ubuntu-debian.html#comment-2214"><time datetime="2013-07-14T09:58:56+00:00">July 14, 2013 at 9:58 am</time></a> <span class="says">said:</span>		
+													</div><!-- .comment-author .vcard -->
+		
+								
+					</footer>
+		
+					<div class="comment-content"><p>Thx a lot! I used apt-get remove apache2, but your solution works fine :)</p>
+</div>
+				</article><!-- #comment-## -->
+			</div><!-- .heatmapthemead-comment-article -->
+	
+		</li><!-- #comment-## -->
+		</ol>
+
+		
+	
+	
+									<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Leave a comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://xmodulo.com/2013/02/how-to-uninstall-and-remove-apache2-on-ubuntu-debian.html#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="http://xmodulo.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																			<p class="comment-notes">Your email address will not be published. Required fields are marked <span class="required">*</span></p>							<p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" size="30" aria-required="true" type="text"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" size="30" aria-required="true" type="text"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" size="30" type="text"></p>
+												<p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>												<p class="form-submit">
+							<input name="submit" id="submit" value="Post Comment" type="submit">
+							<input name="comment_post_ID" value="1269" id="comment_post_ID" type="hidden">
+<input name="comment_parent" id="comment_parent" value="0" type="hidden">
+						</p>
+						<p style="display: none;"><input id="akismet_comment_nonce" name="akismet_comment_nonce" value="74aa3a8f54" type="hidden"></p>
+	<p class="comment-form-anti-spam" style="clear: both; display: none;">
+		<strong>Current <span style="display:none;">month</span> <span style="display:inline;">ye@r</span> <span style="display:none;">day</span></strong> <span class="required">*</span>
+		<input name="anti-spam-a" id="anti-spam-a" value="2013" type="hidden">
+		<input name="anti-spam-q" id="anti-spam-q" size="30" value="2013" type="text">
+	</p>
+	
+	<p class="comment-form-anti-spam-2" style="display:none;">
+		<strong>Leave this field empty</strong> <span class="required">*</span>
+		<input name="anti-spam-e-email-url" id="anti-spam-e-email-url" size="30" type="text">
+	</p>
+	<p class="comment-subscription-form"><input name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" type="checkbox"> <label class="subscribe-label" id="subscribe-label" for="subscribe_comments" style="display: inline;">Notify me of follow-up comments by email.</label></p><p class="comment-subscription-form"><input name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" type="checkbox"> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog" style="display: inline;">Notify me of new posts by email.</label></p>					</form>
+							</div><!-- #respond -->
+						
+</div><!-- #comments .comments-area -->		</article><!-- #post-1269 -->        
+			<div id="heatmapthemead-post-navigation">
+            <nav role="navigation" id="nav-below" class="site-navigation post-navigation">
+        
+                    
+                <div class="nav-previous"><a href="http://xmodulo.com/2013/02/how-to-reload-etc-network-interfaces-in-ubuntu-debian.html" rel="prev"><span class="meta-nav">«</span> How to reload /etc/network/interfaces in Ubuntu or Debian</a></div>                <div class="nav-next"><a href="http://xmodulo.com/2013/02/how-to-mount-box-com-cloud-storage-on-linux.html" rel="next">How to mount Box.com cloud storage on Linux <span class="meta-nav">»</span></a></div>        
+                    
+            </nav><!-- .site-navigation post-navigation -->
+        </div><!-- #heatmapthemead-post-navigation -->
+		</div> <!-- id="heatmapthemead-the-content-container" --> 
+</div> <!-- id="heatmapthemead-the-content" --> 
+</div> <!-- id="heatmapthemead-content" --> 
+<!-- primary sidebar -->
+<div id="heatmapthemead-primary-sidebar">
+<div id="heatmapthemead-primary-sidebar-container" role="complementary">
+<div id="heatmapthemead-widget-position-primary" class="heatmapthemead-widget-position heatmapthemead-primary" role="complementary"><aside id="heatmapthemead_ad-2" class="widget heatmapthemead_ad_widget">				<div class="heatmapthemead_ad_widget"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-7245163904660683";
+/* xmodulo-leftskyscraper */
+google_ad_slot = "9982982382";
+google_ad_width = 160;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:160px;background-color:transparent"><ins id="aswift_3_anchor" style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:160px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){w.location.replace(h)}}" id="aswift_3" name="aswift_3" style="left:0;position:absolute;top:0;" frameborder="0" height="600" scrolling="no" width="160"></iframe></ins></ins></div>
+			</aside></div> <!-- id="heatmapthemead-widget-position-primary" -->
+</div> <!-- id="heatmapthemead-primary-sidebar-container" -->
+</div> <!-- id="heatmapthemead-primary-sidebar" -->
+<!-- secondary sidebar -->
+<div id="heatmapthemead-secondary-sidebar">
+<div id="heatmapthemead-secondary-sidebar-container" role="complementary">
+<div id="heatmapthemead-widget-position-secondary" class="heatmapthemead-widget-position heatmapthemead-secondary widget-area" role="complementary"><aside id="feedburner-email-subscription-2" class="widget feedburner-email-subscription"><h4 class="widget-title">Enter your email address to subscribe</h4><form action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open('http://feedburner.google.com/fb/a/mailverify?uri=linuxfaq', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true"><p><input value="Your email address" onfocus="if(this.value=='Your email address')this.value='';" onblur="if(this.value=='')this.value='Your email address';" name="email" type="text"><input class="btn" name="imageField" value="Subscribe" alt="Submit" type="submit"><input value="linuxfaq" name="uri" type="hidden"><input name="loc" value="en_US" type="hidden"></p></form></aside><aside id="text-11" class="widget widget_text">			<div class="textwidget"><!-- Place this tag where you want the widget to render. -->
+<div id="___page_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 280px; height: 106px;"><iframe title="Badge v2" data-gapiattached="true" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/page.htm" name="I1_1382347821199" id="I1_1382347821199" vspace="0" tabindex="0" style="position: static; top: 0px; width: 280px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 106px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script></div>
+		</aside><aside id="search-4" class="widget widget_search"><form role="search" method="get" id="searchform" class="searchform" action="http://xmodulo.com/">
+				<div>
+					<label class="screen-reader-text" for="s">Search for:</label>
+					<input name="s" id="s" type="text">
+					<input id="searchsubmit" value="Search" type="submit">
+				</div>
+			</form></aside><aside id="oio-widget-2" class="widget oio">
+<ul class="oio-banner-zone" id="oio-banner-1" style="width:275px; height:125px; float:left;">
+<li style="width:125px; height:125px; margin:0 25px 0 0;"><a rel="nofollow" target="_blank" href="http://xmodulo.com/advertise#banner" title="Advertise Here"><img src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/ad.png" alt="Advertise Here" style="width:125px; height:125px; border:0px;"></a></li>
+</ul>
+<hr class="oio-clear-left">
+</aside><aside id="heatmapthemead_ad-4" class="widget heatmapthemead_ad_widget">				<div class="heatmapthemead_ad_widget"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-7245163904660683";
+/* xmodulo-side-links */
+google_ad_slot = "2515372787";
+google_ad_width = 200;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:200px;background-color:transparent"><ins id="aswift_4_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:200px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){w.location.replace(h)}}" id="aswift_4" name="aswift_4" style="left:0;position:absolute;top:0;" frameborder="0" height="90" scrolling="no" width="200"></iframe></ins></ins></div>
+			</aside><aside id="relatedpoststhumbnailswidget-2" class="widget widget_relatedpoststhumbnailswidget"><h4 class="widget-title">Related Linux FAQs</h4><div style="clear: both"></div><div style="border: 0pt none ; margin: 0pt; padding: 0pt;"><a onmouseout="this.style.backgroundColor='#FFFFFF'" onmouseover="this.style.backgroundColor='#EEEEEF'" style="background-color: rgb(255, 255, 255); border-right: 1px solid rgb(221, 221, 221); border-bottom: medium none; margin: 0pt; padding: 6px; display: block; float: left; text-decoration: none; text-align: left; cursor: pointer;" href="http://xmodulo.com/2012/12/how-to-set-up-proxy-auto-config-on-ubuntu-desktop.html"><div style="border: 0pt none ; margin: 0pt; padding: 0pt; width: 130px; height: 280px;"><div style="border: 1pt solid #000000; margin: 0pt; padding: 0pt; background: transparent url(http://farm8.staticflickr.com/7328/9309468143_4ff5f38340_q.jpg) no-repeat scroll 0% 0%; -moz-background-clip: border; -moz-background-origin: padding; -moz-background-inline-policy: continuous; width: 130px; height: 130px;"></div><div style="border: 0pt none; margin: 3px 0pt 0pt; padding: 0pt; font-family: ; font-style: normal; font-variant: normal; font-weight: normal; font-size: px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: #333333;">How to set up proxy auto config on Ubuntu Desktop</div></div></a><a onmouseout="this.style.backgroundColor='#FFFFFF'" onmouseover="this.style.backgroundColor='#EEEEEF'" style="background-color: rgb(255, 255, 255); border-right: 1px solid rgb(221, 221, 221); border-bottom: medium none; margin: 0pt; padding: 6px; display: block; float: left; text-decoration: none; text-align: left; cursor: pointer;" href="http://xmodulo.com/2012/11/how-to-install-old-firefox-on-linux.html"><div style="border: 0pt none ; margin: 0pt; padding: 0pt; width: 130px; height: 280px;"><div style="border: 1pt solid #000000; margin: 0pt; padding: 0pt; background: transparent url(http://xmodulo.com/wp-content/plugins/related-posts-thumbnails/img/default.png) no-repeat scroll 0% 0%; -moz-background-clip: border; -moz-background-origin: padding; -moz-background-inline-policy: continuous; width: 130px; height: 130px;"></div><div style="border: 0pt none; margin: 3px 0pt 0pt; padding: 0pt; font-family: ; font-style: normal; font-variant: normal; font-weight: normal; font-size: px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: #333333;">How to install an old version of Firefox on Linux</div></div></a><a onmouseout="this.style.backgroundColor='#FFFFFF'" onmouseover="this.style.backgroundColor='#EEEEEF'" style="background-color: #FFFFFF; border-right: 1px solid #DDDDDD; border-bottom: medium none; margin: 0pt; padding: 6px; display: block; float: left; text-decoration: none; text-align: left; cursor: pointer;" href="http://xmodulo.com/2012/05/how-to-install-google-chrome-on-linux.html"><div style="border: 0pt none ; margin: 0pt; padding: 0pt; width: 130px; height: 280px;"><div style="border: 1pt solid #000000; margin: 0pt; padding: 0pt; background: transparent url(http://farm8.staticflickr.com/7339/9429914574_8820e1bf64_q.jpg) no-repeat scroll 0% 0%; -moz-background-clip: border; -moz-background-origin: padding; -moz-background-inline-policy: continuous; width: 130px; height: 130px;"></div><div style="border: 0pt none; margin: 3px 0pt 0pt; padding: 0pt; font-family: ; font-style: normal; font-variant: normal; font-weight: normal; font-size: px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: #333333;">How to install Google Chrome on Linux</div></div></a><a onmouseout="this.style.backgroundColor='#FFFFFF'" onmouseover="this.style.backgroundColor='#EEEEEF'" style="background-color: #FFFFFF; border-right: 1px solid #DDDDDD; border-bottom: medium none; margin: 0pt; padding: 6px; display: block; float: left; text-decoration: none; text-align: left; cursor: pointer;" href="http://xmodulo.com/2013/04/how-to-download-multiple-files-with-wget.html"><div style="border: 0pt none ; margin: 0pt; padding: 0pt; width: 130px; height: 280px;"><div style="border: 1pt solid #000000; margin: 0pt; padding: 0pt; background: transparent url(http://xmodulo.com/wp-content/plugins/related-posts-thumbnails/img/default.png) no-repeat scroll 0% 0%; -moz-background-clip: border; -moz-background-origin: padding; -moz-background-inline-policy: continuous; width: 130px; height: 130px;"></div><div style="border: 0pt none; margin: 3px 0pt 0pt; padding: 0pt; font-family: ; font-style: normal; font-variant: normal; font-weight: normal; font-size: px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: #333333;">How to download multiple files with wget</div></div></a><a onmouseout="this.style.backgroundColor='#FFFFFF'" onmouseover="this.style.backgroundColor='#EEEEEF'" style="background-color: #FFFFFF; border-right: 1px solid #DDDDDD; border-bottom: medium none; margin: 0pt; padding: 6px; display: block; float: left; text-decoration: none; text-align: left; cursor: pointer;" href="http://xmodulo.com/2013/07/how-to-take-full-length-screenshot-of-web-page-in-linux.html"><div style="border: 0pt none ; margin: 0pt; padding: 0pt; width: 130px; height: 280px;"><div style="border: 1pt solid #000000; margin: 0pt; padding: 0pt; background: transparent url(http://farm9.staticflickr.com/8233/8595919205_aa3acbd2dd_q.jpg) no-repeat scroll 0% 0%; -moz-background-clip: border; -moz-background-origin: padding; -moz-background-inline-policy: continuous; width: 130px; height: 130px;"></div><div style="border: 0pt none; margin: 3px 0pt 0pt; padding: 0pt; font-family: ; font-style: normal; font-variant: normal; font-weight: normal; font-size: px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: #333333;">How to take a full-length screenshot of a web page in Linux</div></div></a><a onmouseout="this.style.backgroundColor='#FFFFFF'" onmouseover="this.style.backgroundColor='#EEEEEF'" style="background-color: #FFFFFF; border-right: 1px solid #DDDDDD; border-bottom: medium none; margin: 0pt; padding: 6px; display: block; float: left; text-decoration: none; text-align: left; cursor: pointer;" href="http://xmodulo.com/2013/08/how-to-browse-web-anonymously-with-google-chrome.html"><div style="border: 0pt none ; margin: 0pt; padding: 0pt; width: 130px; height: 280px;"><div style="border: 1pt solid #000000; margin: 0pt; padding: 0pt; background: transparent url(http://farm6.staticflickr.com/5484/9575086698_28cba3336f.jpg) no-repeat scroll 0% 0%; -moz-background-clip: border; -moz-background-origin: padding; -moz-background-inline-policy: continuous; width: 130px; height: 130px;"></div><div style="border: 0pt none; margin: 3px 0pt 0pt; padding: 0pt; font-family: ; font-style: normal; font-variant: normal; font-weight: normal; font-size: px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: #333333;">How to browse the web anonymously with Google Chrome</div></div></a></div><div style="clear: both"></div></aside><aside id="image-2" class="widget widget_image"><div class="jetpack-image-container"><a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US"><img src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/cc-by-sa.jpg" alt="All content on Xmodulo.com is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License." title="All content on Xmodulo.com is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License." class="alignnone"></a></div>
+</aside></div> <!-- id="heatmapthemead-widget-position-secondary" -->
+</div> <!-- id="heatmapthemead-secondary-sidebar-container" -->
+</div> <!-- id="heatmapthemead-secondary-sidebar" -->
+</div> <!-- id="heatmapthemead-main" -->
+</div> <!-- id="heatmapthemead-main-wipe" -->
+<!-- Footer -->
+<div id="heatmapthemead-footer-wipe">
+<div id="heatmapthemead-footer">
+<div id="heatmapthemead-footer-container" role="complementary">
+				<div id="heatmapthemead-footer-menu" class="heatmapthemead-menu">
+					<nav role="navigation" class="site-navigation footer-navigation">
+						<div class="menu"><ul><li class="page_item page-item-5032"><a href="http://xmodulo.com/about">About</a></li><li class="page_item page-item-3805"><a href="http://xmodulo.com/advertise">Advertise</a></li><li class="page_item page-item-5367"><a href="http://xmodulo.com/write-us">Write for Us</a></li><li class="page_item page-item-574"><a href="http://xmodulo.com/contact">Contact</a></li></ul></div>
+					</nav>
+				</div>
+	</div> <!-- id="heatmapthemead-footer-container" -->
+</div> <!-- id="heatmapthemead-footer" -->
+</div> <!-- id="heatmapthemead-footer-wipe" -->
+<!-- wp_footer() -->
+
+<!--Plugin WP Missed Schedule 2013.0730.7777 Active - Tag d76ca983e4e0b1146b8511f40cd66015-->
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31255384-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+	<div style="display: block;" id="wp-social-toolbar" class="wp-social-toolbar-	 wpst_bar_normal_bottom">
+									<!-- wp social toolbar show box start -->
+			<div id="wp-social-toolbar-show-box">
+				<div id="wps-toolbar-show">
+				<img src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/white_002.png" class="wpsc_show_button">
+				</div>    
+			</div>
+			<!-- wp social toolbar show box end -->
+			<!-- wp social toolbar border visible on hide starts -->
+			<div class="wpcs-border">&nbsp;</div>
+			<!-- wp social toolbar border visible on hide ends -->
+			
+    <div id="wps-toolbar-content">
+				<!-- Top Starts -->
+    	<div id="wps-toolbar-top">
+        	<div id="wps-close-button">
+            	<img src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/white.png" class="wpsc_close_button">
+            </div>
+			<div id="wps-twitter-status-no"></div>        </div>
+		<!-- Top ends -->
+		        <div id="wps-toolbar-bottom">
+		
+        	<div id="wpsc-social-accounts">
+			<!-- START LOOP -->
+								
+					<a href="http://www.twitter.com/xmodulo" title="twitter" target="_blank"><img src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/twitter.png" alt="twitter" height="40" width="40"></a>
+										<a href="https://www.facebook.com/xmodulo" title="facebook" target="_blank"><img src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/facebook.png" alt="facebook" height="40" width="40"></a>
+											<a href="http://www.linkedin.com/in/xmodulo" title="linkedin" target="_blank"><img src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/linkedin_002.png" alt="linkedin" height="40" width="40"></a>
+											<a href="https://plus.google.com/113402205121279785792" title="google+" target="_blank"><img src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/googleplus.png" alt="google+" height="40" width="40"></a>
+									<!-- END LOOP -->
+				
+			
+            	
+				
+            </div>
+			<!-- <div id="wpsc-social-counts">  -->
+	
+												
+					
+																								<div class="wpcs-share-icons"><div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px;"><iframe title="+1" data-gapiattached="true" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/fastbutton.htm" name="I0_1382347821348" id="I0_1382347821348" vspace="0" tabindex="0" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div></div>
+																											<div class="wpcs-share-icons">
+																		<iframe style="width: 109px; height: 20px;" data-twttr-rendered="true" title="Twitter Tweet Button" class="twitter-share-button twitter-tweet-button twitter-count-horizontal" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/tweet_button_002.htm" allowtransparency="true" id="twitter-widget-0" frameborder="0" scrolling="no"></iframe>
+																		<script type="text/javascript" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/widgets.js"></script>
+									</div>	
+																		<div class="wpcs-share-icons"><iframe src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/like_002.htm" style="border:none;margin-left:auto;margin-right:auto; overflow:hidden; width:90px; height:25px;" allowtransparency="true" frameborder="0" scrolling="no"></iframe></div>		
+									
+						
+						<!--</div>  wpsc social counts close -->
+										
+						
+				
+			</div> <!-- wpsc social bottom close -->
+				</div><!-- wpsc social content close -->
+						</div><!-- wpsc social bottom close -->
+	<div style="display:none">
+	<div class="grofile-hash-map-e1471ecfa069235b0d3525557488299c">
+	</div>
+	<div class="grofile-hash-map-85727afd3b7996100c797e24130c42c6">
+	</div>
+	</div>
+			<script type="text/javascript">
+			  (function() {
+			    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+			    po.src = 'https://apis.google.com/js/plusone.js';
+			    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+			  })();
+			</script>
+					<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-facebook' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+		});
+		</script>
+				<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-twitter' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+		});
+		</script>
+		<script type="text/javascript" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/devicepx-jetpack.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var recaptcha_options = {"lang":"en"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/sharing.js"></script>
+
+	<script src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/e-201343.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	st_go({v:'ext',j:'1:2.5',blog:'44272548',post:'1269',tz:'0'});
+	var load_cmc = function(){linktracker_init(44272548,1269,2);};
+	if ( typeof addLoadEvent != 'undefined' ) addLoadEvent(load_cmc);
+	else load_cmc();
+	</script><img id="wpstats" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/g.gif" alt=""><!-- End of wp_footer() -->
+<!-- Number of Queries:40   Seconds: 0.789-->
+<!-- heatmapthemead_end_body hook -->
+<!-- END BODY Scripts -->
+
+
+<!-- end of heatmapthemead_end_body hook -->
+
+
+
+
+<iframe style="width: 1px; height: 1px; position: absolute; top: -100px;" src="How%20to%20uninstall%20and%20remove%20Apache2%20on%20Ubuntu%20or%20Debian%20-%20Linux%20FAQ-Dateien/postmessageRelay.htm" id="oauth2relay417761864" name="oauth2relay417761864"></iframe></body></html>
+<!-- End of render.php -->
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Page Caching using disk: enhanced
+Database Caching 1/41 queries in 0.080 seconds using disk
+Object Caching 1892/1956 objects using disk
+
+ Served from: xmodulo.com @ 2013-10-21 09:00:23 by W3 Total Cache -->

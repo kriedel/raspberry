@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="de-DE"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<!-- Diese Seite wurde SEO-optimiert von wpSEO / http://wpseo.de -->
+<title>Raspberry Pi – WLAN einrichten (Edimax) › Datenreise</title>
+<meta name="description" content="Wer seinen Raspberry Pi per WLAN ins Netzwerk einbinden möchte, steht vor der Wahl des richtigen WLAN-Sticks.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.datenreise.de/raspberry-pi-wlan-einrichten-edimax/">
+<link rel="author" href="https://plus.google.com/104871027607397122776">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<meta property="og:locale" content="de_DE">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Datenreise - Alltägliches eines Pinguinflüsterers">
+<meta property="og:url" content="http://www.datenreise.de/">
+<meta property="og:site_name" content="Datenreise">
+
+<meta name="google-site-verification" content="DbHsorYfO5j2pBFG9k6JNp3Gct6qa0PGPhUb896cLrw">
+    
+<!-- Mobile viewport optimized -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+
+<!-- Title -->
+
+
+<link rel="shortcut icon" href="https://www.datenreise.de/wp-content/uploads/2013/09/favicon.png" type="image/x-icon">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="https://www.datenreise.de/xmlrpc.php">
+
+<!-- WP Head -->
+<meta name="generator" content="WordPress 3.6.1">
+<meta name="template" content="Origin 0.5.6">
+<link rel="alternate" type="application/rss+xml" title="Datenreise » Feed" href="https://www.datenreise.de/feed/">
+<link rel="alternate" type="application/rss+xml" title="Datenreise » Kommentar-Feed" href="https://www.datenreise.de/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Datenreise » Raspberry Pi – WLAN einrichten (Edimax) Kommentar-Feed" href="https://www.datenreise.de/raspberry-pi-wlan-einrichten-edimax/feed/">
+<link rel="stylesheet" id="style-css" href="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-postratings-css" href="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/postratings-css.css" type="text/css" media="all">
+<link rel="stylesheet" id="origin_fancybox-stylesheet-css" href="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/jquery.css" type="text/css" media="screen">
+<link rel="stylesheet" id="font-istok-web-css" href="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/css.css" type="text/css" media="screen">
+<link rel="stylesheet" id="font-awesome-styles-css" href="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/font-awesome.css" type="text/css" media="all">
+<!--[if lte IE 7]>
+<link rel='stylesheet' id='font-awesome-ie7-css'  href='https://www.datenreise.de/wp-content/plugins/font-awesome/assets/css/font-awesome-ie7.min.css?ver=3.2.1' type='text/css' media='all' />
+<![endif]-->
+<div class="fit-vids-style">­<style>               .fluid-width-video-wrapper {                 width: 100%;                              position: relative;                       padding: 0;                            }                                                                                   .fluid-width-video-wrapper iframe,        .fluid-width-video-wrapper object,        .fluid-width-video-wrapper embed {           position: absolute;                       top: 0;                                   left: 0;                                  width: 100%;                              height: 100%;                          }                                       </style></div><script src="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/piwik.js" async="" defer="defer" type="text/javascript"></script><script type="text/javascript" src="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/jquery.js"></script>
+<script type="text/javascript" src="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/jquery-migrate.js"></script>
+<script type="text/javascript" src="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/comment-reply.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.datenreise.de/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.datenreise.de/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Bloggen für den guten Zweck – Domain-Weltkarte kostenlos erhalten" href="https://www.datenreise.de/bloggen-fur-den-guten-zweck-domain-weltkarte-kostenlos/">
+<link rel="next" title="Wie dir die Telekom ein falsches Internet unterjubeln will" href="https://www.datenreise.de/wie-dir-die-telekom-ein-falsches-internet-unterjubeln-will/">
+<link rel="shortlink" href="https://www.datenreise.de/?p=1165">
+
+	<!-- Generated by Link Indication Plugin 4.4 - http://sw-guide.de/ -->
+	<style type="text/css" media="screen">
+		@import url( https://www.datenreise.de/wp-content/plugins/link-indication/link-indication_style.css );
+	</style>
+	<!-- /Link Indication Plugin -->
+	
+	<style type="text/css">
+
+		/* Font size. */
+					html { font-size: 16px; }
+		
+		/* Font family. */
+					body { font-family: 'Istok Web', serif; }
+		
+		/* Link color. */
+					a, a:visited, #footer a:hover, .entry-title a:hover { color: #4f70c5; }
+			#respond #submit, .button, a.button, .wpcf7-submit, #loginform .button-primary { background-color: #4f70c5; }
+				a:hover, a:focus { color: #000; }
+
+		/* Custom CSS. */
+		pre { padding: 15px 20px; background: #f3f3f3; border: 1px dashed #cccccc; color: #4f70c5; } .hint { background: #f3f3f3; padding:8px; } img.noborder { border: 0px solid #ffffff; }
+	
+	</style>	
+
+
+</head>
+
+<body class="wordpress ltr de_DE parent-theme y2013 m10 d15 h15 tuesday logged-out custom-header singular singular-post singular-post-1165">
+
+	
+	<div id="container">
+		
+		<div class="wrap">
+
+				
+			<div id="header">
+	
+					
+					<div id="branding">
+						
+						<div id="site-title">
+<a href="https://www.datenreise.de/" title="Datenreise" rel="Home">
+<img style="opacity: 1;" class="logo" src="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/cropped-datenreise1.png" alt="Datenreise">
+</a>
+</div>
+						
+					</div><!-- #branding -->
+					
+										
+					<div id="site-description"><span>Alltägliches eines Pinguinflüsterers</span></div>	
+						
+				
+		<div class="breadcrumb-trail breadcrumbs" itemprop="breadcrumb">
+			<span class="trail-browse">Durchsuchen:</span> <span class="trail-begin"><a href="https://www.datenreise.de/" title="Datenreise">Home</a></span>
+			 <span class="sep">»</span> <span class="trail-end">Raspberry Pi – WLAN einrichten (Edimax)</span>
+		</div>	
+			</div><!-- #header -->
+	
+				
+				
+			<div id="main">
+	
+				
+	
+	<div id="content">
+
+		
+		<div class="hfeed">
+
+			
+				
+					
+					<div id="post-1165" class="hentry post publish post-1 odd author-admin category-hardware category-linux category-raspberry-pi category-spielwiese post_tag-anleitung post_tag-edimax post_tag-howto post_tag-konfiguration post_tag-linux post_tag-raspberry-pi post_tag-raspbian post_tag-stick post_tag-treiber post_tag-usb post_tag-wlan">
+
+												
+						<div class="post-content">
+						
+							<img src="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/IMG_1139-636x310.jpg" alt="Raspberry Pi - WLAN einrichten (Edimax)" class="single-thumbnail featured">							
+							<h1 class="post-title entry-title">Raspberry Pi – WLAN einrichten (Edimax)</h1>
+							<div class="byline"><time class="published" datetime="2013-06-04T20:09:07+02:00" title="Dienstag, Juni 4th, 2013, 8:09 pm">4. Juni 2013</time> · von <span class="author vcard"><a class="url fn n" rel="author" href="https://www.datenreise.de/author/admin/" title="Manuel">Manuel</a></span> · in <span class="category"><a href="https://www.datenreise.de/themen/hardware/" rel="tag">Hardware</a>, <a href="https://www.datenreise.de/themen/linux/" rel="tag">Linux</a>, <a href="https://www.datenreise.de/themen/hardware/raspberry-pi/" rel="tag">Raspberry Pi</a>, <a href="https://www.datenreise.de/themen/spielwiese/" rel="tag">Spielwiese</a></span> </div>
+							<div class="entry-content">
+								
+								<p>Wer seinen Raspberry Pi per WLAN ins Netzwerk einbinden 
+möchte, steht vor der Wahl des richtigen WLAN-Sticks. Denn je nach Stick
+ ist die Einrichtung entweder spielend einfach oder mit erheblichem 
+Mehraufwand und möglichen Komplikationen verbunden. Grund dafür sind die
+ unterschiedlichen Chipsätze der einzelnen WLAN-Sticks. Probleme gibt es
+ besonders mit ganz neuen Chipsätzen für die der Kernel noch keine 
+Treiber mitbringt oder für die es sogar noch gar kein Linux-Treiber 
+gibt.</p>
+<p>Nachdem ich an meinen Raspberry Pis schon viele verschiedene WLAN 
+Sticks mit mehr oder weniger Aufwand im Einsatz hatte, hat sich mein 
+persönlicher Favorit herauskristallisiert. Am mit Abstand 
+problemlosesten einzurichten ist der WLAN-Stick von Edimax:</p>
+<p><a href="http://www.amazon.de/gp/product/B003MTTJOY/ref=as_li_qf_sp_asin_tl?ie=UTF8&amp;camp=1638&amp;creative=6742&amp;creativeASIN=B003MTTJOY&amp;linkCode=as2&amp;tag=dde0b6-21" target="_blank" rel="nofollow" class="liexternal">EDIMAX EW-7811UN Wireless USB Adapter, 150 Mbit/s, IEEE802.11b/g/n</a></p>
+<p>Der Edimax-Stick wird von Raspbian, ganz ohne zusätzliche Handarbeit,
+ automatisch erkannt und eingebunden. Der Raspbian-Kernel bringt den 
+passenden Treiber (RTL8192CU) bereits mit.</p>
+<p>&nbsp;</p>
+<h4>WLAN-Konfiguration unter Raspbian</h4>
+<p>Sobald der Stick eingesteckt wurde, wird er von Raspbian auch schon 
+erkannt. Dies kann einfach mit folgendem Befehl überprüft werden:</p>
+<pre>$ dmesg</pre>
+<p>Anschließend sehen wir in der Ausgabe, dass ein WLAN Adapter von 
+Realtek erkannt wurde und der passende Treiber (rtl8192cu) geladen 
+wurde:</p>
+<p><img class="size-full wp-image-1173 alignnone" alt="pi_dmesg" src="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/pi_dmesg.jpg" height="101" width="600">Nachdem der Stick also erfolgreich erkannt wurde, müßte nun ein neues Netzwerk-Device <em>wlan0</em> auftauchen, was einfach mit</p>
+<pre>$ ifconfig</pre>
+<p>abgefragt werden kann.</p>
+<p><img class="size-full wp-image-1177" alt="pi_ifconfig" src="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/pi_ifconfig.jpg" height="320" width="600"></p>
+<p>&nbsp;</p>
+<h4>Verbindung herstellen (DHCP)</h4>
+<p>Um nun eine Verbindung mit unserem WLAN herzustellen, müssen wir die Datei <em>/etc/network/interfaces</em> editieren:</p>
+<pre>$ sudo nano /etc/network/interfaces</pre>
+<p>und deren Inhalt anpassen:</p>
+<pre>auto lo
+iface lo inet loopback
+iface eth0 inet dhcp
+
+auto wlan0
+allow-hotplug wlan0
+iface wlan0 inet dhcp
+wpa-ap-scan 1
+wpa-scan-ssid 1
+wpa-ssid "DEIN-WLAN-NAME"
+wpa-psk "DEIN-WLAN-SCHLÜSSEL"</pre>
+<p>Abschließend die Änderungen an der Datei speichern und den Netzwerkdienst neu starten:</p>
+<pre>sudo service networking restart</pre>
+<p>&nbsp;</p>
+<h4>Statische IP Adressen (optional)</h4>
+<p>Soll der WLAN Schnittstelle eine statische IP im Netzwerk zugewiesen werden, muß der Inhalt der <em>/etc/network/interfaces</em> wie folgt aussehen:</p>
+<pre>auto lo
+iface lo inet loopback
+
+iface eth0 inet static
+address 192.168.0.24
+netmask 255.255.255.0
+gateway 192.168.0.1
+
+auto wlan0
+allow-hotplug wlan0
+iface wlan0 inet static
+address 192.168.0.23
+netmask 255.255.255.0
+gateway 192.168.0.1
+wpa-ap-scan 1
+wpa-scan-ssid 1
+wpa-ssid "DEIN-WLAN-NAME"
+wpa-psk "DEIN-WLAN-SCHLÜSSEL"</pre>
+<hr>
+<span id="post-ratings-1165" class="post-ratings" itemscope="" itemtype="http://schema.org/Article" data-nonce="2dcb2d54c2"><span class="”hreview-aggregate”">
+  <span class="”item”">
+    <span class="fn"><strong>Raspberry Pi – WLAN einrichten (Edimax)</strong></span>:<br><img id="rating_1165_1" src="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/rating_on.gif" alt="1 Stern" title="1 Stern" onmouseover="current_rating(1165, 1, '1 Stern');" onmouseout="ratings_off(4.9, 5, 0);" onclick="rate_post();" onkeypress="rate_post();" style="cursor: pointer; border: 0px;"><img id="rating_1165_2" src="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/rating_on.gif" alt="2 Sterne" title="2 Sterne" onmouseover="current_rating(1165, 2, '2 Sterne');" onmouseout="ratings_off(4.9, 5, 0);" onclick="rate_post();" onkeypress="rate_post();" style="cursor: pointer; border: 0px;"><img id="rating_1165_3" src="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/rating_on.gif" alt="3 Sterne" title="3 Sterne" onmouseover="current_rating(1165, 3, '3 Sterne');" onmouseout="ratings_off(4.9, 5, 0);" onclick="rate_post();" onkeypress="rate_post();" style="cursor: pointer; border: 0px;"><img id="rating_1165_4" src="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/rating_on.gif" alt="4 Sterne" title="4 Sterne" onmouseover="current_rating(1165, 4, '4 Sterne');" onmouseout="ratings_off(4.9, 5, 0);" onclick="rate_post();" onkeypress="rate_post();" style="cursor: pointer; border: 0px;"><img id="rating_1165_5" src="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/rating_half.gif" alt="5 Sterne" title="5 Sterne" onmouseover="current_rating(1165, 5, '5 Sterne');" onmouseout="ratings_off(4.9, 5, 0);" onclick="rate_post();" onkeypress="rate_post();" style="cursor: pointer; border: 0px;">
+  </span>
+  <span class="”rating”">
+    <span class="”average”"><strong>4,93</strong></span> von
+    <span class="”best”">5</span> (<span class="”votes”">109</span> Bewertungen)
+  </span>
+</span><meta itemprop="name" content="Raspberry Pi – WLAN einrichten (Edimax)"><meta itemprop="url" content="https://www.datenreise.de/raspberry-pi-wlan-einrichten-edimax/"><div style="display: none;" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating"><meta itemprop="bestRating" content="5"><meta itemprop="ratingValue" content="4.93"><meta itemprop="ratingCount" content="109"><meta itemprop="reviewCount" content="109"></div></span>
+<span id="post-ratings-1165-loading" class="post-ratings-loading"><img src="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/loading.gif" alt="Loading ..." title="Loading ..." class="post-ratings-image" height="16" width="16">&nbsp;Loading ...</span>
+
+<p>&nbsp;</p>
+<div class="bawmrp"><h3>Verwandte Beiträge:</h3><ul><li class="bawmrp_manual"><a href="https://www.datenreise.de/raspberry-pi-kamera-inbetriebnahme/">Raspberry Pi – Kamera Inbetriebnahme</a></li>
+<li class="bawmrp_manual"><a href="https://www.datenreise.de/raspberry-pi-inbetriebnahme-howto/">Raspberry Pi – Inbetriebnahme / HowTo</a></li>
+<li class="bawmrp_manual"><a href="https://www.datenreise.de/raspberry-pi-hello-world/">Raspberry Pi – Erstkontakt</a></li></ul></div>								
+																
+							</div><!-- .entry-content -->
+
+							<a rel="author" href="https://plus.google.com/104871027607397122776/?rel=author" style="display:none;">Manuel Dietrich</a><div class="entry-meta"><span class="post_tag"><span class="before">Tags: </span><a href="https://www.datenreise.de/tags/anleitung/" rel="tag">Anleitung</a>, <a href="https://www.datenreise.de/tags/edimax/" rel="tag">Edimax</a>, <a href="https://www.datenreise.de/tags/howto/" rel="tag">Howto</a>, <a href="https://www.datenreise.de/tags/konfiguration/" rel="tag">Konfiguration</a>, <a href="https://www.datenreise.de/tags/linux/" rel="tag">Linux</a>, <a href="https://www.datenreise.de/tags/raspberry-pi/" rel="tag">Raspberry Pi</a>, <a href="https://www.datenreise.de/tags/raspbian/" rel="tag">Raspbian</a>, <a href="https://www.datenreise.de/tags/stick/" rel="tag">Stick</a>, <a href="https://www.datenreise.de/tags/treiber/" rel="tag">Treiber</a>, <a href="https://www.datenreise.de/tags/usb/" rel="tag">USB</a>, <a href="https://www.datenreise.de/tags/wlan/" rel="tag">Wlan</a></span></div>
+													
+						</div><!-- .post-content -->
+
+					</div><!-- .hentry -->
+
+					
+					
+					
+					
+<div id="comments-template">
+
+	<div class="comments-wrap">
+
+		<div id="comments">
+
+			
+				<h3 id="comments-number" class="comments-header block-title"><span>22 Reaktionen</span></h3>
+
+				
+				<ol class="comment-list">
+					
+	<li id="comment-298" class="comment even thread-even depth-1 reader">
+
+		
+		<div class="comment-wrap">
+
+			
+			
+			<div class="comment-meta"><span class="comment-author vcard"><cite class="fn">René</cite></span><!-- .comment-author .vcard --> <span class="published"><time class="comment-date" datetime="2013-06-26T10:12:14+02:00" title="Mittwoch, Juni 26th, 2013, 10:12 am">26. Juni 2013</time> um <time class="comment-time" title="Mittwoch, Juni 26th, 2013, 10:12 am">10:12</time></span>  · <a class="comment-reply-link" href="https://www.datenreise.de/raspberry-pi-wlan-einrichten-edimax/?replytocom=298#respond" onclick='return addComment.moveForm("comment-298", "298", "respond", "1165")'>Antwort</a> →</div>
+			<div class="comment-content comment-text">
+				
+				
+				<p>Vielen Dank für den Beitrag! Hat mir geholfen.<br>
+René</p>
+			</div><!-- .comment-content .comment-text -->
+
+			
+		</div><!-- .comment-wrap -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-344" class="comment odd alt thread-odd thread-alt depth-1 reader">
+
+		
+		<div class="comment-wrap">
+
+			
+			
+			<div class="comment-meta"><span class="comment-author vcard"><cite class="fn">Peter</cite></span><!-- .comment-author .vcard --> <span class="published"><time class="comment-date" datetime="2013-07-12T06:26:24+02:00" title="Freitag, Juli 12th, 2013, 6:26 am">12. Juli 2013</time> um <time class="comment-time" title="Freitag, Juli 12th, 2013, 6:26 am">06:26</time></span>  · <a class="comment-reply-link" href="https://www.datenreise.de/raspberry-pi-wlan-einrichten-edimax/?replytocom=344#respond" onclick='return addComment.moveForm("comment-344", "344", "respond", "1165")'>Antwort</a> →</div>
+			<div class="comment-content comment-text">
+				
+				
+				<p>Hallo,</p>
+<p>habs gemacht wie es im Beitrag steht. Komme mit meinem Teil aber 
+nicht online. Eigentlich funktioniert alles wie beschrieben, aber ich 
+kriege einfach kein W-Lan rein. Gibts da irgendwelche Beschränkungen in 
+der SSID ( zB kein _ ) ?<br>
+Ich verwende einen Cisco Wlan Router (gibts da bekannte Probleme mit Edimax?).</p>
+<p>Lg<br>
+Peter!</p>
+			</div><!-- .comment-content .comment-text -->
+
+			
+		</div><!-- .comment-wrap -->
+
+		
+	<ol class="children">
+
+	<li id="comment-345" class="comment byuser comment-author-admin bypostauthor even depth-2 role-administrator user-admin entry-author">
+
+		
+		<div class="comment-wrap">
+
+			
+			
+			<div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.datenreise.de"><a href="http://www.datenreise.de/" title="Manuel" class="url" rel="external nofollow">Manuel</a></cite></span><!-- .comment-author .vcard --> <span class="published"><time class="comment-date" datetime="2013-07-12T11:04:34+02:00" title="Freitag, Juli 12th, 2013, 11:04 am">12. Juli 2013</time> um <time class="comment-time" title="Freitag, Juli 12th, 2013, 11:04 am">11:04</time></span>  · <a class="comment-reply-link" href="https://www.datenreise.de/raspberry-pi-wlan-einrichten-edimax/?replytocom=345#respond" onclick='return addComment.moveForm("comment-345", "345", "respond", "1165")'>Antwort</a> →</div>
+			<div class="comment-content comment-text">
+				
+				
+				<p>Wird der WLAN-Stick richtig erkannt (<em>dmesg</em> oder <em>lsusb</em>)? Taucht bei <em>ifconfig</em>
+ anschließend ein neues Netzwerk-Device wlan0 auf? Vielleicht heißt das 
+Netzwerk-Device bei dir anders (z.B. wlan1, etc), dann müßte das auch in
+ der Konfigurationsdatei angepasst werden. Probleme zwischen Cisco &lt; 
+--&gt; Edimax wären mir nicht bekannt, außerdem habe ich einige RPi mit 
+Edimax-Stick problemlos an verschiedenen Cisco-Routern im Einsatz.</p>
+			</div><!-- .comment-content .comment-text -->
+
+			
+		</div><!-- .comment-wrap -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-350" class="comment odd alt thread-even depth-1 reader">
+
+		
+		<div class="comment-wrap">
+
+			
+			
+			<div class="comment-meta"><span class="comment-author vcard"><cite class="fn">Johannes</cite></span><!-- .comment-author .vcard --> <span class="published"><time class="comment-date" datetime="2013-07-13T21:33:48+02:00" title="Samstag, Juli 13th, 2013, 9:33 pm">13. Juli 2013</time> um <time class="comment-time" title="Samstag, Juli 13th, 2013, 9:33 pm">21:33</time></span>  · <a class="comment-reply-link" href="https://www.datenreise.de/raspberry-pi-wlan-einrichten-edimax/?replytocom=350#respond" onclick='return addComment.moveForm("comment-350", "350", "respond", "1165")'>Antwort</a> →</div>
+			<div class="comment-content comment-text">
+				
+				
+				<p>Hallo,<br>
+bei mir taucht wlan0 leider nicht auf. Wie kann ich denn meinen Stick “installieren”? Habe einen TP-Link (TL-WN725N V2). </p>
+<p>Komme einfach nicht weiter.</p>
+			</div><!-- .comment-content .comment-text -->
+
+			
+		</div><!-- .comment-wrap -->
+
+		
+	<ol class="children">
+
+	<li id="comment-351" class="comment byuser comment-author-admin bypostauthor even depth-2 role-administrator user-admin entry-author">
+
+		
+		<div class="comment-wrap">
+
+			
+			
+			<div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.datenreise.de"><a href="http://www.datenreise.de/" title="Manuel" class="url" rel="external nofollow">Manuel</a></cite></span><!-- .comment-author .vcard --> <span class="published"><time class="comment-date" datetime="2013-07-14T01:27:48+02:00" title="Sonntag, Juli 14th, 2013, 1:27 am">14. Juli 2013</time> um <time class="comment-time" title="Sonntag, Juli 14th, 2013, 1:27 am">01:27</time></span>  · <a class="comment-reply-link" href="https://www.datenreise.de/raspberry-pi-wlan-einrichten-edimax/?replytocom=351#respond" onclick='return addComment.moveForm("comment-351", "351", "respond", "1165")'>Antwort</a> →</div>
+			<div class="comment-content comment-text">
+				
+				
+				<p>Der TL-WN725N V2 verwendet leider einen Chipsatz, für den im 
+Kernel noch keine Treiber enthalten sind. Deshalb empfehle ich explizit 
+den Edimax Stick, bei dem diese Problematik nicht besteht. Eine 
+Installation des TL-WN725N ist mit gewissem Aufwand verbunden, da der 
+Treiber selbst compiliert werden muss. Einfach mal bei Google nach 
+“TL-WN725N V2 raspberry” suchen.</p>
+			</div><!-- .comment-content .comment-text -->
+
+			
+		</div><!-- .comment-wrap -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-414" class="comment odd alt thread-odd thread-alt depth-1 reader">
+
+		
+		<div class="comment-wrap">
+
+			
+			
+			<div class="comment-meta"><span class="comment-author vcard"><cite class="fn">Thomas</cite></span><!-- .comment-author .vcard --> <span class="published"><time class="comment-date" datetime="2013-07-23T16:25:40+02:00" title="Dienstag, Juli 23rd, 2013, 4:25 pm">23. Juli 2013</time> um <time class="comment-time" title="Dienstag, Juli 23rd, 2013, 4:25 pm">16:25</time></span>  · <a class="comment-reply-link" href="https://www.datenreise.de/raspberry-pi-wlan-einrichten-edimax/?replytocom=414#respond" onclick='return addComment.moveForm("comment-414", "414", "respond", "1165")'>Antwort</a> →</div>
+			<div class="comment-content comment-text">
+				
+				
+				<p>Hallo,</p>
+<p>ich habe Deinen Tipp befolgt und habe den WLAN-Stick erfolgreich in 
+Betrieb genommen. Danke für die super Anleitung. Was ich aber nicht 
+verstehe ist, warum ich mein WLAN-Namen in meiner Fritzbox 7290 auf 
+sichtbar stellen muss. Ohne das mein WLAN sichtbar ist, gibt es keine 
+Verbindung. Hast Du hier noch einen Tipp für mich?</p>
+<p>Gruß<br>
+Thomas</p>
+			</div><!-- .comment-content .comment-text -->
+
+			
+		</div><!-- .comment-wrap -->
+
+		
+	<ol class="children">
+
+	<li id="comment-415" class="comment byuser comment-author-admin bypostauthor even depth-2 role-administrator user-admin entry-author">
+
+		
+		<div class="comment-wrap">
+
+			
+			
+			<div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.datenreise.de"><a href="http://www.datenreise.de/" title="Manuel" class="url" rel="external nofollow">Manuel</a></cite></span><!-- .comment-author .vcard --> <span class="published"><time class="comment-date" datetime="2013-07-23T16:31:55+02:00" title="Dienstag, Juli 23rd, 2013, 4:31 pm">23. Juli 2013</time> um <time class="comment-time" title="Dienstag, Juli 23rd, 2013, 4:31 pm">16:31</time></span>  · <a class="comment-reply-link" href="https://www.datenreise.de/raspberry-pi-wlan-einrichten-edimax/?replytocom=415#respond" onclick='return addComment.moveForm("comment-415", "415", "respond", "1165")'>Antwort</a> →</div>
+			<div class="comment-content comment-text">
+				
+				
+				<p>Damit die Anmeldung in einem Wlan mit versteckter SSID 
+funktioniert, muss zusätzlich folgende Angabe in die 
+/etc/network/interfaces beim wlan0-Device gemacht werden:</p>
+<pre>wpa-ap-scan 1
+wpa-scan-ssid 1
+</pre>
+<p>Ich habe die beiden Zeilen nun auch gleich oben im Artikel hinzugefügt.</p>
+<p>P.S. Sicherheitstechnisch bringt eine versteckte SSID keinen nennenswerten Vorteil.</p>
+			</div><!-- .comment-content .comment-text -->
+
+			
+		</div><!-- .comment-wrap -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-433" class="comment odd alt depth-2 reader">
+
+		
+		<div class="comment-wrap">
+
+			
+			
+			<div class="comment-meta"><span class="comment-author vcard"><cite class="fn">Thomas</cite></span><!-- .comment-author .vcard --> <span class="published"><time class="comment-date" datetime="2013-07-25T15:49:28+02:00" title="Donnerstag, Juli 25th, 2013, 3:49 pm">25. Juli 2013</time> um <time class="comment-time" title="Donnerstag, Juli 25th, 2013, 3:49 pm">15:49</time></span>  · <a class="comment-reply-link" href="https://www.datenreise.de/raspberry-pi-wlan-einrichten-edimax/?replytocom=433#respond" onclick='return addComment.moveForm("comment-433", "433", "respond", "1165")'>Antwort</a> →</div>
+			<div class="comment-content comment-text">
+				
+				
+				<p>Supi vielen dank, funktioniert gut <img src="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/icon_wink.gif" alt=";-)" class="wp-smiley"> </p>
+			</div><!-- .comment-content .comment-text -->
+
+			
+		</div><!-- .comment-wrap -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-446" class="comment even thread-even depth-1 reader">
+
+		
+		<div class="comment-wrap">
+
+			
+			
+			<div class="comment-meta"><span class="comment-author vcard"><cite class="fn">Vincent</cite></span><!-- .comment-author .vcard --> <span class="published"><time class="comment-date" datetime="2013-07-26T22:23:07+02:00" title="Freitag, Juli 26th, 2013, 10:23 pm">26. Juli 2013</time> um <time class="comment-time" title="Freitag, Juli 26th, 2013, 10:23 pm">22:23</time></span>  · <a class="comment-reply-link" href="https://www.datenreise.de/raspberry-pi-wlan-einrichten-edimax/?replytocom=446#respond" onclick='return addComment.moveForm("comment-446", "446", "respond", "1165")'>Antwort</a> →</div>
+			<div class="comment-content comment-text">
+				
+				
+				<p>Vllt ist folgender Hinweis/Troubleshoot noch sinnvoll:<br>
+Wenn man sein Wlan mit WPA Keys gesichert hat (was ja auch Sinn macht), 
+und es trotz der Anleitung hier alles nicht funzt, sollte man prüfen ob 
+wpasupplicant installiert ist. (sudo apt-get install wpasupplicant) 
+Danach rebooten.<br>
+Das war bei mir der Knackpunkt.</p>
+<p>Ansonsten vielen Dank für die Anleitung hier.</p>
+<p>Achja:<br>
+Mein Pi sagt mir, dass “sudo /etc/init.d/networking restart” deprecated 
+ist. Also am besten man rebootet eben komplett. Der Pi macht das ja eh 
+meist sau schnell.</p>
+			</div><!-- .comment-content .comment-text -->
+
+			
+		</div><!-- .comment-wrap -->
+
+		
+	<ol class="children">
+
+	<li id="comment-490" class="comment byuser comment-author-admin bypostauthor odd alt depth-2 role-administrator user-admin entry-author">
+
+		
+		<div class="comment-wrap">
+
+			
+			
+			<div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.datenreise.de"><a href="http://www.datenreise.de/" title="Manuel" class="url" rel="external nofollow">Manuel</a></cite></span><!-- .comment-author .vcard --> <span class="published"><time class="comment-date" datetime="2013-07-30T11:09:44+02:00" title="Dienstag, Juli 30th, 2013, 11:09 am">30. Juli 2013</time> um <time class="comment-time" title="Dienstag, Juli 30th, 2013, 11:09 am">11:09</time></span>  · <a class="comment-reply-link" href="https://www.datenreise.de/raspberry-pi-wlan-einrichten-edimax/?replytocom=490#respond" onclick='return addComment.moveForm("comment-490", "490", "respond", "1165")'>Antwort</a> →</div>
+			<div class="comment-content comment-text">
+				
+				
+				<p>Eigentlich müßte bei Raspbian <em>wpasupplicant</em> bereits vorinstalliert sein. Falls nicht, kann man es, wie bereits von dir erwähnt, einfach mit <em>sudo apt-get install wpasupplicant</em> nachinstallieren.</p>
+<p>Bzgl. Neustart des Netzwerkdienstes gibt es verschiedene Wege. Unter 
+Linux muss, im Gegensatz zu Windows, zum Glück nicht bei jeder Änderung 
+der ganze Rechner neugestartet werden <img src="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/icon_wink.gif" alt=";-)" class="wp-smiley"> . Der beste Weg um den Netzwerkdienst neuzustarten, dürfte wohl folgenden Befehl sein:</p>
+<pre>sudo invoke-rc.d networking stop &amp;&amp; sudo invoke-rc.d networking start</pre>
+<p>Ich habe dies nun auch oben entsprechend im Artikel geändert.</p>
+			</div><!-- .comment-content .comment-text -->
+
+			
+		</div><!-- .comment-wrap -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-576" class="comment even thread-odd thread-alt depth-1 reader">
+
+		
+		<div class="comment-wrap">
+
+			
+			
+			<div class="comment-meta"><span class="comment-author vcard"><cite class="fn">katerundkarlo</cite></span><!-- .comment-author .vcard --> <span class="published"><time class="comment-date" datetime="2013-08-02T20:05:14+02:00" title="Freitag, August 2nd, 2013, 8:05 pm">2. August 2013</time> um <time class="comment-time" title="Freitag, August 2nd, 2013, 8:05 pm">20:05</time></span>  · <a class="comment-reply-link" href="https://www.datenreise.de/raspberry-pi-wlan-einrichten-edimax/?replytocom=576#respond" onclick='return addComment.moveForm("comment-576", "576", "respond", "1165")'>Antwort</a> →</div>
+			<div class="comment-content comment-text">
+				
+				
+				<p>Danke für diesen ausgezeichnete Beitrag.<br>
+Nach nur 5 Min. war ich drin.<br>
+Kann ich jedem empfehlen.</p>
+			</div><!-- .comment-content .comment-text -->
+
+			
+		</div><!-- .comment-wrap -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-702" class="comment odd alt thread-even depth-1 reader">
+
+		
+		<div class="comment-wrap">
+
+			
+			
+			<div class="comment-meta"><span class="comment-author vcard"><cite class="fn">Edgar Lindner</cite></span><!-- .comment-author .vcard --> <span class="published"><time class="comment-date" datetime="2013-08-13T12:34:27+02:00" title="Dienstag, August 13th, 2013, 12:34 pm">13. August 2013</time> um <time class="comment-time" title="Dienstag, August 13th, 2013, 12:34 pm">12:34</time></span>  · <a class="comment-reply-link" href="https://www.datenreise.de/raspberry-pi-wlan-einrichten-edimax/?replytocom=702#respond" onclick='return addComment.moveForm("comment-702", "702", "respond", "1165")'>Antwort</a> →</div>
+			<div class="comment-content comment-text">
+				
+				
+				<p>Hallo Manuel,<br>
+wlan über dhcp klappt</p>
+<p>aber bei fester IP:<br>
+nach Neustart des Netzwerkdiensts bleibt die Diode von Edimax aus.<br>
+es kommt die Fehlermeldung: “failed to bring up wlan0″<br>
+ifconfig zeigt die gewünschte IP-Adresse, aber PK pockets:0<br>
+ein ping von einem w7 auf den raspi klappt mal, mal Zeitüberschreitung<br>
+ein ping vom raspi auf die per dhcp zugewiesene eth0-adresse und auf die statische wlan=-adresse klappt<br>
+Kannst Du helfen?<br>
+Vielen Dank Edgar</p>
+			</div><!-- .comment-content .comment-text -->
+
+			
+		</div><!-- .comment-wrap -->
+
+		
+	<ol class="children">
+
+	<li id="comment-703" class="comment byuser comment-author-admin bypostauthor even depth-2 role-administrator user-admin entry-author">
+
+		
+		<div class="comment-wrap">
+
+			
+			
+			<div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.datenreise.de"><a href="http://www.datenreise.de/" title="Manuel" class="url" rel="external nofollow">Manuel</a></cite></span><!-- .comment-author .vcard --> <span class="published"><time class="comment-date" datetime="2013-08-14T00:56:54+02:00" title="Mittwoch, August 14th, 2013, 12:56 am">14. August 2013</time> um <time class="comment-time" title="Mittwoch, August 14th, 2013, 12:56 am">00:56</time></span>  · <a class="comment-reply-link" href="https://www.datenreise.de/raspberry-pi-wlan-einrichten-edimax/?replytocom=703#respond" onclick='return addComment.moveForm("comment-703", "703", "respond", "1165")'>Antwort</a> →</div>
+			<div class="comment-content comment-text">
+				
+				
+				<p>Besteht das Problem auch, wenn du den Raspberry Pi komplett neustartest?<br>
+Ich habe die Konfiguration für die statische IP oben im Artikel leicht 
+verändert. Probierte bitte diese mal 1:1 aus (mit lediglich angepassten 
+IPs).</p>
+			</div><!-- .comment-content .comment-text -->
+
+			
+		</div><!-- .comment-wrap -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-709" class="comment odd alt thread-odd thread-alt depth-1 reader">
+
+		
+		<div class="comment-wrap">
+
+			
+			
+			<div class="comment-meta"><span class="comment-author vcard"><cite class="fn">Edgar Lindner</cite></span><!-- .comment-author .vcard --> <span class="published"><time class="comment-date" datetime="2013-08-14T19:48:09+02:00" title="Mittwoch, August 14th, 2013, 7:48 pm">14. August 2013</time> um <time class="comment-time" title="Mittwoch, August 14th, 2013, 7:48 pm">19:48</time></span>  · <a class="comment-reply-link" href="https://www.datenreise.de/raspberry-pi-wlan-einrichten-edimax/?replytocom=709#respond" onclick='return addComment.moveForm("comment-709", "709", "respond", "1165")'>Antwort</a> →</div>
+			<div class="comment-content comment-text">
+				
+				
+				<p>Alles bestens, vielen Dank!!!<br>
+Ich glaube, es musste wohl der Kaltstart sein.<br>
+Edgar</p>
+			</div><!-- .comment-content .comment-text -->
+
+			
+		</div><!-- .comment-wrap -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-713" class="comment even thread-even depth-1 reader">
+
+		
+		<div class="comment-wrap">
+
+			
+			
+			<div class="comment-meta"><span class="comment-author vcard"><cite class="fn">emmi</cite></span><!-- .comment-author .vcard --> <span class="published"><time class="comment-date" datetime="2013-08-15T19:18:53+02:00" title="Donnerstag, August 15th, 2013, 7:18 pm">15. August 2013</time> um <time class="comment-time" title="Donnerstag, August 15th, 2013, 7:18 pm">19:18</time></span>  · <a class="comment-reply-link" href="https://www.datenreise.de/raspberry-pi-wlan-einrichten-edimax/?replytocom=713#respond" onclick='return addComment.moveForm("comment-713", "713", "respond", "1165")'>Antwort</a> →</div>
+			<div class="comment-content comment-text">
+				
+				
+				<p>Hallo,<br>
+bei mir hat es leider mit dhcp nicht geklappt. statusch hab ich es noch nicht versucht.<br>
+wlan0 wird bei ifconfig angezeigt<br>
+wpasupplicant  ist installiert<br>
+dmesg zeigt an, dass der adapter vorhanden ist.<br>
+hab einen edimax nao ew-7811Un</p>
+<p>hat jemand eine Idee?</p>
+			</div><!-- .comment-content .comment-text -->
+
+			
+		</div><!-- .comment-wrap -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-807" class="comment odd alt thread-odd thread-alt depth-1 reader">
+
+		
+		<div class="comment-wrap">
+
+			
+			
+			<div class="comment-meta"><span class="comment-author vcard"><cite class="fn">Andreas</cite></span><!-- .comment-author .vcard --> <span class="published"><time class="comment-date" datetime="2013-09-21T14:50:32+02:00" title="Samstag, September 21st, 2013, 2:50 pm">21. September 2013</time> um <time class="comment-time" title="Samstag, September 21st, 2013, 2:50 pm">14:50</time></span>  · <a class="comment-reply-link" href="https://www.datenreise.de/raspberry-pi-wlan-einrichten-edimax/?replytocom=807#respond" onclick='return addComment.moveForm("comment-807", "807", "respond", "1165")'>Antwort</a> →</div>
+			<div class="comment-content comment-text">
+				
+				
+				<p>Danke für die gute Anleitung. Hat auch bei mir funktioniert.<br>
+Allerdings hat der Pi einen Neustart durchgeführt, als ich den Edimax eingesteckt hab.<br>
+Der Edimax verbindet zu einer Fritzbox 7390. Die Verbindung funktioniert durch eine Stahlbetondecke und eine Wand.</p>
+<p>Um den Netzwerkdienst neustarten, genügt auch dieser einfachere Befehl:<br>
+sudo service networking restart<br>
+(Raspbian-Release vom Sept. 2013.)</p>
+<p>Andi</p>
+			</div><!-- .comment-content .comment-text -->
+
+			
+		</div><!-- .comment-wrap -->
+
+		
+	<ol class="children">
+
+	<li id="comment-808" class="comment byuser comment-author-admin bypostauthor even depth-2 role-administrator user-admin entry-author">
+
+		
+		<div class="comment-wrap">
+
+			
+			
+			<div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.datenreise.de"><a href="http://www.datenreise.de/" title="Manuel" class="url" rel="external nofollow">Manuel</a></cite></span><!-- .comment-author .vcard --> <span class="published"><time class="comment-date" datetime="2013-09-21T18:11:21+02:00" title="Samstag, September 21st, 2013, 6:11 pm">21. September 2013</time> um <time class="comment-time" title="Samstag, September 21st, 2013, 6:11 pm">18:11</time></span>  · <a class="comment-reply-link" href="https://www.datenreise.de/raspberry-pi-wlan-einrichten-edimax/?replytocom=808#respond" onclick='return addComment.moveForm("comment-808", "808", "respond", "1165")'>Antwort</a> →</div>
+			<div class="comment-content comment-text">
+				
+				
+				<p>Freut mich, dass alles gut geklappt hat.<br>
+Den Befehl zum Neustart des Netzwerkdienstes habe ich durch deinen ersetzt. Danke.</p>
+			</div><!-- .comment-content .comment-text -->
+
+			
+		</div><!-- .comment-wrap -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-908" class="comment odd alt thread-even depth-1 reader">
+
+		
+		<div class="comment-wrap">
+
+			
+			
+			<div class="comment-meta"><span class="comment-author vcard"><cite class="fn">Karl</cite></span><!-- .comment-author .vcard --> <span class="published"><time class="comment-date" datetime="2013-10-09T17:03:58+02:00" title="Mittwoch, Oktober 9th, 2013, 5:03 pm">9. Oktober 2013</time> um <time class="comment-time" title="Mittwoch, Oktober 9th, 2013, 5:03 pm">17:03</time></span>  · <a class="comment-reply-link" href="https://www.datenreise.de/raspberry-pi-wlan-einrichten-edimax/?replytocom=908#respond" onclick='return addComment.moveForm("comment-908", "908", "respond", "1165")'>Antwort</a> →</div>
+			<div class="comment-content comment-text">
+				
+				
+				<p>Hallo, ich versuche gerade nach ihrer Anleitung meinen Wlan 
+Adapter zu integrieren.  Ich weiß allerdings nicht woher ich die SSID 
+und den Wap2 Schlüssel bekomme? Wo kann ich denn nachgucken wie das 
+Wlanname lautet und wie das Passwort ist?</p>
+			</div><!-- .comment-content .comment-text -->
+
+			
+		</div><!-- .comment-wrap -->
+
+		
+	<ol class="children">
+
+	<li id="comment-909" class="comment byuser comment-author-admin bypostauthor even depth-2 role-administrator user-admin entry-author">
+
+		
+		<div class="comment-wrap">
+
+			
+			
+			<div class="comment-meta"><span class="comment-author vcard"><cite class="fn" title="http://www.datenreise.de"><a href="http://www.datenreise.de/" title="Manuel" class="url" rel="external nofollow">Manuel</a></cite></span><!-- .comment-author .vcard --> <span class="published"><time class="comment-date" datetime="2013-10-09T17:13:20+02:00" title="Mittwoch, Oktober 9th, 2013, 5:13 pm">9. Oktober 2013</time> um <time class="comment-time" title="Mittwoch, Oktober 9th, 2013, 5:13 pm">17:13</time></span>  · <a class="comment-reply-link" href="https://www.datenreise.de/raspberry-pi-wlan-einrichten-edimax/?replytocom=909#respond" onclick='return addComment.moveForm("comment-909", "909", "respond", "1165")'>Antwort</a> →</div>
+			<div class="comment-content comment-text">
+				
+				
+				<p>Wenn der Router vom Netzanbieter (Telekom, 1&amp;1, etc.) stammt,
+ sind die Daten meist auf der Rückseite des Routers zu finden. Falls das
+ Wlan-Passwort geändert wurde (was zu empfehlen ist) oder wenn die 
+Zugangsdaten nicht auf der Rückseite des Gerätes stehen, sind die 
+Wlan-Daten in den Einstellungen des Routers zu finden.</p>
+			</div><!-- .comment-content .comment-text -->
+
+			
+		</div><!-- .comment-wrap -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-910" class="comment odd alt thread-odd thread-alt depth-1 reader">
+
+		
+		<div class="comment-wrap">
+
+			
+			
+			<div class="comment-meta"><span class="comment-author vcard"><cite class="fn">Karl</cite></span><!-- .comment-author .vcard --> <span class="published"><time class="comment-date" datetime="2013-10-09T17:56:40+02:00" title="Mittwoch, Oktober 9th, 2013, 5:56 pm">9. Oktober 2013</time> um <time class="comment-time" title="Mittwoch, Oktober 9th, 2013, 5:56 pm">17:56</time></span>  · <a class="comment-reply-link" href="https://www.datenreise.de/raspberry-pi-wlan-einrichten-edimax/?replytocom=910#respond" onclick='return addComment.moveForm("comment-910", "910", "respond", "1165")'>Antwort</a> →</div>
+			<div class="comment-content comment-text">
+				
+				
+				<p>Achso. Ich muss die gleichen Daten nehmen wie von dem Router? Ich
+ hatte eigentlich vor den Router dann abzuklemmen und eben Druckaufträge
+ über Wlan an den Raspberry zu senden. Ist das denn dann möglich?</p>
+			</div><!-- .comment-content .comment-text -->
+
+			
+		</div><!-- .comment-wrap -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-911" class="comment even thread-even depth-1 reader">
+
+		
+		<div class="comment-wrap">
+
+			
+			
+			<div class="comment-meta"><span class="comment-author vcard"><cite class="fn">Karl</cite></span><!-- .comment-author .vcard --> <span class="published"><time class="comment-date" datetime="2013-10-09T22:49:59+02:00" title="Mittwoch, Oktober 9th, 2013, 10:49 pm">9. Oktober 2013</time> um <time class="comment-time" title="Mittwoch, Oktober 9th, 2013, 10:49 pm">22:49</time></span>  · <a class="comment-reply-link" href="https://www.datenreise.de/raspberry-pi-wlan-einrichten-edimax/?replytocom=911#respond" onclick='return addComment.moveForm("comment-911", "911", "respond", "1165")'>Antwort</a> →</div>
+			<div class="comment-content comment-text">
+				
+				
+				<p>Nachtrag. Ich habe alles hinbekommen wie ich es wollte. Ich habe 
+dank dieser Anleitung Wlan auf dem Raspberry einrichten können. Und dank
+ einer anderen Anleitung AirPrint auf dem Raspberry installiert. 
+Funktioniert sehr gut. Ein bißchen langsam, aber der Raspberry hat halt 
+nicht so viel Power. Dafür muss ich nicht mehr dauernd den Druck 
+umstecken.</p>
+			</div><!-- .comment-content .comment-text -->
+
+			
+		</div><!-- .comment-wrap -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-917" class="comment odd alt thread-odd thread-alt depth-1 reader">
+
+		
+		<div class="comment-wrap">
+
+			
+			
+			<div class="comment-meta"><span class="comment-author vcard"><cite class="fn">Jan</cite></span><!-- .comment-author .vcard --> <span class="published"><time class="comment-date" datetime="2013-10-12T20:18:56+02:00" title="Samstag, Oktober 12th, 2013, 8:18 pm">12. Oktober 2013</time> um <time class="comment-time" title="Samstag, Oktober 12th, 2013, 8:18 pm">20:18</time></span>  · <a class="comment-reply-link" href="https://www.datenreise.de/raspberry-pi-wlan-einrichten-edimax/?replytocom=917#respond" onclick='return addComment.moveForm("comment-917", "917", "respond", "1165")'>Antwort</a> →</div>
+			<div class="comment-content comment-text">
+				
+				
+				<p>Super, vielen Dank!<br>
+Hat nach der Anleitung problemlos funktioniert.</p>
+			</div><!-- .comment-content .comment-text -->
+
+			
+		</div><!-- .comment-wrap -->
+
+		
+	</li><!-- .comment -->				</ol><!-- .comment-list -->
+
+				
+									<div class="comment-navigation comment-pagination">
+											</div><!-- .comment-navigation -->
+				
+			
+			
+		</div><!-- #comments -->
+
+										<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Hinterlasse ein Kommentar <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://www.datenreise.de/raspberry-pi-wlan-einrichten-edimax/#respond" style="display:none;">Klicke hier um den Kommentar abzubrechen.</a></small></h3>
+									<form action="https://www.datenreise.de/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																										<p class="form-author req"><input class="text-input" name="author" id="author" size="40" type="text"><label for="author">Name <span class="required">*</span> </label></p>
+<p class="form-email req"><input class="text-input" name="email" id="email" size="40" type="text"><label for="email">Email <span class="required">*</span> </label></p>
+<p class="form-url"><input class="text-input" name="url" id="url" size="40" type="text"><label for="url">Webseite</label></p>
+												<p class="form-textarea req"><!--<label for="comment">Kommentar</label>--><textarea name="5ff51-comment" id="comment" cols="60" rows="10"></textarea><textarea name="comment" style="display:none" rows="1" cols="1"></textarea></p>												<p class="form-submit">
+							<input name="submit" id="submit" value="Artikel Kommentar  →" type="submit">
+							<input name="comment_post_ID" value="1165" id="comment_post_ID" type="hidden">
+<input name="comment_parent" id="comment_parent" value="0" type="hidden">
+						</p>
+											</form>
+							</div><!-- #respond -->
+						
+	</div><!-- .comments-wrap -->
+
+</div><!-- #comments-template -->
+				
+			
+		</div><!-- .hfeed -->
+
+		
+		
+	
+		<div class="loop-nav">
+			<div class="previous">$larr; <a href="https://www.datenreise.de/bloggen-fur-den-guten-zweck-domain-weltkarte-kostenlos/" rel="prev">Bloggen für den guten Zweck – Domain-Weltkarte kostenlos erhalten</a></div>			<div class="next"><a href="https://www.datenreise.de/wie-dir-die-telekom-ein-falsches-internet-unterjubeln-will/" rel="next">Wie dir die Telekom ein falsches Internet unterjubeln will</a> →</div>		</div><!-- .loop-nav -->
+
+	
+	</div><!-- #content -->
+
+	
+				
+	
+	<div id="sidebar-primary" class="sidebar">
+
+		
+		<section id="hybrid-search-2" class="widget search widget-search"><h3 class="widget-title">Artikelsuche</h3><form method="get" class="search-form" id="search-formhybrid-search" action="https://www.datenreise.de/"><div><input class="search-text" name="s" id="search-texthybrid-search" value="Suchbegriff eingeben ..." onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" type="text"><input class="search-submit button" name="submit" id="search-submithybrid-search" value="Suche" type="submit"></div></form></section><section id="text-2" class="widget widget_text widget-widget_text"><h3 class="widget-title">Datenreise</h3>			<div class="textwidget">Alltägliche
+ Erlebnisse eines selbstständigen Dipl. Informatikers rund um Apple, 
+Linux, Server, Raspberry Pi, Webentwicklung und Programmierung.</div>
+		</section><section id="hybrid-categories-2" class="widget categories widget-categories"><h3 class="widget-title">Themenbereiche</h3><ul class="xoxo categories"><li class="cat-item cat-item-32"><a href="https://www.datenreise.de/themen/apple/" title="Alle unter Apple abgelegten Beiträge ansehen">Apple</a> (13)</li><li class="cat-item cat-item-9"><a href="https://www.datenreise.de/themen/codeschnipsel/" title="Alle unter Codeschnipsel abgelegten Beiträge ansehen">Codeschnipsel</a> (2)</li><li class="cat-item cat-item-3"><a href="https://www.datenreise.de/themen/hardware/" title="Alle unter Hardware abgelegten Beiträge ansehen">Hardware</a> (19)<ul class="children"><li class="cat-item cat-item-4"><a href="https://www.datenreise.de/themen/hardware/raspberry-pi/" title="Alle unter Raspberry Pi abgelegten Beiträge ansehen">Raspberry Pi</a> (6)</li></ul></li><li class="cat-item cat-item-6"><a href="https://www.datenreise.de/themen/linux/" title="Alle unter Linux abgelegten Beiträge ansehen">Linux</a> (8)</li><li class="cat-item cat-item-24"><a href="https://www.datenreise.de/themen/php/" title="Alle unter PHP abgelegten Beiträge ansehen">PHP</a> (1)</li><li class="cat-item cat-item-91"><a href="https://www.datenreise.de/themen/sonstiges/" title="Alle unter Sonstiges abgelegten Beiträge ansehen">Sonstiges</a> (3)</li><li class="cat-item cat-item-10"><a href="https://www.datenreise.de/themen/spielwiese/" title="Alle unter Spielwiese abgelegten Beiträge ansehen">Spielwiese</a> (7)</li></ul><!-- .xoxo .categories --></section>
+		
+	</div><!-- #sidebar-primary .aside -->
+
+	
+
+				
+		</div><!-- #main -->
+
+		
+				
+
+		
+		<div id="footer">
+
+			
+			<div class="footer-content">
+				
+				<p class="copyright">Copyright © 2013 Datenreise | <a href="https://www.datenreise.de/impressum/" title="Impressum">» Impressum</a></p>
+				
+			</div>
+
+			
+		</div><!-- #footer -->
+
+				
+		</div><!-- .wrap -->
+
+	</div><!-- #container -->
+
+	
+	<script type="text/javascript">
+/* <![CDATA[ */
+var ratingsL10n = {"plugin_url":"https:\/\/www.datenreise.de\/wp-content\/plugins\/wp-postratings","ajax_url":"https:\/\/www.datenreise.de\/wp-admin\/admin-ajax.php","text_wait":"Please rate only 1 post at a time.","image":"stars","image_ext":"gif","max":"5","show_loading":"1","show_fading":"1","custom":"0"};
+var ratings_mouseover_image=new Image();ratings_mouseover_image.src=ratingsL10n.plugin_url+"/images/"+ratingsL10n.image+"/rating_over."+ratingsL10n.image_ext;;
+/* ]]> */
+</script>
+<script type="text/javascript" src="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/postratings-js.js"></script>
+<script type="text/javascript" src="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/jquery_002.js"></script>
+<script type="text/javascript" src="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/jquery_003.js"></script>
+<script type="text/javascript" src="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/footer-scripts.js"></script>
+<script type="text/javascript" src="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/navigation.js"></script>
+<script type="text/javascript" src="Raspberry%20Pi%20%E2%80%93%20WLAN%20einrichten%20%28Edimax%29%20%E2%80%BA%20Datenreise-Dateien/drop-downs.js"></script>
+	
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(["setCookieDomain", "*.www.datenreise.de"]);
+  _paq.push(["trackPageView"]);
+  _paq.push(["enableLinkTracking"]);
+
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://webanalytik.bedios.de/";
+    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["setSiteId", "14"]);
+    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript>
+  <img src="https://webanalytik.bedios.de/piwik.php?idsite=14&amp;rec=1" style="border:0" alt="" />
+</noscript>
+
+
+<div id="fancybox-tmp"></div><div id="fancybox-loading"><div></div></div><div id="fancybox-overlay"></div><div id="fancybox-wrap"><div id="fancybox-outer"><div class="fancybox-bg" id="fancybox-bg-n"></div><div class="fancybox-bg" id="fancybox-bg-ne"></div><div class="fancybox-bg" id="fancybox-bg-e"></div><div class="fancybox-bg" id="fancybox-bg-se"></div><div class="fancybox-bg" id="fancybox-bg-s"></div><div class="fancybox-bg" id="fancybox-bg-sw"></div><div class="fancybox-bg" id="fancybox-bg-w"></div><div class="fancybox-bg" id="fancybox-bg-nw"></div><div id="fancybox-content"></div><a id="fancybox-close"></a><div id="fancybox-title"></div><a href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a><a href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a></div></div></body></html>
