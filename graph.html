@@ -34,29 +34,47 @@
     </script>
     <script type="text/javascript">
 
+Highcharts.setOptions({
+        global: {
+            useUTC: false
+        }
+    });
+
 $(function() {
 	$.getJSON('data.json', function(data) {
 
-		// split the data set into ohlc and volume
+		// split the data set
 		var first = [],
 			second = [],
       third  = [],
+      fourth  = [],
+      fifth  = [],
 			dataLength = data.length;
-		//	alert (data[0][1]);
+			//alert (data[0][1]);
 		for (i = 0; i < dataLength; i++) {
 			first.push([
-				data[i][0], // the date
-				data[i][1], // open
+				data[i][0], // date
+				data[i][1], // value
        ]);
 			
 			second.push([
-				data[i][0], // the date
-				data[i][2] // the volume
+				data[i][0], // date
+				data[i][2] // value
 			]);
       
       third.push([
         data[i][0],
         data[i][3]
+      ]);
+      
+        fourth.push([
+        data[i][0],
+        data[i][4]
+      ]);
+      
+        fifth.push([
+        data[i][0],
+        data[i][5]
       ])
 		}
     
@@ -64,12 +82,36 @@ $(function() {
 		// create the chart
 		$('#container').highcharts('StockChart', {
 		    rangeSelector: {
-		        selected: 1
+		       buttons: [{
+                  	type: 'day',
+                  	count: 1,
+                  	text: '1d'
+                  }, {
+                  	type: 'day',
+                  	count: 3,
+                  	text: '3d'
+                  }, {
+                  	type: 'day',
+                  	count: 7,
+                  	text: '7d'
+                  }, {
+                  	type: 'month',
+                  	count: 1,
+                  	text: '1m'
+                  }, {
+                  	type: 'month',
+                  	count: 3,
+                  	text: '3m'
+                  }, {
+                  	type: 'all',
+                  	text: 'All'
+                  }],
+		        selected: 0
 		    },
         chart: {
                 zoomType: 'xy'
             },
-         plotOptions: {
+        plotOptions: {
 	    	series: {
 	    		animation: {
 	    			duration: 1000
@@ -135,10 +177,10 @@ $(function() {
         
 		    
 		    series: [{
-		        name: 'Temperature Outside Balkon',
+		        name: 'Temperature Outside Global',
             type: 'line',
 		        data: first,
-            tooltip: {
+		         tooltip: {
 		        	valueDecimals: 1,
               xDateFormat: '%d.%m.%Y, %H:%M:%S',
               valueSuffix: ' \u00B0C'
@@ -156,7 +198,7 @@ $(function() {
 		        }
             },
             {
-             name: 'Temperature Outside Bad',
+             name: 'Temperature Inside',
             type: 'line',
 		        data: third,
 		        yAxis: 0,
@@ -164,8 +206,31 @@ $(function() {
 		        	valueDecimals: 1,
               xDateFormat: '%d.%m.%Y, %H:%M:%S',
               valueSuffix: ' \u00B0C'
+              }
+            },
+             {
+		        name: 'Temperature Outside Balcony',
+            type: 'line',
+		        data: fourth,
+		          yAxis: 0,
+            tooltip: {
+		        	valueDecimals: 1,
+              xDateFormat: '%d.%m.%Y, %H:%M:%S',
+              valueSuffix: ' \u00B0C'
+		        }
+            },
+             {
+		        name: 'Temperature Outside Bathroom',
+            type: 'line',
+		        data: fifth,
+		        yAxis: 0,
+            tooltip: {
+		        	valueDecimals: 1,
+              xDateFormat: '%d.%m.%Y, %H:%M:%S',
+              valueSuffix: ' \u00B0C'
+		        }
             }
-		        }]
+		        ]
 		});
 	});
 });
@@ -181,12 +246,12 @@ $(function() {
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="index.html">Datalogger</a>
+          <a class="brand" href="index.php">Datalogger</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
             </p>
             <ul class="nav">
-              <li class="active"><a href="index.html">Home</a></li>
+              <li class="active"><a href="index.php">Home</a></li>
               <li><a href="about.html">About</a></li>
               <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -201,7 +266,7 @@ $(function() {
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header active">NAVIGATION</li>
-              <li><a href="index.html">Webcam</a></li>
+              <li><a href="index.php">Webcam</a></li>
               <li class="active"><a href="graph.html">Graph</a></li>
               <li><a href="forecast.php">Forecast</a></li>
               <li><a href="system.php">System</a></li>
