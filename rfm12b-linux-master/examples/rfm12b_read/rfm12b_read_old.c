@@ -2,7 +2,7 @@
 *  Copyright (C) 2013 Georg Kaindl
 /*
  ============================================================================
- Name        : rfm12b_read.c
+ Name        : url.c
  Author      : Kai Riedel
  Version     : 1.0
  Copyright   :
@@ -22,8 +22,6 @@
 #include <signal.h>
 #include <errno.h>
 #include <curl/curl.h>
-#include <unistd.h>
-#include <sys/select.h>
 
 #include "../common/common.h"
 #include "../../rfm12b_config.h"
@@ -60,31 +58,14 @@ size_t write_data(void *ptr, size_t size, size_t count, void *stream)
   //sprintf(pch, "%s", ptr);
 }
 
-int set_nonblock_fd(int fd)
-{
-   int opts;
-   
-   opts = fcntl(fd, F_GETFL);
-   if (opts >= 0) {
-   
-      opts = (opts | O_NONBLOCK);
-      if (fcntl(fd, F_SETFL,opts) >= 0) {
-         return 0;
-      }
-   }
-   
-   return -1;
-}
-
 int main(int argc, char** argv)
 {
    CURL *curl;
    CURLcode res;
    
-   int fd, len, i, nfds;
+   int fd, len, i;
    int band_id, group_id, bit_rate, ioctl_err;
    char *devname;
-   char *c;
    char buf[128];
 	char buf2[40];
    char buf3[40];
@@ -104,32 +85,22 @@ int main(int argc, char** argv)
    
    float Sensor4Value;
    
-   //char *filename2 = "/home/pi/sensorvalue2";
-   //char *filename3 = "/home/pi/sensorvalue3";
+   int8_t fs;
+   char *filename2 = "/home/pi/sensorvalue2";
+   char *filename3 = "/home/pi/sensorvalue3";
    FILE * file;
-   fd_set fds;
    
-   struct timeval timeout;
-	   
    devname = RF12_TESTS_DEV;
    
    fd = open(RF12_TESTS_DEV, O_RDWR);
-   
    if (fd < 0) {
       printf("\nfailed to open %s: %s.\n\n", devname, strerror(errno));
       return fd;
-   } else {
-       if (set_nonblock_fd(fd)) {
-         printf("\nfailed to set non-blocking I/O on %s: %s.\n\n",
-            devname, strerror(errno));
-         return -1;
-      }
-   
+   } else
       printf(
-         "\nsuccessfully opened %s as fd %i.\n\n",
+         "\nsuccessfully opened %s as fd %i, entering read loop...\n\n",
          devname, fd
       );
-   }
 
    fflush(stdout);
    signal(SIGINT, sig_handler);
@@ -150,49 +121,68 @@ int main(int argc, char** argv)
   // ioctl_err |= ioctl(fd, RFM12B_IOCTL_SET_BAND_ID, &band_id);
   // ioctl_err |= ioctl(fd, RFM12B_IOCTL_SET_BIT_RATE, &bit_rate);
    
-   if (ioctl_err) {
+   if (0 != ioctl_err) {
       printf("\nerror during ioctl(): %s.", strerror(errno));
       return -1;
    }
    
-   printf("RFM12 configured to GROUP %i, BAND %i, BITRATE: 0x%.2x.\n\n",
+   printf("RFM12B configured to GROUP %i, BAND %i, BITRATE: 0x%.2x.\n\n",
       group_id, band_id, bit_rate);
 
    pkt_cnt = 0;
    running = 1;
    do {      
+      len = read(fd, buf, RF12_BUF_LEN);
       
-      FD_ZERO(&fds);
-      FD_SET(fd, &fds);
-      timeout.tv_sec =  1;
-      timeout.tv_usec = 0;
+      time (&tt);
       
-      nfds = select(fd+1, &fds, NULL, NULL, &timeout);
-            
-      if (nfds < 0 && running) {
-         printf("\nan error happened during select: %s.\n\n",
-            strerror(errno));
-         return -1;
-      }
-      else if (nfds > 0) {
-         // we ignore when select() returns 0, e.g. nothing is readable.
-         
-       if (FD_ISSET(fd, &fds)) {
-            len = read(fd, buf, RF12_BUF_LEN);
-            
-            if (len < 0) {
-               printf("\nerror while receiving: %s.\n\n",
-                  strerror(errno));
-               return -1;
-            } else if (len > 0) {
+      if (time(0)>time_value+600)     // save data with interval of 10 minutes
+       {
+       curl = curl_easy_init();
+       if(curl)
+       {
+         curl_easy_setopt(curl, CURLOPT_URL, url);
+         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
+       
+         res = curl_easy_perform(curl); // get weather data from rss feed, use of write_data routine
+       
+         curl_easy_cleanup(curl);
+        }
+        
+        file = fopen("/sys/bus/w1/devices/28-000002878f35/w1_slave","r");
+        if (file == NULL) perror ("Error opening file");
+        else
+        {
+        fgets (buf3, 100, file);
+        fgets (buf3, 100, file);
+        fclose (file);
+        Sensor4Value = atof(&buf3[29])/1000;
+        //printf("%.1f\n", Sensor4Value);
+        }
+        
+        file = fopen("/var/www/data.json","r+");
+        if (file == NULL) perror ("Error opening file");
+        else
+        {
+        time_value = time(0);  
+   	  sprintf(buf2, "%d%s", time_value,"000");
+        //printf("%s\n",buf2);
+        
+		  fseek(file, -1, SEEK_END);
+        fprintf(file, ",\n[%s,%d,%d,%d,%.1f,%.1f]]", buf2, Sensor2Value, humidity, Sensor3Value, Sensor4Value, temperature);
+        fclose(file);
+        }
+        }
+      
+      if (len > 0) {
         /* printf("%s", ctime(&tt));
          printf("\t%i bytes read\n\t\t", len);
   
          for (i=0; i<len; i++) {
             printf("%d ", buf[i]);
          }
-         printf("\n");   */
-         
+         printf("\n");*/
          if (buf[0]=='A')					    // Sensor A
 			{
             Sensor2Value = atoi(&buf[1]);		 // convert in integer
@@ -221,56 +211,12 @@ int main(int argc, char** argv)
         
         fflush(stdout);
         pkt_cnt++;
-         }
-      }  
       }
-      else if (nfds == 0)
-		{
-		  //printf("Timeout!");
-		  //fflush(stdout);
-		}
-		
-       if (time(0)>time_value+600)
-       {
-       //time (&tt);
-         
-          curl = curl_easy_init();
-          if(curl)
-          {
-            curl_easy_setopt(curl, CURLOPT_URL, url);
-            curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-            curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
-          
-            res = curl_easy_perform(curl); // get weather data from rss feed, use of write_data routine
-          
-            curl_easy_cleanup(curl);
-           }
-           
-           file = fopen("/sys/bus/w1/devices/28-000002878f35/w1_slave","r");
-           if (file == NULL) perror ("Error opening file");
-           else
-           {
-           fgets (buf3, 100, file);
-           fgets (buf3, 100, file);
-           fclose (file);
-           Sensor4Value = atof(&buf3[29])/1000;
-          // printf("%.1f\n", Sensor4Value);
-           }
-           
-           file = fopen("/var/www/data.json","r+");
-           if (file == NULL) perror ("Error opening file");
-           else
-           {
-           time_value = time(0);  
-      	  sprintf(buf2, "%d%s",  time_value,"000");
-           //printf("%s\n",buf2);
-           
-   		  fseek(file, -1, SEEK_END);
-           fprintf(file, ",\n[%s,%d,%d,%d,%.1f,%.1f]]", buf2, Sensor2Value, humidity, Sensor3Value, Sensor4Value, temperature);
-           fclose(file);
-           }
-          
-        } 
+      else if (len < 0)
+      {
+        break;
+      }
+      
     } 
     while (running);
    
