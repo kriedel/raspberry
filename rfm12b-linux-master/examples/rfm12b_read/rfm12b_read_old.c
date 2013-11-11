@@ -92,7 +92,12 @@ int main(int argc, char** argv)
    
    devname = RF12_TESTS_DEV;
    
-   fd = open(RF12_TESTS_DEV, O_RDWR);
+   //fd = open(RF12_TESTS_DEV, O_RDWR);
+   
+   fd = open(RF12_TESTS_DEV,O_RDONLY);
+   long flag = fcntl(fd, F_GETFL, 0 );
+   fcntl(fd,F_SETFL,flag | O_NONBLOCK);
+   
    if (fd < 0) {
       printf("\nfailed to open %s: %s.\n\n", devname, strerror(errno));
       return fd;
@@ -158,7 +163,7 @@ int main(int argc, char** argv)
         fgets (buf3, 100, file);
         fclose (file);
         Sensor4Value = atof(&buf3[29])/1000;
-        //printf("%.1f\n", Sensor4Value);
+        printf("%.1f\n", Sensor4Value);
         }
         
         file = fopen("/var/www/data.json","r+");
@@ -172,6 +177,8 @@ int main(int argc, char** argv)
 		  fseek(file, -1, SEEK_END);
         fprintf(file, ",\n[%s,%d,%d,%d,%.1f,%.1f]]", buf2, Sensor2Value, humidity, Sensor3Value, Sensor4Value, temperature);
         fclose(file);
+        
+        fflush(stdout);
         }
         }
       
@@ -202,7 +209,7 @@ int main(int argc, char** argv)
    			if (Sensor3Value != 0)
                      Sensor3Value += Sensor3Correction;  // correct value if conversion ok
    
-            //printf("Sensorvalue 3: %d \n", Sensor3Value);
+            printf("Sensorvalue 3: %d \n", Sensor3Value);
             
           //  FILE * file = fopen( filename3, "w" );
           //  fprintf (file, "%d",Sensor3Value); 
